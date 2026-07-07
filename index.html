@@ -3,57 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scroll Animation Sequence</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>Proxy — Everything an IPU student needs</title>
+  <meta name="description" content="Premium notes, PYQs, syllabus, roadmaps and more for IPU students. Beautifully organized.">
+  <link rel="stylesheet" href="css/design-system.css">
   <style>
-    :root {
-      --bg-color: #030303;
-      --accent-color: #00f2fe;
-      --accent-glow: rgba(0, 242, 254, 0.4);
-      --text-color: #ffffff;
-      --text-muted: #888888;
-      --glass-bg: rgba(15, 15, 15, 0.7);
-      --glass-border: rgba(255, 255, 255, 0.08);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      width: 100%;
-      min-height: 100vh;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      font-family: 'Outfit', sans-serif;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    /* Scroll Container to generate height for scrolling */
-    .scroll-container {
-      height: 600vh; /* Adjust height to control speed of animation (taller = slower scroll) */
+    /* ── Home-specific: Scroll Pinning ── */
+    .pin-container {
+      height: 280vh;
       position: relative;
       width: 100%;
     }
 
-    /* Canvas pinned to the viewport */
+    .sticky-wrapper {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+    }
+
     .canvas-container {
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100vh;
       z-index: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      pointer-events: none; /* Let clicks pass through */
+      pointer-events: none;
     }
 
     canvas {
@@ -61,188 +37,99 @@
       width: 100vw;
       height: 100vh;
       object-fit: cover;
+      transition: opacity 0.15s ease-out;
     }
 
-    /* Loading Overlay */
-    .loading-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
+    /* Hero Section */
+    .hero-section {
+      position: relative;
       width: 100%;
+      max-width: 1400px;
       height: 100%;
-      background-color: var(--bg-color);
-      z-index: 100;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      padding: 0 8%;
+      z-index: 5;
+    }
+
+    .hero-content {
+      max-width: 580px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.8s;
+      gap: 1.6rem;
+      transition: opacity 0.2s ease-out;
     }
 
-    .loading-card {
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      padding: 3rem;
-      border-radius: 24px;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      width: 320px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .loading-card::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
-      opacity: 0.15;
-      pointer-events: none;
-    }
-
-    .loader-ring {
-      width: 80px;
-      height: 80px;
-      position: relative;
-      margin-bottom: 1.5rem;
-    }
-
-    .loader-ring-svg {
-      transform: rotate(-90deg);
-      width: 100%;
-      height: 100%;
-    }
-
-    .loader-circle-bg {
-      fill: none;
-      stroke: rgba(255, 255, 255, 0.05);
-      stroke-width: 4px;
-    }
-
-    .loader-circle-progress {
-      fill: none;
-      stroke: var(--accent-color);
-      stroke-width: 4px;
-      stroke-linecap: round;
-      stroke-dasharray: 226; /* 2 * PI * r (r=36) = 226.19 */
-      stroke-dashoffset: 226;
-      transition: stroke-dashoffset 0.1s linear;
-      filter: drop-shadow(0 0 8px var(--accent-color));
-    }
-
-    .loader-percentage {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--text-color);
-    }
-
-    .loader-text {
-      font-size: 0.875rem;
-      font-weight: 400;
-      color: var(--text-muted);
-      letter-spacing: 0.05em;
+    .hero-badge {
+      align-self: flex-start;
+      background: var(--accent-soft);
+      border: 1px solid rgba(124, 58, 237, 0.15);
+      color: var(--accent);
+      font-size: var(--font-size-xs);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 6px 14px;
+      border-radius: var(--border-radius-full);
       text-transform: uppercase;
-      margin-top: 0.5rem;
+      box-shadow: var(--shadow-xs);
     }
 
-    /* Scroll Indicator hint */
-    .scroll-indicator {
-      position: fixed;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
+    .hero-title {
+      font-size: var(--font-size-5xl);
+      line-height: 1.12;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+    }
+
+    .gradient-text {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+    }
+
+    .hero-desc {
+      font-size: var(--font-size-lg);
+      line-height: 1.6;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: var(--space-sm);
+    }
+
+    /* Scrollable content below the pin */
+    .scrollable-content {
+      position: relative;
       z-index: 10;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
-      pointer-events: none;
+      width: 100%;
+      background: var(--bg-primary);
+      padding-bottom: var(--space-4xl);
     }
 
-    .scroll-indicator.visible {
-      opacity: 0.7;
-      visibility: visible;
+    .feature-bar-wrapper {
+      width: 100%;
+      max-width: 1200px;
+      margin: -2.5rem auto 4rem;
+      padding: 0 6%;
     }
 
-    .scroll-indicator:hover {
-      opacity: 1;
+    .subjects-wrapper {
+      margin-top: var(--space-md);
     }
 
-    .mouse {
-      width: 24px;
-      height: 40px;
-      border: 2px solid var(--text-color);
-      border-radius: 12px;
-      position: relative;
-      margin-bottom: 0.5rem;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-    }
-
-    .wheel {
-      width: 4px;
-      height: 8px;
-      background-color: var(--accent-color);
-      border-radius: 2px;
-      position: absolute;
-      top: 6px;
-      left: 50%;
-      transform: translateX(-50%);
-      animation: scrollWheel 1.8s infinite cubic-bezier(0.25, 1, 0.5, 1);
-      box-shadow: 0 0 6px var(--accent-color);
-    }
-
-    .scroll-text {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--text-muted);
-      font-weight: 400;
-    }
-
-    @keyframes scrollWheel {
-      0% {
-        top: 6px;
-        opacity: 0;
-      }
-      30% {
-        opacity: 1;
-      }
-      80% {
-        top: 22px;
-        opacity: 0;
-      }
-      100% {
-        top: 6px;
-        opacity: 0;
-      }
-    }
-
-    /* Hide scrollbar but keep functionality */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--bg-color);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #222;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #333;
+    .stats-wrapper {
+      width: 100%;
+      max-width: 1200px;
+      margin: var(--space-4xl) auto 0;
+      padding: 0 6%;
     }
   </style>
 </head>
@@ -258,205 +145,344 @@
         </svg>
         <span class="loader-percentage" id="loaderPercentage">0%</span>
       </div>
-      <span class="loader-text">Loading Frames</span>
+      <span class="loader-text">Loading Proxy</span>
     </div>
   </div>
 
-  <!-- Canvas Container -->
-  <div class="canvas-container">
-    <canvas id="scrollCanvas"></canvas>
+  <!-- Sticky/Pin Container for Hero + Book Animation -->
+  <div class="pin-container" id="pinContainer">
+    <div class="sticky-wrapper">
+      <div class="canvas-container">
+        <canvas id="scrollCanvas"></canvas>
+      </div>
+      <section class="hero-section">
+        <div class="hero-content" id="heroContent">
+          <span class="hero-badge">✦ Made for IPU Students</span>
+          <h1 class="hero-title">
+            Everything an<br>
+            IPU student needs.<br>
+            <span class="gradient-text">Beautifully organized.</span>
+          </h1>
+          <p class="hero-desc">
+            Premium notes, PYQs, syllabus, roadmaps and more.<br>
+            Built to make your academic journey effortless.
+          </p>
+          <div class="hero-actions">
+            <a href="#subjects" class="btn btn--primary">Explore Notes <span class="arrow">→</span></a>
+            <button class="btn btn--secondary">
+              <svg viewBox="0 0 24 24" width="18" height="18"><path d="M8 5v14l11-7z"/></svg>
+              Watch Intro
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
   </div>
 
-  <!-- Scroll Container -->
-  <div class="scroll-container"></div>
+  <!-- Scrollable Content Below -->
+  <div class="scrollable-content">
+    
+    <!-- Feature Badges Bar -->
+    <div class="feature-bar-wrapper">
+      <div class="feature-bar">
+        <div class="feature-item"><span class="feature-icon">👑</span><span>Curated by Top Students</span></div>
+        <div class="feature-item"><span class="feature-icon">🔄</span><span>Regularly Updated</span></div>
+        <div class="feature-item"><span class="feature-icon">✨</span><span>AI Study Assistant</span></div>
+        <div class="feature-item"><span class="feature-icon">🛡️</span><span>Clean & Ad-free</span></div>
+        <div class="feature-item"><span class="feature-icon">⚡</span><span>Blazing Fast</span></div>
+      </div>
+    </div>
 
-  <!-- Scroll down hint -->
+    <!-- Explore by Subject -->
+    <section class="section-container subjects-wrapper" id="subjects">
+      <div class="section-header">
+        <h2>Explore by Subject</h2>
+        <a href="#" class="view-all">View all</a>
+      </div>
+
+      <div class="carousel-outer">
+        <button class="carousel-btn carousel-btn--prev" id="prevBtn">
+          <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        </button>
+
+        <div class="carousel-track" id="subjectCarousel">
+
+          <!-- Data Structures -->
+          <div class="cube-wrapper">
+            <div class="cube-scene">
+              <div class="cube-face cube-face--front">
+                <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              </div>
+              <div class="cube-face cube-face--back"></div>
+              <div class="cube-face cube-face--left"></div>
+              <div class="cube-face cube-face--right"></div>
+              <div class="cube-face cube-face--top"></div>
+              <div class="cube-face cube-face--bottom"></div>
+            </div>
+            <div class="cube-shadow"></div>
+            <span class="cube-label">Data Structures</span>
+          </div>
+
+          <!-- Operating System -->
+          <div class="cube-wrapper">
+            <div class="cube-scene">
+              <div class="cube-face cube-face--front">
+                <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="cube-face cube-face--back"></div>
+              <div class="cube-face cube-face--left"></div>
+              <div class="cube-face cube-face--right"></div>
+              <div class="cube-face cube-face--top"></div>
+              <div class="cube-face cube-face--bottom"></div>
+            </div>
+            <div class="cube-shadow"></div>
+            <span class="cube-label">Operating System</span>
+          </div>
+
+          <!-- DBMS -->
+          <div class="cube-wrapper">
+            <div class="cube-scene">
+              <div class="cube-face cube-face--front">
+                <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg>
+              </div>
+              <div class="cube-face cube-face--back"></div>
+              <div class="cube-face cube-face--left"></div>
+              <div class="cube-face cube-face--right"></div>
+              <div class="cube-face cube-face--top"></div>
+              <div class="cube-face cube-face--bottom"></div>
+            </div>
+            <div class="cube-shadow"></div>
+            <span class="cube-label">DBMS</span>
+          </div>
+
+          <!-- Computer Networks -->
+          <div class="cube-wrapper">
+            <div class="cube-scene">
+              <div class="cube-face cube-face--front">
+                <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+              </div>
+              <div class="cube-face cube-face--back"></div>
+              <div class="cube-face cube-face--left"></div>
+              <div class="cube-face cube-face--right"></div>
+              <div class="cube-face cube-face--top"></div>
+              <div class="cube-face cube-face--bottom"></div>
+            </div>
+            <div class="cube-shadow"></div>
+            <span class="cube-label">Computer Networks</span>
+          </div>
+
+          <!-- Java -->
+          <div class="cube-wrapper">
+            <div class="cube-scene">
+              <div class="cube-face cube-face--front">
+                <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+              </div>
+              <div class="cube-face cube-face--back"></div>
+              <div class="cube-face cube-face--left"></div>
+              <div class="cube-face cube-face--right"></div>
+              <div class="cube-face cube-face--top"></div>
+              <div class="cube-face cube-face--bottom"></div>
+            </div>
+            <div class="cube-shadow"></div>
+            <span class="cube-label">Java</span>
+          </div>
+
+          <!-- Python -->
+          <div class="cube-wrapper">
+            <div class="cube-scene">
+              <div class="cube-face cube-face--front">
+                <svg viewBox="0 0 24 24"><path d="M12 2H9a3 3 0 0 0-3 3v3h6a3 3 0 0 1 3 3v6a3 3 0 0 0 3-3V9a7 7 0 0 0-7-7z"/><path d="M12 22h3a3 3 0 0 0 3-3v-3h-6a3 3 0 0 1-3-3V7a3 3 0 0 0-3 3v10a7 7 0 0 0 7 7z"/></svg>
+              </div>
+              <div class="cube-face cube-face--back"></div>
+              <div class="cube-face cube-face--left"></div>
+              <div class="cube-face cube-face--right"></div>
+              <div class="cube-face cube-face--top"></div>
+              <div class="cube-face cube-face--bottom"></div>
+            </div>
+            <div class="cube-shadow"></div>
+            <span class="cube-label">Python</span>
+          </div>
+
+          <!-- Discrete Math -->
+          <div class="cube-wrapper">
+            <div class="cube-scene">
+              <div class="cube-face cube-face--front">
+                <svg viewBox="0 0 24 24"><path d="M18 4H6l6 8-6 8h12"/></svg>
+              </div>
+              <div class="cube-face cube-face--back"></div>
+              <div class="cube-face cube-face--left"></div>
+              <div class="cube-face cube-face--right"></div>
+              <div class="cube-face cube-face--top"></div>
+              <div class="cube-face cube-face--bottom"></div>
+            </div>
+            <div class="cube-shadow"></div>
+            <span class="cube-label">Discrete Math</span>
+          </div>
+
+          <!-- and more... -->
+          <div class="cube-wrapper">
+            <div class="cube-scene">
+              <div class="cube-face cube-face--front">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+              </div>
+              <div class="cube-face cube-face--back"></div>
+              <div class="cube-face cube-face--left"></div>
+              <div class="cube-face cube-face--right"></div>
+              <div class="cube-face cube-face--top"></div>
+              <div class="cube-face cube-face--bottom"></div>
+            </div>
+            <div class="cube-shadow"></div>
+            <span class="cube-label">and more...</span>
+          </div>
+        </div>
+
+        <button class="carousel-btn carousel-btn--next" id="nextBtn">
+          <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="stats-wrapper">
+      <div class="stats-bar">
+        <div class="stat-item"><span class="stat-badge">👥</span><span class="stat-val">10K+</span><span class="stat-lbl">Students</span></div>
+        <div class="stat-item"><span class="stat-badge">📚</span><span class="stat-val">500+</span><span class="stat-lbl">Subjects</span></div>
+        <div class="stat-item"><span class="stat-badge">📝</span><span class="stat-val">25K+</span><span class="stat-lbl">Notes</span></div>
+        <div class="stat-item"><span class="stat-badge">📄</span><span class="stat-val">15K+</span><span class="stat-lbl">PYQs</span></div>
+        <div class="stat-item"><span class="stat-badge">🎯</span><span class="stat-val">100%</span><span class="stat-lbl">IPU Focused</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
   <div class="scroll-indicator" id="scrollIndicator">
-    <div class="mouse">
-      <div class="wheel"></div>
-    </div>
-    <span class="scroll-text">Scroll to animate</span>
+    <div class="mouse"><div class="wheel"></div></div>
+    <span class="scroll-text">Scroll to open book</span>
   </div>
 
+  <!-- Scripts -->
+  <script src="js/shared.js"></script>
+  <script src="js/cube-engine.js"></script>
   <script>
-    // Configuration
+    // ── Inject shared components ──
+    ProxyUI.injectNavbar('Home');
+    ProxyUI.injectBackgroundGlows();
+
+    // ── Frame Sequence Animation ──
     const frameCount = 240;
     const images = [];
     const canvas = document.getElementById('scrollCanvas');
     const ctx = canvas.getContext('2d');
     
-    // Animation state
     const sequenceState = {
       targetFrame: 0,
       currentFrame: 0,
-      lerpFactor: 0.08 // Value between 0 and 1. Lower means smoother/slower catch up, higher is more responsive.
+      lerpFactor: 0.08
     };
 
-    // Construct image URL sequence
     const getFrameUrl = (index) => {
-      // ezgif-frame-001.jpg -> ezgif-frame-240.jpg
-      const paddedNum = index.toString().padStart(3, '0');
-      return `frames/ezgif-frame-${paddedNum}.jpg`;
+      return `frames/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`;
     };
 
-    // DOM Elements
     const loadingOverlay = document.getElementById('loadingOverlay');
     const loaderPercentage = document.getElementById('loaderPercentage');
     const loaderCircleProgress = document.getElementById('loaderCircleProgress');
     const scrollIndicator = document.getElementById('scrollIndicator');
 
-    // Preload Images
     let loadedCount = 0;
-    
+
     function preloadImages() {
       return new Promise((resolve) => {
         for (let i = 1; i <= frameCount; i++) {
           const img = new Image();
           img.src = getFrameUrl(i);
-          img.onload = () => {
+          img.onload = img.onerror = () => {
             loadedCount++;
-            updateProgress(loadedCount);
-            if (loadedCount === frameCount) {
-              resolve();
-            }
-          };
-          img.onerror = () => {
-            // Handle loading error - fallback to avoid blocking
-            loadedCount++;
-            updateProgress(loadedCount);
-            if (loadedCount === frameCount) {
-              resolve();
-            }
+            const pct = Math.round((loadedCount / frameCount) * 100);
+            loaderPercentage.textContent = `${pct}%`;
+            const circ = 2 * Math.PI * 36;
+            loaderCircleProgress.style.strokeDashoffset = circ - (pct / 100) * circ;
+            if (loadedCount === frameCount) resolve();
           };
           images.push(img);
         }
       });
     }
 
-    function updateProgress(count) {
-      const percentage = Math.round((count / frameCount) * 100);
-      loaderPercentage.textContent = `${percentage}%`;
-      
-      // Circle radius is 36, circumference is ~226.19
-      const circumference = 2 * Math.PI * 36;
-      const offset = circumference - (percentage / 100) * circumference;
-      loaderCircleProgress.style.strokeDashoffset = offset;
-    }
-
-    // Resize canvas to match display size and account for high DPI devices
     function resizeCanvas() {
       const dpr = window.devicePixelRatio || 1;
       canvas.width = window.innerWidth * dpr;
       canvas.height = window.innerHeight * dpr;
-      
-      // Ensure drawing contexts are scaled appropriately
       ctx.scale(dpr, dpr);
-      
-      // Redraw current frame immediately on resize
       drawFrame(sequenceState.currentFrame);
-    }
-
-    // Drawing image with "cover" aspect-ratio behavior
-    function drawImageCover(ctx, img, w, h) {
-      const imgWidth = img.width || 1920; // fallback if image not fully loaded metadata
-      const imgHeight = img.height || 1080;
-      
-      const imgRatio = imgWidth / imgHeight;
-      const canvasRatio = w / h;
-      
-      let drawWidth, drawHeight, drawX, drawY;
-      
-      if (canvasRatio > imgRatio) {
-        // Canvas is wider than image
-        drawWidth = w;
-        drawHeight = w / imgRatio;
-        drawX = 0;
-        drawY = (h - drawHeight) / 2;
-      } else {
-        // Canvas is taller than image
-        drawWidth = h * imgRatio;
-        drawHeight = h;
-        drawX = (w - drawWidth) / 2;
-        drawY = 0;
-      }
-      
-      ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight);
     }
 
     function drawFrame(frameIndex) {
-      // Bounds checking and rounding to get integer frame
       const index = Math.min(frameCount - 1, Math.max(0, Math.floor(frameIndex)));
       const img = images[index];
-      
-      if (img && img.complete) {
-        // Clear canvas
-        ctx.clearRect(0, 0, canvas.width / (window.devicePixelRatio || 1), canvas.height / (window.devicePixelRatio || 1));
-        // Draw frame centered with cover sizing
-        drawImageCover(ctx, img, window.innerWidth, window.innerHeight);
-      }
+      if (!img || !img.complete) return;
+
+      const w = window.innerWidth, h = window.innerHeight;
+      ctx.clearRect(0, 0, w, h);
+
+      const imgR = img.width / img.height, canR = w / h;
+      let dw, dh, dx, dy;
+      if (canR > imgR) { dw = w; dh = w / imgR; dx = 0; dy = (h - dh) / 2; }
+      else { dw = h * imgR; dh = h; dx = (w - dw) / 2; dy = 0; }
+      ctx.drawImage(img, dx, dy, dw, dh);
     }
 
-    // Smooth render loop using requestAnimationFrame and linear interpolation (lerp)
     function renderLoop() {
-      // Calculate interpolation step
       const diff = sequenceState.targetFrame - sequenceState.currentFrame;
-      
-      // If the difference is very small, snap to target
-      if (Math.abs(diff) < 0.001) {
-        sequenceState.currentFrame = sequenceState.targetFrame;
-      } else {
-        sequenceState.currentFrame += diff * sequenceState.lerpFactor;
-      }
-      
-      // Draw the interpolated frame
+      if (Math.abs(diff) < 0.001) sequenceState.currentFrame = sequenceState.targetFrame;
+      else sequenceState.currentFrame += diff * sequenceState.lerpFactor;
       drawFrame(sequenceState.currentFrame);
-      
-      // Continue loop
       requestAnimationFrame(renderLoop);
     }
 
-    // Listen to scroll events
+    // Scroll handler: timeline mapped to pinContainer
     window.addEventListener('scroll', () => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      
-      // Prevent division by zero
-      const scrollFraction = maxScroll <= 0 ? 0 : scrollTop / maxScroll;
-      
-      // Update target frame based on scroll position (0 to frameCount - 1)
-      sequenceState.targetFrame = scrollFraction * (frameCount - 1);
+      const scrollTop = window.scrollY;
+      const pinContainer = document.getElementById('pinContainer');
+      const scrollRange = pinContainer.offsetHeight - window.innerHeight;
 
-      // Hide scroll down indicator when user scrolls down
-      if (scrollTop > 50) {
-        scrollIndicator.classList.remove('visible');
-      } else {
-        scrollIndicator.classList.add('visible');
+      if (scrollRange > 0) {
+        const fraction = Math.min(1, Math.max(0, scrollTop / scrollRange));
+        const animFraction = Math.min(1, fraction / 0.85);
+        sequenceState.targetFrame = animFraction * (frameCount - 1);
+
+        if (fraction > 0.85) {
+          const fade = Math.max(0, 1 - (fraction - 0.85) / 0.15);
+          document.getElementById('heroContent').style.opacity = fade;
+          canvas.style.opacity = fade;
+        } else {
+          document.getElementById('heroContent').style.opacity = 1;
+          canvas.style.opacity = 1;
+        }
       }
+
+      scrollIndicator.classList.toggle('visible', scrollTop <= 50);
     });
 
-    // Initialize Page
+    // ── Init ──
     async function init() {
-      // Preload images first
       await preloadImages();
-      
-      // Handle canvas sizing
       window.addEventListener('resize', resizeCanvas);
       resizeCanvas();
-      
-      // Draw initial frame
       drawFrame(0);
-      
-      // Fade out loading screen
+
+      // Setup cubes + carousel
+      ProxyUI.setupCarousel('subjectCarousel', 'prevBtn', 'nextBtn');
+
+      // Fade out loader
       setTimeout(() => {
         loadingOverlay.style.opacity = '0';
         setTimeout(() => {
           loadingOverlay.style.visibility = 'hidden';
-          // Show scroll indicator helper
           scrollIndicator.classList.add('visible');
         }, 800);
       }, 500);
 
-      // Start smooth rendering loop
       requestAnimationFrame(renderLoop);
     }
 
