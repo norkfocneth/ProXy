@@ -36,7 +36,7 @@
       margin: 0 auto var(--space-5xl);
       padding: 0 6%;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
       gap: var(--space-2xl);
     }
     
@@ -132,6 +132,30 @@
       background: var(--accent);
       color: white;
       box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .faculty-hero {
+        padding: calc(var(--navbar-height) + var(--space-3xl)) 1.25rem var(--space-2xl);
+      }
+
+      .faculty-grid {
+        padding: 0 1.25rem;
+        gap: var(--space-lg);
+        margin-bottom: var(--space-4xl);
+      }
+
+      .faculty-card {
+        padding: var(--space-lg);
+      }
+
+      .faculty-avatar {
+        width: 80px;
+        height: 80px;
+        font-size: 1.6rem;
+        margin-bottom: var(--space-md);
+      }
     }
   </style>
 </head>

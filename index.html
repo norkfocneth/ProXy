@@ -14,9 +14,9 @@
       }
     }
 
-    /* ── Home-specific: Scroll Pinning ── */
+      /* ── Home-specific: Scroll Pinning ── */
     .pin-container {
-      height: 280vh;
+      height: 450vh;
       position: relative;
       width: 100%;
     }
@@ -137,6 +137,36 @@
       max-width: 1200px;
       margin: var(--space-4xl) auto 0;
       padding: 0 6%;
+    }
+
+    /* Mobile overrides */
+    @media (max-width: 768px) {
+      .hero-section {
+        padding: 0 5%;
+        align-items: flex-end;
+        padding-bottom: 14vh;
+      }
+
+      .hero-content {
+        gap: 1.1rem;
+        max-width: 100%;
+      }
+
+      .feature-bar-wrapper {
+        margin: 1rem auto 2.5rem;
+        padding: 0 1.25rem;
+      }
+
+      .stats-wrapper {
+        padding: 0 1.25rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-section {
+        padding: 0 4%;
+        padding-bottom: 12vh;
+      }
     }
   </style>
 </head>
@@ -359,6 +389,89 @@
         <div class="stat-item"><span class="stat-badge">🎯</span><span class="stat-val">100%</span><span class="stat-lbl">IPU Focused</span></div>
       </div>
     </div>
+
+    <!-- Syllabus Dashboard Section -->
+    <section class="section-container syllabus-section-wrapper" id="syllabus-section">
+      <div class="syllabus-layout-dashboard">
+        
+        <!-- Left Side: Syllabus Accordions -->
+        <div class="explorer-column">
+          
+          <div class="explorer-header">
+            <div class="header-titles">
+              <h1>Syllabus</h1>
+              <p>IPU CSE Syllabus, curated and organized for your academic journey.</p>
+            </div>
+            
+            <div class="update-alert-card">
+              <div class="update-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              </div>
+              <div class="update-info">
+                <span class="update-label">Updated for</span>
+                <span class="update-value">2024 - 25 <span style="font-weight: 500; font-size: 0.8rem; color: var(--accent);">Latest Curriculum</span></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Semester pill tabs bar -->
+          <div class="semester-tabs-container" id="semesterSelector">
+            <button class="sem-pill-btn active" data-sem="1">1st Semester</button>
+            <button class="sem-pill-btn" data-sem="2">2nd Semester</button>
+            <button class="sem-pill-btn" data-sem="3">3rd Semester</button>
+            <button class="sem-pill-btn" data-sem="4">4th Semester</button>
+            <button class="sem-pill-btn" data-sem="5">5th Semester</button>
+            <button class="sem-pill-btn" data-sem="6">6th Semester</button>
+            <button class="sem-pill-btn" data-sem="7">7th Semester</button>
+            <button class="sem-pill-btn" data-sem="8">8th Semester</button>
+          </div>
+
+          <!-- Active semester header banner -->
+          <div class="active-sem-banner">
+            <div class="sem-banner-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            </div>
+            <div class="sem-banner-info">
+              <div class="sem-title-row">
+                <h2 id="currentSemName">1st Semester</h2>
+                <span class="subjects-count-badge" id="currentSubjectsCount">6 Subjects</span>
+              </div>
+              <p id="currentSemDesc">Build your foundation. Master the basics.</p>
+            </div>
+          </div>
+
+          <!-- Subjects accordion rows container -->
+          <div class="subject-list" id="subjectAccordions">
+            <!-- Programmatically injected -->
+          </div>
+
+        </div>
+
+        <!-- Right Side: Showcase Preview -->
+        <div class="preview-column">
+          
+          <div class="showcase-scene-container">
+            <img src="images/syllabus_3d_notebook.png" alt="Proxy 3D Notebook" class="syllabus-3d-image">
+          </div>
+
+          <!-- Download syllabus document card link -->
+          <a href="#" class="download-section-card" id="pdfDownloadLink">
+            <div class="download-btn-circle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            </div>
+            <div class="download-card-info">
+              <span class="download-card-title">Download Syllabus</span>
+              <span class="download-card-sub" id="pdfDownloadSubtext">1st Semester Complete PDF</span>
+            </div>
+            <span class="download-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </span>
+          </a>
+
+        </div>
+
+      </div>
+    </section>
   </div>
 
   <!-- Scroll Indicator -->
@@ -370,6 +483,7 @@
   <!-- Scripts -->
   <script src="js/shared.js?v=3"></script>
   <script src="js/cube-engine.js"></script>
+  <script src="js/syllabus-engine.js"></script>
   <script>
     // ── Inject shared components ──
     ProxyUI.injectNavbar('Home');
@@ -456,7 +570,6 @@
       requestAnimationFrame(renderLoop);
     }
 
-    // Scroll handler: timeline mapped to pinContainer
     window.addEventListener('scroll', () => {
       const scrollTop = window.scrollY;
       const pinContainer = document.getElementById('pinContainer');
@@ -480,8 +593,19 @@
       scrollIndicator.classList.toggle('visible', scrollTop <= 50);
     });
 
+    // Reset scroll on pageshow to prevent back button loops, unless returning from syllabus via scroll-up
+    window.addEventListener('pageshow', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('scroll') !== 'bottom') {
+        window.scrollTo(0, 0);
+      }
+    });
+
     // ── Init ──
     async function init() {
+      // If user prefers reduced motion, skip the canvas animation entirely
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
       await preloadImages();
       window.addEventListener('resize', resizeCanvas);
       resizeCanvas();
@@ -489,6 +613,14 @@
 
       // Setup cubes + carousel
       ProxyUI.setupCarousel('subjectCarousel', 'prevBtn', 'nextBtn');
+
+      // Scroll to bottom if scroll=bottom query parameter is set
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('scroll') === 'bottom') {
+        setTimeout(() => {
+          window.scrollTo(0, document.documentElement.scrollHeight);
+        }, 150);
+      }
 
       // Fade out loader
       setTimeout(() => {
@@ -499,7 +631,43 @@
         }, 800);
       }, 500);
 
-      requestAnimationFrame(renderLoop);
+      if (!reducedMotion) {
+        requestAnimationFrame(renderLoop);
+      } else {
+        // Draw the first frame and keep it static
+        drawFrame(0);
+        canvas.style.transition = 'none';
+      }
+
+      // Highlight "Syllabus" in navbar when scrolling down to syllabus section
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const navLinks = document.querySelectorAll('.nav-link');
+          const mobileLinks = document.querySelectorAll('.mobile-menu-links a');
+          if (entry.isIntersecting) {
+            navLinks.forEach(link => {
+              if (link.textContent.trim() === 'Syllabus') link.classList.add('active');
+              else if (link.textContent.trim() === 'Home') link.classList.remove('active');
+            });
+            mobileLinks.forEach(link => {
+              if (link.textContent.trim() === 'Syllabus') link.classList.add('active');
+              else if (link.textContent.trim() === 'Home') link.classList.remove('active');
+            });
+          } else {
+            navLinks.forEach(link => {
+              if (link.textContent.trim() === 'Syllabus') link.classList.remove('active');
+              else if (link.textContent.trim() === 'Home') link.classList.add('active');
+            });
+            mobileLinks.forEach(link => {
+              if (link.textContent.trim() === 'Syllabus') link.classList.remove('active');
+              else if (link.textContent.trim() === 'Home') link.classList.add('active');
+            });
+          }
+        });
+      }, { threshold: 0.15 });
+
+      const syllabusSect = document.getElementById('syllabus-section');
+      if (syllabusSect) observer.observe(syllabusSect);
     }
 
     window.addEventListener('DOMContentLoaded', init);

@@ -769,6 +769,18 @@
       justify-content: center;
     }
 
+    .syllabus-3d-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s var(--ease-out);
+    }
+
+    .showcase-scene-container:hover .syllabus-3d-image {
+      transform: scale(1.03);
+    }
+
     /* Ambient lighting & backgrounds */
     .ambient-glow {
       position: absolute;
@@ -1224,7 +1236,7 @@
     <aside class="sidebar">
       <div class="sidebar-header">
         <a href="../index.html" class="logo-container">
-          <span class="logo-text">pr<span>o</span>xy</span>
+          <span class="logo-text"><span>P</span>ro<span>X</span>y</span>
         </a>
         <button class="collapse-btn">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
@@ -1411,78 +1423,7 @@
         <div class="preview-column">
           
           <div class="showcase-scene-container">
-            <div class="ambient-glow"></div>
-            
-            <!-- Blueprint Sheet in background -->
-            <svg class="blueprint-svg" viewBox="0 0 100 100" fill="none" stroke="var(--primary)">
-              <circle cx="50" cy="50" r="40" stroke-width="0.5" stroke-dasharray="2 2" />
-              <rect x="25" y="25" width="50" height="50" stroke-width="0.5" />
-              <line x1="10" y1="10" x2="90" y2="90" stroke-width="0.3" />
-              <line x1="90" y1="10" x2="10" y2="90" stroke-width="0.3" />
-            </svg>
-
-            <!-- 3D Folder in background -->
-            <div class="folder-3d-wrapper">
-              <svg viewBox="0 0 100 80" fill="none">
-                <path d="M10 20 L40 20 L50 30 L90 30 L90 70 L10 70 Z" fill="rgba(99, 102, 241, 0.1)" stroke="var(--primary)" stroke-width="2"/>
-                <rect x="20" y="38" width="60" height="24" rx="2" fill="white" stroke="#a5b4fc" stroke-width="1.5"/>
-              </svg>
-            </div>
-
-            <!-- Glass Spheres floating around -->
-            <div class="glass-sphere"></div>
-            <div class="glass-sphere glass-sphere--small"></div>
-
-            <!-- Stylus Pen resting -->
-            <div class="pen-stylus"></div>
-
-            <!-- Books Stack on side -->
-            <div class="books-stack">
-              <div class="stack-book">2024-25</div>
-              <div class="stack-book">IPU</div>
-              <div class="stack-book">CSE</div>
-            </div>
-
-            <!-- 3D Notebook on stand -->
-            <div class="notebook-3d-scene">
-              <div class="notebook-3d-stand"></div>
-              <div class="notebook-body">
-                
-                <div class="notebook-spiral-spine">
-                  <div class="spiral-loop"></div>
-                  <div class="spiral-loop"></div>
-                  <div class="spiral-loop"></div>
-                  <div class="spiral-loop"></div>
-                  <div class="spiral-loop"></div>
-                  <div class="spiral-loop"></div>
-                  <div class="spiral-loop"></div>
-                  <div class="spiral-loop"></div>
-                  <div class="spiral-loop"></div>
-                  <div class="spiral-loop"></div>
-                  <div class="spiral-loop"></div>
-                  <div class="spiral-loop"></div>
-                </div>
-
-                <div class="notebook-divider-tabs">
-                  <div class="divider-tab divider-tab--1"></div>
-                  <div class="divider-tab divider-tab--2"></div>
-                  <div class="divider-tab divider-tab--3"></div>
-                  <div class="divider-tab divider-tab--4"></div>
-                  <div class="divider-tab divider-tab--5"></div>
-                </div>
-
-                <div class="notebook-cover-content">
-                  <div class="notebook-logo-text">pr<span>o</span>xy</div>
-                  <div class="notebook-subtitle">your academic companion</div>
-                  
-                  <div class="notebook-sparkle">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
+            <img src="../images/syllabus_3d_notebook.png" alt="Proxy 3D Notebook" class="syllabus-3d-image">
           </div>
 
           <!-- Download syllabus document card link -->
@@ -1754,7 +1695,44 @@
       setupThemeToggle();
       setupSemesterSelector();
       setupMobileSidebar();
+      setupScrollUpRedirect();
       renderSemester(1); // default load
+    }
+
+    function setupScrollUpRedirect() {
+      // 1. Scroll listener (handles scrolling back to top from below)
+      let lastScrollY = window.scrollY;
+      window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY === 0 && lastScrollY > 0) {
+          window.location.href = "../index.html?scroll=bottom";
+          return;
+        }
+        lastScrollY = currentScrollY;
+      }, { passive: true });
+
+      // 2. Wheel listener (Desktop - handles scroll up when already at 0)
+      window.addEventListener('wheel', (e) => {
+        if (window.scrollY === 0 && e.deltaY < 0) {
+          window.location.href = "../index.html?scroll=bottom";
+        }
+      }, { passive: true });
+
+      // 3. Touch listener (Mobile - handles pull down swipe when already at 0)
+      let touchStartY = 0;
+      window.addEventListener('touchstart', (e) => {
+        touchStartY = e.touches[0].pageY;
+      }, { passive: true });
+
+      window.addEventListener('touchmove', (e) => {
+        if (window.scrollY === 0) {
+          const touchY = e.touches[0].pageY;
+          const diffY = touchY - touchStartY;
+          if (diffY > 60) { // Swipe down of > 60px
+            window.location.href = "../index.html?scroll=bottom";
+          }
+        }
+      }, { passive: true });
     }
 
     function setupMobileSidebar() {

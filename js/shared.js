@@ -8,15 +8,12 @@ function injectNavbar(activePage = 'Home') {
   const navbarHTML = `
     <nav class="navbar" id="mainNavbar">
       <a href="/index.html" class="nav-left">
-        <svg class="logo-icon" viewBox="0 0 24 24">
-          <path d="M12 2L14.85 9.15L22 12L14.85 14.85L12 22L9.15 14.85L2 12L9.15 9.15L12 2Z"/>
-        </svg>
-        <span class="logo-text">Proxy</span>
+        <span class="logo-text"><span>P</span>ro<span>X</span>y</span>
       </a>
       
       <ul class="nav-center">
         <li><a class="nav-link${activePage === 'Home' ? ' active' : ''}" href="/index.html">Home</a></li>
-        <li><a class="nav-link${activePage === 'Syllabus' ? ' active' : ''}" href="/pages/syllabus.html">Syllabus</a></li>
+        <li><a class="nav-link${activePage === 'Syllabus' ? ' active' : ''}" href="/index.html#syllabus-section">Syllabus</a></li>
         <li><a class="nav-link${activePage === 'Notes' ? ' active' : ''}" href="/pages/notes.html">Notes</a></li>
         <li><a class="nav-link${activePage === 'PYQs' ? ' active' : ''}" href="/pages/pyqs.html">PYQs</a></li>
         <li><a class="nav-link${activePage === 'Faculty' ? ' active' : ''}" href="/pages/faculty.html">Faculty</a></li>
@@ -67,7 +64,7 @@ function injectNavbar(activePage = 'Home') {
     <div class="mobile-menu-overlay" id="mobileMenuOverlay" style="display: none;">
       <ul class="mobile-menu-links">
         <li><a class="${activePage === 'Home' ? 'active' : ''}" href="/index.html">Home</a></li>
-        <li><a class="${activePage === 'Syllabus' ? 'active' : ''}" href="/pages/syllabus.html">Syllabus</a></li>
+        <li><a class="${activePage === 'Syllabus' ? 'active' : ''}" href="/index.html#syllabus-section">Syllabus</a></li>
         <li><a class="${activePage === 'Notes' ? 'active' : ''}" href="/pages/notes.html">Notes</a></li>
         <li><a class="${activePage === 'PYQs' ? 'active' : ''}" href="/pages/pyqs.html">PYQs</a></li>
         <li><a class="${activePage === 'Faculty' ? 'active' : ''}" href="/pages/faculty.html">Faculty</a></li>
@@ -219,3 +216,46 @@ window.ProxyUI = {
   injectBackgroundGlows,
   setupCarousel,
 };
+
+// Global smooth scroll interceptor for home section links
+document.addEventListener('DOMContentLoaded', () => {
+  document.body.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (!link) return;
+    const href = link.getAttribute('href');
+    if (href && (href.startsWith('/index.html#') || href.startsWith('index.html#') || href.startsWith('#'))) {
+      const isHome = window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname.endsWith('/index.html');
+      
+      // If we are on home page, intercept click to smooth scroll
+      if (isHome) {
+        const hashParts = href.split('#');
+        const targetId = hashParts[1];
+        if (targetId) {
+          e.preventDefault();
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Close mobile menu overlay if active
+            const overlay = document.getElementById('mobileMenuOverlay');
+            if (overlay && (overlay.classList.contains('active') || overlay.style.display === 'flex')) {
+              overlay.classList.remove('active');
+              overlay.style.display = 'none';
+            }
+            history.pushState(null, null, `#${targetId}`);
+          }
+        }
+      }
+    }
+  });
+
+  // If page loads with a hash, smooth scroll to it
+  const hash = window.location.hash;
+  if (hash) {
+    setTimeout(() => {
+      const target = document.getElementById(hash.substring(1));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 450);
+  }
+});

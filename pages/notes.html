@@ -66,6 +66,30 @@
       border-color: var(--accent);
       box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
     }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .notes-hero {
+        padding: calc(var(--navbar-height) + var(--space-3xl)) 1.25rem var(--space-2xl);
+      }
+
+      .notes-filter-bar {
+        padding: 0 1.25rem;
+        margin-bottom: var(--space-3xl);
+        justify-content: flex-start;
+        gap: 0.5rem;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        scrollbar-width: none;
+      }
+
+      .notes-filter-bar::-webkit-scrollbar { display: none; }
+
+      .filter-btn {
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+    }
   </style>
 </head>
 <body class="light-mode">
