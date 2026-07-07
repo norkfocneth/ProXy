@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll Animation Sequence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #030303;
+      --accent-color: #00f2fe;
+      --accent-glow: rgba(0, 242, 254, 0.4);
+      --text-color: #ffffff;
+      --text-muted: #888888;
+      --glass-bg: rgba(15, 15, 15, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100vh;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Outfit', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Scroll Container to generate height for scrolling */
+    .scroll-container {
+      height: 600vh; /* Adjust height to control speed of animation (taller = slower scroll) */
+      position: relative;
+      width: 100%;
+    }
+
+    /* Canvas pinned to the viewport */
+    .canvas-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none; /* Let clicks pass through */
+    }
+
+    canvas {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+    }
+
+    /* Loading Overlay */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--bg-color);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.8s;
+    }
+
+    .loading-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      padding: 3rem;
+      border-radius: 24px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      width: 320px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loading-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    .loader-ring {
+      width: 80px;
+      height: 80px;
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .loader-ring-svg {
+      transform: rotate(-90deg);
+      width: 100%;
+      height: 100%;
+    }
+
+    .loader-circle-bg {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.05);
+      stroke-width: 4px;
+    }
+
+    .loader-circle-progress {
+      fill: none;
+      stroke: var(--accent-color);
+      stroke-width: 4px;
+      stroke-linecap: round;
+      stroke-dasharray: 226; /* 2 * PI * r (r=36) = 226.19 */
+      stroke-dashoffset: 226;
+      transition: stroke-dashoffset 0.1s linear;
+      filter: drop-shadow(0 0 8px var(--accent-color));
+    }
+
+    .loader-percentage {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-color);
+    }
+
+    .loader-text {
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+    }
+
+    /* Scroll Indicator hint */
+    .scroll-indicator {
+      position: fixed;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+      pointer-events: none;
+    }
+
+    .scroll-indicator.visible {
+      opacity: 0.7;
+      visibility: visible;
+    }
+
+    .scroll-indicator:hover {
+      opacity: 1;
+    }
+
+    .mouse {
+      width: 24px;
+      height: 40px;
+      border: 2px solid var(--text-color);
+      border-radius: 12px;
+      position: relative;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+
+    .wheel {
+      width: 4px;
+      height: 8px;
+      background-color: var(--accent-color);
+      border-radius: 2px;
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: scrollWheel 1.8s infinite cubic-bezier(0.25, 1, 0.5, 1);
+      box-shadow: 0 0 6px var(--accent-color);
+    }
+
+    .scroll-text {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    @keyframes scrollWheel {
+      0% {
+        top: 6px;
+        opacity: 0;
+      }
+      30% {
+        opacity: 1;
+      }
+      80% {
+        top: 22px;
+        opacity: 0;
+      }
+      100% {
+        top: 6px;
+        opacity: 0;
+      }
+    }
+
+    /* Hide scrollbar but keep functionality */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-color);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #222;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-card">
+      <div class="loader-ring">
+        <svg class="loader-ring-svg" viewBox="0 0 80 80">
+          <circle class="loader-circle-bg" cx="40" cy="40" r="36" />
+          <circle class="loader-circle-progress" id="loaderCircleProgress" cx="40" cy="40" r="36" />
+        </svg>
+        <span class="loader-percentage" id="loaderPercentage">0%</span>
+      </div>
+      <span class="loader-text">Loading Frames</span>
+    </div>
+  </div>
+
+  <!-- Canvas Container -->
+  <div class="canvas-container">
+    <canvas id="scrollCanvas"></canvas>
+  </div>
+
+  <!-- Scroll Container -->
+  <div class="scroll-container"></div>
+
+  <!-- Scroll down hint -->
+  <div class="scroll-indicator" id="scrollIndicator">
+    <div class="mouse">
+      <div class="wheel"></div>
+    </div>
+    <span class="scroll-text">Scroll to animate</span>
+  </div>
+
+  <script>
+    // Configuration
+    const frameCount = 240;
+    const images = [];
+    const canvas = document.getElementById('scrollCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Animation state
+    const sequenceState = {
+      targetFrame: 0,
+      currentFrame: 0,
+      lerpFactor: 0.08 // Value between 0 and 1. Lower means smoother/slower catch up, higher is more responsive.
+    };
+
+    // Construct image URL sequence
+    const getFrameUrl = (index) => {
+      // ezgif-frame-001.jpg -> ezgif-frame-240.jpg
+      const paddedNum = index.toString().padStart(3, '0');
+      return `frames/ezgif-frame-${paddedNum}.jpg`;
+    };
+
+    // DOM Elements
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    const loaderPercentage = document.getElementById('loaderPercentage');
+    const loaderCircleProgress = document.getElementById('loaderCircleProgress');
+    const scrollIndicator = document.getElementById('scrollIndicator');
+
+    // Preload Images
+    let loadedCount = 0;
+    
+    function preloadImages() {
+      return new Promise((resolve) => {
+        for (let i = 1; i <= frameCount; i++) {
+          const img = new Image();
+          img.src = getFrameUrl(i);
+          img.onload = () => {
+            loadedCount++;
+            updateProgress(loadedCount);
+            if (loadedCount === frameCount) {
+              resolve();
+            }
+          };
+          img.onerror = () => {
+            // Handle loading error - fallback to avoid blocking
+            loadedCount++;
+            updateProgress(loadedCount);
+            if (loadedCount === frameCount) {
+              resolve();
+            }
+          };
+          images.push(img);
+        }
+      });
+    }
+
+    function updateProgress(count) {
+      const percentage = Math.round((count / frameCount) * 100);
+      loaderPercentage.textContent = `${percentage}%`;
+      
+      // Circle radius is 36, circumference is ~226.19
+      const circumference = 2 * Math.PI * 36;
+      const offset = circumference - (percentage / 100) * circumference;
+      loaderCircleProgress.style.strokeDashoffset = offset;
+    }
+
+    // Resize canvas to match display size and account for high DPI devices
+    function resizeCanvas() {
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      
+      // Ensure drawing contexts are scaled appropriately
+      ctx.scale(dpr, dpr);
+      
+      // Redraw current frame immediately on resize
+      drawFrame(sequenceState.currentFrame);
+    }
+
+    // Drawing image with "cover" aspect-ratio behavior
+    function drawImageCover(ctx, img, w, h) {
+      const imgWidth = img.width || 1920; // fallback if image not fully loaded metadata
+      const imgHeight = img.height || 1080;
+      
+      const imgRatio = imgWidth / imgHeight;
+      const canvasRatio = w / h;
+      
+      let drawWidth, drawHeight, drawX, drawY;
+      
+      if (canvasRatio > imgRatio) {
+        // Canvas is wider than image
+        drawWidth = w;
+        drawHeight = w / imgRatio;
+        drawX = 0;
+        drawY = (h - drawHeight) / 2;
+      } else {
+        // Canvas is taller than image
+        drawWidth = h * imgRatio;
+        drawHeight = h;
+        drawX = (w - drawWidth) / 2;
+        drawY = 0;
+      }
+      
+      ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight);
+    }
+
+    function drawFrame(frameIndex) {
+      // Bounds checking and rounding to get integer frame
+      const index = Math.min(frameCount - 1, Math.max(0, Math.floor(frameIndex)));
+      const img = images[index];
+      
+      if (img && img.complete) {
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width / (window.devicePixelRatio || 1), canvas.height / (window.devicePixelRatio || 1));
+        // Draw frame centered with cover sizing
+        drawImageCover(ctx, img, window.innerWidth, window.innerHeight);
+      }
+    }
+
+    // Smooth render loop using requestAnimationFrame and linear interpolation (lerp)
+    function renderLoop() {
+      // Calculate interpolation step
+      const diff = sequenceState.targetFrame - sequenceState.currentFrame;
+      
+      // If the difference is very small, snap to target
+      if (Math.abs(diff) < 0.001) {
+        sequenceState.currentFrame = sequenceState.targetFrame;
+      } else {
+        sequenceState.currentFrame += diff * sequenceState.lerpFactor;
+      }
+      
+      // Draw the interpolated frame
+      drawFrame(sequenceState.currentFrame);
+      
+      // Continue loop
+      requestAnimationFrame(renderLoop);
+    }
+
+    // Listen to scroll events
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      
+      // Prevent division by zero
+      const scrollFraction = maxScroll <= 0 ? 0 : scrollTop / maxScroll;
+      
+      // Update target frame based on scroll position (0 to frameCount - 1)
+      sequenceState.targetFrame = scrollFraction * (frameCount - 1);
+
+      // Hide scroll down indicator when user scrolls down
+      if (scrollTop > 50) {
+        scrollIndicator.classList.remove('visible');
+      } else {
+        scrollIndicator.classList.add('visible');
+      }
+    });
+
+    // Initialize Page
+    async function init() {
+      // Preload images first
+      await preloadImages();
+      
+      // Handle canvas sizing
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+      
+      // Draw initial frame
+      drawFrame(0);
+      
+      // Fade out loading screen
+      setTimeout(() => {
+        loadingOverlay.style.opacity = '0';
+        setTimeout(() => {
+          loadingOverlay.style.visibility = 'hidden';
+          // Show scroll indicator helper
+          scrollIndicator.classList.add('visible');
+        }, 800);
+      }, 500);
+
+      // Start smooth rendering loop
+      requestAnimationFrame(renderLoop);
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
