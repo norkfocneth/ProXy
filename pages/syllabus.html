@@ -1,0 +1,1798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Syllabus — Proxy</title>
+  <meta name="description" content="IPU CSE Syllabus, curated and organized for your academic journey.">
+  
+  <!-- Inter & Plus Jakarta Sans Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ── Core Variables & Design System ── */
+    :root {
+      --font-main: 'Inter', sans-serif;
+      --font-title: 'Plus Jakarta Sans', sans-serif;
+      
+      --bg-dashboard: #f6f8fc;
+      --bg-card: #ffffff;
+      --bg-sidebar: #ffffff;
+      --border-color: #eef2f6;
+      
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-soft: rgba(79, 70, 229, 0.08);
+      
+      --accent-red: #ef4444;
+      
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --text-light: #94a3b8;
+      
+      --sidebar-width: 260px;
+      --header-height: 80px;
+      --border-radius-lg: 20px;
+      --border-radius-md: 12px;
+      
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.02);
+      --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.03);
+      --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.05);
+      
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ── Reset & Base Styles ── */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-dashboard);
+      color: var(--text-main);
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+    }
+
+    button, input, select {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    /* ── App Layout ── */
+    .app-container {
+      display: flex;
+      width: 100%;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* ── Sidebar (Left) ── */
+    .sidebar {
+      width: var(--sidebar-width);
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 1.5rem;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+    }
+
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      text-decoration: none;
+    }
+
+    .logo-text {
+      font-family: var(--font-title);
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: #1e293b;
+    }
+
+    .logo-text span {
+      color: var(--accent-red);
+    }
+
+    .collapse-btn {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s;
+    }
+
+    .collapse-btn:hover {
+      color: var(--text-main);
+    }
+
+    /* Sidebar Navigation Links */
+    .sidebar-menu {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      flex-grow: 1;
+    }
+
+    .menu-item a {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.95rem 1.25rem;
+      border-radius: var(--border-radius-md);
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.2s var(--ease-out);
+    }
+
+    .menu-item a:hover {
+      background: #f8fafc;
+      color: var(--text-main);
+    }
+
+    .menu-item.active a {
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .menu-icon {
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+    }
+
+    /* Premium Banner Card */
+    .premium-card {
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.03) 0%, rgba(99, 102, 241, 0.06) 100%);
+      border: 1px solid rgba(79, 70, 229, 0.08);
+      border-radius: 18px;
+      padding: 1.25rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .premium-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--primary);
+      margin-bottom: 0.4rem;
+      display: inline-block;
+    }
+
+    .premium-title {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      line-height: 1.4;
+      margin-bottom: 0.8rem;
+    }
+
+    .premium-link {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .premium-link:hover {
+      color: var(--primary-hover);
+    }
+
+    /* Sidebar Footer Toggle & Copyright */
+    .sidebar-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .theme-toggle-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      border-radius: var(--border-radius-md);
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+    }
+
+    .theme-label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      background: #e2e8f0;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .toggle-switch.active {
+      background: var(--primary);
+    }
+
+    .toggle-switch.active::after {
+      transform: translateX(20px);
+    }
+
+    .copyright-text {
+      font-size: 0.75rem;
+      color: var(--text-light);
+    }
+
+    /* ── Main Panel Wrapper ── */
+    .main-panel {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Top Header Utility Bar ── */
+    .header {
+      height: var(--header-height);
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      position: sticky;
+      top: 0;
+      z-index: 90;
+    }
+
+    .search-bar-wrapper {
+      position: relative;
+      width: 320px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-light);
+      font-size: 1rem;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.8rem;
+      border-radius: 24px;
+      border: 1px solid var(--border-color);
+      background: #f8fafc;
+      font-size: 0.9rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .search-input:focus {
+      background: #ffffff;
+      border-color: rgba(79, 70, 229, 0.4);
+      box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.05);
+    }
+
+    .search-shortcut {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.75rem;
+      color: var(--text-light);
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      padding: 2px 6px;
+      border-radius: 6px;
+      pointer-events: none;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .action-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      position: relative;
+      transition: all 0.2s;
+    }
+
+    .action-btn:hover {
+      background: #f8fafc;
+      color: var(--text-main);
+    }
+
+    .notification-dot {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 16px;
+      height: 16px;
+      background: var(--primary);
+      border-radius: 50%;
+      border: 2px solid white;
+      font-size: 9px;
+      font-weight: 700;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .user-profile-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.4rem 0.8rem 0.4rem 0.4rem;
+      border-radius: 30px;
+      border: 1px solid var(--border-color);
+      background: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .user-profile-btn:hover {
+      background: #f8fafc;
+    }
+
+    .avatar-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #e0e7ff;
+      color: var(--primary);
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profile-chevron {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Dashboard Layout Split ── */
+    .dashboard-content {
+      padding: 3rem;
+      display: flex;
+      gap: 3rem;
+      flex: 1;
+    }
+
+    /* Left Side: Syllabus Explorer Details */
+    .explorer-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+    }
+
+    /* Header Block */
+    .explorer-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .header-titles h1 {
+      font-family: var(--font-title);
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+    }
+
+    .header-titles p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      font-weight: 400;
+    }
+
+    .update-alert-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-md);
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .update-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .update-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .update-label {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .update-value {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    /* Semester Tabs Pill Bar */
+    .semester-tabs-container {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 30px;
+      padding: 6px;
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .semester-tabs-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .sem-pill-btn {
+      flex-shrink: 0;
+      background: none;
+      border: none;
+      padding: 0.7rem 1.2rem;
+      border-radius: 25px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.25s var(--ease-out);
+    }
+
+    .sem-pill-btn:hover {
+      color: var(--text-main);
+    }
+
+    .sem-pill-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(79, 70, 229, 0.25);
+    }
+
+    /* Active Sem Header Banner */
+    .active-sem-banner {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .sem-banner-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    .sem-banner-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .sem-title-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .sem-title-row h2 {
+      font-family: var(--font-title);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .subjects-count-badge {
+      background: #e0e7ff;
+      color: var(--primary);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+
+    .sem-banner-info p {
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    /* Subject Accordions */
+    .subject-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .subject-row {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-md);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .subject-row:hover {
+      border-color: rgba(79, 70, 229, 0.15);
+    }
+
+    .subject-summary {
+      display: flex;
+      align-items: center;
+      padding: 1.2rem 1.5rem;
+      cursor: pointer;
+      user-select: none;
+      gap: 1.2rem;
+    }
+
+    .subject-row-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: #f8fafc;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .subject-row-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .subject-row-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .subject-row-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .subject-row-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .subject-code-badge {
+      background: #f1f5f9;
+      color: var(--text-muted);
+      font-family: var(--font-main);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+
+    .chevron-icon {
+      color: var(--text-light);
+      font-size: 1rem;
+      transition: transform 0.3s;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .subject-row.open .chevron-icon {
+      transform: rotate(180deg);
+    }
+
+    /* Accordion Expanded Details Content */
+    .subject-details {
+      display: none;
+      padding: 0 1.5rem 1.5rem 4.5rem;
+      border-top: 1px dashed var(--border-color);
+      background: #fafbfe;
+    }
+
+    .subject-row.open .subject-details {
+      display: block;
+      animation: slideDown 0.3s var(--ease-out);
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .syllabus-units {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 1.2rem;
+    }
+
+    .unit-box {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 1rem;
+    }
+
+    .unit-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+
+    .unit-topics {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .unit-actions-row {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .action-link {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: color 0.2s;
+    }
+
+    .action-link:hover {
+      color: var(--primary-hover);
+    }
+
+
+    /* Right Side: Preview & 3D Interactive Panel */
+    .preview-column {
+      width: 440px;
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+    }
+
+    /* Showcase Canvas/Scene Area */
+    .showcase-scene-container {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-lg);
+      height: 480px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Ambient lighting & backgrounds */
+    .ambient-glow {
+      position: absolute;
+      top: -20%;
+      right: -20%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, rgba(99, 102, 241, 0) 70%);
+      pointer-events: none;
+    }
+
+    /* Blueprint drawing background element */
+    .blueprint-svg {
+      position: absolute;
+      top: 10%;
+      right: -30px;
+      width: 260px;
+      height: 260px;
+      opacity: 0.08;
+      pointer-events: none;
+      transform: rotate(15deg);
+    }
+
+    /* 3D Folder in background */
+    .folder-3d-wrapper {
+      position: absolute;
+      top: 12%;
+      left: 10%;
+      width: 110px;
+      height: 90px;
+      opacity: 0.25;
+      transform: rotate(-10deg) scale(0.9);
+      pointer-events: none;
+    }
+
+    /* 3D Stack of books */
+    .books-stack {
+      position: absolute;
+      bottom: 12%;
+      right: 5%;
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 0;
+      opacity: 0.8;
+      transform: scale(0.85);
+      z-index: 10;
+    }
+
+    .stack-book {
+      width: 110px;
+      height: 22px;
+      background: linear-gradient(90deg, #c7d2fe 0%, #a5b4fc 100%);
+      border: 1px solid #818cf8;
+      border-radius: 3px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-family: var(--font-title);
+      font-weight: 700;
+      color: #312e81;
+      transform-style: preserve-3d;
+      transform: skewX(-15deg);
+    }
+
+    .stack-book:nth-child(2) {
+      background: linear-gradient(90deg, #e0e7ff 0%, #c7d2fe 100%);
+      transform: translate(6px, -4px) skewX(-15deg);
+      border-color: #a5b4fc;
+    }
+
+    .stack-book:nth-child(3) {
+      background: linear-gradient(90deg, #f1f5f9 0%, #e2e8f0 100%);
+      transform: translate(12px, -8px) skewX(-15deg);
+      border-color: #cbd5e1;
+      color: #475569;
+    }
+
+    /* Glass spheres */
+    .glass-sphere {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.7) 0%, rgba(99, 102, 241, 0.1) 50%, rgba(99,102,241,0.3) 100%);
+      backdrop-filter: blur(1px);
+      -webkit-backdrop-filter: blur(1px);
+      box-shadow: 0 4px 10px rgba(99, 102, 241, 0.1), inset -2px -2px 6px rgba(99,102,241,0.2);
+      bottom: 22%;
+      left: 12%;
+      animation: float 6s ease-in-out infinite;
+      z-index: 10;
+    }
+
+    .glass-sphere--small {
+      width: 18px;
+      height: 18px;
+      bottom: 18%;
+      left: 22%;
+      animation-delay: -2s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* Pen */
+    .pen-stylus {
+      position: absolute;
+      bottom: 14%;
+      left: 28%;
+      width: 120px;
+      height: 7px;
+      background: linear-gradient(90deg, rgba(99, 102, 241, 0.15) 0%, rgba(99, 102, 241, 0.5) 80%, rgba(99, 102, 241, 0.9) 100%);
+      border-radius: 4px;
+      transform: rotate(-18deg) scale(0.9);
+      box-shadow: 2px 5px 8px rgba(99, 102, 241, 0.08);
+      z-index: 10;
+    }
+
+    /* 3D Notebook Component */
+    .notebook-3d-scene {
+      perspective: 1200px;
+      z-index: 20;
+    }
+
+    .notebook-3d-stand {
+      width: 160px;
+      height: 20px;
+      background: radial-gradient(ellipse at 50% 50%, #ffffff 0%, #f1f5f9 100%);
+      border: 1px solid #e2e8f0;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    }
+
+    .notebook-body {
+      width: 190px;
+      height: 260px;
+      background: #ffffff;
+      border-radius: 6px 12px 12px 6px;
+      box-shadow: 
+        10px 15px 40px rgba(0, 0, 0, 0.08),
+        inset 1px 0 2px rgba(255,255,255,0.8);
+      position: relative;
+      transform-style: preserve-3d;
+      transform: rotateX(22deg) rotateY(-18deg) rotateZ(-2deg);
+      border: 1px solid #e8e8e8;
+      transition: transform 0.6s var(--ease-out);
+      cursor: pointer;
+    }
+
+    .notebook-body:hover {
+      transform: rotateX(18deg) rotateY(-10deg) rotateZ(0deg) translateY(-10px);
+    }
+
+    /* Book cover decoration */
+    .notebook-cover-content {
+      width: 100%;
+      height: 100%;
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .notebook-logo-text {
+      font-family: var(--font-title);
+      font-size: 2.1rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: #1e293b;
+      margin-bottom: 0.2rem;
+    }
+
+    .notebook-logo-text span {
+      color: var(--accent-red);
+    }
+
+    .notebook-subtitle {
+      font-size: 0.65rem;
+      color: var(--text-light);
+      text-transform: lowercase;
+      letter-spacing: 0.02em;
+      font-weight: 500;
+      border-top: 1.5px solid #f1f5f9;
+      padding-top: 4px;
+      width: 70%;
+      text-align: center;
+    }
+
+    .notebook-sparkle {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      color: var(--primary);
+      opacity: 0.8;
+      font-size: 1.2rem;
+    }
+
+    /* Spiral spine binding on the left */
+    .notebook-spiral-spine {
+      position: absolute;
+      top: 15px;
+      left: -12px;
+      height: calc(100% - 30px);
+      width: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 30;
+    }
+
+    .spiral-loop {
+      width: 16px;
+      height: 7px;
+      border-radius: 5px;
+      background: linear-gradient(180deg, #d1d5db 0%, #9ca3af 40%, #4b5563 100%);
+      box-shadow: 2px 2px 4px rgba(0,0,0,0.15);
+    }
+
+    /* Divider tabs sticking out on the right */
+    .notebook-divider-tabs {
+      position: absolute;
+      right: -8px;
+      top: 30px;
+      height: 180px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      z-index: -1;
+    }
+
+    .divider-tab {
+      width: 12px;
+      height: 18px;
+      border-radius: 0 4px 4px 0;
+      box-shadow: 1px 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .divider-tab--1 { background: #818cf8; }
+    .divider-tab--2 { background: #f472b6; }
+    .divider-tab--3 { background: #38bdf8; }
+    .divider-tab--4 { background: #2dd4bf; }
+    .divider-tab--5 { background: #fb923c; }
+
+    /* Download Card (Bottom right) */
+    .download-section-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-lg);
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      text-decoration: none;
+      transition: all 0.25s var(--ease-out);
+    }
+
+    .download-section-card:hover {
+      border-color: rgba(79, 70, 229, 0.2);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .download-btn-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: all 0.25s;
+    }
+
+    .download-section-card:hover .download-btn-circle {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .download-card-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      flex: 1;
+      padding-left: 1rem;
+    }
+
+    .download-card-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .download-card-sub {
+      font-size: 0.75rem;
+      color: var(--text-light);
+    }
+
+    .download-card-icon {
+      color: var(--text-light);
+      font-size: 1.2rem;
+    }
+
+    .download-section-card:hover .download-card-icon {
+      color: var(--primary);
+    }
+
+    /* ── Responsive Styling ── */
+    @media (max-width: 1280px) {
+      .dashboard-content {
+        flex-direction: column;
+        padding: 2rem;
+      }
+      .preview-column {
+        width: 100%;
+      }
+      .showcase-scene-container {
+        height: 380px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        position: relative;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 1.5rem;
+      }
+      .sidebar-header {
+        margin-bottom: 0;
+      }
+      .sidebar-menu, .premium-card, .sidebar-footer {
+        display: none;
+      }
+      .main-panel {
+        margin-left: 0;
+      }
+      .header {
+        padding: 0 1.5rem;
+      }
+      .search-bar-wrapper {
+        width: 200px;
+      }
+      .dashboard-content {
+        padding: 1.5rem;
+      }
+      .explorer-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .syllabus-units {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="light-mode">
+  <div class="app-container">
+    
+    <!-- ── Sidebar navigation ── -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="logo-container">
+          <span class="logo-text">pr<span>o</span>xy</span>
+        </a>
+        <button class="collapse-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
+        </button>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="menu-item">
+          <a href="../index.html">
+            <span class="menu-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            </span>
+            Home
+          </a>
+        </li>
+        <li class="menu-item active">
+          <a href="syllabus.html">
+            <span class="menu-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            </span>
+            Syllabus
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="notes.html">
+            <span class="menu-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            </span>
+            Notes
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="pyqs.html">
+            <span class="menu-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            </span>
+            PYQs
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="roadmaps.html">
+            <span class="menu-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line></svg>
+            </span>
+            Roadmaps
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="ai-assistant.html">
+            <span class="menu-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+            </span>
+            AI Assistant
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="faculty.html">
+            <span class="menu-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </span>
+            Faculty
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="#">
+            <span class="menu-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+            </span>
+            Updates
+          </a>
+        </li>
+      </ul>
+
+      <div class="premium-card">
+        <span class="premium-badge">Premium</span>
+        <p class="premium-title">Ad-free experience, early access & more.</p>
+        <a href="#" class="premium-link">Go Premium <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg></a>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="theme-toggle-container">
+          <span class="theme-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            Light Mode
+          </span>
+          <div class="toggle-switch" id="themeToggle"></div>
+        </div>
+        <div class="copyright-text">
+          &copy; 2025 Proxy. All rights reserved.
+        </div>
+      </div>
+    </aside>
+
+    <!-- ── Main dashboard panel ── -->
+    <main class="main-panel">
+      
+      <!-- Top header utilities -->
+      <header class="header">
+        <div class="search-bar-wrapper">
+          <span class="search-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </span>
+          <input type="text" class="search-input" placeholder="Search anything... (Ctrl + K)">
+          <span class="search-shortcut">&#8984; K</span>
+        </div>
+
+        <div class="header-actions">
+          <button class="action-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          </button>
+          <button class="action-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+            <span class="notification-dot">3</span>
+          </button>
+          <button class="user-profile-btn">
+            <span class="avatar-circle">AS</span>
+            <span class="profile-chevron">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Dashboard Layout Split -->
+      <div class="dashboard-content">
+        
+        <!-- Left Side: Syllabus Accordions -->
+        <div class="explorer-column">
+          
+          <div class="explorer-header">
+            <div class="header-titles">
+              <h1>Syllabus</h1>
+              <p>IPU CSE Syllabus, curated and organized for your academic journey.</p>
+            </div>
+            
+            <div class="update-alert-card">
+              <div class="update-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              </div>
+              <div class="update-info">
+                <span class="update-label">Updated for</span>
+                <span class="update-value">2024 - 25 <span style="font-weight: 500; font-size: 0.8rem; color: var(--primary);">Latest Curriculum</span></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Semester pill tabs bar -->
+          <div class="semester-tabs-container" id="semesterSelector">
+            <button class="sem-pill-btn active" data-sem="1">1st Semester</button>
+            <button class="sem-pill-btn" data-sem="2">2nd Semester</button>
+            <button class="sem-pill-btn" data-sem="3">3rd Semester</button>
+            <button class="sem-pill-btn" data-sem="4">4th Semester</button>
+            <button class="sem-pill-btn" data-sem="5">5th Semester</button>
+            <button class="sem-pill-btn" data-sem="6">6th Semester</button>
+            <button class="sem-pill-btn" data-sem="7">7th Semester</button>
+            <button class="sem-pill-btn" data-sem="8">8th Semester</button>
+          </div>
+
+          <!-- Active semester header banner -->
+          <div class="active-sem-banner">
+            <div class="sem-banner-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            </div>
+            <div class="sem-banner-info">
+              <div class="sem-title-row">
+                <h2 id="currentSemName">1st Semester</h2>
+                <span class="subjects-count-badge" id="currentSubjectsCount">6 Subjects</span>
+              </div>
+              <p id="currentSemDesc">Build your foundation. Master the basics.</p>
+            </div>
+          </div>
+
+          <!-- Subjects accordion rows container -->
+          <div class="subject-list" id="subjectAccordions">
+            <!-- Programmatically injected -->
+          </div>
+
+        </div>
+
+        <!-- Right Side: Showcase Preview -->
+        <div class="preview-column">
+          
+          <div class="showcase-scene-container">
+            <div class="ambient-glow"></div>
+            
+            <!-- Blueprint Sheet in background -->
+            <svg class="blueprint-svg" viewBox="0 0 100 100" fill="none" stroke="var(--primary)">
+              <circle cx="50" cy="50" r="40" stroke-width="0.5" stroke-dasharray="2 2" />
+              <rect x="25" y="25" width="50" height="50" stroke-width="0.5" />
+              <line x1="10" y1="10" x2="90" y2="90" stroke-width="0.3" />
+              <line x1="90" y1="10" x2="10" y2="90" stroke-width="0.3" />
+            </svg>
+
+            <!-- 3D Folder in background -->
+            <div class="folder-3d-wrapper">
+              <svg viewBox="0 0 100 80" fill="none">
+                <path d="M10 20 L40 20 L50 30 L90 30 L90 70 L10 70 Z" fill="rgba(99, 102, 241, 0.1)" stroke="var(--primary)" stroke-width="2"/>
+                <rect x="20" y="38" width="60" height="24" rx="2" fill="white" stroke="#a5b4fc" stroke-width="1.5"/>
+              </svg>
+            </div>
+
+            <!-- Glass Spheres floating around -->
+            <div class="glass-sphere"></div>
+            <div class="glass-sphere glass-sphere--small"></div>
+
+            <!-- Stylus Pen resting -->
+            <div class="pen-stylus"></div>
+
+            <!-- Books Stack on side -->
+            <div class="books-stack">
+              <div class="stack-book">2024-25</div>
+              <div class="stack-book">IPU</div>
+              <div class="stack-book">CSE</div>
+            </div>
+
+            <!-- 3D Notebook on stand -->
+            <div class="notebook-3d-scene">
+              <div class="notebook-3d-stand"></div>
+              <div class="notebook-body">
+                
+                <div class="notebook-spiral-spine">
+                  <div class="spiral-loop"></div>
+                  <div class="spiral-loop"></div>
+                  <div class="spiral-loop"></div>
+                  <div class="spiral-loop"></div>
+                  <div class="spiral-loop"></div>
+                  <div class="spiral-loop"></div>
+                  <div class="spiral-loop"></div>
+                  <div class="spiral-loop"></div>
+                  <div class="spiral-loop"></div>
+                  <div class="spiral-loop"></div>
+                  <div class="spiral-loop"></div>
+                  <div class="spiral-loop"></div>
+                </div>
+
+                <div class="notebook-divider-tabs">
+                  <div class="divider-tab divider-tab--1"></div>
+                  <div class="divider-tab divider-tab--2"></div>
+                  <div class="divider-tab divider-tab--3"></div>
+                  <div class="divider-tab divider-tab--4"></div>
+                  <div class="divider-tab divider-tab--5"></div>
+                </div>
+
+                <div class="notebook-cover-content">
+                  <div class="notebook-logo-text">pr<span>o</span>xy</div>
+                  <div class="notebook-subtitle">your academic companion</div>
+                  
+                  <div class="notebook-sparkle">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Download syllabus document card link -->
+          <a href="#" class="download-section-card" id="pdfDownloadLink">
+            <div class="download-btn-circle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            </div>
+            <div class="download-card-info">
+              <span class="download-card-title">Download Syllabus</span>
+              <span class="download-card-sub" id="pdfDownloadSubtext">1st Semester Complete PDF</span>
+            </div>
+            <span class="download-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </span>
+          </a>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- ── Interactive JavaScript Logic ── -->
+  <script>
+    // B.Tech CSE Complete Semester-wise Syllabus Data
+    const cseSyllabusData = {
+      1: {
+        desc: "Build your foundation. Master the basics.",
+        subjects: [
+          {
+            code: "BS-111",
+            icon: "√x",
+            title: "Applied Mathematics - I",
+            shortDesc: "Calculus, Matrices, Differential Equations",
+            units: [
+              { num: "Unit I", topics: "Matrices, Eigenvalues, Eigenvectors, Cayley-Hamilton Theorem, Diagonalization of matrices." },
+              { num: "Unit II", topics: "Differential Calculus: Successive differentiation, Leibnitz theorem, Taylor's and Maclaurin's series, Curvature." },
+              { num: "Unit III", topics: "Partial Differentiation: Euler's theorem, Jacobians, Taylor's series for two variables, Maxima and Minima." },
+              { num: "Unit IV", topics: "Integral Calculus: Double and triple integrals, Change of order, Area and volume calculation." }
+            ]
+          },
+          {
+            code: "BS-112",
+            icon: "⚛",
+            title: "Applied Physics - I",
+            shortDesc: "Mechanics, Waves, Optics",
+            units: [
+              { num: "Unit I", topics: "Interference: Coherent sources, Young's double slit, Newton's rings, Michelson interferometer." },
+              { num: "Unit II", topics: "Diffraction: Fraunhofer diffraction, Single slit, Double slit, Diffraction grating, Resolving power." },
+              { num: "Unit III", topics: "Polarization: Double refraction, Nicol prism, Production and detection of polarized light, Polarimeters." },
+              { num: "Unit IV", topics: "Lasers & Fiber Optics: Einstein's coefficients, Ruby laser, He-Ne laser, Optical fibers, Numerical aperture." }
+            ]
+          },
+          {
+            code: "BS-113",
+            icon: "🔬",
+            title: "Applied Chemistry",
+            shortDesc: "Physical, Organic & Inorganic Chemistry",
+            units: [
+              { num: "Unit I", topics: "Water Technology: Hardness of water, estimation by EDTA, boiler troubles, water softening processes." },
+              { num: "Unit II", topics: "Fuels & Combustion: Classification, Calorific value determination, coal analysis, petroleum cracking." },
+              { num: "Unit III", topics: "Polymers & Composite Materials: Monomers, polymerization types, thermoplastics, thermosetting resins, biopolymers." },
+              { num: "Unit IV", topics: "Corrosion & its Control: Chemical and electrochemical corrosion, protective coatings, cathodic protection." }
+            ]
+          },
+          {
+            code: "CS-101",
+            icon: "</>",
+            title: "Programming in C",
+            shortDesc: "C Fundamentals, Control Flow, Functions",
+            units: [
+              { num: "Unit I", topics: "Basics of Computers, Algorithms, Flowcharts, C fundamentals: Data types, operators, expressions." },
+              { num: "Unit II", topics: "Control Statements: Decision making, branching, looping structures, arrays and strings." },
+              { num: "Unit III", topics: "Functions: Parameter passing, recursion. Structures and Unions, preprocessors." },
+              { num: "Unit IV", topics: "Pointers: Pointer arithmetic, dynamic memory allocation. File handling in C." }
+            ]
+          },
+          {
+            code: "ES-105",
+            icon: "🔌",
+            title: "Basic Electrical Engineering",
+            shortDesc: "Circuit Laws, KCL, KVL, Network Theorems",
+            units: [
+              { num: "Unit I", topics: "DC Circuits: Mesh and Node analysis, Network theorems: Thevenin, Norton, Superposition, Maximum Power Transfer." },
+              { num: "Unit II", topics: "AC Circuits: Single phase RLC series and parallel circuits, phasor diagrams, resonance." },
+              { num: "Unit III", topics: "Transformers: Principles of operation, EMF equation, equivalent circuit, efficiency and regulation." },
+              { num: "Unit IV", topics: "Electrical Machines: DC machines operating principles, single phase induction motors, three-phase systems." }
+            ]
+          },
+          {
+            code: "ES-107",
+            icon: "📐",
+            title: "Engineering Graphics",
+            shortDesc: "Lines, Projections, Dimensions",
+            units: [
+              { num: "Unit I", topics: "Introduction to Engineering Drawing, Sheet layouts, scales, lines and lettering." },
+              { num: "Unit II", topics: "Projections of Points and Straight Lines, orthographic projections, traces of lines." },
+              { num: "Unit III", topics: "Projections of Solids, section of solids, development of surfaces of solids." },
+              { num: "Unit IV", topics: "Isometric Projections, conversion of orthographic views into isometric views, CAD basics." }
+            ]
+          }
+        ]
+      },
+      2: {
+        desc: "Strengthen core engineering and programming constructs.",
+        subjects: [
+          {
+            code: "BS-121",
+            icon: "∫",
+            title: "Applied Mathematics - II",
+            shortDesc: "Differential Equations, Vector Calculus",
+            units: [
+              { num: "Unit I", topics: "Ordinary Differential Equations: First order exact equations, linear differential equations of higher order." },
+              { num: "Unit II", topics: "Orthogonal Trajectories, Cauchy-Euler equations, method of variation of parameters." },
+              { num: "Unit III", topics: "Vector Calculus: Gradient, divergence, curl, line integrals, Green's, Gauss's, and Stokes' theorems." },
+              { num: "Unit IV", topics: "Laplace Transforms: Transforms of elementary functions, inverse Laplace transforms, convolution theorem." }
+            ]
+          },
+          {
+            code: "BS-122",
+            icon: "🔬",
+            title: "Applied Physics - II",
+            shortDesc: "Electromagnetism, Quantum Physics, Solids",
+            units: [
+              { num: "Unit I", topics: "Electromagnetic Theory: Gauss's law, Ampere's law, Faraday's law, Maxwell's equations." },
+              { num: "Unit II", topics: "Quantum Mechanics: de Broglie waves, Heisenberg uncertainty principle, Schrodinger wave equation." },
+              { num: "Unit III", topics: "Statistical Mechanics: Maxwell-Boltzmann, Bose-Einstein, and Fermi-Dirac statistics." },
+              { num: "Unit IV", topics: "Solid State Physics: Crystal structure, Bravais lattices, band theory of solids, superconductors." }
+            ]
+          },
+          {
+            code: "CS-122",
+            icon: "++",
+            title: "Programming in C++",
+            shortDesc: "OOP concepts, Classes, Inheritance",
+            units: [
+              { num: "Unit I", topics: "OOP basics, C++ vs C, Classes, Objects, constructors and destructors." },
+              { num: "Unit II", topics: "Operator overloading, function overloading, friend functions." },
+              { num: "Unit III", topics: "Inheritance: Single, multiple, hierarchical, virtual base classes. Polymorphism." },
+              { num: "Unit IV", topics: "Templates, exception handling, standard template library (STL)." }
+            ]
+          }
+        ]
+      },
+      3: {
+        desc: "Core algorithms and hardware representation.",
+        subjects: [
+          {
+            code: "CS-201",
+            icon: "∑",
+            title: "Discrete Structure",
+            shortDesc: "Sets, Relations, Functions, Graphs",
+            units: [
+              { num: "Unit I", topics: "Set Theory, relations, equivalence relations, partial orderings, functions." },
+              { num: "Unit II", topics: "Propositional logic, predicate logic, inference rules, mathematical induction." },
+              { num: "Unit III", topics: "Algebraic structures: Semigroups, monoids, groups, rings, fields." },
+              { num: "Unit IV", topics: "Graph Theory: Paths, cycles, Eulerian & Hamiltonian paths, trees, graph coloring." }
+            ]
+          },
+          {
+            code: "CS-203",
+            icon: "🏗",
+            title: "Data Structures",
+            shortDesc: "Linear & Non-linear data representation",
+            units: [
+              { num: "Unit I", topics: "Complexity analysis, arrays, linked lists (single, double, circular)." },
+              { num: "Unit II", topics: "Stacks, Queues, recursion, implementation using arrays & linked lists." },
+              { num: "Unit III", topics: "Trees: Binary trees, traversals, AVL trees, B-trees, heaps." },
+              { num: "Unit IV", topics: "Graphs: Representation, BFS, DFS. Searching & Sorting algorithms, hashing." }
+            ]
+          }
+        ]
+      },
+      4: {
+        desc: "Systems, platforms and information design.",
+        subjects: [
+          {
+            code: "CS-222",
+            icon: "💻",
+            title: "Operating Systems",
+            shortDesc: "Processes, Memory, I/O and Files",
+            units: [
+              { num: "Unit I", topics: "OS overview, process state transitions, CPU scheduling algorithms." },
+              { num: "Unit II", topics: "Process synchronization: Semaphores, monitors, classical synchronization problems. Deadlocks." },
+              { num: "Unit III", topics: "Memory management: Paging, segmentation, virtual memory page replacement." },
+              { num: "Unit IV", topics: "File systems structure, disk scheduling algorithms, security and protection." }
+            ]
+          }
+        ]
+      },
+      5: {
+        desc: "Distributed networks and modern web engines.",
+        subjects: [
+          {
+            code: "CS-301",
+            icon: "🌐",
+            title: "Computer Networks",
+            shortDesc: "OSI Reference Model, TCP/IP Suite",
+            units: [
+              { num: "Unit I", topics: "Introduction to networks, physical layer encoding, transmission media, topologies." },
+              { num: "Unit II", topics: "Data link layer: Framing, error control, sliding window protocols, MAC sublayer." },
+              { num: "Unit III", topics: "Network layer: IP addressing, routing algorithms (OSPF, BGP), congestion control." },
+              { num: "Unit IV", topics: "Transport layer: TCP, UDP, congestion control. Application layer protocols (HTTP, DNS)." }
+            ]
+          }
+        ]
+      },
+      6: {
+        desc: "Advanced cognitive models and intelligent engines.",
+        subjects: [
+          {
+            code: "CS-322",
+            icon: "🤖",
+            title: "Artificial Intelligence",
+            shortDesc: "Heuristics, Knowledge & Inference systems",
+            units: [
+              { num: "Unit I", topics: "AI overview, state space search, heuristic search: A* algorithm, game playing." },
+              { num: "Unit II", topics: "Knowledge representation, predicate logic, resolution, semantic networks." },
+              { num: "Unit III", topics: "Reasoning under uncertainty, Bayesian networks, fuzzy logic basics." },
+              { num: "Unit IV", topics: "Planning, Machine learning introduction, Expert systems, NLP overview." }
+            ]
+          }
+        ]
+      },
+      7: {
+        desc: "Distributed design, mobile engines, and major projects.",
+        subjects: [
+          {
+            code: "CS-401",
+            icon: "📱",
+            title: "Mobile Computing",
+            shortDesc: "Wireless networks, cellular concepts, GSM",
+            units: [
+              { num: "Unit I", topics: "Mobile computing architecture, cellular networks, GSM systems, GPRS." },
+              { num: "Unit II", topics: "Wireless LAN, IEEE 802.11 architecture, MAC layer, Bluetooth." },
+              { num: "Unit III", topics: "Mobile network layer: Mobile IP, DHCP. Mobile transport layer: TCP optimization." },
+              { num: "Unit IV", topics: "Mobile application platforms: Android, iOS, mobile ad-hoc networks (MANET)." }
+            ]
+          }
+        ]
+      },
+      8: {
+        desc: "Specialization, industry readiness, and final project defense.",
+        subjects: [
+          {
+            code: "CS-422",
+            icon: "☁",
+            title: "Cloud Computing",
+            shortDesc: "Virtualization, SaaS, PaaS, IaaS architectures",
+            units: [
+              { num: "Unit I", topics: "Cloud computing reference model, virtualization technologies, hypervisors." },
+              { num: "Unit II", topics: "Cloud services models: Infrastructure (IaaS), Platform (PaaS), Software (SaaS)." },
+              { num: "Unit III", topics: "Cloud storage models, resource management, security issues in clouds." },
+              { num: "Unit IV", topics: "Case studies: AWS, Google Cloud, Microsoft Azure, Docker & Kubernetes." }
+            ]
+          }
+        ]
+      }
+    };
+
+    // ── Application Controller Logic ──
+    document.addEventListener('DOMContentLoaded', () => {
+      initApp();
+    });
+
+    function initApp() {
+      setupThemeToggle();
+      setupSemesterSelector();
+      renderSemester(1); // default load
+    }
+
+    // Toggle theme state
+    function setupThemeToggle() {
+      const toggle = document.getElementById('themeToggle');
+      toggle.addEventListener('click', () => {
+        toggle.classList.toggle('active');
+        document.body.classList.toggle('dark-mode');
+        
+        // Update label text if needed
+        const label = toggle.previousElementSibling;
+        if (toggle.classList.contains('active')) {
+          label.innerHTML = `
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            Dark Mode
+          `;
+          document.body.style.backgroundColor = '#0f172a';
+          document.body.style.color = '#f8fafc';
+        } else {
+          label.innerHTML = `
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            Light Mode
+          `;
+          document.body.style.backgroundColor = '';
+          document.body.style.color = '';
+        }
+      });
+    }
+
+    // Connect pill tabs to display
+    function setupSemesterSelector() {
+      const container = document.getElementById('semesterSelector');
+      const buttons = container.querySelectorAll('.sem-pill-btn');
+      
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          buttons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const sem = btn.dataset.sem;
+          renderSemester(sem);
+        });
+      });
+    }
+
+    // Render active semester card view
+    function renderSemester(sem) {
+      const data = cseSyllabusData[sem];
+      if (!data) return;
+
+      // Update text details
+      document.getElementById('currentSemName').innerText = `${sem === '1' ? '1st' : sem === '2' ? '2nd' : sem === '3' ? '3rd' : sem + 'th'} Semester`;
+      document.getElementById('currentSubjectsCount').innerText = `${data.subjects.length} Subjects`;
+      document.getElementById('currentSemDesc').innerText = data.desc;
+      
+      // Update PDF download link subtext
+      document.getElementById('pdfDownloadSubtext').innerText = `${sem === '1' ? '1st' : sem === '2' ? '2nd' : sem === '3' ? '3rd' : sem + 'th'} Semester Complete PDF`;
+
+      const listContainer = document.getElementById('subjectAccordions');
+      listContainer.innerHTML = '';
+
+      // Build Accordion Subject Rows
+      data.subjects.forEach((subject, idx) => {
+        const row = document.createElement('div');
+        row.className = 'subject-row';
+        if (idx === 0) row.classList.add('open'); // Expand first subject by default
+
+        row.innerHTML = `
+          <div class="subject-summary">
+            <div class="subject-row-icon">${subject.icon}</div>
+            <div class="subject-row-info">
+              <span class="subject-row-title">${subject.title}</span>
+              <span class="subject-row-desc">${subject.shortDesc}</span>
+            </div>
+            <div class="subject-row-meta">
+              <span class="subject-code-badge">${subject.code}</span>
+              <span class="chevron-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </div>
+          </div>
+          <div class="subject-details">
+            <div class="syllabus-units">
+              ${subject.units.map(unit => `
+                <div class="unit-box">
+                  <div class="unit-title">${unit.num}</div>
+                  <div class="unit-topics">${unit.topics}</div>
+                </div>
+              `).join('')}
+            </div>
+            <div class="unit-actions-row">
+              <a href="notes.html" class="action-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                View Notes
+              </a>
+              <a href="pyqs.html" class="action-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                View PYQs
+              </a>
+            </div>
+          </div>
+        `;
+
+        // Handle Expand / Collapse clicks
+        const summary = row.querySelector('.subject-summary');
+        summary.addEventListener('click', () => {
+          const isOpen = row.classList.contains('open');
+          
+          // Collapse all others
+          listContainer.querySelectorAll('.subject-row').forEach(r => r.classList.remove('open'));
+          
+          if (!isOpen) {
+            row.classList.add('open');
+          }
+        });
+
+        listContainer.appendChild(row);
+      });
+    }
+  </script>
+</body>
+</html>

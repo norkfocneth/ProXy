@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roadmaps — Proxy</title>
+  <meta name="description" content="Visual career and study roadmaps for IPU students.">
+  <link rel="stylesheet" href="../css/design-system.css">
+  <style>
+    .roadmap-hero {
+      padding: calc(var(--navbar-height) + var(--space-4xl)) 0 var(--space-3xl);
+      text-align: center;
+    }
+    .roadmap-hero h1 {
+      font-size: var(--font-size-5xl);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--space-md);
+    }
+    .roadmap-hero p {
+      font-size: var(--font-size-lg);
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    
+    .roadmap-container {
+      max-width: 1000px;
+      margin: 0 auto var(--space-5xl);
+      padding: 0 6%;
+      position: relative;
+    }
+
+    .roadmap-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: rgba(0,0,0,0.05);
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+    
+    .roadmap-node {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-3xl);
+      position: relative;
+      width: 100%;
+    }
+    
+    .roadmap-node:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+    
+    .roadmap-content {
+      width: calc(50% - 40px);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius-lg);
+      backdrop-filter: blur(var(--glass-blur));
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s var(--ease-out);
+    }
+    
+    .roadmap-content:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(124, 58, 237, 0.2);
+    }
+    
+    .roadmap-node:nth-child(odd) .roadmap-content {
+      text-align: right;
+    }
+    
+    .roadmap-point {
+      width: 24px;
+      height: 24px;
+      background: var(--accent);
+      border: 4px solid var(--bg-color);
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+    }
+    
+    .node-title {
+      font-size: var(--font-size-xl);
+      font-weight: 700;
+      margin-bottom: var(--space-sm);
+      color: var(--text-primary);
+    }
+    
+    .node-desc {
+      font-size: var(--font-size-sm);
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    
+    .node-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: var(--space-md);
+    }
+    
+    .roadmap-node:nth-child(odd) .node-tags {
+      justify-content: flex-end;
+    }
+    
+    .tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      background: rgba(124, 58, 237, 0.05);
+      color: var(--accent);
+      border-radius: 12px;
+    }
+    
+    @media (max-width: 768px) {
+      .roadmap-line {
+        left: 30px;
+      }
+      
+      .roadmap-node, .roadmap-node:nth-child(even) {
+        flex-direction: row;
+        justify-content: flex-end;
+      }
+      
+      .roadmap-point {
+        left: 30px;
+      }
+      
+      .roadmap-content {
+        width: calc(100% - 80px);
+        text-align: left !important;
+      }
+      
+      .roadmap-node:nth-child(odd) .node-tags {
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body class="light-mode">
+  <div class="page-content">
+    <div class="roadmap-hero">
+      <h1>Tech <span class="gradient-text">Roadmaps</span></h1>
+      <p>Step-by-step guides to mastering domains alongside your IPU degree.</p>
+    </div>
+    
+    <div class="roadmap-container">
+      <div class="roadmap-line"></div>
+      
+      <div class="roadmap-node">
+        <div class="roadmap-content">
+          <div class="node-title">1. The Fundamentals</div>
+          <div class="node-desc">Start by building a strong foundation in programming and computer science basics. Focus on logic, not just syntax.</div>
+          <div class="node-tags">
+            <span class="tag">C/C++</span>
+            <span class="tag">Python</span>
+            <span class="tag">Data Structures</span>
+          </div>
+        </div>
+        <div class="roadmap-point"></div>
+      </div>
+      
+      <div class="roadmap-node">
+        <div class="roadmap-content">
+          <div class="node-title">2. Web Development</div>
+          <div class="node-desc">Learn how the internet works and build your first full-stack applications. A crucial skill for modern software engineering.</div>
+          <div class="node-tags">
+            <span class="tag">HTML/CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">React</span>
+            <span class="tag">Node.js</span>
+          </div>
+        </div>
+        <div class="roadmap-point"></div>
+      </div>
+      
+      <div class="roadmap-node">
+        <div class="roadmap-content">
+          <div class="node-title">3. Core CS Concepts</div>
+          <div class="node-desc">Deepen your understanding of how systems operate under the hood. Important for product companies and GATE.</div>
+          <div class="node-tags">
+            <span class="tag">OS</span>
+            <span class="tag">DBMS</span>
+            <span class="tag">Computer Networks</span>
+          </div>
+        </div>
+        <div class="roadmap-point"></div>
+      </div>
+      
+      <div class="roadmap-node">
+        <div class="roadmap-content">
+          <div class="node-title">4. Specialization</div>
+          <div class="node-desc">Pick a domain that interests you and go deep. Build projects that solve real-world problems.</div>
+          <div class="node-tags">
+            <span class="tag">AI/ML</span>
+            <span class="tag">Cloud Computing</span>
+            <span class="tag">App Dev</span>
+            <span class="tag">Web3</span>
+          </div>
+        </div>
+        <div class="roadmap-point"></div>
+      </div>
+      
+      <div class="roadmap-node">
+        <div class="roadmap-content">
+          <div class="node-title">5. Interview Prep</div>
+          <div class="node-desc">Master system design and advanced algorithms to crack top product-based companies.</div>
+          <div class="node-tags">
+            <span class="tag">System Design</span>
+            <span class="tag">Advanced DSA</span>
+            <span class="tag">Mock Interviews</span>
+          </div>
+        </div>
+        <div class="roadmap-point"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/shared.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      ProxyUI.injectNavbar('Roadmaps');
+      ProxyUI.injectBackgroundGlows();
+    });
+  </script>
+</body>
+</html>

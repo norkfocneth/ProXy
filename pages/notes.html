@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes — Proxy</title>
+  <meta name="description" content="Premium curated notes for IPU students.">
+  <link rel="stylesheet" href="../css/design-system.css">
+  <style>
+    .notes-hero {
+      padding: calc(var(--navbar-height) + var(--space-4xl)) 0 var(--space-3xl);
+      text-align: center;
+    }
+    .notes-hero h1 {
+      font-size: var(--font-size-5xl);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--space-md);
+    }
+    .notes-hero p {
+      font-size: var(--font-size-lg);
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    
+    .notes-filter-bar {
+      max-width: 1300px;
+      margin: 0 auto var(--space-4xl);
+      padding: 0 6%;
+      display: flex;
+      gap: var(--space-md);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .filter-btn {
+      padding: 0.6rem 1.2rem;
+      border-radius: 20px;
+      border: 1px solid rgba(0,0,0,0.06);
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur));
+      font-family: inherit;
+      font-size: var(--font-size-sm);
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .filter-btn:hover {
+      background: rgba(124, 58, 237, 0.04);
+      color: var(--text-primary);
+    }
+    
+    .filter-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
+    }
+  </style>
+</head>
+<body class="light-mode">
+  <div class="page-content">
+    <div class="notes-hero">
+      <h1>Premium <span class="gradient-text">Notes</span></h1>
+      <p>Your ultimate repository for high-quality, beautifully formatted notes tailored for IPU syllabus.</p>
+    </div>
+    
+    <div class="notes-filter-bar">
+      <button class="filter-btn active">All Subjects</button>
+      <button class="filter-btn">Computer Science</button>
+      <button class="filter-btn">Information Tech</button>
+      <button class="filter-btn">Electronics</button>
+      <button class="filter-btn">First Year Common</button>
+    </div>
+
+    <!-- Notes Shelf Full View -->
+    <div class="notes-shelf-container" style="max-width: 1300px; margin-bottom: var(--space-5xl);">
+      
+      <!-- Row 1: CS core -->
+      <div class="shelf-row">
+        <div class="notebook notebook--purple" style="height: 250px;">
+          <div class="notebook-spine">
+            <span class="spine-badge">Unit 1</span>
+            <span class="spine-title">Data Structures</span>
+            <span class="spine-code">BCS-301</span>
+          </div>
+        </div>
+        <div class="notebook notebook--purple" style="height: 220px;">
+          <div class="notebook-spine">
+            <span class="spine-badge">Unit 2</span>
+            <span class="spine-title">Linked Lists & Trees</span>
+            <span class="spine-code">BCS-301</span>
+          </div>
+        </div>
+        <div class="notebook notebook--purple" style="height: 200px; transform: rotate(-5deg); transform-origin: bottom left;">
+          <div class="notebook-spine">
+            <span class="spine-badge">Unit 3</span>
+            <span class="spine-title">Graphs & Hashing</span>
+            <span class="spine-code">BCS-301</span>
+          </div>
+        </div>
+        <div style="flex-grow: 1;"></div>
+        <div class="notebook notebook--blue" style="height: 260px;">
+          <div class="notebook-spine">
+            <span class="spine-badge">Vol I</span>
+            <span class="spine-title">Operating Systems</span>
+            <span class="spine-code">BCS-401</span>
+          </div>
+        </div>
+        <div class="notebook notebook--blue" style="height: 250px;">
+          <div class="notebook-spine">
+            <span class="spine-badge">Vol II</span>
+            <span class="spine-title">Memory Management</span>
+            <span class="spine-code">BCS-401</span>
+          </div>
+        </div>
+        <div class="notebook notebook--blue" style="height: 230px; transform: rotate(4deg); transform-origin: bottom right;">
+          <div class="notebook-spine">
+            <span class="spine-badge">Vol III</span>
+            <span class="spine-title">File Systems & IO</span>
+            <span class="spine-code">BCS-401</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: Networking & DB -->
+      <div class="shelf-row" style="margin-top: 2rem;">
+        <div class="notebook notebook--teal" style="height: 240px;">
+          <div class="notebook-spine">
+            <span class="spine-badge">Lec 1</span>
+            <span class="spine-title">Computer Networks</span>
+            <span class="spine-code">BCS-501</span>
+          </div>
+        </div>
+        <div class="notebook notebook--teal" style="height: 240px;">
+          <div class="notebook-spine">
+            <span class="spine-badge">Lec 2</span>
+            <span class="spine-title">TCP/IP Protocol</span>
+            <span class="spine-code">BCS-501</span>
+          </div>
+        </div>
+        <div class="notebook notebook--teal" style="height: 210px; transform: rotate(-3deg); transform-origin: bottom left;">
+          <div class="notebook-spine">
+            <span class="spine-badge">Lec 3</span>
+            <span class="spine-title">Network Security</span>
+            <span class="spine-code">BCS-501</span>
+          </div>
+        </div>
+        <div style="flex-grow: 1;"></div>
+        <div class="notebook notebook--rose" style="height: 210px; transform: rotate(3deg); transform-origin: bottom right;">
+          <div class="notebook-spine">
+            <span class="spine-badge">Qck</span>
+            <span class="spine-title">DBMS Revision</span>
+            <span class="spine-code">BCS-403</span>
+          </div>
+        </div>
+        <div class="notebook notebook--rose" style="height: 250px;">
+          <div class="notebook-spine">
+            <span class="spine-badge">Full</span>
+            <span class="spine-title">Database Mgmt</span>
+            <span class="spine-code">BCS-403</span>
+          </div>
+        </div>
+        <div class="notebook notebook--rose" style="height: 230px;">
+          <div class="notebook-spine">
+            <span class="spine-badge">Adv</span>
+            <span class="spine-title">Advanced SQL</span>
+            <span class="spine-code">BCS-403</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Row 3: First Year -->
+      <div class="shelf-row" style="margin-top: 2rem;">
+        <div class="notebook" style="height: 220px; background: #333;">
+          <div class="notebook-spine" style="background: linear-gradient(to right, #fb923c 0%, #f97316 15%, #ea580c 85%, #9a3412 100%);">
+            <span class="spine-badge">Ch 1</span>
+            <span class="spine-title">Applied Physics</span>
+            <span class="spine-code">BAS-101</span>
+          </div>
+        </div>
+        <div class="notebook" style="height: 220px; background: #333;">
+          <div class="notebook-spine" style="background: linear-gradient(to right, #fb923c 0%, #f97316 15%, #ea580c 85%, #9a3412 100%);">
+            <span class="spine-badge">Ch 2</span>
+            <span class="spine-title">Wave Optics</span>
+            <span class="spine-code">BAS-101</span>
+          </div>
+        </div>
+        <div style="flex-grow: 1;"></div>
+        <div class="notebook" style="height: 260px; background: #333;">
+          <div class="notebook-spine" style="background: linear-gradient(to right, #10b981 0%, #059669 15%, #047857 85%, #064e3b 100%);">
+            <span class="spine-badge">Math I</span>
+            <span class="spine-title">Engg Mathematics 1</span>
+            <span class="spine-code">BAS-103</span>
+          </div>
+        </div>
+        <div class="notebook" style="height: 260px; background: #333;">
+          <div class="notebook-spine" style="background: linear-gradient(to right, #10b981 0%, #059669 15%, #047857 85%, #064e3b 100%);">
+            <span class="spine-badge">Math II</span>
+            <span class="spine-title">Engg Mathematics 2</span>
+            <span class="spine-code">BAS-203</span>
+          </div>
+        </div>
+        <div class="notebook" style="height: 260px; background: #333;">
+          <div class="notebook-spine" style="background: linear-gradient(to right, #10b981 0%, #059669 15%, #047857 85%, #064e3b 100%);">
+            <span class="spine-badge">Math III</span>
+            <span class="spine-title">Engg Mathematics 3</span>
+            <span class="spine-code">BAS-303</span>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <script src="../js/shared.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      ProxyUI.injectNavbar('Notes');
+      ProxyUI.injectBackgroundGlows();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty — Proxy</title>
+  <meta name="description" content="Faculty directory for IPU.">
+  <link rel="stylesheet" href="../css/design-system.css">
+  <style>
+    .faculty-hero {
+      padding: calc(var(--navbar-height) + var(--space-4xl)) 0 var(--space-3xl);
+      text-align: center;
+    }
+    .faculty-hero h1 {
+      font-size: var(--font-size-5xl);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--space-md);
+    }
+    .faculty-hero p {
+      font-size: var(--font-size-lg);
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    
+    .faculty-grid {
+      max-width: 1300px;
+      margin: 0 auto var(--space-5xl);
+      padding: 0 6%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--space-2xl);
+    }
+    
+    .faculty-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius-xl);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      padding: var(--space-xl);
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s var(--ease-out);
+    }
+    
+    .faculty-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(124, 58, 237, 0.2);
+    }
+    
+    .faculty-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 auto var(--space-lg);
+      background: var(--accent-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(124, 58, 237, 0.2);
+    }
+    
+    .faculty-name {
+      font-size: var(--font-size-xl);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    
+    .faculty-dept {
+      font-size: var(--font-size-sm);
+      color: var(--text-muted);
+      margin-bottom: var(--space-md);
+      font-weight: 500;
+    }
+    
+    .faculty-stats {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-lg);
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--glass-border);
+    }
+    
+    .stat {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .stat-val {
+      font-size: var(--font-size-lg);
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    
+    .stat-lbl {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    
+    .btn-connect {
+      width: 100%;
+      padding: 0.7rem;
+      border-radius: 12px;
+      border: 1px solid var(--accent);
+      background: transparent;
+      color: var(--accent);
+      font-family: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .btn-connect:hover {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
+    }
+  </style>
+</head>
+<body class="light-mode">
+  <div class="page-content">
+    <div class="faculty-hero">
+      <h1>Expert <span class="gradient-text">Faculty</span></h1>
+      <p>Connect with the brilliant minds shaping the future of engineering at IPU.</p>
+    </div>
+    
+    <div class="faculty-grid">
+      
+      <div class="faculty-card">
+        <div class="faculty-avatar">AK</div>
+        <div class="faculty-name">Dr. Amit Kumar</div>
+        <div class="faculty-dept">Computer Science & Engg.</div>
+        <div class="faculty-stats">
+          <div class="stat">
+            <span class="stat-val">4.8</span>
+            <span class="stat-lbl">Rating</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">12</span>
+            <span class="stat-lbl">Papers</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">15+</span>
+            <span class="stat-lbl">Years Exp</span>
+          </div>
+        </div>
+        <button class="btn-connect">View Profile</button>
+      </div>
+      
+      <div class="faculty-card">
+        <div class="faculty-avatar" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">SR</div>
+        <div class="faculty-name">Dr. Sonali Rajput</div>
+        <div class="faculty-dept">Information Technology</div>
+        <div class="faculty-stats">
+          <div class="stat">
+            <span class="stat-val">4.9</span>
+            <span class="stat-lbl">Rating</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">24</span>
+            <span class="stat-lbl">Papers</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">10+</span>
+            <span class="stat-lbl">Years Exp</span>
+          </div>
+        </div>
+        <button class="btn-connect">View Profile</button>
+      </div>
+
+      <div class="faculty-card">
+        <div class="faculty-avatar" style="background: linear-gradient(135deg, #10b981, #047857);">MS</div>
+        <div class="faculty-name">Prof. Manoj Sharma</div>
+        <div class="faculty-dept">Applied Mathematics</div>
+        <div class="faculty-stats">
+          <div class="stat">
+            <span class="stat-val">4.7</span>
+            <span class="stat-lbl">Rating</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">8</span>
+            <span class="stat-lbl">Papers</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">20+</span>
+            <span class="stat-lbl">Years Exp</span>
+          </div>
+        </div>
+        <button class="btn-connect">View Profile</button>
+      </div>
+      
+      <div class="faculty-card">
+        <div class="faculty-avatar" style="background: linear-gradient(135deg, #f43f5e, #be123c);">PK</div>
+        <div class="faculty-name">Dr. Priya Kapoor</div>
+        <div class="faculty-dept">Electronics & Comm.</div>
+        <div class="faculty-stats">
+          <div class="stat">
+            <span class="stat-val">4.6</span>
+            <span class="stat-lbl">Rating</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">15</span>
+            <span class="stat-lbl">Papers</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">8+</span>
+            <span class="stat-lbl">Years Exp</span>
+          </div>
+        </div>
+        <button class="btn-connect">View Profile</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="../js/shared.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      ProxyUI.injectNavbar('Faculty');
+      ProxyUI.injectBackgroundGlows();
+    });
+  </script>
+</body>
+</html>
