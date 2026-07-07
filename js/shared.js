@@ -40,6 +40,11 @@ function injectNavbar(activePage = 'Home') {
         </button>
 
         <a href="#" class="btn-signin">Sign In</a>
+
+        <!-- Hamburger Icon for Mobile -->
+        <button class="mobile-nav-toggle" id="mobileNavToggle">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
       </div>
     </nav>
   `;
@@ -57,12 +62,47 @@ function injectNavbar(activePage = 'Home') {
     </div>
   `;
 
+  // Mobile menu links overlay
+  const mobileMenuOverlayHTML = `
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+      <ul class="mobile-menu-links">
+        <li><a class="${activePage === 'Home' ? 'active' : ''}" href="/index.html">Home</a></li>
+        <li><a class="${activePage === 'Syllabus' ? 'active' : ''}" href="/pages/syllabus.html">Syllabus</a></li>
+        <li><a class="${activePage === 'Notes' ? 'active' : ''}" href="/pages/notes.html">Notes</a></li>
+        <li><a class="${activePage === 'PYQs' ? 'active' : ''}" href="/pages/pyqs.html">PYQs</a></li>
+        <li><a class="${activePage === 'Faculty' ? 'active' : ''}" href="/pages/faculty.html">Faculty</a></li>
+        <li><a class="${activePage === 'Roadmaps' ? 'active' : ''}" href="/pages/roadmaps.html">Roadmaps</a></li>
+      </ul>
+    </div>
+  `;
+
   // Inject
+  document.body.insertAdjacentHTML('afterbegin', mobileMenuOverlayHTML);
   document.body.insertAdjacentHTML('afterbegin', searchOverlayHTML);
   document.body.insertAdjacentHTML('afterbegin', navbarHTML);
 
   // Setup listeners
   setupSearchOverlay();
+  setupMobileMenuToggle();
+}
+
+function setupMobileMenuToggle() {
+  const toggle = document.getElementById('mobileNavToggle');
+  const overlay = document.getElementById('mobileMenuOverlay');
+  
+  if (toggle && overlay) {
+    toggle.addEventListener('click', () => {
+      overlay.classList.toggle('active');
+      const isActive = overlay.classList.contains('active');
+      
+      // Update hamburger SVG to close (X) when active
+      if (isActive) {
+        toggle.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
+      } else {
+        toggle.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
+      }
+    });
+  }
 }
 
 // ── Search Overlay (Ctrl+K Spotlight) ──

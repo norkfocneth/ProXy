@@ -427,8 +427,17 @@
 
       const imgR = img.width / img.height, canR = w / h;
       let dw, dh, dx, dy;
-      if (canR > imgR) { dw = w; dh = w / imgR; dx = 0; dy = (h - dh) / 2; }
-      else { dw = h * imgR; dh = h; dx = (w - dw) / 2; dy = 0; }
+      if (canR > imgR) { 
+        dw = w; 
+        dh = w / imgR; 
+        dx = 0; 
+        dy = (h - dh) / 2; 
+      } else { 
+        dw = h * imgR; 
+        dh = h; 
+        dx = (w - dw) * 0.82; // Align to the right to keep the 3D book cover fully visible on mobile/portrait
+        dy = 0; 
+      }
       ctx.drawImage(img, dx, dy, dw, dh);
     }
 

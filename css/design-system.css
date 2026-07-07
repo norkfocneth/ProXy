@@ -1561,3 +1561,138 @@ body {
     font-size: var(--font-size-3xl);
   }
 }
+
+/* ── Mobile & Tablet Responsiveness ── */
+@media (max-width: 768px) {
+  /* Layout Spacing */
+  :root {
+    --space-4xl: 3.5rem;
+    --space-5xl: 5rem;
+  }
+
+  .section-container {
+    padding: 0 1.5rem;
+  }
+
+  /* Typography scale down */
+  .hero-title {
+    font-size: 2.2rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .hero-desc {
+    font-size: 1rem !important;
+  }
+
+  /* Navbar Mobile Layout */
+  .navbar {
+    padding: 0 1.5rem;
+  }
+
+  .nav-center,
+  .nav-right .search-wrapper,
+  .nav-right .btn-signin {
+    display: none !important;
+  }
+
+  .mobile-nav-toggle {
+    display: flex;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-primary);
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+  }
+
+  /* Mobile menu fullscreen overlay */
+  .mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: #ffffff;
+    z-index: 98;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.35s var(--ease-out);
+  }
+
+  .mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-menu-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .mobile-menu-links a {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .mobile-menu-links a:hover,
+  .mobile-menu-links a.active {
+    color: var(--accent);
+  }
+
+  /* Feature bar stacking */
+  .feature-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+    padding: 1.2rem 1.5rem;
+  }
+
+  .feature-item {
+    font-size: 0.9rem;
+  }
+
+  /* Stats bar stacking */
+  .stats-bar {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .stat-item {
+    width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+    padding-bottom: 1rem;
+  }
+
+  .stat-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  /* Carousel swipe improvements */
+  .carousel-btn {
+    display: none !important; /* Hide navigation buttons on mobile, allow native swiping */
+  }
+
+  .carousel-track {
+    gap: 1.5rem;
+    padding: 1.5rem 0.5rem;
+  }
+
+  /* Syllabus dedicated page details */
+  .syllabus-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
