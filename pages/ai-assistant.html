@@ -5,8 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Assistant — Proxy</title>
   <meta name="description" content="AI Assistant for IPU students.">
-  <link rel="stylesheet" href="../css/design-system.css">
+  <link rel="stylesheet" href="../css/design-system.css?v=3">
   <style>
+    /* Hide mobile menu overlay on desktop viewports */
+    @media (min-width: 769px) {
+      .mobile-menu-overlay {
+        display: none !important;
+      }
+    }
+
     .ai-layout {
       max-width: 1000px;
       margin: 0 auto;
@@ -227,7 +234,7 @@
     </div>
   </div>
 
-  <script src="../js/shared.js"></script>
+  <script src="../js/shared.js?v=3"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       ProxyUI.injectNavbar('AI Assistant');

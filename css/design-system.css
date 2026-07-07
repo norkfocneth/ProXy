@@ -1562,6 +1562,11 @@ body {
   }
 }
 
+/* Mobile menu overlay default state (hidden on desktop) */
+.mobile-menu-overlay {
+  display: none;
+}
+
 /* ── Mobile & Tablet Responsiveness ── */
 @media (max-width: 768px) {
   /* Layout Spacing */
@@ -1612,7 +1617,7 @@ body {
   .mobile-menu-overlay {
     position: fixed;
     inset: 0;
-    background: #ffffff;
+    background: var(--bg-primary);
     z-index: 98;
     display: flex;
     flex-direction: column;

@@ -5,8 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Proxy — Everything an IPU student needs</title>
   <meta name="description" content="Premium notes, PYQs, syllabus, roadmaps and more for IPU students. Beautifully organized.">
-  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/design-system.css?v=3">
   <style>
+    /* Hide mobile menu overlay on desktop viewports */
+    @media (min-width: 769px) {
+      .mobile-menu-overlay {
+        display: none !important;
+      }
+    }
+
     /* ── Home-specific: Scroll Pinning ── */
     .pin-container {
       height: 280vh;
@@ -361,7 +368,7 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/shared.js"></script>
+  <script src="js/shared.js?v=3"></script>
   <script src="js/cube-engine.js"></script>
   <script>
     // ── Inject shared components ──
