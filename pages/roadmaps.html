@@ -9,357 +9,216 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    /* ── Hide mobile menu on desktop ── */
     @media (min-width: 769px) { .mobile-menu-overlay { display: none !important; } }
-
-    /* ── Reset & Override Body ── */
     body, body.light-mode {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-      background: #f6f8f3 !important;
-      color: #1a2e1a !important;
-      overflow: hidden !important;
-      height: 100vh !important;
+      background: #f4f7f0 !important; color: #1a2e1a !important;
+      overflow: hidden !important; height: 100vh !important;
       -webkit-font-smoothing: antialiased;
     }
-
     .page-content { display: none !important; }
-
-    /* ── CSS Variables ── */
     :root {
-      --g50: #f0fdf4; --g100: #dcfce7; --g200: #bbf7d0; --g300: #86efac;
-      --g400: #4ade80; --g500: #22c55e; --g600: #16a34a; --g700: #15803d;
-      --g800: #166534; --g900: #14532d;
-      --txt: #1a2e1a; --txt2: #4a6a4a; --txt3: #7a9a7a;
-      --card: rgba(255,255,255,0.78); --card-b: rgba(21,128,61,0.06);
-      --sh-s: 0 2px 8px rgba(20,83,45,0.04), 0 1px 3px rgba(20,83,45,0.06);
-      --sh-m: 0 4px 16px rgba(20,83,45,0.06), 0 2px 6px rgba(20,83,45,0.04);
-      --sh-l: 0 12px 40px rgba(20,83,45,0.08), 0 4px 12px rgba(20,83,45,0.04);
-      --sh-p: 0 20px 60px rgba(20,83,45,0.12), 0 8px 20px rgba(20,83,45,0.06);
-      --r-s: 10px; --r-m: 14px; --r-l: 20px; --r-xl: 24px;
-      --ease: cubic-bezier(0.16, 1, 0.3, 1);
-      --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --g50:#f0fdf4;--g100:#dcfce7;--g200:#bbf7d0;--g300:#86efac;
+      --g400:#4ade80;--g500:#22c55e;--g600:#16a34a;--g700:#15803d;--g800:#166534;--g900:#14532d;
+      --txt:#1a2e1a;--txt2:#3d5c3d;--txt3:#6b8f6b;
+      --card:rgba(255,255,255,0.82);--card-b:rgba(21,128,61,0.07);
+      --sh-s:0 2px 8px rgba(20,83,45,0.05),0 1px 3px rgba(20,83,45,0.07);
+      --sh-m:0 4px 16px rgba(20,83,45,0.07),0 2px 6px rgba(20,83,45,0.05);
+      --sh-l:0 12px 40px rgba(20,83,45,0.09),0 4px 12px rgba(20,83,45,0.05);
+      --sh-p:0 20px 60px rgba(20,83,45,0.13),0 8px 20px rgba(20,83,45,0.07);
+      --r-s:10px;--r-m:14px;--r-l:20px;--r-xl:24px;
+      --ease:cubic-bezier(0.16,1,0.3,1);--spring:cubic-bezier(0.34,1.56,0.64,1);
     }
 
-    /* ── Ambient Background ── */
-    .tree-bg {
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background: linear-gradient(165deg, #f6f8f3 0%, #eef5e8 40%, #f2f7ee 100%);
-    }
-    .tree-bg::before {
-      content: ''; position: absolute; top: -15%; left: -10%; width: 65%; height: 65%;
-      background: radial-gradient(circle, rgba(187,247,208,0.22) 0%, transparent 70%);
-      filter: blur(80px);
-    }
-    .tree-bg::after {
-      content: ''; position: absolute; bottom: -8%; right: -5%; width: 45%; height: 45%;
-      background: radial-gradient(circle, rgba(134,239,172,0.1) 0%, transparent 60%);
-      filter: blur(90px);
-    }
+    /* ── BG ── */
+    .tree-bg{position:fixed;inset:0;z-index:0;pointer-events:none;
+      background:linear-gradient(165deg,#f4f7f0 0%,#eaf2e2 45%,#f0f6ea 100%);}
+    .tree-bg::before{content:'';position:absolute;top:-18%;left:-12%;width:68%;height:68%;
+      background:radial-gradient(circle,rgba(187,247,208,.20) 0%,transparent 70%);filter:blur(90px);}
+    .tree-bg::after{content:'';position:absolute;bottom:-10%;right:-8%;width:48%;height:48%;
+      background:radial-gradient(circle,rgba(134,239,172,.09) 0%,transparent 60%);filter:blur(100px);}
+    .spore{position:fixed;border-radius:50%;pointer-events:none;z-index:1;animation:sporeFloat linear infinite;}
+    @keyframes sporeFloat{0%{transform:translateY(105vh) rotate(0deg);opacity:0}8%{opacity:.3}92%{opacity:.2}100%{transform:translateY(-8vh) rotate(360deg);opacity:0}}
 
-    /* Floating spores */
-    .spore {
-      position: fixed; border-radius: 50%; pointer-events: none; z-index: 1;
-      animation: sporeFloat linear infinite;
-    }
-    @keyframes sporeFloat {
-      0% { transform: translateY(105vh) rotate(0deg) scale(0.8); opacity: 0; }
-      8% { opacity: 0.35; }
-      92% { opacity: 0.25; }
-      100% { transform: translateY(-8vh) rotate(360deg) scale(1.1); opacity: 0; }
-    }
-
-    /* ── Layout: Sidebar + Canvas ── */
-    .tree-layout {
-      position: fixed; inset: 0; top: var(--navbar-height, 64px);
-      display: grid; grid-template-columns: 260px 1fr;
-      z-index: 2;
-    }
+    /* ── Layout ── */
+    .tree-layout{position:fixed;inset:0;top:var(--navbar-height,64px);display:grid;grid-template-columns:270px 1fr;z-index:2;}
 
     /* ── Sidebar ── */
-    .tree-sidebar {
-      background: rgba(255,255,255,0.52);
-      backdrop-filter: blur(24px) saturate(1.5);
-      border-right: 1px solid rgba(21,128,61,0.05);
-      padding: 1.75rem 1.15rem;
-      display: flex; flex-direction: column; gap: 0.4rem;
-      overflow-y: auto;
+    .tree-sidebar{background:rgba(255,255,255,.55);backdrop-filter:blur(26px) saturate(1.5);
+      border-right:1px solid rgba(21,128,61,.06);padding:1.6rem 1.1rem;
+      display:flex;flex-direction:column;gap:.35rem;overflow-y:auto;}
+    .tree-sidebar::-webkit-scrollbar{width:3px}
+    .tree-sidebar::-webkit-scrollbar-thumb{background:rgba(21,128,61,.1);border-radius:3px}
+    .sb-hd{margin-bottom:1.4rem;padding:0 .2rem}
+    .sb-hd h1{font-size:1.45rem;font-weight:900;letter-spacing:-.03em;color:var(--txt)}
+    .sb-hd h1 span{font-weight:400;color:var(--txt3)}
+    .sb-hd p{font-size:.75rem;color:var(--txt3);margin-top:.25rem;font-weight:500}
+    .sb-list{display:flex;flex-direction:column;gap:.28rem;flex:1}
+    .sb-btn{display:flex;align-items:center;gap:.75rem;padding:.72rem .85rem;
+      border:1.5px solid transparent;border-radius:var(--r-m);background:transparent;
+      cursor:pointer;font-family:inherit;text-align:left;transition:all .3s var(--ease);position:relative}
+    .sb-btn:hover{background:rgba(22,163,74,.03);border-color:rgba(21,128,61,.06)}
+    .sb-btn.active{background:var(--g50);border-color:rgba(21,128,61,.13);box-shadow:var(--sh-s)}
+    .sb-ico{width:38px;height:38px;border-radius:var(--r-s);display:flex;align-items:center;
+      justify-content:center;font-size:1.2rem;flex-shrink:0;background:var(--g100);transition:all .3s ease}
+    .sb-btn.active .sb-ico{background:var(--g700);box-shadow:0 4px 12px rgba(21,128,61,.22)}
+    .sb-txt h3{font-size:.83rem;font-weight:700;color:var(--txt);line-height:1.2}
+    .sb-txt p{font-size:.68rem;color:var(--txt3);font-weight:500;margin-top:1px}
+    .sb-chev{margin-left:auto;width:15px;height:15px;color:var(--txt3);opacity:0;transition:opacity .2s}
+    .sb-btn:hover .sb-chev,.sb-btn.active .sb-chev{opacity:1;color:var(--g600)}
+    .sb-zoom{margin-top:auto;padding-top:.9rem;border-top:1px solid rgba(21,128,61,.05);
+      display:flex;align-items:center;gap:.4rem}
+    .z-btn{width:28px;height:28px;border-radius:7px;border:1px solid rgba(21,128,61,.09);background:white;
+      display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.82rem;
+      color:var(--txt2);font-family:inherit;font-weight:700;transition:all .2s ease}
+    .z-btn:hover{border-color:var(--g400);color:var(--g700)}
+    .z-lbl{font-size:.72rem;font-weight:600;color:var(--txt3);min-width:36px;text-align:center}
+
+    /* ── Canvas ── */
+    .tree-canvas{position:relative;overflow:hidden;cursor:grab;background:transparent}
+    .tree-canvas:active{cursor:grabbing}
+    .canvas-world{position:absolute;width:5000px;height:3400px;transform-origin:0 0}
+    .tree-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+    .vine{fill:none;stroke:var(--g200);stroke-width:2.6;stroke-linecap:round}
+    .vine.a{stroke:var(--g300);stroke-width:3;filter:drop-shadow(0 0 3px rgba(34,197,94,.12))}
+    .vsub{fill:none;stroke:var(--g200);stroke-width:2;stroke-linecap:round}
+    .vsub.a{stroke:var(--g300);stroke-width:2.3}
+    .vp{fill:var(--g400);opacity:.55}
+
+    /* ── Nodes ── */
+    .nd{position:absolute;z-index:5;cursor:pointer}
+
+    /* ── Hyper-Realistic Leaf Root ── */
+    .nd-root{
+      width:170px;height:195px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+      transform:translate(-50%,-50%);position:relative;animation:leafSway 6s ease-in-out infinite;
     }
-    .tree-sidebar::-webkit-scrollbar { width: 3px; }
-    .tree-sidebar::-webkit-scrollbar-thumb { background: rgba(21,128,61,0.1); border-radius: 3px; }
-
-    .sb-hd { margin-bottom: 1.5rem; padding: 0 0.2rem; }
-    .sb-hd h1 { font-size: 1.5rem; font-weight: 900; letter-spacing: -0.03em; color: var(--txt); }
-    .sb-hd h1 span { font-weight: 400; color: var(--txt2); }
-    .sb-hd p { font-size: 0.78rem; color: var(--txt3); margin-top: 0.3rem; font-weight: 500; }
-
-    .sb-list { display: flex; flex-direction: column; gap: 0.3rem; flex: 1; }
-
-    .sb-btn {
-      display: flex; align-items: center; gap: 0.8rem;
-      padding: 0.78rem 0.9rem; border: 1.5px solid transparent;
-      border-radius: var(--r-m); background: transparent; cursor: pointer;
-      font-family: inherit; text-align: left;
-      transition: all 0.3s var(--ease); position: relative;
+    @keyframes leafSway{
+      0%,100%{transform:translate(-50%,-50%) rotate(-1.5deg)}
+      50%{transform:translate(-50%,-50%) rotate(1.5deg)}
     }
-    .sb-btn:hover { background: rgba(22,163,74,0.03); border-color: rgba(21,128,61,0.06); }
-    .sb-btn.active {
-      background: var(--g50); border-color: rgba(21,128,61,0.12);
-      box-shadow: var(--sh-s);
-    }
+    .leaf-svg{position:absolute;inset:0;width:100%;height:100%;z-index:0;filter:drop-shadow(0 8px 20px rgba(21,128,61,.18)) drop-shadow(0 2px 6px rgba(21,128,61,.25));}
+    .leaf-content{position:relative;z-index:2;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.2rem;margin-top:-8px;}
+    .leaf-ico{font-size:1.7rem;filter:drop-shadow(0 1px 2px rgba(0,0,0,.2))}
+    .leaf-title{font-size:.78rem;font-weight:800;color:white;letter-spacing:-.01em;line-height:1.2;text-shadow:0 1px 3px rgba(0,0,0,.25)}
+    .leaf-vein{position:absolute;inset:0;z-index:1;opacity:.18;pointer-events:none}
 
-    .sb-ico {
-      width: 40px; height: 40px; border-radius: var(--r-s);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.25rem; flex-shrink: 0; background: var(--g100);
-      transition: all 0.3s ease;
-    }
-    .sb-btn.active .sb-ico {
-      background: var(--g700); box-shadow: 0 4px 12px rgba(21,128,61,0.2);
-    }
+    /* ── Category Cards ── */
+    .nd-cat{background:var(--card);backdrop-filter:blur(22px) saturate(1.6);
+      border:1.5px solid var(--card-b);border-radius:var(--r-l);
+      padding:.85rem 1.1rem;display:flex;align-items:center;gap:.65rem;
+      box-shadow:var(--sh-s);min-width:208px;transition:all .3s var(--ease);
+      user-select:none;transform:translate(-50%,-50%)}
+    .nd-cat:hover{border-color:rgba(21,128,61,.18);box-shadow:var(--sh-m)}
+    .nd-cat.open{border-color:rgba(21,128,61,.28);box-shadow:var(--sh-m),0 0 18px rgba(34,197,94,.06);background:rgba(255,255,255,.92)}
+    .ci{width:34px;height:34px;border-radius:var(--r-s);background:var(--g100);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+    .nd-cat.open .ci{background:var(--g600);box-shadow:0 3px 10px rgba(21,128,61,.22)}
+    .ct h4{font-size:.79rem;font-weight:700;color:var(--txt);line-height:1.2}
+    .ct p{font-size:.67rem;color:var(--txt3);font-weight:500;margin-top:1px}
+    .cc{margin-left:auto;width:13px;height:13px;color:var(--txt3);transition:transform .3s var(--spring),color .3s ease}
+    .nd-cat.open .cc{color:var(--g600);transform:rotate(90deg)}
 
-    .sb-txt h3 { font-size: 0.85rem; font-weight: 700; color: var(--txt); line-height: 1.2; }
-    .sb-txt p { font-size: 0.7rem; color: var(--txt3); font-weight: 500; margin-top: 1px; }
-
-    .sb-chev {
-      margin-left: auto; width: 16px; height: 16px; color: var(--txt3);
-      opacity: 0; transition: opacity 0.2s ease;
-    }
-    .sb-btn:hover .sb-chev, .sb-btn.active .sb-chev { opacity: 1; color: var(--g600); }
-
-    /* Zoom Controls */
-    .sb-zoom {
-      margin-top: auto; padding-top: 1rem;
-      border-top: 1px solid rgba(21,128,61,0.05);
-      display: flex; align-items: center; gap: 0.4rem;
-    }
-    .z-btn {
-      width: 30px; height: 30px; border-radius: 8px;
-      border: 1px solid rgba(21,128,61,0.08); background: white;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; font-size: 0.85rem; color: var(--txt2);
-      font-family: inherit; font-weight: 700;
-      transition: all 0.2s ease;
-    }
-    .z-btn:hover { border-color: var(--g400); color: var(--g700); }
-    .z-lbl { font-size: 0.75rem; font-weight: 600; color: var(--txt3); min-width: 38px; text-align: center; }
-
-    /* ── Canvas Area ── */
-    .tree-canvas { position: relative; overflow: hidden; cursor: grab; background: transparent; }
-    .tree-canvas:active { cursor: grabbing; }
-
-    .canvas-world {
-      position: absolute; width: 4000px; height: 3000px;
-      transform-origin: 0 0;
-    }
-
-    /* ── SVG Lines ── */
-    .tree-svg {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      pointer-events: none; z-index: 1;
-    }
-    .vine {
-      fill: none; stroke: var(--g200); stroke-width: 2.5; stroke-linecap: round;
-    }
-    .vine.a { stroke: var(--g300); stroke-width: 2.8; filter: drop-shadow(0 0 3px rgba(34,197,94,0.1)); }
-    .vsub { fill: none; stroke: var(--g200); stroke-width: 2; stroke-linecap: round; }
-    .vsub.a { stroke: var(--g300); stroke-width: 2.2; }
-    .vleaf { fill: none; stroke: rgba(21,128,61,0.08); stroke-width: 1.5; stroke-linecap: round; stroke-dasharray: 5 4; }
-    .vleaf.a { stroke: var(--g200); stroke-dasharray: none; stroke-width: 1.8; }
-    .vp { fill: var(--g400); opacity: 0.5; }
-
-    /* ── Tree Nodes ── */
-    .nd { position: absolute; z-index: 5; cursor: pointer; }
-
-    /* Root Hub */
-    .nd-root {
-      width: 150px; height: 150px; border-radius: 50%;
-      background: linear-gradient(145deg, var(--g700) 0%, var(--g800) 100%);
-      border: 3px solid var(--g600);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      box-shadow: 0 0 0 7px rgba(22,163,74,0.07), 0 0 0 18px rgba(22,163,74,0.025), var(--sh-l);
-      text-align: center; color: white;
-      animation: hubPulse 4.5s ease-in-out infinite;
-      transform: translate(-50%, -50%);
-    }
-    @keyframes hubPulse {
-      0%, 100% { box-shadow: 0 0 0 7px rgba(22,163,74,0.07), 0 0 0 18px rgba(22,163,74,0.025), var(--sh-l); }
-      50% { box-shadow: 0 0 0 10px rgba(22,163,74,0.1), 0 0 0 24px rgba(22,163,74,0.04), var(--sh-l); }
-    }
-    .nd-root .ri { font-size: 2rem; margin-bottom: 0.2rem; }
-    .nd-root h2 { font-size: 0.82rem; font-weight: 800; letter-spacing: -0.01em; line-height: 1.2; }
-
-    /* Category Cards */
-    .nd-cat {
-      background: var(--card); backdrop-filter: blur(20px) saturate(1.6);
-      border: 1.5px solid var(--card-b); border-radius: var(--r-l);
-      padding: 0.9rem 1.15rem; display: flex; align-items: center; gap: 0.7rem;
-      box-shadow: var(--sh-s); min-width: 205px;
-      transition: all 0.3s var(--ease); user-select: none;
-      transform: translate(-50%, -50%);
-    }
-    .nd-cat:hover { border-color: rgba(21,128,61,0.16); box-shadow: var(--sh-m); }
-    .nd-cat.open { border-color: rgba(21,128,61,0.25); box-shadow: var(--sh-m), 0 0 18px rgba(34,197,94,0.05); background: rgba(255,255,255,0.9); }
-
-    .ci {
-      width: 36px; height: 36px; border-radius: var(--r-s);
-      background: var(--g100); display: flex; align-items: center; justify-content: center;
-      font-size: 1.05rem; flex-shrink: 0;
-    }
-    .nd-cat.open .ci { background: var(--g600); box-shadow: 0 3px 10px rgba(21,128,61,0.2); }
-
-    .ct h4 { font-size: 0.8rem; font-weight: 700; color: var(--txt); line-height: 1.2; }
-    .ct p { font-size: 0.68rem; color: var(--txt3); font-weight: 500; margin-top: 1px; }
-
-    .cc {
-      margin-left: auto; width: 14px; height: 14px; color: var(--txt3);
-      transition: transform 0.3s var(--spring), color 0.3s ease;
-    }
-    .nd-cat.open .cc { color: var(--g600); transform: rotate(90deg); }
-
-    /* Leaf Nodes */
-    .nd-leaf {
-      background: var(--card); backdrop-filter: blur(16px) saturate(1.4);
-      border: 1.5px solid rgba(21,128,61,0.05); border-radius: var(--r-m);
-      padding: 0.65rem 1rem; display: flex; align-items: center; gap: 0.55rem;
-      box-shadow: var(--sh-s); min-width: 165px;
-      transition: all 0.3s var(--ease); user-select: none;
-      animation: leafGrow 0.45s var(--spring) forwards;
-      opacity: 0; transform: translate(-50%, -50%) scale(0.85);
-    }
-    @keyframes leafGrow { to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
-
-    .nd-leaf:hover { border-color: rgba(21,128,61,0.16); box-shadow: var(--sh-m); }
-    .nd-leaf.sel { border-color: var(--g500); background: rgba(240,253,244,0.92); }
-
-    .ld { width: 7px; height: 7px; border-radius: 50%; background: var(--g300); flex-shrink: 0; }
-    .nd-leaf.sel .ld { background: var(--g500); box-shadow: 0 0 6px rgba(34,197,94,0.3); }
-    .nd-leaf span { font-size: 0.76rem; font-weight: 600; color: var(--txt); }
-    .lc { margin-left: auto; color: var(--txt3); opacity: 0; transition: opacity 0.2s; width: 12px; height: 12px; }
-    .nd-leaf:hover .lc { opacity: 1; }
+    /* ── Leaf Nodes ── */
+    .nd-leaf{background:var(--card);backdrop-filter:blur(18px) saturate(1.4);
+      border:1.5px solid rgba(21,128,61,.06);border-radius:var(--r-m);
+      padding:.6rem .95rem;display:flex;align-items:center;gap:.5rem;
+      box-shadow:var(--sh-s);min-width:168px;transition:all .3s var(--ease);
+      user-select:none;animation:leafGrow .4s var(--spring) forwards;
+      opacity:0;transform:translate(-50%,-50%) scale(.85)}
+    @keyframes leafGrow{to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+    .nd-leaf:hover{border-color:rgba(21,128,61,.18);box-shadow:var(--sh-m)}
+    .nd-leaf.sel{border-color:var(--g500);background:rgba(240,253,244,.95)}
+    .ld{width:7px;height:7px;border-radius:50%;background:var(--g300);flex-shrink:0}
+    .nd-leaf.sel .ld{background:var(--g500);box-shadow:0 0 6px rgba(34,197,94,.35)}
+    .nd-leaf span{font-size:.75rem;font-weight:600;color:var(--txt)}
+    .lc{margin-left:auto;color:var(--txt3);opacity:0;transition:opacity .2s;width:12px;height:12px}
+    .nd-leaf:hover .lc{opacity:1}
 
     /* ── Detail Panel ── */
-    .dtl-panel {
-      position: fixed; top: var(--navbar-height, 64px); right: 0;
-      width: 400px; height: calc(100vh - var(--navbar-height, 64px));
-      background: rgba(255,255,255,0.85); backdrop-filter: blur(32px) saturate(1.8);
-      border-left: 1px solid rgba(21,128,61,0.05);
-      box-shadow: var(--sh-p); z-index: 50;
-      transform: translateX(100%); transition: transform 0.45s var(--ease);
-      overflow-y: auto; overflow-x: hidden;
-    }
-    .dtl-panel.open { transform: translateX(0); }
-    .dtl-panel::-webkit-scrollbar { width: 3px; }
-    .dtl-panel::-webkit-scrollbar-thumb { background: rgba(21,128,61,0.1); border-radius: 3px; }
+    .dtl-panel{position:fixed;top:var(--navbar-height,64px);right:0;
+      width:420px;height:calc(100vh - var(--navbar-height,64px));
+      background:rgba(255,255,255,.88);backdrop-filter:blur(34px) saturate(1.9);
+      border-left:1px solid rgba(21,128,61,.06);
+      box-shadow:var(--sh-p);z-index:50;
+      transform:translateX(100%);transition:transform .45s var(--ease);
+      overflow-y:auto;overflow-x:hidden}
+    .dtl-panel.open{transform:translateX(0)}
+    .dtl-panel::-webkit-scrollbar{width:3px}
+    .dtl-panel::-webkit-scrollbar-thumb{background:rgba(21,128,61,.1);border-radius:3px}
+    .p-close{position:absolute;top:1rem;right:1rem;width:28px;height:28px;border-radius:50%;
+      background:rgba(0,0,0,.04);border:none;display:flex;align-items:center;justify-content:center;
+      cursor:pointer;font-size:.88rem;color:var(--txt2);transition:all .2s ease;z-index:5}
+    .p-close:hover{background:rgba(0,0,0,.09);color:var(--txt)}
+    .p-hero{background:linear-gradient(145deg,var(--g700),var(--g800));
+      padding:2rem 1.6rem 1.6rem;color:white;position:relative;overflow:hidden}
+    .p-hero::after{content:'';position:absolute;top:-30%;right:-18%;width:190px;height:190px;
+      background:radial-gradient(circle,rgba(255,255,255,.07) 0%,transparent 70%);border-radius:50%}
+    .p-hero h3{font-size:1.2rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.25rem;position:relative;z-index:2}
+    .p-hero p{font-size:.76rem;opacity:.8;font-weight:500;position:relative;z-index:2;line-height:1.5}
+    .p-hero .sal-badge{display:inline-flex;align-items:center;gap:.4rem;margin-top:.7rem;
+      background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+      border-radius:20px;padding:.25rem .75rem;font-size:.7rem;font-weight:700;position:relative;z-index:2}
 
-    .p-close {
-      position: absolute; top: 1.1rem; right: 1.1rem;
-      width: 30px; height: 30px; border-radius: 50%;
-      background: rgba(0,0,0,0.04); border: none;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; font-size: 0.9rem; color: var(--txt2);
-      transition: all 0.2s ease; z-index: 5;
-    }
-    .p-close:hover { background: rgba(0,0,0,0.08); color: var(--txt); }
+    /* Video */
+    .p-video{margin:1.2rem 1.4rem 0;border-radius:var(--r-m);overflow:hidden;
+      position:relative;aspect-ratio:16/9;background:linear-gradient(135deg,var(--g800),var(--g900));box-shadow:var(--sh-m)}
+    .p-video-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+    .p-video-ph{text-align:center;color:rgba(255,255,255,.3)}
+    .p-video-ph .vi{font-size:1.6rem;margin-bottom:.2rem}
+    .p-video-ph .vt{font-size:.68rem;font-weight:600}
+    .play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+      width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.88);
+      backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;
+      box-shadow:0 4px 18px rgba(0,0,0,.14);cursor:pointer}
+    .play-btn::after{content:'';width:0;height:0;
+      border-left:11px solid var(--g700);border-top:7px solid transparent;border-bottom:7px solid transparent;margin-left:2px}
+    .vid-cap{position:absolute;bottom:0;left:0;right:0;padding:1.8rem .85rem .65rem;
+      background:linear-gradient(transparent,rgba(0,0,0,.6));color:white;font-size:.7rem;
+      font-weight:600;display:flex;justify-content:space-between;align-items:flex-end}
+    .vid-dur{font-size:.63rem;background:rgba(0,0,0,.35);padding:2px 5px;border-radius:3px;font-weight:700}
 
-    .p-hero {
-      background: linear-gradient(145deg, var(--g700), var(--g800));
-      padding: 2.2rem 1.75rem 1.8rem; color: white; position: relative; overflow: hidden;
-    }
-    .p-hero::after {
-      content: ''; position: absolute; top: -25%; right: -15%;
-      width: 180px; height: 180px;
-      background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 70%);
-      border-radius: 50%;
-    }
-    .p-hero h3 { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.3rem; position: relative; z-index: 2; }
-    .p-hero p { font-size: 0.78rem; opacity: 0.8; font-weight: 500; position: relative; z-index: 2; line-height: 1.5; }
+    /* Content */
+    .p-content{padding:1.4rem 1.5rem 2.5rem}
+    .p-stitle{font-size:.88rem;font-weight:800;color:var(--txt);margin-bottom:.75rem;letter-spacing:-.01em}
+    .spec{display:flex;align-items:flex-start;gap:.65rem;padding:.55rem 0;border-bottom:1px solid rgba(21,128,61,.03)}
+    .spec:last-child{border-bottom:none}
+    .spec-i{width:20px;text-align:center;font-size:.78rem;flex-shrink:0;margin-top:1px}
+    .spec-l{font-size:.76rem;font-weight:700;color:var(--txt);min-width:70px}
+    .spec-v{font-size:.76rem;color:var(--txt2);font-weight:500}
+    .p-sub{font-size:.8rem;font-weight:800;color:var(--txt);margin:1.3rem 0 .4rem}
+    .p-text{font-size:.74rem;color:var(--txt2);line-height:1.65;font-weight:500}
+    .p-steps{display:flex;flex-direction:column;gap:.45rem;margin-top:.25rem}
+    .step{display:flex;gap:.6rem;align-items:flex-start}
+    .step-n{width:20px;height:20px;border-radius:50%;background:var(--g600);color:white;
+      font-size:.65rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.05rem}
+    .step span{font-size:.74rem;color:var(--txt2);font-weight:500;line-height:1.5}
+    .sal-table{width:100%;border-collapse:collapse;font-size:.73rem;margin-top:.4rem}
+    .sal-table th{background:var(--g50);color:var(--g800);font-weight:700;padding:.45rem .6rem;text-align:left;font-size:.7rem}
+    .sal-table td{padding:.42rem .6rem;border-bottom:1px solid rgba(21,128,61,.04);color:var(--txt2)}
+    .sal-table tr:last-child td{border:none}
+    .tag-row{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.35rem}
+    .tag{display:inline-block;padding:.22rem .6rem;border-radius:20px;font-size:.67rem;font-weight:600;
+      background:var(--g100);color:var(--g800);border:1px solid rgba(21,128,61,.08)}
+    .tip-box{margin-top:1.2rem;background:var(--g50);border:1px solid rgba(21,128,61,.07);
+      border-radius:var(--r-m);padding:.85rem 1rem;display:flex;gap:.65rem}
+    .tip-ico{width:24px;height:24px;border-radius:50%;background:var(--g200);
+      display:flex;align-items:center;justify-content:center;font-size:.72rem;flex-shrink:0}
+    .tip-box h5{font-size:.76rem;font-weight:700;color:var(--txt);margin-bottom:2px}
+    .tip-box p{font-size:.71rem;color:var(--txt2);line-height:1.5;font-weight:500}
 
-    /* Video Card */
-    .p-video {
-      margin: 1.35rem 1.5rem 0; border-radius: var(--r-m); overflow: hidden;
-      position: relative; aspect-ratio: 16/9;
-      background: linear-gradient(135deg, var(--g800), var(--g900));
-      box-shadow: var(--sh-m);
-    }
-    .p-video-inner {
-      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-    }
-    .p-video-placeholder { text-align: center; color: rgba(255,255,255,0.35); }
-    .p-video-placeholder .vp-icon { font-size: 1.8rem; margin-bottom: 0.3rem; }
-    .p-video-placeholder .vp-text { font-size: 0.7rem; font-weight: 600; }
-
-    .play-btn {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-      width: 48px; height: 48px; border-radius: 50%;
-      background: rgba(255,255,255,0.88); backdrop-filter: blur(6px);
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.12); cursor: pointer;
-    }
-    .play-btn::after {
-      content: ''; width: 0; height: 0;
-      border-left: 12px solid var(--g700); border-top: 8px solid transparent; border-bottom: 8px solid transparent;
-      margin-left: 2px;
-    }
-
-    .vid-cap {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 2rem 0.9rem 0.7rem;
-      background: linear-gradient(transparent, rgba(0,0,0,0.6));
-      color: white; font-size: 0.72rem; font-weight: 600;
-      display: flex; justify-content: space-between; align-items: flex-end;
-    }
-    .vid-dur { font-size: 0.65rem; background: rgba(0,0,0,0.3); padding: 2px 5px; border-radius: 3px; font-weight: 600; }
-
-    /* Content Section */
-    .p-content { padding: 1.5rem 1.5rem 2rem; }
-    .p-stitle { font-size: 0.9rem; font-weight: 800; color: var(--txt); margin-bottom: 0.8rem; letter-spacing: -0.01em; }
-
-    .spec {
-      display: flex; align-items: flex-start; gap: 0.7rem;
-      padding: 0.6rem 0; border-bottom: 1px solid rgba(21,128,61,0.03);
-    }
-    .spec:last-child { border-bottom: none; }
-    .spec-i { width: 22px; text-align: center; font-size: 0.8rem; flex-shrink: 0; margin-top: 1px; }
-    .spec-l { font-size: 0.78rem; font-weight: 700; color: var(--txt); min-width: 72px; }
-    .spec-v { font-size: 0.78rem; color: var(--txt2); font-weight: 500; }
-
-    .p-sub { font-size: 0.82rem; font-weight: 800; color: var(--txt); margin: 1.5rem 0 0.4rem; }
-    .p-text { font-size: 0.75rem; color: var(--txt2); line-height: 1.6; font-weight: 500; }
-
-    .tip-box {
-      margin-top: 1.25rem; background: var(--g50);
-      border: 1px solid rgba(21,128,61,0.06); border-radius: var(--r-m);
-      padding: 0.9rem 1.1rem; display: flex; gap: 0.7rem;
-    }
-    .tip-ico {
-      width: 26px; height: 26px; border-radius: 50%; background: var(--g200);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.75rem; flex-shrink: 0;
-    }
-    .tip-box h5 { font-size: 0.78rem; font-weight: 700; color: var(--txt); margin-bottom: 1px; }
-    .tip-box p { font-size: 0.72rem; color: var(--txt2); line-height: 1.45; font-weight: 500; }
-
-    /* Botanical deco */
-    .botan {
-      position: fixed; bottom: 0; left: 260px; right: 0; height: 90px;
-      pointer-events: none; z-index: 3;
-      background: linear-gradient(transparent, rgba(240,253,244,0.2));
-      display: flex; align-items: flex-end; justify-content: center; gap: 2.5rem;
-      padding-bottom: 0.4rem; opacity: 0.45;
-    }
-    .bf { filter: blur(0.8px) saturate(0.6); opacity: 0.35; }
-    .bf:nth-child(1) { font-size: 2.2rem; transform: rotate(-12deg); }
-    .bf:nth-child(2) { font-size: 1.8rem; transform: rotate(22deg); opacity: 0.25; }
-    .bf:nth-child(3) { font-size: 2.5rem; transform: rotate(-5deg); opacity: 0.2; }
+    /* Botanical */
+    .botan{position:fixed;bottom:0;left:270px;right:0;height:80px;pointer-events:none;z-index:3;
+      display:flex;align-items:flex-end;justify-content:center;gap:2.5rem;padding-bottom:.3rem;opacity:.35}
+    .bf{filter:blur(.8px) saturate(.5);opacity:.3}
+    .bf:nth-child(1){font-size:2rem;transform:rotate(-12deg)}
+    .bf:nth-child(2){font-size:1.7rem;transform:rotate(22deg);opacity:.2}
+    .bf:nth-child(3){font-size:2.3rem;transform:rotate(-5deg);opacity:.18}
   </style>
 </head>
 <body class="light-mode">
-
   <div class="tree-bg"></div>
 
-  <!-- Layout -->
   <div class="tree-layout">
-    <!-- Sidebar -->
     <div class="tree-sidebar">
       <div class="sb-hd">
         <h1>Career <span>Roadmaps</span></h1>
@@ -368,13 +227,11 @@
       <div class="sb-list" id="sbList"></div>
       <div class="sb-zoom">
         <button class="z-btn" onclick="zoom(-0.1)">−</button>
-        <span class="z-lbl" id="zLbl">100%</span>
+        <span class="z-lbl" id="zLbl">95%</span>
         <button class="z-btn" onclick="zoom(0.1)">+</button>
-        <button class="z-btn" onclick="resetPan()" style="margin-left:auto; font-size:0.65rem;">⟳</button>
+        <button class="z-btn" onclick="resetPan()" style="margin-left:auto;font-size:.62rem">⟳</button>
       </div>
     </div>
-
-    <!-- Canvas -->
     <div class="tree-canvas" id="treeCanvas">
       <div class="canvas-world" id="world">
         <svg class="tree-svg" id="svg"></svg>
@@ -382,437 +239,1642 @@
     </div>
   </div>
 
-  <!-- Detail Panel -->
   <div class="dtl-panel" id="dtlPanel">
     <button class="p-close" onclick="closePanel()">✕</button>
     <div id="panelBody"></div>
   </div>
 
-  <!-- Botanical -->
   <div class="botan"><span class="bf">🌿</span><span class="bf">🍃</span><span class="bf">🌱</span></div>
 
-  <!-- Spore particles -->
   <script>
-    for (let i = 0; i < 10; i++) {
-      const s = document.createElement('div');
-      s.className = 'spore';
-      const sz = 2 + Math.random() * 3;
-      Object.assign(s.style, {
-        width: sz+'px', height: sz+'px', left: Math.random()*100+'%',
-        background: `rgba(${34+Math.random()*30},${175+Math.random()*50},${80+Math.random()*30},${0.12+Math.random()*0.12})`,
-        animationDuration: (20+Math.random()*18)+'s', animationDelay: (Math.random()*12)+'s'
-      });
+    for(let i=0;i<10;i++){
+      const s=document.createElement('div');s.className='spore';
+      const sz=2+Math.random()*3;
+      Object.assign(s.style,{width:sz+'px',height:sz+'px',left:Math.random()*100+'%',
+        background:`rgba(${34+Math.random()*30|0},${170+Math.random()*50|0},${80+Math.random()*30|0},${.1+Math.random()*.12})`,
+        animationDuration:(22+Math.random()*16)+'s',animationDelay:(Math.random()*14)+'s'});
       document.body.appendChild(s);
     }
   </script>
 
   <script src="../js/shared.js?v=3"></script>
   <script>
-    /* ═══════════════════════════════════════════
-       CAREER TREE ENGINE v2
-    ═══════════════════════════════════════════ */
+  /* ══════════════════════════════════════════════
+     CAREER TREE ENGINE v3 — Full Content Edition
+  ══════════════════════════════════════════════ */
 
-    const DB = {
-      web: {
-        icon:"🌐", title:"Web Development", desc:"Build websites and web applications.",
-        cats: [
-          { id:"req", icon:"📋", title:"1. Requirements", desc:"Everything you need to get started.", kids:[
-            { id:"dev-req", label:"Device Requirements", panel:"deviceReq" },
-            { id:"soft-req", label:"Software Requirements", panel:"softReq" },
-            { id:"know-req", label:"Knowledge Requirements", panel:"knowReq" }
-          ]},
-          { id:"learn", icon:"📚", title:"2. Learning Path", desc:"Step-by-step path to master skills.", kids:[
-            { id:"frontend", label:"Frontend Development", panel:"frontend" },
-            { id:"backend", label:"Backend Development", panel:"backend" },
-            { id:"database", label:"Database & Server", panel:"database" },
-            { id:"vcs", label:"Version Control", panel:"vcs" }
-          ]},
-          { id:"skills", icon:"⭐", title:"3. Skills You'll Learn", desc:"Essential skills you'll master.", kids:[
-            { id:"html-css", label:"HTML & CSS", panel:"htmlcss" },
-            { id:"javascript", label:"JavaScript", panel:"javascript" },
-            { id:"reactjs", label:"React.js", panel:"reactjs" },
-            { id:"more-skills", label:"And More…", panel:"moreSkills" }
-          ]},
-          { id:"tools", icon:"🛠", title:"4. Tools You'll Use", desc:"Tools & technologies professionals use.", kids:[
-            { id:"editors", label:"Code Editors", panel:"editors" },
-            { id:"browsers", label:"Browser DevTools", panel:"browsers" },
-            { id:"deploy-tools", label:"Deployment Tools", panel:"deployTools" }
-          ]},
-          { id:"projects", icon:"📂", title:"5. Projects You'll Build", desc:"Real-world projects to build your portfolio.", kids:[
-            { id:"portfolio", label:"Portfolio Website", panel:"portfolio" },
-            { id:"ecommerce", label:"E-Commerce Store", panel:"ecommerce" },
-            { id:"dashboard", label:"Admin Dashboard", panel:"dashboard" }
-          ]},
-          { id:"career", icon:"🚀", title:"6. Career & Growth", desc:"Career options & growth opportunities.", kids:[
-            { id:"freelance", label:"Freelancing", panel:"freelance" },
-            { id:"startup", label:"Startup Jobs", panel:"startup" },
-            { id:"remote", label:"Remote / FAANG", panel:"remote" }
-          ]}
-        ]
-      },
-      android: {
-        icon:"📱", title:"Android Development", desc:"Build powerful apps for Android devices.",
-        cats: [
-          { id:"a-req", icon:"📋", title:"1. Requirements", desc:"Setup your dev environment.", kids:[
-            { id:"a-dev", label:"Laptop Specs", panel:"aDevReq" },
-            { id:"a-soft", label:"Android Studio Setup", panel:"aSoftReq" }
-          ]},
-          { id:"a-learn", icon:"📚", title:"2. Learning Path", desc:"Master Android development.", kids:[
-            { id:"a-kotlin", label:"Kotlin Basics", panel:"aKotlin" },
-            { id:"a-compose", label:"Jetpack Compose", panel:"aCompose" },
-            { id:"a-arch", label:"App Architecture", panel:"aArch" }
-          ]},
-          { id:"a-proj", icon:"📂", title:"3. Projects", desc:"Build real Android apps.", kids:[
-            { id:"a-todo", label:"Todo App", panel:"aTodo" },
-            { id:"a-weather", label:"Weather App", panel:"aWeather" },
-            { id:"a-social", label:"Social Media App", panel:"aSocial" }
-          ]},
-          { id:"a-career", icon:"🚀", title:"4. Career", desc:"Android career paths.", kids:[
-            { id:"a-intern", label:"Internships", panel:"aIntern" },
-            { id:"a-jobs", label:"Job Market", panel:"aJobs" }
-          ]}
-        ]
-      },
-      datascience: {
-        icon:"📊", title:"Data Science", desc:"Extract insights from data and build models.",
-        cats: [
-          { id:"ds-req", icon:"📋", title:"1. Requirements", desc:"Tools and setup.", kids:[
-            { id:"ds-hw", label:"Hardware Needs", panel:"dsHw" },
-            { id:"ds-sw", label:"Python & Jupyter", panel:"dsSw" }
-          ]},
-          { id:"ds-learn", icon:"📚", title:"2. Learning Path", desc:"From basics to advanced.", kids:[
-            { id:"ds-stats", label:"Statistics & Math", panel:"dsStats" },
-            { id:"ds-pandas", label:"Pandas & NumPy", panel:"dsPandas" },
-            { id:"ds-viz", label:"Data Visualization", panel:"dsViz" }
-          ]},
-          { id:"ds-career", icon:"🚀", title:"3. Career", desc:"Data science opportunities.", kids:[
-            { id:"ds-analyst", label:"Data Analyst", panel:"dsAnalyst" },
-            { id:"ds-scientist", label:"Data Scientist", panel:"dsScientist" }
-          ]}
-        ]
-      },
-      ai: {
-        icon:"🧠", title:"Artificial Intelligence", desc:"Build intelligent systems that learn.",
-        cats: [
-          { id:"ai-req", icon:"📋", title:"1. Requirements", desc:"GPU and compute setup.", kids:[
-            { id:"ai-hw", label:"GPU Requirements", panel:"aiHw" },
-            { id:"ai-sw", label:"TensorFlow / PyTorch", panel:"aiSw" }
-          ]},
-          { id:"ai-learn", icon:"📚", title:"2. Learning Path", desc:"Math to neural networks.", kids:[
-            { id:"ai-math", label:"Linear Algebra", panel:"aiMath" },
-            { id:"ai-nn", label:"Neural Networks", panel:"aiNn" },
-            { id:"ai-dl", label:"Deep Learning", panel:"aiDl" }
-          ]},
-          { id:"ai-career", icon:"🚀", title:"3. Career", desc:"AI/ML career paths.", kids:[
-            { id:"ai-eng", label:"ML Engineer", panel:"aiEng" },
-            { id:"ai-res", label:"AI Researcher", panel:"aiRes" }
-          ]}
-        ]
-      },
-      cyber: {
-        icon:"🔒", title:"Cyber Security", desc:"Protect systems, networks and digital assets.",
-        cats: [
-          { id:"cy-req", icon:"📋", title:"1. Requirements", desc:"Security lab setup.", kids:[
-            { id:"cy-hw", label:"Lab Setup", panel:"cyHw" },
-            { id:"cy-os", label:"Kali Linux / Parrot", panel:"cyOs" }
-          ]},
-          { id:"cy-learn", icon:"📚", title:"2. Learning Path", desc:"From networking to pentesting.", kids:[
-            { id:"cy-net", label:"Networking Basics", panel:"cyNet" },
-            { id:"cy-pen", label:"Penetration Testing", panel:"cyPen" },
-            { id:"cy-owasp", label:"OWASP Top 10", panel:"cyOwasp" }
-          ]},
-          { id:"cy-career", icon:"🚀", title:"3. Career", desc:"Security career paths.", kids:[
-            { id:"cy-hack", label:"Ethical Hacker", panel:"cyHack" },
-            { id:"cy-analyst", label:"Security Analyst", panel:"cyAnalyst" }
-          ]}
-        ]
-      },
-      uiux: {
-        icon:"🎨", title:"UI/UX Design", desc:"Design beautiful and user-friendly products.",
-        cats: [
-          { id:"ux-req", icon:"📋", title:"1. Requirements", desc:"Design tools setup.", kids:[
-            { id:"ux-tools", label:"Figma & Adobe XD", panel:"uxTools" },
-            { id:"ux-hw", label:"Display & Tablet", panel:"uxHw" }
-          ]},
-          { id:"ux-learn", icon:"📚", title:"2. Learning Path", desc:"Design principles.", kids:[
-            { id:"ux-fund", label:"Design Fundamentals", panel:"uxFund" },
-            { id:"ux-proto", label:"Prototyping", panel:"uxProto" },
-            { id:"ux-research", label:"User Research", panel:"uxResearch" }
-          ]},
-          { id:"ux-career", icon:"🚀", title:"3. Career", desc:"Design career paths.", kids:[
-            { id:"ux-pd", label:"Product Designer", panel:"uxPd" },
-            { id:"ux-free", label:"Freelance Designer", panel:"uxFree" }
-          ]}
-        ]
-      }
-    };
+  /* ── CAREER DATABASE ── */
+  const DB = {
+    web:{icon:'🌐',title:'Web Development',desc:'Build websites and web applications.',
+      cats:[
+        {id:'w-req',icon:'💻',title:'1. Requirements',desc:'Everything you need to get started.',kids:[
+          {id:'w-dev-req',label:'Device Requirements',panel:'wDevReq'},
+          {id:'w-soft-req',label:'Software & Tools',panel:'wSoftReq'},
+          {id:'w-know-req',label:'Pre-Skills Needed',panel:'wKnowReq'}]},
+        {id:'w-learn',icon:'📚',title:'2. Learning Path',desc:'Step-by-step mastery roadmap.',kids:[
+          {id:'w-front',label:'Frontend Development',panel:'wFront'},
+          {id:'w-back',label:'Backend Development',panel:'wBack'},
+          {id:'w-db',label:'Databases & APIs',panel:'wDb'},
+          {id:'w-deploy',label:'Deployment & DevOps',panel:'wDeploy'}]},
+        {id:'w-skills',icon:'⭐',title:'3. Skills You\'ll Learn',desc:'Core skills to master.',kids:[
+          {id:'w-html',label:'HTML5 & CSS3',panel:'wHtml'},
+          {id:'w-js',label:'JavaScript & ES6+',panel:'wJs'},
+          {id:'w-react',label:'React.js & Next.js',panel:'wReact'},
+          {id:'w-node',label:'Node.js & Express',panel:'wNode'}]},
+        {id:'w-tools',icon:'🛠',title:'4. Tools You\'ll Use',desc:'Industry-standard toolkit.',kids:[
+          {id:'w-editor',label:'Code Editors',panel:'wEditor'},
+          {id:'w-browser',label:'Browser DevTools',panel:'wBrowser'},
+          {id:'w-test',label:'API Testing Tools',panel:'wTest'},
+          {id:'w-vcs',label:'Git & GitHub',panel:'wVcs'}]},
+        {id:'w-proj',icon:'📂',title:'5. Projects to Build',desc:'Portfolio-ready projects.',kids:[
+          {id:'w-port',label:'Portfolio Website',panel:'wPort'},
+          {id:'w-ecom',label:'E-Commerce Store',panel:'wEcom'},
+          {id:'w-dash',label:'Admin Dashboard',panel:'wDash'}]},
+        {id:'w-career',icon:'🚀',title:'6. Career & Salary',desc:'Job roles and income scope.',kids:[
+          {id:'w-sal',label:'Salary in India',panel:'wSal'},
+          {id:'w-roles',label:'Job Roles',panel:'wRoles'},
+          {id:'w-free',label:'Freelancing Scope',panel:'wFree'}]}
+      ]},
+    android:{icon:'📱',title:'Android Development',desc:'Build powerful apps for Android devices.',
+      cats:[
+        {id:'a-req',icon:'💻',title:'1. Requirements',desc:'Device and software setup.',kids:[
+          {id:'a-hw',label:'Laptop Specs',panel:'aHw'},
+          {id:'a-sw',label:'Android Studio Setup',panel:'aSw'},
+          {id:'a-phone',label:'Physical Device Setup',panel:'aPhone'}]},
+        {id:'a-learn',icon:'📚',title:'2. Learning Path',desc:'From basics to publishing.',kids:[
+          {id:'a-kotlin',label:'Kotlin Language',panel:'aKotlin'},
+          {id:'a-compose',label:'Jetpack Compose UI',panel:'aCompose'},
+          {id:'a-arch',label:'App Architecture',panel:'aArch'},
+          {id:'a-data',label:'Data & Networking',panel:'aData'}]},
+        {id:'a-skills',icon:'⭐',title:'3. Key Skills',desc:'Must-have Android skills.',kids:[
+          {id:'a-lifecycle',label:'Lifecycle & ViewModels',panel:'aLifecycle'},
+          {id:'a-firebase',label:'Firebase Integration',panel:'aFirebase'},
+          {id:'a-publish',label:'Publishing to Play Store',panel:'aPublish'}]},
+        {id:'a-proj',icon:'📂',title:'4. Projects to Build',desc:'Real-world Android apps.',kids:[
+          {id:'a-todo',label:'To-Do App with Room DB',panel:'aTodo'},
+          {id:'a-weather',label:'Weather App with API',panel:'aWeather'},
+          {id:'a-chat',label:'Chat App (Firebase)',panel:'aChat'}]},
+        {id:'a-career',icon:'🚀',title:'5. Career & Salary',desc:'Android developer scope.',kids:[
+          {id:'a-sal',label:'Salary in India',panel:'aSal'},
+          {id:'a-roles',label:'Job Roles',panel:'aRoles'}]}
+      ]},
+    datascience:{icon:'📊',title:'Data Science',desc:'Extract insights from data and build models.',
+      cats:[
+        {id:'ds-req',icon:'💻',title:'1. Requirements',desc:'Tools and hardware needed.',kids:[
+          {id:'ds-hw',label:'Hardware Requirements',panel:'dsHw'},
+          {id:'ds-sw',label:'Python & Jupyter Setup',panel:'dsSw'},
+          {id:'ds-math',label:'Math Prerequisites',panel:'dsMath'}]},
+        {id:'ds-learn',icon:'📚',title:'2. Learning Path',desc:'From data to deployment.',kids:[
+          {id:'ds-python',label:'Python for Data Science',panel:'dsPython'},
+          {id:'ds-eda',label:'Exploratory Data Analysis',panel:'dsEda'},
+          {id:'ds-ml',label:'Machine Learning Basics',panel:'dsMl'},
+          {id:'ds-deep',label:'Deep Learning & GenAI',panel:'dsDeep'}]},
+        {id:'ds-tools',icon:'🛠',title:'3. Tools & Libraries',desc:'Data science toolkit.',kids:[
+          {id:'ds-pandas',label:'Pandas & NumPy',panel:'dsPandas'},
+          {id:'ds-viz',label:'Data Visualization',panel:'dsViz'},
+          {id:'ds-sklearn',label:'Scikit-Learn',panel:'dsSklearn'},
+          {id:'ds-cloud',label:'Cloud & Big Data',panel:'dsCloud'}]},
+        {id:'ds-proj',icon:'📂',title:'4. Projects to Build',desc:'Portfolio projects.',kids:[
+          {id:'ds-eda-proj',label:'EDA Dashboard',panel:'dsEdaProj'},
+          {id:'ds-pred',label:'Prediction Model',panel:'dsPred'},
+          {id:'ds-nlp',label:'NLP / Text Analysis',panel:'dsNlp'}]},
+        {id:'ds-career',icon:'🚀',title:'5. Career & Salary',desc:'Data science opportunities.',kids:[
+          {id:'ds-sal',label:'Salary in India',panel:'dsSal'},
+          {id:'ds-roles',label:'Job Roles',panel:'dsRoles'}]}
+      ]},
+    ai:{icon:'🧠',title:'Artificial Intelligence',desc:'Build intelligent systems that learn and adapt.',
+      cats:[
+        {id:'ai-req',icon:'💻',title:'1. Requirements',desc:'Compute and setup needed.',kids:[
+          {id:'ai-hw',label:'GPU & Hardware',panel:'aiHw'},
+          {id:'ai-sw',label:'Frameworks Setup',panel:'aiSw'},
+          {id:'ai-math',label:'Math Foundation',panel:'aiMath'}]},
+        {id:'ai-learn',icon:'📚',title:'2. Learning Path',desc:'From ML to LLMs.',kids:[
+          {id:'ai-ml',label:'Core ML Concepts',panel:'aiMl'},
+          {id:'ai-dl',label:'Deep Learning (CNNs/RNNs)',panel:'aiDl'},
+          {id:'ai-nlp',label:'NLP & Transformers',panel:'aiNlp'},
+          {id:'ai-gen',label:'GenAI & LLMs',panel:'aiGen'}]},
+        {id:'ai-tools',icon:'🛠',title:'3. Frameworks & Tools',desc:'AI developer toolkit.',kids:[
+          {id:'ai-pytorch',label:'PyTorch & TensorFlow',panel:'aiPytorch'},
+          {id:'ai-hf',label:'Hugging Face',panel:'aiHf'},
+          {id:'ai-mlops',label:'MLOps & Deployment',panel:'aiMlops'}]},
+        {id:'ai-proj',icon:'📂',title:'4. Projects to Build',desc:'AI portfolio projects.',kids:[
+          {id:'ai-cv',label:'Image Classifier',panel:'aiCv'},
+          {id:'ai-chatbot',label:'Chatbot with LLM',panel:'aiChatbot'},
+          {id:'ai-rec',label:'Recommendation System',panel:'aiRec'}]},
+        {id:'ai-career',icon:'🚀',title:'5. Career & Salary',desc:'AI career landscape.',kids:[
+          {id:'ai-sal',label:'Salary in India',panel:'aiSal'},
+          {id:'ai-roles',label:'Job Roles',panel:'aiRoles'}]}
+      ]},
+    cyber:{icon:'🔒',title:'Cyber Security',desc:'Protect systems, networks and digital assets.',
+      cats:[
+        {id:'cy-req',icon:'💻',title:'1. Requirements',desc:'Lab and environment setup.',kids:[
+          {id:'cy-hw',label:'Lab Hardware Setup',panel:'cyHw'},
+          {id:'cy-os',label:'OS: Kali & Parrot',panel:'cyOs'},
+          {id:'cy-net',label:'Networking Basics',panel:'cyNet'}]},
+        {id:'cy-learn',icon:'📚',title:'2. Learning Path',desc:'Offensive & defensive track.',kids:[
+          {id:'cy-fund',label:'Security Fundamentals',panel:'cyFund'},
+          {id:'cy-pen',label:'Penetration Testing',panel:'cyPen'},
+          {id:'cy-web',label:'Web App Security',panel:'cyWeb'},
+          {id:'cy-cert',label:'Certifications',panel:'cyCert'}]},
+        {id:'cy-tools',icon:'🛠',title:'3. Essential Tools',desc:'Hacker and analyst toolkit.',kids:[
+          {id:'cy-scan',label:'Nmap & Recon Tools',panel:'cyScan'},
+          {id:'cy-exploit',label:'Metasploit & Burp Suite',panel:'cyExploit'},
+          {id:'cy-wire',label:'Wireshark',panel:'cyWire'}]},
+        {id:'cy-proj',icon:'📂',title:'4. Practice Labs',desc:'Hands-on hacking labs.',kids:[
+          {id:'cy-thm',label:'TryHackMe',panel:'cyThm'},
+          {id:'cy-htb',label:'HackTheBox',panel:'cyHtb'},
+          {id:'cy-ctf',label:'CTF Competitions',panel:'cyCtf'}]},
+        {id:'cy-career',icon:'🚀',title:'5. Career & Salary',desc:'Security career scope.',kids:[
+          {id:'cy-sal',label:'Salary in India',panel:'cySal'},
+          {id:'cy-roles',label:'Job Roles',panel:'cyRoles'}]}
+      ]},
+    uiux:{icon:'🎨',title:'UI/UX Design',desc:'Design beautiful and user-friendly products.',
+      cats:[
+        {id:'ux-req',icon:'💻',title:'1. Requirements',desc:'Tools and setup.',kids:[
+          {id:'ux-tools',label:'Figma & Design Tools',panel:'uxTools'},
+          {id:'ux-hw',label:'Display & Tablet',panel:'uxHw'},
+          {id:'ux-res',label:'Design Resources',panel:'uxRes'}]},
+        {id:'ux-learn',icon:'📚',title:'2. Learning Path',desc:'From basics to portfolio.',kids:[
+          {id:'ux-fund',label:'Design Fundamentals',panel:'uxFund'},
+          {id:'ux-ux',label:'UX Research Process',panel:'uxUx'},
+          {id:'ux-ui',label:'Visual UI Design',panel:'uxUi'},
+          {id:'ux-proto',label:'Prototyping & Testing',panel:'uxProto'}]},
+        {id:'ux-skills',icon:'⭐',title:'3. Key Skills',desc:'Designer\'s skill arsenal.',kids:[
+          {id:'ux-wire',label:'Wireframing',panel:'uxWire'},
+          {id:'ux-sys',label:'Design Systems',panel:'uxSys'},
+          {id:'ux-anim',label:'Micro-interactions',panel:'uxAnim'}]},
+        {id:'ux-proj',icon:'📂',title:'4. Portfolio Projects',desc:'Case studies to build.',kids:[
+          {id:'ux-app',label:'Mobile App Redesign',panel:'uxApp'},
+          {id:'ux-web',label:'SaaS Web App UI',panel:'uxWeb'},
+          {id:'ux-case',label:'Full UX Case Study',panel:'uxCase'}]},
+        {id:'ux-career',icon:'🚀',title:'5. Career & Salary',desc:'Design career landscape.',kids:[
+          {id:'ux-sal',label:'Salary in India',panel:'uxSal'},
+          {id:'ux-roles',label:'Job Roles',panel:'uxRoles'}]}
+      ]}
+  };
 
-    // Panel Content Database
-    const PANELS = {
-      deviceReq: {
-        title: "Device Requirements", desc: "Find the perfect device setup for web development.",
-        videoTitle: "How to choose the right laptop\nfor web development", videoDur: "8:42",
-        specs: [
-          { i:"💻", l:"CPU", v:"Intel i5 / Ryzen 5 or higher" },
-          { i:"🧠", l:"RAM", v:"8 GB (16 GB recommended)" },
-          { i:"💾", l:"Storage", v:"512 GB SSD minimum" },
-          { i:"🎮", l:"GPU", v:"Integrated graphics (dedicated GPU optional)" },
-          { i:"🖥", l:"Display", v:'13" or larger, FHD+ resolution' },
-          { i:"🔋", l:"Battery", v:"6+ hours backup" }
-        ],
-        why: "These specifications ensure smooth performance while running code editors, browsers, emulators and other development tools without any lag.",
-        tip: "SSD and 16GB RAM will future-proof your setup and boost productivity significantly."
-      },
-      softReq: {
-        title: "Software Requirements", desc: "Essential software and tools for web dev.",
-        specs: [
-          { i:"📝", l:"Editor", v:"VS Code with extensions" },
-          { i:"🌐", l:"Browser", v:"Chrome or Firefox Developer Edition" },
-          { i:"⚙", l:"Runtime", v:"Node.js LTS + npm" },
-          { i:"🗃", l:"VCS", v:"Git + GitHub Desktop" },
-          { i:"📦", l:"Package Mgr", v:"npm / yarn / pnpm" }
-        ],
-        why: "These tools form the foundation of any web developer's workflow.",
-        tip: "Install VS Code extensions: ESLint, Prettier, Live Server, GitLens."
-      },
-      knowReq: {
-        title: "Knowledge Requirements", desc: "Core concepts to know before starting.",
-        specs: [
-          { i:"🔤", l:"Typing", v:"40+ WPM touch typing recommended" },
-          { i:"🧮", l:"Logic", v:"Basic logic and problem-solving skills" },
-          { i:"🌍", l:"English", v:"Comfortable reading English documentation" }
-        ],
-        why: "Strong foundational skills accelerate your learning curve tremendously.",
-        tip: "Practice typing on keybr.com and solve puzzles on HackerRank for logic."
-      },
-      frontend: {
-        title: "Frontend Development", desc: "Build beautiful user interfaces.",
-        specs: [
-          { i:"1️⃣", l:"HTML5", v:"Semantic elements, forms, accessibility" },
-          { i:"2️⃣", l:"CSS3", v:"Flexbox, Grid, animations, responsive" },
-          { i:"3️⃣", l:"JavaScript", v:"ES6+, DOM, events, async/await" },
-          { i:"4️⃣", l:"React", v:"Components, hooks, state, routing" },
-          { i:"5️⃣", l:"TypeScript", v:"Type safety for large projects" }
-        ],
-        why: "Frontend is the visible layer of web — the part users directly interact with.",
-        tip: "Build 3 personal projects before applying for your first frontend role."
-      },
-      backend: {
-        title: "Backend Development", desc: "Server-side logic and APIs.",
-        specs: [
-          { i:"1️⃣", l:"Node.js", v:"JavaScript runtime for servers" },
-          { i:"2️⃣", l:"Express", v:"Web framework for REST APIs" },
-          { i:"3️⃣", l:"Auth", v:"JWT, OAuth, session management" },
-          { i:"4️⃣", l:"Testing", v:"Jest, Mocha, API testing" }
-        ],
-        why: "Backend handles data processing, authentication, and business logic.",
-        tip: "Learn REST APIs before moving to GraphQL."
-      }
-    };
+  /* ── PANELS DATABASE — Full Content ── */
+  const PANELS = {
+    // ────────────────────────────────────────────────
+    // WEB DEVELOPMENT
+    // ────────────────────────────────────────────────
+    wDevReq:{
+      title:'Device Requirements',desc:'Minimum and recommended specs to start web development.',
+      salary:'₹2–30 LPA range',
+      videoTitle:'How to Choose the Right Laptop\nfor Web Development',videoDur:'9:14',
+      specs:[
+        {i:'⚙',l:'CPU',v:'Intel Core i5 (10th Gen+) or AMD Ryzen 5 — minimum'},
+        {i:'🧠',l:'RAM',v:'8 GB minimum · 16 GB highly recommended for smooth multitasking'},
+        {i:'💾',l:'Storage',v:'256 GB SSD minimum · 512 GB SSD recommended (NVMe preferred)'},
+        {i:'🎮',l:'GPU',v:'Integrated graphics is sufficient · Dedicated GPU not required'},
+        {i:'🖥',l:'Display',v:'13" or larger · Full HD (1920×1080) resolution minimum'},
+        {i:'🔋',l:'Battery',v:'6+ hours real-world usage for on-the-go coding'},
+        {i:'🌐',l:'OS',v:'Windows 10/11, macOS, or Linux (Ubuntu recommended for dev)'}
+      ],
+      why:'A stable machine with sufficient RAM prevents lag when running VS Code, a browser with 20+ tabs open, a local Node.js server, and Git simultaneously. SSD is non-negotiable — HDDs make builds painfully slow.',
+      tip:'Don\'t buy a gaming laptop for web dev. A thin-and-light like Dell XPS, Lenovo ThinkPad, or ASUS VivoBook with 16GB RAM and SSD is ideal.'
+    },
+    wSoftReq:{
+      title:'Software & Tools Setup',desc:'Essential software stack for every web developer.',
+      specs:[
+        {i:'📝',l:'Editor',v:'Visual Studio Code (free, industry standard)'},
+        {i:'🌐',l:'Browser',v:'Google Chrome with DevTools · Firefox Developer Edition'},
+        {i:'⚙',l:'Runtime',v:'Node.js LTS version + npm / yarn / pnpm'},
+        {i:'🗃',l:'Git',v:'Git CLI + GitHub Desktop (GUI) for version control'},
+        {i:'📦',l:'Pkg Manager',v:'npm (default) · yarn or pnpm for large projects'},
+        {i:'🤖',l:'AI Tools',v:'GitHub Copilot, Tabnine or Codeium for autocomplete'},
+        {i:'🎨',l:'Design',v:'Figma (free) to inspect designs and export assets'}
+      ],
+      why:'These tools form the complete modern web developer workflow used at top companies including Google, Amazon, and early-stage startups.',
+      tip:'Install VS Code extensions: Prettier, ESLint, Live Server, GitLens, ES7+ Snippets, Path Intellisense.'
+    },
+    wKnowReq:{
+      title:'Pre-Skills Needed',desc:'What you should know before starting your journey.',
+      specs:[
+        {i:'⌨',l:'Typing',v:'40+ WPM touch typing — use keybr.com to practice'},
+        {i:'🧮',l:'Logic',v:'Basic problem-solving and algorithmic thinking'},
+        {i:'🌍',l:'English',v:'Comfortable reading English documentation and Stack Overflow'},
+        {i:'🖥',l:'Computer',v:'File management, basic OS usage, and terminal familiarity'}
+      ],
+      why:'Strong typing speed and logical thinking set the foundation. You\'ll spend 80% of your time reading docs and debugging — English fluency is critical.',
+      tip:'Spend 15 minutes/day on typing.com and solve 1 easy problem on LeetCode to build logic skills progressively.'
+    },
+    wFront:{
+      title:'Frontend Development',desc:'Build what users see — the visual layer of the web.',
+      steps:[
+        'HTML5 — semantic structure, forms, accessibility (a11y), SEO basics',
+        'CSS3 — Flexbox, CSS Grid, responsive design, animations, custom properties',
+        'JavaScript (ES6+) — DOM, events, fetch API, async/await, modules',
+        'React.js — components, hooks (useState, useEffect), props, state management',
+        'Next.js — file-based routing, SSR/SSG, API routes, SEO optimization',
+        'Tailwind CSS — utility-first styling for rapid, consistent UIs'
+      ],
+      why:'Frontend is the face of every product. Strong frontend skills are the most in-demand in the Indian market, especially React.js expertise.',
+      tip:'Build a personal portfolio, a weather app, and a Spotify clone — in that order. Each teaches you progressively complex React concepts.'
+    },
+    wBack:{
+      title:'Backend Development',desc:'Server-side logic, authentication, and data processing.',
+      steps:[
+        'Node.js — event-driven runtime, npm ecosystem, core modules',
+        'Express.js — REST API design, middleware, routing, error handling',
+        'Authentication — JWT tokens, OAuth 2.0, bcrypt password hashing',
+        'Database Integration — Mongoose (MongoDB) or Prisma (PostgreSQL)',
+        'File Handling — Multer for uploads, cloud storage (AWS S3 / Cloudinary)',
+        'WebSockets — Socket.io for real-time features like chat and notifications'
+      ],
+      why:'Backend powers everything invisible — data, logic, and security. Full-stack skills (frontend + backend) dramatically increase your hiring potential.',
+      tip:'Learn REST APIs deeply before moving to GraphQL. Understand HTTP methods, status codes, and CORS before building production APIs.'
+    },
+    wDb:{
+      title:'Databases & APIs',desc:'Store, retrieve, and manage application data.',
+      specs:[
+        {i:'🗃',l:'MongoDB',v:'NoSQL · JSON-like documents · ideal for flexible schemas'},
+        {i:'🐘',l:'PostgreSQL',v:'Relational SQL · transactions · ACID compliance · production grade'},
+        {i:'⚡',l:'Redis',v:'In-memory cache · session storage · queue management'},
+        {i:'🔌',l:'REST APIs',v:'HTTP-based API design — industry standard for web apps'},
+        {i:'📡',l:'GraphQL',v:'Query-based API — lets clients request exactly what they need'},
+        {i:'☁',l:'Firebase',v:'Google\'s BaaS — Firestore + Auth + real-time DB for rapid builds'}
+      ],
+      why:'Data persistence is the backbone of every real application. Understanding both SQL and NoSQL databases makes you versatile across all project types.',
+      tip:'Learn SQL first — even if you use MongoDB in production, SQL fundamentals help you understand data relationships deeply.'
+    },
+    wDeploy:{
+      title:'Deployment & DevOps Basics',desc:'Take your app from local to live on the internet.',
+      specs:[
+        {i:'▲',l:'Vercel',v:'Best for Next.js/React — one-click deployment from GitHub'},
+        {i:'🦊',l:'Netlify',v:'Great for static sites and serverless functions'},
+        {i:'☁',l:'AWS / GCP',v:'Industry-grade cloud — EC2, S3, Lambda, Cloud Run'},
+        {i:'🐳',l:'Docker',v:'Containerization — consistent environments across machines'},
+        {i:'🔄',l:'CI/CD',v:'GitHub Actions — auto-deploy on push, automated testing'},
+        {i:'🔒',l:'SSL/HTTPS',v:'Let\'s Encrypt — free SSL certificates for production security'}
+      ],
+      why:'Deployment knowledge separates job-ready developers from tutorial watchers. Every employer expects you to know how to ship code.',
+      tip:'Deploy your first project on Vercel today — it\'s free and takes literally 2 minutes from GitHub.'
+    },
+    wHtml:{
+      title:'HTML5 & CSS3',desc:'The foundation of every web page ever built.',
+      steps:[
+        'Semantic HTML — header, main, section, article, aside, footer elements',
+        'Forms & Validation — input types, required, pattern, custom validation',
+        'Accessibility (a11y) — ARIA roles, alt text, keyboard navigation, screen readers',
+        'CSS Flexbox — one-dimensional layouts, alignment, responsive navigation bars',
+        'CSS Grid — two-dimensional layouts, magazine-style pages, dashboard grids',
+        'CSS Custom Properties (variables), animations, transitions, and transforms'
+      ],
+      why:'HTML and CSS are the atoms of the web. Mastery here makes everything else faster to learn. Poor HTML/CSS knowledge is the #1 reason junior devs write slow, inaccessible code.',
+      tip:'Use the MDN Web Docs (developer.mozilla.org) — it\'s the most accurate, up-to-date reference for HTML and CSS on the internet.'
+    },
+    wJs:{
+      title:'JavaScript & ES6+',desc:'The most important language on the web — period.',
+      steps:[
+        'Fundamentals — variables (let/const), data types, functions, conditionals, loops',
+        'Array Methods — map(), filter(), reduce(), find(), forEach() — used daily',
+        'DOM Manipulation — querySelector, addEventListener, innerHTML, createElement',
+        'Async JavaScript — callbacks → Promises → async/await, fetch API, error handling',
+        'ES6+ Features — destructuring, spread/rest, template literals, optional chaining',
+        'Modules — import/export, bundlers (Vite/webpack), tree-shaking'
+      ],
+      why:'JavaScript is the only language that runs natively in every browser. It\'s also used for backend (Node.js), mobile (React Native), and desktop (Electron). One language, endless scope.',
+      tip:'Read "You Don\'t Know JS" (free on GitHub) — it\'s the most comprehensive guide to understanding JavaScript deeply, not just using it.'
+    },
+    wReact:{
+      title:'React.js & Next.js',desc:'The most in-demand frontend framework in India\'s job market.',
+      steps:[
+        'React Basics — JSX, components (functional), props, state with useState',
+        'Side Effects — useEffect, cleanup functions, dependency arrays',
+        'Context API — global state management for small to medium apps',
+        'React Router — client-side routing, URL params, protected routes',
+        'Next.js — App Router, Server Components, SSR, SSG, ISR, API routes',
+        'State Management — Redux Toolkit or Zustand for complex state at scale'
+      ],
+      why:'React powers Facebook, Instagram, Airbnb, and thousands of Indian startups. 70% of frontend job listings in India mention React.js explicitly.',
+      tip:'Don\'t learn class components. Learn functional components with hooks — that\'s what 99% of teams use in 2026.'
+    },
+    wNode:{
+      title:'Node.js & Express.js',desc:'JavaScript on the server — build APIs, tools and microservices.',
+      steps:[
+        'Node.js Core — event loop, modules (fs, path, http), npm ecosystem',
+        'Express.js — server setup, routing, middleware, request/response lifecycle',
+        'RESTful API Design — CRUD operations, HTTP methods, status codes, CORS',
+        'Authentication — Passport.js, JWT, bcrypt, session management',
+        'File & Stream Handling — Multer for uploads, streams for large file processing',
+        'Testing — Jest + Supertest for unit and integration API testing'
+      ],
+      why:'Node.js + Express is the most popular backend stack in Indian startups. Knowing it makes you a full-stack developer and doubles your job options.',
+      tip:'Start by building a REST API for a blog — create, read, update, delete posts with MongoDB. It teaches 90% of real-world backend concepts.'
+    },
+    wEditor:{
+      title:'Code Editors',desc:'Your daily workspace — choose and configure well.',
+      specs:[
+        {i:'💙',l:'VS Code',v:'Free · Microsoft · industry standard · 30,000+ extensions'},
+        {i:'⚡',l:'WebStorm',v:'Paid · JetBrains · powerful built-in tools for large projects'},
+        {i:'🔮',l:'Cursor',v:'AI-native editor · built on VS Code · GitHub Copilot-like features'},
+        {i:'☁',l:'CodeSandbox',v:'Browser-based · perfect for quick experiments and sharing'},
+        {i:'🌐',l:'StackBlitz',v:'Browser IDE · runs Node.js in-browser · great for demos'}
+      ],
+      why:'VS Code is the clear winner for web development. Its extension ecosystem, Git integration, and Copilot support make it indispensable in 2026.',
+      tip:'Must-install VS Code extensions: Prettier, ESLint, Thunder Client, Auto Import, GitLens, Error Lens, Color Highlight.'
+    },
+    wBrowser:{
+      title:'Browser Developer Tools',desc:'Debug, profile, and optimize your web apps.',
+      specs:[
+        {i:'🔍',l:'Elements',v:'Inspect and live-edit HTML/CSS on any website'},
+        {i:'⚙',l:'Console',v:'Log errors, run JS in real-time, debug variables'},
+        {i:'🌐',l:'Network',v:'Monitor API calls, response times, headers, and payloads'},
+        {i:'📦',l:'Application',v:'Inspect localStorage, cookies, IndexedDB, service workers'},
+        {i:'⚡',l:'Lighthouse',v:'Audit performance, accessibility, SEO, PWA compliance'},
+        {i:'📱',l:'Device Mode',v:'Simulate mobile screens and touch events for responsive testing'}
+      ],
+      why:'Chrome DevTools alone can replace 5 other debugging tools. Mastery here makes you 3× faster at fixing bugs and optimizing performance.',
+      tip:'Learn the Chrome DevTools keyboard shortcuts. Ctrl+Shift+J (Console), Ctrl+Shift+E (Network), F12 (Toggle DevTools).'
+    },
+    wTest:{
+      title:'API Testing Tools',desc:'Test your backend APIs before connecting the frontend.',
+      specs:[
+        {i:'📮',l:'Postman',v:'GUI-based API testing · collections · environments · auto-tests'},
+        {i:'⚡',l:'Thunder Client',v:'Lightweight VS Code extension · no separate app needed'},
+        {i:'🔵',l:'Insomnia',v:'REST & GraphQL client · clean UI · open source option'},
+        {i:'💻',l:'cURL',v:'Terminal-based HTTP requests · great for scripting and CI/CD'}
+      ],
+      why:'Testing APIs independently from the frontend helps isolate bugs and ensures your backend logic works correctly before integration.',
+      tip:'Use Postman Collections to document your APIs as you build them. It doubles as great documentation for your portfolio projects.'
+    },
+    wVcs:{
+      title:'Git & GitHub',desc:'Version control — track changes, collaborate, never lose code.',
+      steps:[
+        'Git Basics — init, add, commit, status, log, diff',
+        'Branching — branch, checkout, merge, rebase — GitFlow workflow',
+        'Remote Repos — push, pull, fetch, clone — working with GitHub',
+        'Pull Requests — code review workflow, squash merges, branch protection',
+        'Conflict Resolution — merge conflicts, rebasing, cherry-pick',
+        'GitHub Actions — CI/CD pipelines, auto-deploy, automated tests on push'
+      ],
+      why:'Every company uses Git. Walking into an interview without knowing Git basics is an instant red flag. It\'s non-negotiable for any developer in 2026.',
+      tip:'Contribute to 1 open-source project on GitHub. Even fixing a typo in documentation gives you real collaboration experience.'
+    },
+    wPort:{
+      title:'Portfolio Website',desc:'Your #1 marketing tool as a developer.',
+      steps:[
+        'Design — clean, minimal layout · your name, tagline, tech stack, contact',
+        'About Section — brief bio, your story, what drives you',
+        'Projects Section — 3–5 best projects with live links and GitHub repos',
+        'Skills Section — visual display of your tech stack (not progress bars!)',
+        'Contact — email link, LinkedIn, GitHub, optional resume download',
+        'Deploy — use Vercel or Netlify with a custom domain (₹600/year)'
+      ],
+      why:'Your portfolio is your resume 2.0. Recruiters make hiring decisions based on it in under 30 seconds. Make those 30 seconds count.',
+      tip:'Add a "View Source" link to your portfolio. It signals confidence and invites technical review — which smart developers love.'
+    },
+    wEcom:{
+      title:'E-Commerce Store',desc:'A full-stack project that shows real-world complexity.',
+      steps:[
+        'Product listing page with filters, search, and pagination',
+        'Product detail page with images, variants, and descriptions',
+        'Shopping cart — add, remove, quantity update with local state',
+        'User authentication — signup, login, protected routes',
+        'Payment integration — Razorpay or Stripe sandbox mode',
+        'Order history page — fetching and displaying from database'
+      ],
+      why:'E-commerce projects demonstrate full-stack skills, state management, API integration, auth flows, and payment handling — everything a startup needs.',
+      tip:'Build on MERN stack (MongoDB, Express, React, Node) or Next.js + Prisma + PostgreSQL. Both are highly relevant to the Indian job market.'
+    },
+    wDash:{
+      title:'Admin Dashboard',desc:'Data-rich interface showing frontend mastery.',
+      steps:[
+        'Sidebar navigation with nested routes and active state management',
+        'Data tables with sorting, filtering, and pagination',
+        'Charts and graphs — revenue, users, traffic (using Chart.js or Recharts)',
+        'Dark/light mode toggle with CSS custom properties',
+        'Form management — React Hook Form + Zod for validation',
+        'Real-time updates — WebSocket or polling for live data feeds'
+      ],
+      why:'Dashboards are used in every industry — SaaS, fintech, healthcare, logistics. Building one shows you can handle complex UI and data visualization.',
+      tip:'Use shadcn/ui or Material UI for components. Focus on making the data meaningful and the interactions smooth — not just pretty.'
+    },
+    wSal:{
+      title:'Salary in India (Web Development)',desc:'Real salary data for Indian web developers in 2026.',
+      salaryData:[
+        {level:'Fresher (0–1 yr)',range:'₹1.8 – ₹6 LPA'},
+        {level:'Junior (1–3 yrs)',range:'₹3.6 – ₹8 LPA'},
+        {level:'Mid-Level (3–5 yrs)',range:'₹8 – ₹15 LPA'},
+        {level:'Senior (5+ yrs)',range:'₹15 – ₹35 LPA+'}
+      ],
+      why:'React + Node.js developers in Bangalore, Pune, and Hyderabad consistently earn at the top of these ranges. Startup equity can significantly increase total compensation.',
+      tip:'Freelancers with strong portfolios can earn ₹40,000 – ₹2,00,000/month from international clients via Upwork and Toptal.'
+    },
+    wRoles:{
+      title:'Job Roles in Web Development',desc:'Career paths for web developers.',
+      specs:[
+        {i:'🎨',l:'Frontend Dev',v:'HTML/CSS/JS/React · UI-focused · most job openings in India'},
+        {i:'⚙',l:'Backend Dev',v:'Node.js/Python/Java APIs · database design · system architecture'},
+        {i:'🌐',l:'Full-Stack Dev',v:'Frontend + backend combined · highest demand and salary range'},
+        {i:'📱',l:'React Native Dev',v:'Mobile apps in React · one codebase for iOS and Android'},
+        {i:'⚡',l:'DevOps Engineer',v:'CI/CD, cloud, Docker, Kubernetes — growing rapidly in India'},
+        {i:'🏗',l:'Solutions Architect',v:'Senior role · design entire system architecture for companies'}
+      ],
+      why:'Full-stack developers are the most hired in Indian startups. Specializing in React + Node.js gives you access to 80% of web developer job listings.',
+      tip:'Start with frontend, add backend skills after 1 year. The full-stack path offers the best ROI on learning time.'
+    },
+    wFree:{
+      title:'Freelancing as a Web Developer',desc:'Build an independent income on your own terms.',
+      steps:[
+        'Build a strong portfolio with 3–5 high-quality projects with live demos',
+        'Create profiles on Fiverr, Upwork, Freelancer.com, and LinkedIn',
+        'Start with local businesses — restaurants, clinics, small shops need websites',
+        'Price your first project low (₹5,000–₹15,000) to get reviews and credibility',
+        'Specialize — WordPress, Shopify, or custom React apps for better rates',
+        'International clients on Upwork pay $20–$80/hour for skilled React developers'
+      ],
+      why:'Freelancing gives you real client experience, income while studying, and portfolio projects with real business impact — all things that impress interviewers.',
+      tip:'Your first 3 clients are the hardest to get. After that, referrals take over. Focus all energy on those first 3 projects.'
+    },
 
-    function getPanel(k) {
-      if (PANELS[k]) return PANELS[k];
-      const pretty = k.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase());
-      return {
-        title: pretty, desc: "Detailed information and learning resources.",
-        specs: [{ i:"📌", l:"Status", v:"Premium content coming soon" }, { i:"📚", l:"Resources", v:"Curated materials in progress" }],
-        why: "This section is being prepared with high-quality content by our team.",
-        tip: "Stay tuned — detailed guides, videos and recommendations are on the way."
-      };
+    // ────────────────────────────────────────────────
+    // ANDROID DEVELOPMENT
+    // ────────────────────────────────────────────────
+    aHw:{
+      title:'Laptop Specs for Android Dev',desc:'Android Studio is resource-intensive — gear up properly.',
+      salary:'₹4–25 LPA range',
+      videoTitle:'Best Laptops for Android\nDevelopment in 2026',videoDur:'11:30',
+      specs:[
+        {i:'⚙',l:'CPU',v:'Intel Core i7 (13th Gen+) or AMD Ryzen 7 · Apple M2/M3 is best'},
+        {i:'🧠',l:'RAM',v:'16 GB minimum · 32 GB recommended for smooth emulator performance'},
+        {i:'💾',l:'Storage',v:'512 GB NVMe SSD — build times are dramatically faster on NVMe'},
+        {i:'🎮',l:'GPU',v:'Integrated GPU works · dedicated GPU helps with emulator GPU acceleration'},
+        {i:'🖥',l:'Display',v:'Full HD (1920×1080) minimum · 14" or larger for comfortable split-screen'},
+        {i:'🔋',l:'Battery',v:'5+ hours with Android Studio running (Studio drains battery fast)'}
+      ],
+      why:'Android Studio + emulator can consume 6–10 GB RAM simultaneously. With less than 16 GB, your system will thrash and crash regularly during builds.',
+      tip:'Apple M-series MacBooks (M2/M3) are the best option for Android dev — they run emulators faster than Windows machines and have excellent battery life.'
+    },
+    aSw:{
+      title:'Android Studio Setup',desc:'The official and only IDE you need for Android development.',
+      specs:[
+        {i:'🤖',l:'Android Studio',v:'Download Hedgehog or latest from developer.android.com'},
+        {i:'☕',l:'JDK',v:'Android Studio bundles JDK 17 — no separate installation needed'},
+        {i:'🔧',l:'SDK Manager',v:'Download Android SDK for API 33+ and target API levels you need'},
+        {i:'📱',l:'Emulator',v:'AVD Manager → Create a Pixel 7 device with API 34 for testing'},
+        {i:'🔌',l:'Plugins',v:'Kotlin, Android SDK Tools, Material Design Component preview'},
+        {i:'🔑',l:'Google Account',v:'Needed for Firebase, Play Console, and in-app auth testing'}
+      ],
+      why:'Android Studio is built specifically for Android development with built-in Kotlin support, layout editor, profiler, emulator, and Play Store deployment tools.',
+      tip:'Enable "Offline Mode" in Gradle settings once your initial build works — it prevents unnecessary internet downloads and speeds up subsequent builds.'
+    },
+    aPhone:{
+      title:'Physical Android Device Setup',desc:'Test on real hardware for accurate behavior.',
+      steps:[
+        'Enable Developer Options: Settings → About Phone → tap Build Number 7 times',
+        'Enable USB Debugging in Developer Options',
+        'Connect via USB and trust the computer on your device',
+        'Run adb devices in terminal to verify connection',
+        'Install your app directly via Android Studio "Run" button on the device',
+        'Use Wireless Debugging (Android 11+) for cable-free testing on local network'
+      ],
+      why:'Emulators don\'t perfectly replicate real device behavior — GPS, camera, sensors, and performance profiles differ significantly. Always test on real hardware before releasing.',
+      tip:'Keep an old Android phone (any version ≥ Android 8) specifically for testing. Testing on budget devices catches performance issues that high-end emulators hide.'
+    },
+    aKotlin:{
+      title:'Kotlin Language',desc:'The official modern language for Android development.',
+      steps:[
+        'Variables — val (immutable) vs var (mutable), type inference, null safety with ?',
+        'Functions — single-expression, extension functions, higher-order functions, lambdas',
+        'OOP — classes, data classes, objects, interfaces, sealed classes',
+        'Coroutines — launch, async, withContext, Dispatchers.IO/Main — async programming',
+        'Flow — cold vs hot streams, StateFlow, SharedFlow for reactive data',
+        'Null Safety — Elvis operator ?:, safe call ?., non-null assertion !! — avoid NPE'
+      ],
+      why:'Kotlin is the #1 language for Android and is 100% supported by Google. Java Android code is legacy — all new Android apps are written in Kotlin.',
+      tip:'Practice Kotlin on Kotlin Playground (play.kotlinlang.org) — no setup needed. Learn Coroutines before anything else; they\'re used everywhere in modern Android.'
+    },
+    aCompose:{
+      title:'Jetpack Compose UI',desc:'Modern declarative UI toolkit — the future of Android UI.',
+      steps:[
+        'Composable Functions — @Composable annotation, UI as functions not XML',
+        'State — remember, mutableStateOf, recomposition, state hoisting pattern',
+        'Layouts — Column, Row, Box, LazyColumn (RecyclerView replacement)',
+        'Modifiers — padding, fillMaxWidth, clickable, background, clip — chaining',
+        'Navigation — NavHost, NavController, navigating between composables with args',
+        'Theming — MaterialTheme, custom typography, dark/light mode with color schemes'
+      ],
+      why:'Google replaced XML layouts with Jetpack Compose as the standard. All new Android apps should use Compose — knowing XML layouts is now secondary.',
+      tip:'Study the Jetpack Compose samples on GitHub (github.com/android/compose-samples). Jetsnack, Owl, and Reply are excellent real-world examples.'
+    },
+    aArch:{
+      title:'App Architecture & Best Practices',desc:'Build maintainable, testable Android apps at scale.',
+      steps:[
+        'MVVM Pattern — Model, View (UI), ViewModel (business logic) separation',
+        'Repository Pattern — single source of truth for data from DB and network',
+        'Dependency Injection — Hilt (preferred) or Koin for DI in Android',
+        'Clean Architecture — data, domain, presentation layers for large apps',
+        'Unit Testing — JUnit5 + Mockito for ViewModel and Repository testing',
+        'UI Testing — Espresso or Compose Testing API for automated UI tests'
+      ],
+      why:'Architecture separates concerns, making code testable and maintainable. Large companies won\'t hire developers who write all logic inside Activities.',
+      tip:'Start with MVVM + Repository + Hilt. This combination is the industry standard and what Google recommends in official Architecture Guides.'
+    },
+    aData:{
+      title:'Data & Networking',desc:'Store locally and fetch from the cloud.',
+      specs:[
+        {i:'🗃',l:'Room DB',v:'SQLite wrapper · local data storage · DAO pattern · with Flow'},
+        {i:'🌐',l:'Retrofit',v:'Type-safe HTTP client · REST API integration · Gson/Moshi parsing'},
+        {i:'🔐',l:'DataStore',v:'Modern replacement for SharedPreferences · Jetpack library'},
+        {i:'🖼',l:'Coil',v:'Kotlin-first image loading library · async · caching · Compose-ready'},
+        {i:'🔥',l:'Firebase',v:'Firestore, Auth, Storage, Crashlytics, Analytics — all in one SDK'},
+        {i:'📡',l:'OkHttp',v:'HTTP client · interceptors · logging · used under Retrofit'}
+      ],
+      why:'Every real-world app needs data persistence and network calls. Mastering Room + Retrofit is the baseline for every professional Android developer.',
+      tip:'Use Kotlin Serialization (@Serializable) instead of Gson — it\'s Kotlin-native, faster, and more null-safe.'
+    },
+    aLifecycle:{
+      title:'Lifecycle & ViewModels',desc:'Survive orientation changes and memory events.',
+      steps:[
+        'Activity Lifecycle — onCreate, onStart, onResume, onPause, onStop, onDestroy',
+        'Fragment Lifecycle — differs from Activity — viewLifecycleOwner is important',
+        'ViewModel — survives config changes · scoped to Activity or Fragment',
+        'LiveData vs StateFlow — prefer StateFlow + Compose · LiveData for legacy code',
+        'Process Death — SavedStateHandle to restore state after system kills app',
+        'WorkManager — background tasks · guaranteed execution · battery-friendly'
+      ],
+      why:'Android has a unique lifecycle not seen in web or iOS. Mishandling it causes memory leaks, crashes, and data loss. Senior developers are defined by their lifecycle mastery.',
+      tip:'Always use viewLifecycleOwner (not this) when observing LiveData in Fragments to prevent memory leaks.'
+    },
+    aFirebase:{
+      title:'Firebase Integration',desc:'Backend-as-a-Service that powers millions of Android apps.',
+      specs:[
+        {i:'🔑',l:'Authentication',v:'Email/password, Google Sign-In, phone OTP — 10 min setup'},
+        {i:'📂',l:'Firestore',v:'Real-time NoSQL cloud database · scalable · offline-first'},
+        {i:'📁',l:'Cloud Storage',v:'File uploads — images, videos, PDFs — with access control'},
+        {i:'💥',l:'Crashlytics',v:'Real-time crash reporting · stack traces · user impact analysis'},
+        {i:'📊',l:'Analytics',v:'User behavior tracking · funnel analysis · free unlimited events'},
+        {i:'🔔',l:'Cloud Messaging',v:'Push notifications (FCM) — free · works on all Android versions'}
+      ],
+      why:'Firebase lets a solo developer build features that would take a backend team weeks. For student projects and internship demos, it\'s unbeatable for speed.',
+      tip:'Start with Firebase Auth + Firestore for your first project. Together they handle login and data for 90% of app ideas.'
+    },
+    aPublish:{
+      title:'Publishing to Play Store',desc:'Ship your first app to millions of Android users.',
+      steps:[
+        'Create Google Play Developer account — one-time $25 registration fee',
+        'Sign your APK/AAB with a release keystore using Android Studio',
+        'Create a store listing — app name, description, screenshots, icon (512×512)',
+        'Set content rating using IARC questionnaire in Play Console',
+        'Submit for review — internal testing first, then closed, open, production tracks',
+        'Monitor with Play Console — ratings, crashes, ANRs, revenue, and installs'
+      ],
+      why:'Having published apps on the Play Store is the single best thing you can put on a resume as an Android developer fresher. It shows ownership and real-world experience.',
+      tip:'Start with Internal Testing track to invite 10 testers. Iterate on feedback before promoting to production. Google reviews take 1–3 days.'
+    },
+    aTodo:{
+      title:'To-Do App with Room DB',desc:'Master local persistence and MVVM pattern.',
+      steps:[
+        'UI — LazyColumn with swipe-to-delete gesture, add/edit bottom sheet',
+        'Room DB — @Entity, @Dao with CRUD queries, @Database setup',
+        'ViewModel — holds list as StateFlow, handles user events',
+        'Repository — abstracts Room DAO from ViewModel',
+        'Filters — All, Active, Completed tabs with Flow filtering',
+        'Notifications — WorkManager to remind for pending tasks'
+      ],
+      why:'A To-Do app teaches the full MVVM + Room + Flow stack in one project. It\'s beginner-friendly but covers all fundamental Android concepts.',
+      tip:'Add dark mode and priority tagging after basics work. Then migrate to multi-device sync with Firebase — it becomes a much more impressive portfolio piece.'
+    },
+    aWeather:{
+      title:'Weather App with API',desc:'Master Retrofit networking and location services.',
+      steps:[
+        'OpenWeatherMap API — get free API key at openweathermap.org',
+        'Retrofit setup — interface with @GET endpoints, Gson/Moshi converter',
+        'Location — FusedLocationProviderClient for GPS coordinates',
+        'Permission Handling — ACCESS_FINE_LOCATION runtime permission flow',
+        'UI — current conditions, 7-day forecast with LazyRow, weather icons (Lottie)',
+        'Error States — loading skeleton, network error screen, empty state'
+      ],
+      why:'Network apps demonstrate Retrofit, Coroutines, error handling, and permission flows — the skills tested in almost every Android technical interview.',
+      tip:'Add a search by city name feature and a favorites list with Room DB — it transforms a simple demo into a fully featured app.'
+    },
+    aChat:{
+      title:'Chat App with Firebase',desc:'Real-time messaging powered by Firestore.',
+      steps:[
+        'Firebase Auth — Google Sign-In for instant user accounts',
+        'Firestore structure — users collection + messages subcollection per conversation',
+        'Real-time listener — addSnapshotListener for live message updates',
+        'UI — LazyColumn with message bubbles, sender/receiver alignment',
+        'Image Sharing — Cloud Storage upload + Firestore URL storage',
+        'Push Notifications — FCM for message alerts when app is backgrounded'
+      ],
+      why:'Real-time apps show Firestore listeners, Firebase Auth, and Cloud Functions — highly valued skills for roles at startups building social, marketplace, or EdTech products.',
+      tip:'Add read receipts (update a "read" boolean in Firestore) and typing indicators (update a "isTyping" field with a debounce) for a polished product feel.'
+    },
+    aSal:{
+      title:'Salary in India (Android Development)',desc:'Real salary data for Android developers in 2026.',
+      salaryData:[
+        {level:'Fresher (0–2 yrs)',range:'₹4 – ₹9 LPA'},
+        {level:'Junior (2–4 yrs)',range:'₹8 – ₹15 LPA'},
+        {level:'Mid-Level (4–6 yrs)',range:'₹15 – ₹25 LPA'},
+        {level:'Senior (6+ yrs)',range:'₹25 – ₹50 LPA+'}
+      ],
+      why:'Android developers in Bangalore, Hyderabad, and Pune earn at the top of these ranges. Kotlin + Compose + Hilt expertise commands a premium.',
+      tip:'Google, Swiggy, Zomato, Paytm, and BYJU\'S are top Android dev employers in India. Target startups early — they hire freshers aggressively for internships.'
+    },
+    aRoles:{
+      title:'Job Roles in Android Development',desc:'Career paths for Android engineers.',
+      specs:[
+        {i:'📱',l:'Android Dev',v:'Core role — Kotlin + Compose + Jetpack · most job postings'},
+        {i:'🌐',l:'Full-Stack Mobile',v:'Android + backend API (Node/Django) — higher pay range'},
+        {i:'🧩',l:'SDK Developer',v:'Build SDKs for other apps to integrate — advanced role'},
+        {i:'🔥',l:'Firebase Expert',v:'Backend on Firebase — popular in startups and EdTech'},
+        {i:'🚀',l:'Indie Developer',v:'Build and monetize your own Play Store apps'},
+        {i:'🎮',l:'Game Dev (Unity)',v:'Android games using Unity + C# — niche but high-paying'}
+      ],
+      why:'The Android job market in India grew 28% in 2025. Every company from banks to EdTech to FMCG brands needs Android developers for their apps.',
+      tip:'Specialize in one domain (EdTech, FinTech, Health) and contribute to open-source Android libraries — it dramatically accelerates your career.'
+    },
+
+    // ────────────────────────────────────────────────
+    // DATA SCIENCE
+    // ────────────────────────────────────────────────
+    dsHw:{
+      title:'Hardware for Data Science',desc:'What machine do you need to crunch data?',
+      salary:'₹4–20 LPA range',
+      videoTitle:'Best Laptop Setup for\nData Science & ML in 2026',videoDur:'13:22',
+      specs:[
+        {i:'⚙',l:'CPU',v:'Intel Core i7 or AMD Ryzen 7 · Apple M2/M3 Pro with MPS acceleration'},
+        {i:'🧠',l:'RAM',v:'16 GB minimum · 32 GB for large datasets and multi-model training'},
+        {i:'💾',l:'Storage',v:'512 GB SSD — datasets can be large; external HDD helps too'},
+        {i:'🎮',l:'GPU',v:'NVIDIA GPU with CUDA support (RTX 3060+) · or use Google Colab free tier'},
+        {i:'🌐',l:'Cloud',v:'Google Colab, Kaggle Kernels, AWS SageMaker for GPU workloads'},
+        {i:'🖥',l:'Display',v:'15"+ preferred — data work involves reading lots of code and charts'}
+      ],
+      why:'For beginners, you don\'t need a GPU — 90% of learning happens on CPU. Google Colab provides free T4 GPU access for heavy training when needed.',
+      tip:'Use Google Colab Pro (₹900/month) for fast GPU access. It\'s cheaper than buying a dedicated GPU and you get a free cloud environment too.'
+    },
+    dsSw:{
+      title:'Python & Jupyter Setup',desc:'Set up your data science environment.',
+      steps:[
+        'Install Python 3.11+ from python.org or via Anaconda distribution',
+        'Install Anaconda — it bundles Jupyter, pandas, numpy, matplotlib in one installer',
+        'Create a virtual environment — conda create -n ds python=3.11',
+        'Install key libraries — pip install pandas numpy scikit-learn matplotlib seaborn',
+        'Launch Jupyter Lab — jupyter lab — access at localhost:8888 in browser',
+        'VS Code alternative — install Jupyter extension for notebook support within VS Code'
+      ],
+      why:'Jupyter Notebooks are the industry standard for data science — they let you run code cell-by-cell, visualize data inline, and document your analysis.',
+      tip:'Use Anaconda for setup — it manages Python environments and package dependencies automatically, preventing the version conflict headaches beginners face.'
+    },
+    dsMath:{
+      title:'Math Prerequisites',desc:'The mathematical foundation of all data science and ML.',
+      steps:[
+        'Statistics — mean, median, mode, variance, standard deviation, distributions',
+        'Probability — Bayes\' theorem, conditional probability, independent events',
+        'Linear Algebra — vectors, matrices, dot product, eigenvalues — core for ML',
+        'Calculus — derivatives, gradients, chain rule — essential for backpropagation',
+        'Hypothesis Testing — p-value, t-test, ANOVA, chi-square — used in A/B testing',
+        'Distributions — Normal, Binomial, Poisson — data often follows these patterns'
+      ],
+      why:'ML algorithms are math under the hood. You don\'t need to be a mathematician, but understanding the intuition behind algorithms prevents misapplication.',
+      tip:'Use "Statistics with Python" on Coursera and 3Blue1Brown\'s "Essence of Linear Algebra" YouTube series — both are free and exceptionally clear.'
+    },
+    dsPython:{
+      title:'Python for Data Science',desc:'Python is the undisputed language of data science.',
+      steps:[
+        'Python Basics — variables, lists, dicts, tuples, comprehensions, functions',
+        'NumPy — n-dimensional arrays, vectorized operations, broadcasting — 10× faster than loops',
+        'Pandas — DataFrame operations, groupby, merge, pivot tables, handling missing data',
+        'Matplotlib — line plots, bar charts, histograms, scatter plots, subplots',
+        'Seaborn — statistical visualizations, heatmaps, pairplots, violin plots',
+        'Scikit-learn — preprocessing, train/test split, cross-validation, model evaluation'
+      ],
+      why:'Python + Pandas + Scikit-learn is the most common toolkit seen in data science job descriptions in India. Mastery of this trio makes you job-ready.',
+      tip:'Do the Kaggle "Python" and "Pandas" micro-courses (free). Then complete the "Intro to Machine Learning" and "Intermediate ML" courses — 5 hours total.'
+    },
+    dsEda:{
+      title:'Exploratory Data Analysis (EDA)',desc:'The most important step in any data project.',
+      steps:[
+        'Data Loading — reading CSV, Excel, JSON, SQL with pandas',
+        'Data Overview — shape, dtypes, info(), describe(), value_counts()',
+        'Missing Values — isnull(), fillna(), dropna(), imputation strategies',
+        'Outlier Detection — IQR method, Z-score, boxplots for visualization',
+        'Correlation Analysis — correlation matrix, heatmap, pairplot',
+        'Feature Engineering — creating new features, encoding categorical variables'
+      ],
+      why:'80% of a data scientist\'s time is EDA and data cleaning. Models trained on bad data produce bad predictions — garbage in, garbage out.',
+      tip:'Always create a reproducible EDA notebook for every dataset. Future you (or your team) will thank present you for the documentation.'
+    },
+    dsMl:{
+      title:'Machine Learning Basics',desc:'Build models that learn from data.',
+      steps:[
+        'Supervised Learning — regression (Linear, Polynomial) and classification (Logistic)',
+        'Decision Trees — splitting criteria, depth control, feature importance',
+        'Ensemble Methods — Random Forest, Gradient Boosting (XGBoost/LightGBM)',
+        'Unsupervised Learning — K-Means clustering, PCA for dimensionality reduction',
+        'Model Evaluation — accuracy, precision, recall, F1-score, ROC-AUC, RMSE',
+        'Cross-Validation — k-fold, stratified k-fold, hyperparameter tuning with GridSearchCV'
+      ],
+      why:'Supervised learning skills (classification + regression) account for 70% of all real business ML use cases — customer churn, loan default, demand forecasting.',
+      tip:'Start every ML project with a simple baseline model (Logistic Regression or Decision Tree). Complexity should be added only when it demonstrably improves results.'
+    },
+    dsDeep:{
+      title:'Deep Learning & GenAI',desc:'Neural networks and the AI revolution.',
+      steps:[
+        'Neural Network Basics — neurons, layers, activation functions, forward pass',
+        'Backpropagation — gradient descent, learning rate, optimizers (Adam, SGD)',
+        'CNNs — convolutional layers, pooling, image classification, transfer learning',
+        'RNNs/LSTMs — sequence data, time series, text — now mostly replaced by Transformers',
+        'Transformers — attention mechanism, BERT, GPT architecture intuition',
+        'GenAI/LLMs — fine-tuning pre-trained models, RAG applications with LangChain'
+      ],
+      why:'GenAI skills are the most sought-after in India\'s tech industry in 2026. Candidates with LLM experience command salaries 40–60% higher than traditional ML engineers.',
+      tip:'Use Hugging Face Transformers library — it gives you access to 100,000+ pre-trained models with just 5 lines of Python code.'
+    },
+    dsPandas:{
+      title:'Pandas & NumPy',desc:'The core data manipulation libraries for Python.',
+      specs:[
+        {i:'🐼',l:'Pandas',v:'DataFrame — 2D labeled data structure for tabular analysis'},
+        {i:'🔢',l:'NumPy',v:'N-dimensional arrays — vectorized math — foundation of all ML libs'},
+        {i:'⚡',l:'Performance',v:'Vectorized ops are 100× faster than Python loops — use them always'},
+        {i:'📥',l:'I/O',v:'read_csv, read_excel, read_json, read_sql — all file formats covered'},
+        {i:'🔄',l:'GroupBy',v:'Split-Apply-Combine pattern — most powerful pandas operation'},
+        {i:'🔗',l:'Merge/Join',v:'SQL-like joins for combining multiple DataFrames — inner, outer, left'}
+      ],
+      why:'Pandas is used in 95% of Python data science projects. NumPy is the backbone of pandas, TensorFlow, and scikit-learn. You cannot avoid them.',
+      tip:'Learn the difference between .loc[] (label-based) and .iloc[] (position-based) indexing early — it\'s the most common source of pandas bugs for beginners.'
+    },
+    dsViz:{
+      title:'Data Visualization',desc:'Tell compelling stories with data.',
+      specs:[
+        {i:'📊',l:'Matplotlib',v:'Low-level · full control · base library for most others'},
+        {i:'🌈',l:'Seaborn',v:'Statistical plots · beautiful defaults · built on Matplotlib'},
+        {i:'⚡',l:'Plotly',v:'Interactive charts · browser-based · dashboards with Dash'},
+        {i:'📈',l:'Power BI',v:'Microsoft BI tool · widely used in Indian companies · drag-and-drop'},
+        {i:'🎯',l:'Tableau',v:'Industry-leading BI · used in consulting and large enterprises'}
+      ],
+      why:'A data scientist who can\'t communicate findings visually is limited. Clear visualizations directly influence business decisions worth crores of rupees.',
+      tip:'Learn at least one Python viz library (Seaborn/Plotly) and one BI tool (Power BI). The combination makes you equally effective in technical and business settings.'
+    },
+    dsSklearn:{
+      title:'Scikit-Learn',desc:'The gold standard Python ML library.',
+      steps:[
+        'Preprocessing — StandardScaler, MinMaxScaler, OneHotEncoder, LabelEncoder',
+        'Pipeline API — chain preprocessing and model into one reusable object',
+        'Supervised Models — LinearRegression, LogisticRegression, RandomForestClassifier',
+        'Unsupervised — KMeans, DBSCAN, PCA, t-SNE',
+        'Evaluation — classification_report, confusion_matrix, mean_squared_error',
+        'Tuning — GridSearchCV, RandomizedSearchCV, cross_val_score'
+      ],
+      why:'Scikit-learn\'s consistent API (fit/predict/transform) makes it the fastest way to prototype, evaluate, and deploy classical ML models in production.',
+      tip:'Use scikit-learn Pipelines religiously — they prevent data leakage and make your code production-ready by processing train and test data consistently.'
+    },
+    dsCloud:{
+      title:'Cloud & Big Data',desc:'Scale your data work beyond a single laptop.',
+      specs:[
+        {i:'☁',l:'Google Colab',v:'Free Jupyter notebooks with T4 GPU · easiest entry point'},
+        {i:'📊',l:'Kaggle Kernels',v:'Free GPU/TPU for competitions · data and notebooks in one place'},
+        {i:'🔥',l:'AWS SageMaker',v:'End-to-end ML platform · training, serving, and monitoring'},
+        {i:'🌩',l:'Azure ML',v:'Microsoft cloud ML — popular in Indian enterprise companies'},
+        {i:'⚡',l:'Apache Spark',v:'Distributed computing · handle terabytes · PySpark for Python'},
+        {i:'🐘',l:'Hadoop',v:'Batch processing of massive datasets — relevant for data engineering'}
+      ],
+      why:'As data science projects grow, local machines become bottlenecks. Cloud skills (especially AWS/Azure) open doors to senior roles and data engineering positions.',
+      tip:'Get the AWS Cloud Practitioner certification (₹8,000 exam) — it signals cloud competence to employers and takes 1–2 months of part-time study.'
+    },
+    dsEdaProj:{
+      title:'EDA Dashboard Project',desc:'Show your data storytelling skills.',
+      steps:[
+        'Choose a dataset — Kaggle, data.gov.in, or scrape from web',
+        'Clean data — handle nulls, fix dtypes, remove duplicates, standardize formats',
+        'Univariate analysis — distribution plots for every key variable',
+        'Bivariate analysis — correlations, scatterplots, cross-tabulations',
+        'Build Plotly Dash or Streamlit dashboard with interactive filters',
+        'Deploy to Streamlit Cloud (free) or Hugging Face Spaces with a public link'
+      ],
+      why:'A deployed, interactive dashboard with a live URL is 10× more impressive than a Jupyter notebook in a GitHub repo. It shows end-to-end data product thinking.',
+      tip:'Use IPL, Zomato, or Covid-19 India datasets — recruiters love familiar domains. Your analysis insights should tell a story, not just show charts.'
+    },
+    dsPred:{
+      title:'Prediction Model Project',desc:'End-to-end ML project for your portfolio.',
+      steps:[
+        'Define the problem — classification or regression, business impact',
+        'Feature engineering — extract meaningful signals from raw data',
+        'Train multiple models — compare Logistic, Tree, XGBoost, and Neural Net',
+        'Hyperparameter tuning — GridSearchCV or Optuna for best performance',
+        'Evaluation — classification report, ROC curve, feature importance plot',
+        'Deploy — Flask API or FastAPI endpoint with a simple Streamlit frontend'
+      ],
+      why:'Prediction projects are the most common ML interview take-home assignments. Having one already built and deployed shows you can handle the full pipeline solo.',
+      tip:'House price prediction (regression) and customer churn prediction (classification) are the most searched projects by Indian recruiters on GitHub.'
+    },
+    dsNlp:{
+      title:'NLP / Text Analysis Project',desc:'Work with text data — the most abundant data type.',
+      steps:[
+        'Sentiment Analysis — VADER or TextBlob for quick results, BERT for accuracy',
+        'Text Preprocessing — lowercasing, stopwords removal, stemming/lemmatization',
+        'TF-IDF Vectorization — convert text to numerical features for ML models',
+        'Topic Modeling — LDA for finding themes in document collections',
+        'Named Entity Recognition — spaCy for extracting names, places, organizations',
+        'Fine-tune a transformer — Hugging Face pipeline for custom classification task'
+      ],
+      why:'NLP is the fastest-growing ML domain in India driven by chatbots, document AI, and language models. GenAI expertise specifically commands premium salaries.',
+      tip:'Build a Fake News Detector or Product Review Analyzer using Twitter/Amazon review datasets. Both are highly searched on Kaggle and GitHub by recruiters.'
+    },
+    dsSal:{
+      title:'Salary in India (Data Science)',desc:'Real salary data for data scientists in 2026.',
+      salaryData:[
+        {level:'Fresher (0–2 yrs)',range:'₹4 – ₹9 LPA'},
+        {level:'Junior (2–4 yrs)',range:'₹8 – ₹15 LPA'},
+        {level:'Mid-Level (4–6 yrs)',range:'₹15 – ₹25 LPA'},
+        {level:'Senior (6+ yrs)',range:'₹25 – ₹50 LPA+'}
+      ],
+      why:'GenAI/LLM specialists earn 40–60% more than traditional ML engineers. IIT/NIT graduates start at ₹12–20 LPA at top companies.',
+      tip:'Kaggle competitions with top-100 rankings are weighted very heavily by companies like Flipkart, Amazon, and Google India during hiring.'
+    },
+    dsRoles:{
+      title:'Job Roles in Data Science',desc:'Career paths for data professionals.',
+      specs:[
+        {i:'📊',l:'Data Analyst',v:'SQL + Excel + Power BI · most entry-level openings · ₹4–10 LPA'},
+        {i:'🔬',l:'Data Scientist',v:'ML models + Python · most sought-after title · ₹8–25 LPA'},
+        {i:'🏗',l:'Data Engineer',v:'Pipelines + Spark + SQL · highest demand in 2026 · ₹10–30 LPA'},
+        {i:'🧠',l:'ML Engineer',v:'Model deployment + MLOps · hybrid role · ₹12–35 LPA'},
+        {i:'🤖',l:'AI/GenAI Engineer',v:'LLMs + RAG + LangChain · highest salaries · ₹15–50 LPA'},
+        {i:'📈',l:'Business Analyst',v:'Data + strategy + dashboards · non-coding focused · ₹5–15 LPA'}
+      ],
+      why:'Data Engineer and ML Engineer are the fastest-growing roles in India\'s tech industry. Specializing in data pipelines or model deployment offers the best career trajectory.',
+      tip:'Data Engineering (dbt, Spark, Airflow) is currently underserved in India. Learning it gives you significantly less competition and higher starting salaries.'
+    },
+
+    // ────────────────────────────────────────────────
+    // ARTIFICIAL INTELLIGENCE
+    // ────────────────────────────────────────────────
+    aiHw:{
+      title:'GPU & Hardware for AI/ML',desc:'The compute requirements for deep learning.',
+      salary:'₹6–80 LPA range',
+      videoTitle:'Best GPU Setup for Deep Learning\nin 2026 — Student Guide',videoDur:'16:45',
+      specs:[
+        {i:'🎮',l:'GPU VRAM',v:'12 GB+ VRAM recommended · RTX 3060 (12GB) is best budget option'},
+        {i:'⚡',l:'Top GPUs',v:'NVIDIA RTX 4090 (best) · RTX 4080 · RTX 3060 12GB (budget)'},
+        {i:'🧠',l:'System RAM',v:'32 GB recommended · 16 GB minimum for training + IDE + browser'},
+        {i:'💾',l:'Storage',v:'1 TB NVMe SSD · datasets and checkpoints consume space rapidly'},
+        {i:'☁',l:'Cloud GPUs',v:'Google Colab (free T4) · Kaggle (free P100) · Lambda Labs ($0.5/hr)'},
+        {i:'🍎',l:'Apple Silicon',v:'M2/M3 Pro with unified memory works well via MPS backend in PyTorch'}
+      ],
+      why:'VRAM is the #1 bottleneck in AI/ML work. A GPU with 12 GB VRAM can run most research papers and fine-tune small LLMs locally without cloud costs.',
+      tip:'Don\'t buy a GPU right away. Use Google Colab for 6 months first — you\'ll learn exactly what you need before spending ₹60,000+ on hardware.'
+    },
+    aiSw:{
+      title:'AI Frameworks Setup',desc:'Install the core AI development stack.',
+      steps:[
+        'Python 3.11 — install via Anaconda for clean environment management',
+        'PyTorch — pip install torch torchvision torchaudio — most used in research',
+        'TensorFlow/Keras — pip install tensorflow — production-friendly, Google-backed',
+        'Hugging Face — pip install transformers datasets accelerate — for LLMs and NLP',
+        'CUDA — install NVIDIA CUDA Toolkit if using NVIDIA GPU for GPU acceleration',
+        'Jupyter Lab — for experiments and visualizations alongside VS Code'
+      ],
+      why:'PyTorch is used in 76% of research papers. TensorFlow dominates production. Hugging Face provides ready-to-use SOTA models for immediate experimentation.',
+      tip:'Install PyTorch from pytorch.org — use the installer selector to get the right CUDA version for your GPU. Wrong CUDA version = silent GPU failures.'
+    },
+    aiMath:{
+      title:'Math Foundation for AI',desc:'The mathematical backbone of every AI algorithm.',
+      steps:[
+        'Linear Algebra — vectors, matrices, matrix multiplication, eigendecomposition',
+        'Calculus — partial derivatives, chain rule, gradient, Jacobian, Hessian',
+        'Probability & Statistics — Bayes, distributions, expectation, MLE, MAP',
+        'Optimization — gradient descent, SGD, momentum, Adam optimizer theory',
+        'Information Theory — entropy, cross-entropy loss, KL divergence',
+        'Graph Theory basics — for Graph Neural Networks and knowledge graphs'
+      ],
+      why:'Unlike traditional programming where you memorize APIs, AI requires you to understand why algorithms work. Math is the language that explains the "why."',
+      tip:'3Blue1Brown\'s "Essence of Calculus" and "Essence of Linear Algebra" YouTube series are free, visual, and genuinely enjoyable — watch them first before textbooks.'
+    },
+    aiMl:{
+      title:'Core Machine Learning',desc:'Classical ML before going deep.',
+      steps:[
+        'Regression — Linear, Ridge, Lasso, Polynomial — predicting continuous values',
+        'Classification — Logistic Regression, SVM, KNN — predicting categories',
+        'Trees — Decision Tree, Random Forest, Gradient Boosting (XGBoost)',
+        'Clustering — K-Means, DBSCAN, Hierarchical — unsupervised pattern finding',
+        'Dimensionality Reduction — PCA, t-SNE, UMAP — visualizing high-dim data',
+        'Feature Engineering — creating, selecting, and transforming input features'
+      ],
+      why:'Classical ML handles 60% of real-world business problems more efficiently than deep learning. It trains faster, is more interpretable, and needs less data.',
+      tip:'Master scikit-learn inside-out before touching PyTorch. The skills transfer directly — understanding model evaluation is the same regardless of the framework.'
+    },
+    aiDl:{
+      title:'Deep Learning (CNNs & RNNs)',desc:'Neural networks that learn complex representations.',
+      steps:[
+        'Feedforward Neural Networks — layers, weights, activation functions (ReLU, Sigmoid)',
+        'Backpropagation — chain rule for gradient computation, weight updates',
+        'CNNs — convolutional layers, filters, max pooling, image classification',
+        'Transfer Learning — ResNet, VGG, EfficientNet — fine-tune for custom tasks',
+        'RNNs & LSTMs — sequential data, text generation, time series (mostly legacy)',
+        'Regularization — dropout, batch normalization, L2 weight decay to prevent overfitting'
+      ],
+      why:'CNNs revolutionized computer vision. Even in 2026, they\'re used in medical imaging, manufacturing QC, and autonomous vehicles. Transfer learning makes them practical for small datasets.',
+      tip:'Complete the fast.ai course (fast.ai) — it teaches top-down, practical deep learning and you\'ll be training real models on day 1. Then study theory on the way back up.'
+    },
+    aiNlp:{
+      title:'NLP & Transformers',desc:'Process and understand human language with AI.',
+      steps:[
+        'Text Preprocessing — tokenization, stopwords, stemming, TF-IDF vectorization',
+        'Word Embeddings — Word2Vec, GloVe — dense vector representations of words',
+        'Attention Mechanism — self-attention, multi-head attention — the key innovation',
+        'Transformer Architecture — encoder-decoder, positional encoding, layer norms',
+        'BERT — bidirectional encoder · pre-training + fine-tuning paradigm',
+        'GPT Models — decoder-only · autoregressive text generation · foundation of ChatGPT'
+      ],
+      why:'Transformers are the dominant architecture in 2026. Every state-of-the-art model in text, vision, and audio uses attention mechanisms. This is the core knowledge of modern AI.',
+      tip:'Read the original Attention Is All You Need paper (2017) — it\'s surprisingly readable and gives you the fundamental intuition that every AI course builds upon.'
+    },
+    aiGen:{
+      title:'GenAI & LLMs',desc:'The frontier of AI — build with large language models.',
+      steps:[
+        'Prompt Engineering — zero-shot, few-shot, chain-of-thought prompting techniques',
+        'RAG (Retrieval-Augmented Generation) — ground LLMs in your own documents/data',
+        'LangChain — build LLM applications with tools, memory, and chains',
+        'Vector Databases — Pinecone, Chroma, FAISS — store embeddings for semantic search',
+        'Fine-tuning — LoRA/QLoRA for cheap fine-tuning of 7B–13B parameter models',
+        'AI Agents — autonomous task execution with tool use, planning, and reflection'
+      ],
+      why:'GenAI engineers are the #1 most-hired AI role in India in 2026. Skills here command ₹20–50 LPA even at 1–2 years experience. The talent gap is enormous.',
+      tip:'Deploy one LangChain + RAG application on your resume. Even a document Q&A chatbot built over a PDF is compelling to 90% of Indian AI hiring managers.'
+    },
+    aiPytorch:{
+      title:'PyTorch & TensorFlow',desc:'The two dominant deep learning frameworks.',
+      specs:[
+        {i:'🔥',l:'PyTorch',v:'Dynamic graphs · Pythonic · used by 76% of ML researchers · best for learning'},
+        {i:'🌊',l:'TensorFlow',v:'Static graphs · production-grade · TFLite for mobile · Google-backed'},
+        {i:'🎯',l:'Keras',v:'High-level TF API · beginner-friendly · rapid prototyping'},
+        {i:'⚡',l:'JAX',v:'NumPy on GPU/TPU · functional · JIT compilation · Google research standard'},
+        {i:'🔄',l:'ONNX',v:'Export models to run on any framework · production deployment standard'},
+        {i:'📱',l:'TFLite/ONNX RT',v:'Run models on mobile and edge devices with 10× smaller size'}
+      ],
+      why:'PyTorch for research and learning. TensorFlow for production deployment. Knowing both makes you hirable at both research labs and enterprise AI teams.',
+      tip:'Learn PyTorch first — its Pythonic syntax and dynamic computation graph make it much easier to debug and understand. TF2 is very similar to pick up after.'
+    },
+    aiHf:{
+      title:'Hugging Face',desc:'The GitHub of machine learning — 100,000+ models ready to use.',
+      steps:[
+        'Hub — browse and download SOTA models with model cards and benchmarks',
+        'Transformers Library — pipeline() for zero-code inference on any task',
+        'Datasets Library — load 5,000+ curated datasets with a single line of code',
+        'Tokenizers — fast, Rust-backed tokenizers for pre-processing text at scale',
+        'PEFT & LoRA — parameter-efficient fine-tuning for adapting large models cheaply',
+        'Inference API — deploy any model to a hosted API endpoint without DevOps'
+      ],
+      why:'Hugging Face has democratized AI. What would have taken a research team 6 months in 2018 now takes a single developer a weekend using Hugging Face pipelines.',
+      tip:'Follow Hugging Face spaces (huggingface.co/spaces) — it\'s a free hosting platform where the AI community shares live demo applications. Great for inspiration and learning.'
+    },
+    aiMlops:{
+      title:'MLOps & Deployment',desc:'Put AI models into production — the missing skill.',
+      steps:[
+        'Model Serving — FastAPI or BentoML to expose your model as an HTTP endpoint',
+        'Docker — containerize your model and dependencies for consistent deployment',
+        'MLflow — track experiments, log metrics, version models, model registry',
+        'CI/CD — GitHub Actions to retrain and deploy on new data automatically',
+        'Monitoring — track data drift, model performance degradation in production',
+        'Cloud Platforms — AWS SageMaker, Azure ML, or Vertex AI for managed ML workflows'
+      ],
+      why:'A model that nobody can access is worthless. MLOps skills bridge the gap between Jupyter notebooks and real-world AI systems. It\'s the fastest-growing skill gap in Indian AI teams.',
+      tip:'Build a FastAPI endpoint for your best ML project. Add Docker. Deploy to Railway.app or Render.com (free tier). Add that URL to your resume.'
+    },
+    aiCv:{
+      title:'Image Classifier Project',desc:'Computer vision — make AI see the world.',
+      steps:[
+        'Dataset — download CIFAR-10 or custom dataset (scraped or Kaggle)',
+        'CNN Architecture — build VGG-style or ResNet-inspired architecture in PyTorch',
+        'Transfer Learning — fine-tune ResNet-50 pretrained on ImageNet using torchvision',
+        'Training Loop — proper gradient descent, loss tracking, validation accuracy',
+        'Evaluation — confusion matrix, per-class accuracy, misclassified examples',
+        'Gradio/Streamlit UI — drag-and-drop image upload with real-time prediction'
+      ],
+      why:'Image classification demonstrates CNNs, transfer learning, and model deployment — the trifecta of deep learning skills that employers test in interviews.',
+      tip:'Build a Leaf Disease Classifier using the Plant Village dataset — it\'s a real problem with agricultural impact in India and impresses both tech and non-tech interviewers.'
+    },
+    aiChatbot:{
+      title:'Chatbot with LLM',desc:'Build an intelligent conversational AI application.',
+      steps:[
+        'Choose a model — Llama 3 (local/free) or GPT-3.5/4 API (paid, simpler)',
+        'LangChain setup — ConversationBufferMemory for multi-turn conversations',
+        'RAG integration — embed your docs, store in Chroma, retrieve relevant context',
+        'System prompts — control chatbot persona, restrictions, and knowledge boundaries',
+        'Streamlit UI — chat interface with message history, loading states',
+        'Deploy — Hugging Face Spaces (free) for public demo URL'
+      ],
+      why:'LLM chatbot projects are the #1 portfolio project requested by AI companies in India. They demonstrate prompt engineering, RAG architecture, and deployment skills simultaneously.',
+      tip:'Build a chatbot over your college\'s syllabus PDF using RAG + LangChain. It\'s genuinely useful, solves a real problem, and makes an immediate impression in interviews.'
+    },
+    aiRec:{
+      title:'Recommendation System',desc:'The engine behind Netflix, Amazon, and Spotify.',
+      steps:[
+        'Content-Based Filtering — recommend based on item features (TF-IDF + cosine similarity)',
+        'Collaborative Filtering — recommend based on user behavior (matrix factorization)',
+        'Hybrid System — combine both approaches for better coverage and accuracy',
+        'Dataset — MovieLens 100K (movies) or Amazon Reviews (products) — both on Kaggle',
+        'Evaluation — Precision@K, Recall@K, NDCG for ranking quality measurement',
+        'API Deployment — FastAPI endpoint that accepts user_id and returns top-N recommendations'
+      ],
+      why:'Recommendation systems power the engagement loops of every major platform. Netflix, Amazon, Swiggy, Flipkart all rely on them — making it a highly relevant interview topic.',
+      tip:'Add A/B testing simulation to your recommendation project — show how you would measure if one recommendation algorithm outperforms another in production.'
+    },
+    aiSal:{
+      title:'Salary in India (AI/ML)',desc:'Real salary data for AI engineers in 2026.',
+      salaryData:[
+        {level:'Fresher (0–2 yrs)',range:'₹6 – ₹12 LPA'},
+        {level:'Junior (2–4 yrs)',range:'₹12 – ₹25 LPA'},
+        {level:'Mid-Level (4–7 yrs)',range:'₹25 – ₹45 LPA'},
+        {level:'Senior/Principal (7+ yrs)',range:'₹45 – ₹80 LPA+'}
+      ],
+      why:'GenAI and MLOps specialists earn 40–60% more than general ML engineers. The talent gap is enormous — demand far exceeds supply in India.',
+      tip:'Deep Learning + GenAI + Deployment (MLOps) combination is the highest-paying skillset in India\'s tech sector in 2026. Master all three.'
+    },
+    aiRoles:{
+      title:'Job Roles in Artificial Intelligence',desc:'Career paths for AI professionals.',
+      specs:[
+        {i:'🤖',l:'ML Engineer',v:'Build and deploy ML models · Python + MLOps · ₹10–35 LPA'},
+        {i:'🧠',l:'AI Researcher',v:'Novel algorithms · publications · PhD preferred · ₹25–80 LPA'},
+        {i:'🗣',l:'NLP Engineer',v:'Text AI · chatbots · BERT/GPT · ₹12–40 LPA'},
+        {i:'👁',l:'CV Engineer',v:'Image/video AI · CNNs · medical/autonomous · ₹10–35 LPA'},
+        {i:'⚡',l:'MLOps Engineer',v:'AI infrastructure · model serving · ₹15–45 LPA'},
+        {i:'🌟',l:'GenAI Engineer',v:'LLMs + RAG + Agents · highest demand · ₹20–60 LPA'}
+      ],
+      why:'AI is transforming every industry. Healthcare AI, FinTech AI, AgriTech AI, and EdTech AI are creating specialized niches with very high demand and premium salaries.',
+      tip:'Target AI teams at Indian unicorns (Razorpay, PhonePe, Meesho, CRED) and MNC R&D labs (Google Research, Microsoft Research, Amazon AI). Both hire aggressively.'
+    },
+
+    // ────────────────────────────────────────────────
+    // CYBER SECURITY
+    // ────────────────────────────────────────────────
+    cyHw:{
+      title:'Lab Hardware Setup',desc:'Build your cybersecurity home lab.',
+      salary:'₹3.5–20 LPA range',
+      videoTitle:'Build a Cybersecurity Home Lab\nfor Beginners in 2026',videoDur:'14:20',
+      specs:[
+        {i:'⚙',l:'CPU',v:'Intel Core i5/i7 or Ryzen 5/7 — for running multiple VMs simultaneously'},
+        {i:'🧠',l:'RAM',v:'16 GB minimum · 32 GB preferred for running 3–4 VMs at once'},
+        {i:'💾',l:'Storage',v:'512 GB SSD + external 1 TB HDD for VM storage and backups'},
+        {i:'🌐',l:'Network',v:'Cheap 8-port network switch for practicing networking attacks (optional)'},
+        {i:'💻',l:'Virtualization',v:'VirtualBox (free) or VMware Workstation — run Kali, Windows, Ubuntu VMs'},
+        {i:'🔒',l:'USB',v:'16 GB+ USB drive for bootable Kali Linux live environment'}
+      ],
+      why:'A home lab with multiple VMs lets you legally practice attacks and defenses on controlled systems. This hands-on experience is valued far more than certifications alone.',
+      tip:'Start with 2 VMs: Kali Linux (attacker) and Metasploitable (intentionally vulnerable target). Practice attacks on Metasploitable and learn what defenders see.'
+    },
+    cyOs:{
+      title:'OS: Kali Linux & Parrot Security',desc:'The operating systems of security professionals.',
+      steps:[
+        'Kali Linux — Debian-based · 600+ pre-installed security tools · industry standard',
+        'Parrot Security OS — lightweight alternative · good for older hardware',
+        'Install via VirtualBox — never use as primary OS for beginners',
+        'Learn terminal basics — ls, cd, chmod, find, grep, pipes, redirects',
+        'User management — sudo, useradd, passwd, groups — Linux permissions fundamentals',
+        'Networking commands — ifconfig, ip a, netstat, ss, ping, traceroute, nslookup'
+      ],
+      why:'95% of security tools run on Linux. Kali Linux pre-installs every tool you need — nmap, metasploit, burpsuite, wireshark — so you can focus on learning, not setup.',
+      tip:'Use Kali Linux only for learning in a VM, never on real networks without permission. Unauthorized use of security tools is illegal and can result in criminal charges.'
+    },
+    cyNet:{
+      title:'Networking Fundamentals',desc:'The foundation of all cybersecurity knowledge.',
+      steps:[
+        'OSI Model — 7 layers, what happens at each layer, attack surfaces per layer',
+        'TCP/IP Stack — IP addressing, subnetting, CIDR notation, default gateways',
+        'Common Protocols — HTTP/S, DNS, DHCP, SSH, FTP, SMTP, SMB — ports and vulnerabilities',
+        'Packet Analysis — Wireshark capture and filter syntax, protocol dissection',
+        'Firewalls & NAT — what they protect, how they can be bypassed or misconfigured',
+        'VPNs & Proxies — how they work, anonymization techniques, traffic routing'
+      ],
+      why:'You cannot attack or defend systems you don\'t understand. Networking is the #1 prerequisite for cybersecurity — every attack exploits a networking concept.',
+      tip:'Take Professor Messer\'s free CompTIA Network+ course on YouTube (7 hours). It covers every networking concept you\'ll need for cybersecurity in clear, practical terms.'
+    },
+    cyFund:{
+      title:'Security Fundamentals',desc:'Core concepts every security professional must know.',
+      steps:[
+        'CIA Triad — Confidentiality, Integrity, Availability — the three pillars of security',
+        'Authentication vs Authorization — who you are vs what you can do',
+        'Cryptography basics — symmetric (AES), asymmetric (RSA), hashing (SHA-256)',
+        'PKI & SSL/TLS — certificates, CAs, HTTPS — how secure web works',
+        'Common Vulnerabilities — OWASP Top 10, CVEs, CVSSv3 scoring system',
+        'Security Controls — administrative, physical, and technical control categories'
+      ],
+      why:'Security fundamentals are tested in every interview and certification exam. They provide the conceptual framework to understand why attacks work and how defenses prevent them.',
+      tip:'Study the OWASP Top 10 (owasp.org) — these 10 vulnerability categories account for 90% of web application attacks in the real world.'
+    },
+    cyPen:{
+      title:'Penetration Testing',desc:'Legally hack systems to find vulnerabilities before attackers do.',
+      steps:[
+        'Reconnaissance — passive (OSINT) and active (scanning) information gathering',
+        'Scanning & Enumeration — Nmap port/service scan, banner grabbing, version detection',
+        'Vulnerability Assessment — Nessus/OpenVAS to identify known CVEs on targets',
+        'Exploitation — Metasploit Framework, manual exploit development, payload creation',
+        'Post-Exploitation — privilege escalation, lateral movement, persistence techniques',
+        'Reporting — professional pentest report writing — severity, impact, remediation steps'
+      ],
+      why:'Penetration testing is the highest-paying entry-level security role. Companies pay ethical hackers ₹6–15 LPA as freshers — and bug bounty hunters earn much more.',
+      tip:'Always get written authorization before testing any system. Even testing systems you own that are hosted on shared infrastructure can violate terms of service.'
+    },
+    cyWeb:{
+      title:'Web Application Security',desc:'Hack and defend web apps — the most common attack surface.',
+      steps:[
+        'OWASP Top 10 — learn each vulnerability type with hands-on labs on DVWA',
+        'SQL Injection — manual + sqlmap for automated discovery and exploitation',
+        'XSS (Cross-Site Scripting) — reflected, stored, DOM-based with Burp Suite',
+        'CSRF — cross-site request forgery, token bypass techniques',
+        'Authentication Attacks — brute force, credential stuffing, session hijacking',
+        'IDOR — Insecure Direct Object Reference — logic-level access control flaws'
+      ],
+      why:'Web application vulnerabilities account for over 40% of all security breaches. Bug bounty programs on HackerOne and Bugcrowd pay $500–$50,000 per valid finding.',
+      tip:'Set up DVWA (Damn Vulnerable Web Application) locally and practice each OWASP vulnerability category at low, medium, and high security levels systematically.'
+    },
+    cyCert:{
+      title:'Cybersecurity Certifications',desc:'Certifications that open doors in India\'s security job market.',
+      specs:[
+        {i:'🟢',l:'CompTIA Security+',v:'Entry-level · globally recognized · ₹15,000 exam · 3 months prep'},
+        {i:'🔵',l:'CEH (EC-Council)',v:'Certified Ethical Hacker · popular in India · ₹30,000 exam'},
+        {i:'⚫',l:'OSCP (Offensive Security)',v:'Hands-on hacking cert · highest credibility · 24-hr exam'},
+        {i:'🟡',l:'CompTIA Network+',v:'Networking cert · prerequisite for Security+ · solid foundation'},
+        {i:'☁',l:'AWS Security',v:'Cloud security specialization · growing demand in Indian companies'},
+        {i:'🔴',l:'Google Cybersecurity',v:'Free Coursera course + certificate · best starting point for beginners'}
+      ],
+      why:'Certifications validate your skills to HR teams who can\'t assess technical competence directly. CEH is the most recognized in Indian companies; OSCP is the most respected globally.',
+      tip:'Start with the free Google Cybersecurity Professional Certificate on Coursera — it covers fundamentals, includes Python, and takes 6 months at 10 hrs/week.'
+    },
+    cyScan:{
+      title:'Nmap & Reconnaissance Tools',desc:'The first phase of every penetration test.',
+      specs:[
+        {i:'🔍',l:'Nmap',v:'Network mapper · port scanning · service version · OS detection'},
+        {i:'🌐',l:'Shodan',v:'Internet-wide scan database · find exposed devices and services'},
+        {i:'🦅',l:'Maltego',v:'OSINT · visualize connections between people, companies, domains'},
+        {i:'📡',l:'theHarvester',v:'Email, domain, IP harvest from public sources · OSINT'},
+        {i:'🔎',l:'Amass',v:'Subdomain enumeration · DNS discovery · attack surface mapping'},
+        {i:'🕵',l:'Recon-ng',v:'Web reconnaissance framework · modular · Metasploit-style interface'}
+      ],
+      why:'Reconnaissance determines the quality of your attack. The more you know about a target\'s infrastructure, the more precisely you can craft your attack vector.',
+      tip:'Never scan IPs or domains you don\'t own or have explicit permission to test. Nmap scans are logged by firewalls and can trigger security incidents and legal action.'
+    },
+    cyExploit:{
+      title:'Metasploit & Burp Suite',desc:'The two most powerful tools in an ethical hacker\'s arsenal.',
+      steps:[
+        'Metasploit Framework — msfconsole, search, use, set RHOSTS, exploit, sessions',
+        'Meterpreter — post-exploitation shell, file upload/download, privilege escalation',
+        'Burp Suite (Community) — intercept proxy, repeater, intruder for web attacks',
+        'Web Scanning — Burp Spider, active scan, finding XSS/SQLi/IDOR automatically',
+        'Payloads — Msfvenom for creating custom shellcode and backdoors',
+        'Custom Exploits — searchsploit + Exploit-DB for finding CVE-specific exploits'
+      ],
+      why:'Metasploit is the world\'s most used exploitation framework. Burp Suite is the definitive tool for web application security testing. Together they cover 80% of real-world pentest work.',
+      tip:'Burp Suite Pro is ₹20,000/year. Students can get a 30-day trial or buy once — it\'s the most important investment in your security toolkit.'
+    },
+    cyWire:{
+      title:'Wireshark — Network Analysis',desc:'See every packet on the network in real-time.',
+      steps:[
+        'Capture filters — capture only specific traffic (host 192.168.1.1, port 80)',
+        'Display filters — filter captured packets (http, tcp.port==443, dns)',
+        'Protocol Analysis — understand DNS, HTTP, TCP, TLS handshakes at packet level',
+        'Credential Extraction — capture unencrypted protocols (FTP, Telnet, HTTP) for creds',
+        'Malware Analysis — identify C2 beacons, data exfiltration, suspicious DNS patterns',
+        'Decode Encrypted Traffic — SSL/TLS decryption using private key in lab environments'
+      ],
+      why:'Wireshark reveals exactly what\'s happening on a network. It\'s used by network engineers, security analysts, and penetration testers daily. Fluency here is a superpower.',
+      tip:'Practice on the Wireshark sample captures on the official wiki. They include real malware traffic, HTTP sessions, and VoIP captures — excellent for learning pattern recognition.'
+    },
+    cyThm:{
+      title:'TryHackMe',desc:'The best beginner-friendly hacking training platform.',
+      steps:[
+        'Free account — access hundreds of guided rooms with step-by-step instructions',
+        'Learning Paths — Pre-Security → Jr Penetration Tester → SOC Level 1',
+        'Guided Rooms — each room has a task description, hints, and a flag to capture',
+        'Browser-based — attack machines directly from your browser — no local setup needed',
+        'Streaks — complete at least 1 room daily for consistent skill building',
+        'Certificate — complete learning paths for a certificate to add to LinkedIn'
+      ],
+      why:'TryHackMe has the smoothest onboarding in security education. Beginners can go from zero to hacking their first machine in 30 minutes without any prior knowledge.',
+      tip:'Start with the "Pre-Security" path → "Jr Penetration Tester" path → "Complete Beginner" on TryHackMe. This sequence takes ~120 hours and makes you genuinely job-ready.'
+    },
+    cyHtb:{
+      title:'HackTheBox',desc:'Competitive hacking platform for intermediate to advanced skill building.',
+      steps:[
+        'Free account — access Starting Point (beginner-friendly machines with guided walkthrough)',
+        'HTB Academy — structured courses on specific attack techniques (better for learning)',
+        'Active Machines — real systems with unknown vulnerabilities — no hints, no guidance',
+        'Pro Labs — enterprise-grade networks simulating real company environments',
+        'CTF Competitions — HTB hosts regular 48-hr CTFs for teams worldwide',
+        'Community — Discord and forums where you can ask for hints without full spoilers'
+      ],
+      why:'HTB is the platform used by professional penetration testers worldwide. Being "active" on HTB and listing it on your resume signals serious commitment to the field.',
+      tip:'Complete 5 "easy" rated machines on HTB before attempting "medium" difficulty. Write detailed writeups for each machine you solve — they make excellent portfolio pieces.'
+    },
+    cyCtf:{
+      title:'CTF Competitions',desc:'Capture The Flag — competitive hacking for skill building and recognition.',
+      steps:[
+        'What is CTF — security competitions with puzzle-based challenges across categories',
+        'Categories — Web, Crypto, Reverse Engineering, Pwn (binary exploitation), Forensics, OSINT',
+        'Finding CTFs — CTFtime.org lists upcoming competitions globally · filter by difficulty',
+        'Team up — join or create a 4-person team for best results in most competitions',
+        'Tools — CyberChef, pwndbg, Ghidra, stegsolve, binwalk, hashcat, john-the-ripper',
+        'Writeups — publish solutions on GitHub or Medium to build visibility in the community'
+      ],
+      why:'CTF rankings and writeups are the best resume credentials in cybersecurity. Companies like CloudSEK, Sequretek, and IBM India actively hire CTF participants.',
+      tip:'Start with PicoCTF (picoctf.org) — it\'s designed for high school and college students and covers all CTF categories with excellent beginner-friendly challenges.'
+    },
+    cySal:{
+      title:'Salary in India (Cyber Security)',desc:'Real salary data for security professionals in 2026.',
+      salaryData:[
+        {level:'Fresher SOC Analyst (0–1 yr)',range:'₹3.5 – ₹6 LPA'},
+        {level:'Jr. Pentester / Analyst (1–3 yrs)',range:'₹6 – ₹10 LPA'},
+        {level:'OSCP Holder (fresher)',range:'₹10 – ₹20 LPA'},
+        {level:'Mid-Level (4–6 yrs)',range:'₹15 – ₹30 LPA'},
+        {level:'Senior / CISO Track (6+ yrs)',range:'₹30 – ₹70 LPA+'}
+      ],
+      why:'OSCP certification can double a fresher\'s starting salary. Bug bounty hunters earn $1,000–$50,000 per vulnerability on platforms like HackerOne — uncapped income.',
+      tip:'Indian cybersecurity market grew 40% in 2025. BFSI (Banking), Government, and Healthcare are the top sectors hiring security professionals.'
+    },
+    cyRoles:{
+      title:'Job Roles in Cyber Security',desc:'Career paths in the security industry.',
+      specs:[
+        {i:'🛡',l:'SOC Analyst',v:'Monitor, detect, respond to incidents · most entry-level openings'},
+        {i:'⚔',l:'Penetration Tester',v:'Ethical hacking · OSCP/CEH · freelance or corporate'},
+        {i:'🔍',l:'Threat Hunter',v:'Proactive threat detection · SIEM tools · advanced analyst'},
+        {i:'☁',l:'Cloud Security Eng',v:'AWS/Azure security configs · IAM · fastest growing role'},
+        {i:'🔐',l:'AppSec Engineer',v:'Code review · SAST/DAST · integrating security into DevOps'},
+        {i:'🏛',l:'CISO / Security Manager',v:'Leadership · policy · risk management · 10+ yrs exp needed'}
+      ],
+      why:'SOC Analyst is the easiest entry point — no degree required, just CompTIA Security+ and TryHackMe experience. Penetration testing offers the highest salary ceiling.',
+      tip:'Do a Bug Bounty on HackerOne or Bugcrowd programs (Meta, Google, Uber all have public programs). Even a P5 (informational) find builds your credibility.'
+    },
+
+    // ────────────────────────────────────────────────
+    // UI/UX DESIGN
+    // ────────────────────────────────────────────────
+    uxTools:{
+      title:'Figma & Design Tool Setup',desc:'Master the industry-standard design tool.',
+      salary:'₹3–28 LPA range',
+      videoTitle:'Complete Figma Tutorial for\nBeginners in 2026',videoDur:'2:14:30',
+      specs:[
+        {i:'🎨',l:'Figma',v:'Primary tool · free for students · web-based · no installation needed'},
+        {i:'📐',l:'Adobe XD',v:'Alternative to Figma · integrates with Adobe Creative Cloud'},
+        {i:'🎭',l:'Sketch',v:'macOS only · widely used in established product companies'},
+        {i:'⚡',l:'Framer',v:'Code-powered design · AI-assisted layouts · great for web prototypes'},
+        {i:'✏',l:'Procreate (iPad)',v:'Digital illustration and icon creation · iOS only'},
+        {i:'🖼',l:'Canva',v:'Quick mockups and social media assets · not a professional design tool'}
+      ],
+      why:'Figma captured 80% of the product design market. Every startup, tech company, and agency in India uses Figma for UI design. It\'s the only tool you absolutely must learn.',
+      tip:'Use Figma Community (figma.com/community) — thousands of free templates, design systems (like Material 3, iOS 18) and UI kits to accelerate your workflow.'
+    },
+    uxHw:{
+      title:'Hardware for UI/UX Designers',desc:'Equipment that makes design work smooth and comfortable.',
+      specs:[
+        {i:'🖥',l:'Display',v:'2K or 4K resolution · color-accurate panel (IPS/OLED) · 24"+ for desktop'},
+        {i:'🖱',l:'Mouse',v:'Precision optical mouse · MX Master 3 is popular with designers'},
+        {i:'✏',l:'Graphics Tablet',v:'Wacom Intuus (₹5,000) for digital illustration and icon design'},
+        {i:'💻',l:'Laptop',v:'MacBook Pro (best) · or Windows with good display · any modern i5/Ryzen 5'},
+        {i:'🧠',l:'RAM',v:'16 GB — Figma is browser-based but runs many browser tabs and assets'},
+        {i:'🔋',l:'Battery',v:'All-day battery preferred — designers work from coffee shops and co-working spaces'}
+      ],
+      why:'Screen quality matters most for designers — color accuracy affects how designs look in production. A cheap display makes it impossible to judge colors correctly.',
+      tip:'Calibrate your display with DisplayCAL (free) to get accurate color representation. Uncalibrated monitors make your green look different from what the developer sees.'
+    },
+    uxRes:{
+      title:'Design Resources & Inspiration',desc:'Stay inspired and work efficiently with the right resources.',
+      specs:[
+        {i:'🎨',l:'Dribbble',v:'Design inspiration · follow top designers · job board for designers'},
+        {i:'💡',l:'Behance',v:'Adobe\'s portfolio platform · more detailed case studies than Dribbble'},
+        {i:'📦',l:'Untitled UI',v:'Most comprehensive free Figma UI kit — 100k+ elements'},
+        {i:'🖼',l:'Unsplash / Pexels',v:'Free high-quality stock photos for mockups and presentations'},
+        {i:'🎭',l:'Iconify',v:'200,000+ free icons in Figma · one plugin, all icon sets'},
+        {i:'📚',l:'Refactoring UI',v:'Book by creators of Tailwind CSS — best design fundamentals resource'}
+      ],
+      why:'Great design builds on great references. Studying Dribbble and Behance daily trains your design eye faster than any course.',
+      tip:'Download the "Refactoring UI" book and read it in one sitting. It\'s a short, practical guide that will permanently improve how you think about visual design.'
+    },
+    uxFund:{
+      title:'Design Fundamentals',desc:'The principles that make designs beautiful and effective.',
+      steps:[
+        'Typography — typeface selection, hierarchy, line height, letter spacing, font pairing',
+        'Color Theory — hue, saturation, value, color harmonies, accessibility contrast ratios',
+        'Spacing & Layout — 8px grid system, consistent padding, whitespace as a design element',
+        'Visual Hierarchy — size, weight, color, contrast to guide user\'s eye through content',
+        'Gestalt Principles — proximity, similarity, closure, continuity — how humans perceive groups',
+        'Accessibility — WCAG 2.1 contrast ratios, colorblind palettes, readable font sizes'
+      ],
+      why:'Design fundamentals are timeless — they work regardless of what tool you use. Designers who understand fundamentals consistently produce better work than tool-focused ones.',
+      tip:'Analyze 5 well-designed apps daily (Airbnb, Linear, Notion, Stripe). Ask yourself: why does this typography work? Why this spacing? Break down the decisions behind each pixel.'
+    },
+    uxUx:{
+      title:'UX Research Process',desc:'Design that solves real problems starts with research.',
+      steps:[
+        'User Research — interviews (open-ended questions), surveys, contextual inquiry',
+        'Persona Creation — evidence-based user archetypes from research data, not assumptions',
+        'User Journey Mapping — visualize every touchpoint from awareness to task completion',
+        'Problem Definition — "How Might We" statements to frame design challenges',
+        'Information Architecture — card sorting, tree testing, site/app structure planning',
+        'Usability Testing — moderated and unmoderated testing, thinking-aloud protocol'
+      ],
+      why:'UX designers who skip research build beautiful solutions to the wrong problems. Research data validates your design decisions and persuades stakeholders to fund your ideas.',
+      tip:'Conduct 5 user interviews (even with friends and family) before designing anything. You will be surprised — your assumptions about users are almost always wrong.'
+    },
+    uxUi:{
+      title:'Visual UI Design',desc:'Make interfaces beautiful, clear, and consistent.',
+      steps:[
+        'Component Design — buttons, cards, forms, modals, tables — design atomic elements first',
+        'Design Systems — color tokens, type scale, spacing scale, component documentation',
+        'Dark Mode — implement proper dark palettes (not just inverting light mode colors)',
+        'Responsive Layouts — design for 3 breakpoints minimum: mobile, tablet, desktop',
+        'Iconography — choose a single icon set (Phosphor, Lucide, or SF Symbols) and stick to it',
+        'Micro-interactions — hover states, loading states, empty states, error states, success states'
+      ],
+      why:'UI quality directly determines user trust. Studies show users judge software credibility within 50ms of first seeing it — visual design creates that first impression.',
+      tip:'Don\'t start designing from scratch — start with a design system (Material 3 or Untitled UI) and customize it. Real designers remix and refine, they don\'t reinvent from zero.'
+    },
+    uxProto:{
+      title:'Prototyping & Usability Testing',desc:'Make your designs come alive and test with real users.',
+      steps:[
+        'Click-through Prototype — link Figma frames to simulate navigation and user flows',
+        'Smart Animate — Figma\'s smooth transition feature for micro-interaction prototypes',
+        'Prototype Interactions — overlays, hover states, drag interactions, scroll behaviors',
+        'User Testing Setup — UsabilityHub, Maze.design, or in-person moderated sessions',
+        'Task Analysis — give participants specific tasks; observe without helping',
+        'Iterate — update designs based on testing insights · prioritize critical usability issues'
+      ],
+      why:'Prototypes prevent expensive rework by catching usability problems before a single line of code is written. Every hour of user testing saves 10 hours of developer rework.',
+      tip:'Use Maze (maze.design) for remote unmoderated testing — it\'s free for 3 projects and gives you click heatmaps, path analysis, and completion rates automatically.'
+    },
+    uxWire:{
+      title:'Wireframing',desc:'The blueprint phase — structure before style.',
+      steps:[
+        'Lo-fi wireframes — pen and paper or Figma shapes · fast ideation · no colors',
+        'Information hierarchy — what\'s most important on each screen? What\'s secondary?',
+        'Navigation patterns — tabs, sidebar, breadcrumbs, hamburger menu — choose appropriately',
+        'Content placeholders — grey boxes for images, lorem ipsum for text',
+        'User flow — link wireframes together to show the full experience end-to-end',
+        'Review with stakeholders — get alignment on structure before investing in visual design'
+      ],
+      why:'Wireframing separates structure decisions from visual design decisions. Changing a wireframe takes 5 minutes. Changing a pixel-perfect design with 200+ components takes days.',
+      tip:'Wireframe digitally in Figma using only white, grey, and black — no colors allowed. Add a rule: if you can\'t communicate a design idea in grayscale, the hierarchy is unclear.'
+    },
+    uxSys:{
+      title:'Design Systems',desc:'Scale design across teams and products consistently.',
+      steps:[
+        'Foundations — define color tokens, typography scale, spacing system, elevation levels',
+        'Components — buttons (all states), forms, cards, modals, navigation — document everything',
+        'Variants — Figma component properties for state, size, color, and style variations',
+        'Documentation — write usage guidelines, do\'s and don\'ts, code snippets for developers',
+        'Token Integration — design tokens (JSON) that sync with CSS variables in code',
+        'Versioning — treat design system like a product with a changelog and semantic versioning'
+      ],
+      why:'Design systems are the #1 skill that differentiates mid-level designers from senior designers. Every company with >5 designers and >2 products needs a design system.',
+      tip:'Study Linear, Vercel, and Radix UI\'s design systems publicly. They\'re examples of exceptional quality and will teach you more than any design system course.'
+    },
+    uxAnim:{
+      title:'Micro-interactions & Motion Design',desc:'The finishing touch that makes products feel premium.',
+      steps:[
+        'Principle of motion — ease curves, duration, delay — motion communicates meaning',
+        'Hover states — subtle color shifts, scale, shadow changes on interactive elements',
+        'Loading states — skeleton screens instead of spinners — perceived performance hack',
+        'Transitions — page transitions, modal open/close, accordion expand — smooth and purposeful',
+        'Feedback animations — success checkmark, error shake, notification slide — confirms actions',
+        'Figma Smart Animate — create motion between component variants for prototype realism'
+      ],
+      why:'Research shows micro-interactions increase user satisfaction and perceived quality. Brands like Apple and Linear invest heavily in motion because it directly impacts emotional response.',
+      tip:'Keep animations under 300ms for UI feedback and under 500ms for page transitions. Anything slower feels sluggish. Anything faster feels abrupt. 250ms is the sweet spot.'
+    },
+    uxApp:{
+      title:'Mobile App Redesign Project',desc:'Redesign an existing app and tell the story.',
+      steps:[
+        'Choose an app with poor UX (government apps, old banking apps, utility apps)',
+        'Heuristic evaluation — identify 5–10 specific UX problems with severity ratings',
+        'Competitive analysis — how do 3 competitors solve the same problems?',
+        'User research — 5 interviews about pain points with the original app',
+        'Redesign in Figma — improved onboarding, navigation, and core user flows',
+        'Prototype — clickable Figma prototype to demonstrate the new experience'
+      ],
+      why:'Redesign case studies demonstrate your design thinking process — the most valuable thing any designer can show. The case study essay matters more than the final screens.',
+      tip:'Document every decision with "I did X because Y." User research quote? Even better. Recruiters read case studies looking for evidence of structured thinking, not pretty UI.'
+    },
+    uxWeb:{
+      title:'SaaS Web App UI Design',desc:'Design complex, information-dense software interfaces.',
+      steps:[
+        'Dashboard design — sidebar nav, data tables, metric cards, chart integration',
+        'Onboarding flow — empty states, guided setup, progressive disclosure of features',
+        'Settings architecture — information architecture for complex preference management',
+        'Form design — multi-step forms, validation feedback, auto-save patterns',
+        'Notification system — toasts, banners, badges, email — design the whole system',
+        'Design tokens — comprehensive token system for both light and dark mode support'
+      ],
+      why:'SaaS design is highly valued in India — Zoho, Freshworks, Chargebee, and thousands of B2B startups need designers who can handle information-dense, complex web applications.',
+      tip:'Use Untitled UI Figma kit as your component foundation and build the dashboard over it. Customizing an existing design system is more professional than building from scratch.'
+    },
+    uxCase:{
+      title:'Full UX Case Study',desc:'The ultimate portfolio piece — document your entire design process.',
+      steps:[
+        'Problem Statement — what problem are you solving and why does it matter?',
+        'Research Phase — user interviews, competitive analysis, heuristic evaluation with evidence',
+        'Synthesis — affinity mapping, insights, user personas grounded in research data',
+        'Ideation — crazy-8s sketches, information architecture, user journey redesign',
+        'Design Iterations — lo-fi → mid-fi → hi-fi progression with rationale documented',
+        'Testing Results — usability test findings, metrics, what changed and why'
+      ],
+      why:'One excellent case study beats ten beautiful screens. Case studies demonstrate that you think like a designer — not just that you can use Figma.',
+      tip:'Publish your case study on Behance, Notion, or a personal website. Keep it under 8 minutes to read — attention is precious. Edit ruthlessly.'
+    },
+    uxSal:{
+      title:'Salary in India (UI/UX Design)',desc:'Real salary data for designers in 2026.',
+      salaryData:[
+        {level:'Fresher (0–1 yr)',range:'₹3 – ₹7 LPA'},
+        {level:'Junior (1–3 yrs)',range:'₹5 – ₹10 LPA'},
+        {level:'Mid-Level (3–5 yrs)',range:'₹10 – ₹18 LPA'},
+        {level:'Senior / Lead (5+ yrs)',range:'₹18 – ₹32+ LPA'}
+      ],
+      why:'Bangalore, Mumbai, and Delhi NCR offer 20–30% salary premiums. Designers at top-tier startups (Razorpay, CRED, Zepto) earn significantly above average.',
+      tip:'Freelance designers in India earn ₹5,000–₹1,00,000 per project. International freelancing on Toptal or 99designs pays $40–$150/hour for strong portfolios.'
+    },
+    uxRoles:{
+      title:'Job Roles in UI/UX Design',desc:'Career paths for designers.',
+      specs:[
+        {i:'🎨',l:'UI Designer',v:'Visual design · Figma mastery · icons, colors, components · ₹3–12 LPA'},
+        {i:'🔍',l:'UX Researcher',v:'User interviews · usability testing · insights · ₹5–15 LPA'},
+        {i:'🌐',l:'Product Designer',v:'Full design lifecycle · research to final UI · ₹8–25 LPA'},
+        {i:'⚡',l:'UX Writer',v:'Microcopy · content design · conversational UX · growing niche'},
+        {i:'🎬',l:'Motion Designer',v:'UI animations · video · After Effects + Figma · premium role'},
+        {i:'🏗',l:'Design Lead / Manager',v:'Team management + design strategy · 7+ yrs exp · ₹20–35 LPA'}
+      ],
+      why:'Product Designer is the most complete and highest-paid role. It requires research + UI + prototyping skills but pays significantly more than pure UI or UX specialist roles.',
+      tip:'India\'s fastest-growing design employers are: CRED, Razorpay, Zepto, Meesho, and Zoho. All are design-driven companies that value craft and pay well.'
     }
+  };
 
-    // State
-    let career = 'web';
-    let openCats = {};
-    let selLeaf = null;
-    let sc = 1, px = 0, py = 0;
-    let drag = false, lm = {x:0,y:0};
+  function getPanel(k){
+    if(PANELS[k]) return PANELS[k];
+    return {title:k,desc:'Detailed information coming soon.',specs:[{i:'📌',l:'Status',v:'Content being prepared'}],why:'',tip:''};
+  }
 
-    const HUB = { x: 550, y: 550 };
+  // State
+  let career='web',openCats={},selLeaf=null,sc=0.95,px=-160,py=-140,drag=false,lm={x:0,y:0};
+  const HUB={x:530,y:530};
 
-    // Init
-    document.addEventListener('DOMContentLoaded', () => {
-      if (typeof ProxyUI !== 'undefined') {
-        ProxyUI.injectNavbar('Roadmaps');
-        ProxyUI.injectBackgroundGlows();
-      }
-      buildSidebar();
-      renderTree();
-      setupPanZoom();
-      resetPan();
-    });
+  document.addEventListener('DOMContentLoaded',()=>{
+    if(typeof ProxyUI!=='undefined'){ProxyUI.injectNavbar('Roadmaps');ProxyUI.injectBackgroundGlows();}
+    buildSidebar(); renderTree(); setupPanZoom();
+  });
 
-    function buildSidebar() {
-      const c = document.getElementById('sbList');
-      c.innerHTML = '';
-      const chev = '<svg class="sb-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>';
-      for (const k in DB) {
-        const d = DB[k];
-        const b = document.createElement('button');
-        b.className = 'sb-btn' + (k===career?' active':'');
-        b.innerHTML = `<div class="sb-ico">${d.icon}</div><div class="sb-txt"><h3>${d.title}</h3><p>${d.desc}</p></div>${chev}`;
-        b.onclick = () => { career=k; openCats={}; selLeaf=null; closePanel(); buildSidebar(); renderTree(); };
-        c.appendChild(b);
-      }
+  function buildSidebar(){
+    const c=document.getElementById('sbList');c.innerHTML='';
+    const chev='<svg class="sb-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>';
+    for(const k in DB){
+      const d=DB[k];const b=document.createElement('button');
+      b.className='sb-btn'+(k===career?' active':'');
+      b.innerHTML=`<div class="sb-ico">${d.icon}</div><div class="sb-txt"><h3>${d.title}</h3><p>${d.desc}</p></div>${chev}`;
+      b.onclick=()=>{career=k;openCats={};selLeaf=null;closePanel();buildSidebar();renderTree();};
+      c.appendChild(b);
     }
+  }
 
-    function renderTree() {
-      const w = document.getElementById('world');
-      const svg = document.getElementById('svg');
-      w.querySelectorAll('.nd').forEach(n=>n.remove());
-      svg.innerHTML = '';
-      const d = DB[career]; if(!d) return;
+  function renderTree(){
+    const w=document.getElementById('world'),svg=document.getElementById('svg');
+    w.querySelectorAll('.nd').forEach(n=>n.remove());svg.innerHTML='';
+    const d=DB[career];if(!d)return;
+    const catCount=d.cats.length,catSpacingY=108,catStartY=HUB.y-((catCount-1)*catSpacingY)/2,catX=HUB.x+330;
 
-      // Root
-      mk(w, HUB.x, HUB.y, `<div class="nd-root"><div class="ri">${d.icon}</div><h2>${d.title}</h2></div>`);
-
-      // Layout categories vertically on the right side of root
-      const catCount = d.cats.length;
-      const catSpacingY = 110;
-      const catStartY = HUB.y - ((catCount-1)*catSpacingY)/2;
-      const catX = HUB.x + 340;
-
-      d.cats.forEach((cat, i) => {
-        const cy = catStartY + i * catSpacingY;
-        const isOpen = !!openCats[cat.id];
-
-        // Vine: root -> category
-        vine(svg, HUB.x+75, HUB.y, catX-105, cy, isOpen ? 'a' : '');
-
-        mk(w, catX, cy, `
-          <div class="nd-cat ${isOpen?'open':''}" onclick="toggleCat('${cat.id}')">
-            <div class="ci">${cat.icon}</div>
-            <div class="ct"><h4>${cat.title}</h4><p>${cat.desc}</p></div>
-            <svg class="cc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-          </div>
-        `);
-
-        // Children
-        if (isOpen && cat.kids) {
-          const kidX = catX + 300;
-          const kidSpacing = 48;
-          const kidStartY = cy - ((cat.kids.length-1)*kidSpacing)/2;
-
-          cat.kids.forEach((kid, ki) => {
-            const ky = kidStartY + ki * kidSpacing;
-            const isSel = selLeaf === kid.id;
-
-            // Sub-vine: category -> leaf
-            vine(svg, catX+105, cy, kidX-85, ky, 'a', true);
-
-            mk(w, kidX, ky, `
-              <div class="nd-leaf ${isSel?'sel':''}" onclick="openPanel('${kid.id}','${kid.panel}')" style="animation-delay:${ki*0.06}s">
-                <div class="ld"></div>
-                <span>${kid.label}</span>
-                <svg class="lc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-              </div>
-            `);
-          });
-        }
-      });
-    }
-
-    function mk(container, x, y, html) {
-      const el = document.createElement('div');
-      el.className = 'nd';
-      el.style.left = x+'px'; el.style.top = y+'px';
-      el.innerHTML = html;
-      container.appendChild(el);
-    }
-
-    function vine(svg, x1, y1, x2, y2, cls, isSub) {
-      const mx = (x1+x2)/2;
-      const dd = `M ${x1} ${y1} C ${mx} ${y1}, ${mx} ${y2}, ${x2} ${y2}`;
-      const p = ns('path');
-      p.setAttribute('d', dd);
-      p.setAttribute('class', (isSub ? 'vsub' : 'vine') + (cls ? ' ' + cls : ''));
-      svg.appendChild(p);
-
-      // Particle
-      if (cls) {
-        const c = ns('circle');
-        c.setAttribute('r', isSub ? '2.2' : '3');
-        c.setAttribute('class', 'vp');
-        const a = ns('animateMotion');
-        a.setAttribute('dur', isSub ? '2.5s' : '3.8s');
-        a.setAttribute('repeatCount', 'indefinite');
-        a.setAttribute('path', dd);
-        c.appendChild(a);
-        svg.appendChild(c);
-      }
-    }
-
-    function ns(tag) { return document.createElementNS('http://www.w3.org/2000/svg', tag); }
-
-    function toggleCat(id) {
-      openCats[id] = !openCats[id];
-      selLeaf = null; closePanel(); renderTree();
-    }
-
-    function openPanel(leafId, panelKey) {
-      selLeaf = leafId; renderTree();
-      const d = getPanel(panelKey);
-      const body = document.getElementById('panelBody');
-
-      let specs = d.specs ? d.specs.map(s =>
-        `<div class="spec"><span class="spec-i">${s.i}</span><span class="spec-l">${s.l}</span><span class="spec-v">: ${s.v}</span></div>`
-      ).join('') : '';
-
-      body.innerHTML = `
-        <div class="p-hero"><h3>${d.title}</h3><p>${d.desc}</p></div>
-        ${d.videoTitle ? `
-        <div class="p-video">
-          <div class="p-video-inner"><div class="p-video-placeholder"><div class="vp-icon">🎬</div><div class="vp-text">Video Preview</div></div></div>
-          <div class="play-btn"></div>
-          <div class="vid-cap"><span>${d.videoTitle}</span><span class="vid-dur">${d.videoDur}</span></div>
-        </div>` : ''}
-        <div class="p-content">
-          <h4 class="p-stitle">Recommended Specs</h4>
-          ${specs}
-          ${d.why ? `<h4 class="p-sub">Why these specs?</h4><p class="p-text">${d.why}</p>` : ''}
-          ${d.tip ? `
-          <div class="tip-box">
-            <div class="tip-ico">💡</div>
-            <div><h5>Pro Tip</h5><p>${d.tip}</p></div>
-          </div>` : ''}
+    // Hyper-realistic leaf root node
+    mk(w,HUB.x,HUB.y,`
+      <div class="nd-root">
+        <svg class="leaf-svg" viewBox="0 0 170 195" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="lg1" cx="45%" cy="30%" r="65%">
+              <stop offset="0%" stop-color="#22c55e"/>
+              <stop offset="40%" stop-color="#16a34a"/>
+              <stop offset="100%" stop-color="#14532d"/>
+            </radialGradient>
+            <radialGradient id="lg2" cx="60%" cy="20%" r="50%">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.18)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+            </radialGradient>
+            <filter id="lf" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur in="SourceAlpha" stdDeviation="2.5"/>
+              <feOffset dx="0" dy="3"/>
+              <feComposite in2="SourceGraphic"/>
+            </filter>
+          </defs>
+          <!-- Main leaf shape -->
+          <path d="M 85 180 C 20 160, 5 120, 8 80 C 10 40, 40 10, 85 15 C 130 10, 160 40, 162 80 C 165 120, 150 160, 85 180 Z" fill="url(#lg1)" />
+          <!-- Sheen overlay -->
+          <path d="M 85 180 C 20 160, 5 120, 8 80 C 10 40, 40 10, 85 15 C 130 10, 160 40, 162 80 C 165 120, 150 160, 85 180 Z" fill="url(#lg2)" />
+          <!-- Central vein -->
+          <path d="M 85 175 Q 85 100 85 18" stroke="rgba(255,255,255,0.22)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- Side veins left -->
+          <path d="M 85 80 Q 55 65 30 55" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M 85 105 Q 50 92 22 88" stroke="rgba(255,255,255,0.10)" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+          <path d="M 85 130 Q 52 122 28 125" stroke="rgba(255,255,255,0.09)" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+          <path d="M 85 60 Q 62 48 45 38" stroke="rgba(255,255,255,0.1)" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+          <!-- Side veins right -->
+          <path d="M 85 80 Q 115 65 140 55" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M 85 105 Q 120 92 148 88" stroke="rgba(255,255,255,0.10)" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+          <path d="M 85 130 Q 118 122 142 125" stroke="rgba(255,255,255,0.09)" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+          <path d="M 85 60 Q 108 48 125 38" stroke="rgba(255,255,255,0.1)" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+          <!-- Stem -->
+          <path d="M 85 180 Q 86 192 85 195" stroke="#14532d" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M 85 180 Q 86 192 85 195" stroke="#22c55e" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.4"/>
+          <!-- Inner glow highlight -->
+          <ellipse cx="70" cy="55" rx="22" ry="30" fill="rgba(255,255,255,0.06)" transform="rotate(-15 70 55)"/>
+        </svg>
+        <div class="leaf-content">
+          <div class="leaf-ico">${d.icon}</div>
+          <div class="leaf-title">${d.title}</div>
         </div>
-      `;
-      document.getElementById('dtlPanel').classList.add('open');
-    }
+      </div>
+    `);
 
-    function closePanel() { document.getElementById('dtlPanel').classList.remove('open'); selLeaf=null; }
+    d.cats.forEach((cat,i)=>{
+      const cy=catStartY+i*catSpacingY,isOpen=!!openCats[cat.id];
+      vine(svg,HUB.x+55,HUB.y,catX-105,cy,isOpen?'a':'');
+      mk(w,catX,cy,`
+        <div class="nd-cat ${isOpen?'open':''}" onclick="toggleCat('${cat.id}')">
+          <div class="ci">${cat.icon}</div>
+          <div class="ct"><h4>${cat.title}</h4><p>${cat.desc}</p></div>
+          <svg class="cc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>`);
+      if(isOpen&&cat.kids){
+        const kidX=catX+308,kidSpacing=50,kidStartY=cy-((cat.kids.length-1)*kidSpacing)/2;
+        cat.kids.forEach((kid,ki)=>{
+          const ky=kidStartY+ki*kidSpacing,isSel=selLeaf===kid.id;
+          vine(svg,catX+107,cy,kidX-86,ky,'a',true);
+          mk(w,kidX,ky,`
+            <div class="nd-leaf ${isSel?'sel':''}" onclick="openPanel('${kid.id}','${kid.panel}')" style="animation-delay:${ki*0.055}s">
+              <div class="ld"></div><span>${kid.label}</span>
+              <svg class="lc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>`);
+        });
+      }
+    });
+  }
 
-    // Pan & Zoom
-    function setupPanZoom() {
-      const c = document.getElementById('treeCanvas');
-      c.addEventListener('mousedown', e => {
-        if (e.target.closest('.nd')) return;
-        drag = true; lm = {x:e.clientX, y:e.clientY}; c.style.cursor='grabbing';
-      });
-      window.addEventListener('mousemove', e => {
-        if (!drag) return;
-        px += e.clientX - lm.x; py += e.clientY - lm.y;
-        lm = {x:e.clientX, y:e.clientY}; applyTx();
-      });
-      window.addEventListener('mouseup', () => { drag=false; document.getElementById('treeCanvas').style.cursor='grab'; });
-      c.addEventListener('wheel', e => { e.preventDefault(); zoom(e.deltaY>0?-0.08:0.08); }, {passive:false});
-    }
+  function mk(container,x,y,html){
+    const el=document.createElement('div');el.className='nd';
+    el.style.left=x+'px';el.style.top=y+'px';el.innerHTML=html;container.appendChild(el);
+  }
 
-    function zoom(d) {
-      sc = Math.max(0.3, Math.min(2, sc+d));
-      document.getElementById('zLbl').textContent = Math.round(sc*100)+'%';
-      applyTx();
+  function vine(svg,x1,y1,x2,y2,cls,isSub){
+    const mx=(x1+x2)/2;
+    const dd=`M ${x1} ${y1} C ${mx} ${y1}, ${mx} ${y2}, ${x2} ${y2}`;
+    const p=ns('path');p.setAttribute('d',dd);p.setAttribute('class',(isSub?'vsub':'vine')+(cls?' '+cls:''));svg.appendChild(p);
+    if(cls){
+      const c=ns('circle');c.setAttribute('r',isSub?'2.2':'3');c.setAttribute('class','vp');
+      const a=ns('animateMotion');a.setAttribute('dur',isSub?'2.6s':'4s');a.setAttribute('repeatCount','indefinite');a.setAttribute('path',dd);
+      c.appendChild(a);svg.appendChild(c);
     }
+  }
+  function ns(tag){return document.createElementNS('http://www.w3.org/2000/svg',tag);}
 
-    function applyTx() {
-      document.getElementById('world').style.transform = `translate(${px}px,${py}px) scale(${sc})`;
-    }
+  function toggleCat(id){openCats[id]=!openCats[id];selLeaf=null;closePanel();renderTree();}
 
-    function resetPan() {
-      sc = 0.95; px = -180; py = -160;
-      document.getElementById('zLbl').textContent = Math.round(sc*100)+'%';
-      applyTx();
+  function openPanel(leafId,panelKey){
+    selLeaf=leafId;renderTree();
+    const d=getPanel(panelKey);
+    document.getElementById('panelBody').innerHTML=buildPanel(d);
+    document.getElementById('dtlPanel').classList.add('open');
+  }
+
+  function buildPanel(d){
+    let specs='';
+    if(d.specs){specs=d.specs.map(s=>`<div class="spec"><span class="spec-i">${s.i}</span><span class="spec-l">${s.l}</span><span class="spec-v">: ${s.v}</span></div>`).join('');}
+    let steps='';
+    if(d.steps){steps=`<div class="p-steps">`+d.steps.map((s,i)=>`<div class="step"><div class="step-n">${i+1}</div><span>${s}</span></div>`).join('')+`</div>`;}
+    let salTable='';
+    if(d.salaryData){
+      salTable=`<table class="sal-table"><thead><tr><th>Experience Level</th><th>Package (LPA)</th></tr></thead><tbody>`+
+        d.salaryData.map(r=>`<tr><td>${r.level}</td><td><strong>${r.range}</strong></td></tr>`).join('')+`</tbody></table>`;
     }
+    const video=d.videoTitle?`
+      <div class="p-video">
+        <div class="p-video-inner"><div class="p-video-ph"><div class="vi">🎬</div><div class="vt">Video Guide</div></div></div>
+        <div class="play-btn"></div>
+        <div class="vid-cap"><span>${d.videoTitle}</span><span class="vid-dur">${d.videoDur}</span></div>
+      </div>`:'';
+    return `
+      <div class="p-hero">
+        <h3>${d.title}</h3>
+        <p>${d.desc}</p>
+        ${d.salary?`<div class="sal-badge">💰 ${d.salary}</div>`:''}
+      </div>
+      ${video}
+      <div class="p-content">
+        ${specs?`<h4 class="p-stitle">${d.salaryData?'Salary Breakdown':d.steps?'Step-by-Step Guide':'Recommended Specs'}</h4>${specs||steps||salTable}`:
+          steps?`<h4 class="p-stitle">Learning Steps</h4>${steps}`:
+          salTable?`<h4 class="p-stitle">Salary Breakdown</h4>${salTable}`:''}
+        ${!specs&&steps?'':steps&&!specs?'':specs&&!steps&&!salTable?'':
+          d.salaryData&&!specs?`<h4 class="p-stitle">Salary Breakdown</h4>${salTable}`:''}
+        ${d.why?`<h4 class="p-sub">Why This Matters</h4><p class="p-text">${d.why}</p>`:''}
+        ${d.tip?`<div class="tip-box"><div class="tip-ico">💡</div><div><h5>Pro Tip</h5><p>${d.tip}</p></div></div>`:''}
+      </div>`;
+  }
+
+  function closePanel(){document.getElementById('dtlPanel').classList.remove('open');selLeaf=null;}
+
+  function setupPanZoom(){
+    const c=document.getElementById('treeCanvas');
+    c.addEventListener('mousedown',e=>{if(e.target.closest('.nd'))return;drag=true;lm={x:e.clientX,y:e.clientY};c.style.cursor='grabbing';});
+    window.addEventListener('mousemove',e=>{if(!drag)return;px+=e.clientX-lm.x;py+=e.clientY-lm.y;lm={x:e.clientX,y:e.clientY};applyTx();});
+    window.addEventListener('mouseup',()=>{drag=false;document.getElementById('treeCanvas').style.cursor='grab';});
+    c.addEventListener('wheel',e=>{e.preventDefault();zoom(e.deltaY>0?-0.08:0.08);},{passive:false});
+  }
+  function zoom(d){sc=Math.max(0.25,Math.min(2.2,sc+d));document.getElementById('zLbl').textContent=Math.round(sc*100)+'%';applyTx();}
+  function applyTx(){document.getElementById('world').style.transform=`translate(${px}px,${py}px) scale(${sc})`;}
+  function resetPan(){sc=0.95;px=-160;py=-140;document.getElementById('zLbl').textContent=Math.round(sc*100)+'%';applyTx();}
   </script>
 </body>
 </html>
