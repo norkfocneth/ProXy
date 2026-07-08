@@ -4,178 +4,504 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Founders — Proxy</title>
-  <meta name="description" content="Meet the founders of Proxy.">
+  <meta name="description" content="Meet the core hierarchy behind Proxy. Join our tree.">
   <link rel="stylesheet" href="../css/design-system.css?v=3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    /* Hide mobile menu overlay on desktop viewports */
+    /* Hide mobile menu overlay on desktop */
     @media (min-width: 769px) {
       .mobile-menu-overlay {
         display: none !important;
       }
     }
 
-    .founder-hero {
-      padding: calc(var(--navbar-height) + var(--space-4xl)) 0 var(--space-2xl);
-      text-align: center;
+    body, body.light-mode {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+      background: #f4f7f0 !important;
+      color: #1a2e1a !important;
+      overflow-x: hidden !important;
+      min-height: 100vh !important;
+      -webkit-font-smoothing: antialiased;
     }
-    .founder-hero h1 {
-      font-size: var(--font-size-5xl);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: var(--space-md);
+
+    :root {
+      --g50: #f0fdf4;
+      --g100: #dcfce7;
+      --g200: #bbf7d0;
+      --g300: #86efac;
+      --g400: #4ade80;
+      --g500: #22c55e;
+      --g600: #16a34a;
+      --g700: #15803d;
+      --g800: #166534;
+      --txt: #1a2e1a;
+      --txt2: #3d5c3d;
+      --txt3: #6b8f6b;
+      --card: rgba(255, 255, 255, 0.78);
+      --card-b: rgba(21, 128, 61, 0.07);
+      --sh-s: 0 4px 12px rgba(20, 83, 45, 0.04);
+      --sh-m: 0 12px 30px rgba(20, 83, 45, 0.06);
+      --sh-l: 0 20px 50px rgba(20, 83, 45, 0.08);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .founder-hero p {
-      font-size: var(--font-size-lg);
-      color: var(--text-secondary);
-      max-width: 520px;
-      margin: 0 auto;
+
+    /* Background Gradients */
+    .bg-glows {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: linear-gradient(165deg, #f4f7f0 0%, #eaf2e2 50%, #f0f6ea 100%);
     }
-    
-    .founder-container {
-      max-width: 600px;
-      margin: 0 auto var(--space-5xl);
-      padding: 0 1.25rem;
-      display: flex;
-      justify-content: center;
-      perspective: 1000px;
+    .bg-glows::before {
+      content: '';
+      position: absolute;
+      top: -10%;
+      left: 10%;
+      width: 50%;
+      height: 50%;
+      background: radial-gradient(circle, rgba(134, 239, 172, 0.15) 0%, transparent 70%);
+      filter: blur(80px);
     }
-    
-    .founder-card {
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--border-radius-2xl);
-      backdrop-filter: blur(var(--glass-blur));
-      -webkit-backdrop-filter: blur(var(--glass-blur));
-      padding: var(--space-2xl);
-      text-align: center;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
-      transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s ease, border-color 0.3s;
-      width: 100%;
-      max-width: 400px;
-      cursor: pointer;
+
+    /* Main Container */
+    .founder-page {
       position: relative;
-      overflow: hidden;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: calc(var(--navbar-height, 64px) + 3rem) 1.5rem 5rem;
+    }
+
+    .hero-section {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .hero-section h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--txt);
+      margin-bottom: 0.5rem;
+    }
+    .hero-section h1 span {
+      color: var(--g600);
+    }
+    .hero-section p {
+      font-size: 0.95rem;
+      color: var(--txt2);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Hierarchy Tree Wrapper */
+    .tree-wrapper {
+      position: relative;
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      transform-style: preserve-3d;
+      gap: 5rem; /* Gap between parent and children */
     }
 
-    .founder-card:hover {
-      box-shadow: 0 30px 60px rgba(124, 58, 237, 0.25), 0 0 40px rgba(124, 58, 237, 0.1);
-      border-color: rgba(124, 58, 237, 0.4);
+    /* Connection SVG */
+    .tree-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
     }
-    
-    .founder-avatar-wrapper {
+    .tree-line {
+      fill: none;
+      stroke: var(--g200);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      transition: stroke 0.3s ease;
+    }
+    .tree-line.active {
+      stroke: var(--g400);
+      stroke-width: 3;
+    }
+    .tree-particle {
+      fill: var(--g500);
+      filter: drop-shadow(0 0 4px var(--g400));
+    }
+
+    /* Rows */
+    .parent-row {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+    .children-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2.2rem;
+      width: 100%;
+    }
+
+    /* Card styling - Arnav Focneth (Parent) */
+    .parent-node {
+      background: var(--card);
+      backdrop-filter: blur(20px) saturate(1.5);
+      border: 1.5px solid var(--card-b);
+      border-radius: var(--border-radius-2xl);
+      padding: 2rem;
+      width: 100%;
+      max-width: 440px;
+      box-shadow: var(--sh-l);
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 1.5rem;
+      align-items: center;
+      transition: all 0.4s var(--ease);
       position: relative;
-      margin-bottom: var(--space-xl);
-      transform: translateZ(50px);
+    }
+    .parent-node:hover {
+      transform: translateY(-6px);
+      border-color: rgba(21, 128, 61, 0.18);
+      box-shadow: var(--sh-l), 0 0 25px rgba(34, 197, 94, 0.08);
     }
 
-    .founder-avatar {
-      width: 160px;
-      height: 160px;
-      border-radius: var(--border-radius-xl);
-      object-fit: cover;
-      border: 4px solid var(--glass-border);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-      background: var(--bg-secondary);
-      transition: transform 0.3s ease;
+    /* Video Player inside Parent Card */
+    .video-feed {
+      width: 140px;
+      height: 175px;
+      border-radius: 16px;
+      background: #111;
+      overflow: hidden;
+      position: relative;
+      border: 1.5px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
-
-    .founder-card:hover .founder-avatar {
-      transform: scale(1.05) translateZ(30px);
+    .video-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
-    
-    .founder-name {
-      font-size: 1.8rem;
+    .video-avatar {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1.5px solid white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      z-index: 2;
+    }
+    .video-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(220, 38, 38, 0.85);
+      color: white;
+      font-size: 0.6rem;
       font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--text-primary);
-      margin-bottom: 8px;
-      transform: translateZ(30px);
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      animation: pulseRed 2s infinite;
+      z-index: 2;
     }
-    
-    .founder-title {
-      font-size: var(--font-size-md);
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: var(--space-lg);
-      transform: translateZ(20px);
+    @keyframes pulseRed {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
     }
-    
-    .founder-desc {
-      font-size: var(--font-size-sm);
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-bottom: var(--space-xl);
-      max-width: 320px;
-      transform: translateZ(10px);
+    .video-controls {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      display: flex;
+      gap: 4px;
+      z-index: 2;
+    }
+    .control-dot {
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.6;
     }
 
-    .btn-linkedin {
+    .parent-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .parent-tag {
+      align-self: flex-start;
+      background: var(--g100);
+      color: var(--g800);
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.25rem 0.6rem;
+      border-radius: 20px;
+      border: 1px solid rgba(21, 128, 61, 0.08);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .parent-name {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--txt);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .parent-title {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--g700);
+    }
+    .parent-desc {
+      font-size: 0.76rem;
+      color: var(--txt2);
+      line-height: 1.5;
+      font-weight: 500;
+      margin-top: 0.2rem;
+    }
+    .parent-link {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      width: 100%;
-      padding: 0.85rem;
-      border-radius: 14px;
-      border: none;
-      background: var(--accent);
-      color: white;
-      font-family: inherit;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+      font-size: 0.74rem;
       font-weight: 700;
-      cursor: pointer;
+      color: var(--g700);
       text-decoration: none;
-      box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
-      transition: all 0.3s var(--ease-out);
-      transform: translateZ(40px);
+      transition: color 0.2s;
     }
-    
-    .btn-linkedin:hover {
-      background: var(--accent-hover);
-      box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
-      transform: translateZ(50px) scale(1.02);
+    .parent-link:hover {
+      color: var(--g500);
+    }
+    .parent-link svg {
+      width: 14px;
+      height: 14px;
     }
 
-    /* Mobile */
+    /* Card styling - Unknown/Open slots (Children) */
+    .child-node {
+      background: var(--card);
+      backdrop-filter: blur(18px) saturate(1.4);
+      border: 1.5px dashed rgba(21, 128, 61, 0.18);
+      border-radius: var(--border-radius-xl);
+      padding: 1.5rem;
+      width: 210px;
+      box-shadow: var(--sh-s);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: all 0.35s var(--ease);
+      position: relative;
+    }
+    .child-node:hover {
+      transform: translateY(-5px);
+      border-color: var(--g400);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: var(--sh-m);
+    }
+
+    .slot-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--g50);
+      border: 1.5px dashed rgba(21, 128, 61, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: var(--g600);
+      margin-bottom: 0.9rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .child-node:hover .slot-avatar {
+      background: var(--g100);
+      border-color: var(--g500);
+      transform: scale(1.05);
+    }
+    .plus-badge {
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--g600);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slot-role {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--txt);
+      margin-bottom: 0.2rem;
+      letter-spacing: -0.01em;
+    }
+    .slot-status {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--g700);
+      background: var(--g50);
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-bottom: 0.6rem;
+      text-transform: uppercase;
+    }
+    .slot-joke {
+      font-size: 0.7rem;
+      color: var(--txt3);
+      line-height: 1.45;
+      font-weight: 500;
+      flex-grow: 1;
+    }
+    .slot-apply {
+      margin-top: 0.9rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--g700);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .child-node:hover .slot-apply {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    /* Mobile adjustments */
     @media (max-width: 768px) {
-      .founder-hero {
-        padding: calc(var(--navbar-height) + var(--space-3xl)) 1.25rem var(--space-xl);
+      .tree-wrapper {
+        gap: 3rem;
       }
-      .founder-card {
-        padding: var(--space-xl);
+      .tree-svg {
+        display: none;
       }
-      .founder-avatar {
-        width: 140px;
-        height: 140px;
+      .parent-node {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+      }
+      .parent-tag {
+        align-self: center;
+      }
+      .children-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+      }
+      .child-node {
+        width: 100%;
+        max-width: 320px;
       }
     }
   </style>
 </head>
 <body class="light-mode">
-  <div class="page-content">
-    <div class="founder-hero">
-      <h1>The <span class="gradient-text">Founders</span></h1>
-      <p>The minds behind Proxy, dedicated to building the ultimate academic platform for IPU students.</p>
+  <div class="bg-glows"></div>
+
+  <div class="founder-page">
+    <div class="hero-section">
+      <h1>Meet the <span>Team</span></h1>
+      <p>Building the academic hub for IPU. Our core hierarchy represents a growing tree of educational tools and platforms.</p>
     </div>
-    
-    <div class="founder-container">
-      <a href="https://www.linkedin.com/in/%F0%9D%98%BC%F0%9D%99%A7%F0%9D%99%A3%F0%9D%99%96%F0%9D%99%AB-%F0%9D%99%9B%F0%9D%99%A4%F0%9D%99%98%F0%9D%99%A3%F0%9D%99%9A%F0%9D%99%A9%F0%9D%99%9D-51b022389?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="founder-card" target="_blank" style="text-decoration: none;">
-        <div class="founder-avatar-wrapper">
-          <img src="../images/founder_avatar.jpg" alt="Arnav Focneth" class="founder-avatar">
+
+    <div class="tree-wrapper">
+      <svg class="tree-svg" id="tree-connections"></svg>
+
+      <!-- Parent Node (Arnav Focneth) -->
+      <div class="parent-row">
+        <div class="parent-node">
+          <div class="video-feed">
+            <span class="video-badge">Live</span>
+            <canvas class="video-canvas" id="video-render-canvas"></canvas>
+            <img src="../images/founder_avatar.jpg" alt="Arnav Focneth" class="video-avatar">
+            <div class="video-controls">
+              <div class="control-dot"></div>
+              <div class="control-dot"></div>
+              <div class="control-dot"></div>
+            </div>
+          </div>
+          <div class="parent-info">
+            <span class="parent-tag">Root Founder</span>
+            <h2 class="parent-name">Arnav Focneth</h2>
+            <div class="parent-title">Founder & Chief Architect</div>
+            <p class="parent-desc">Designing, building, and optimizing digital educational systems to empower IPU engineering students with seamless resources.</p>
+            <a href="https://www.linkedin.com/in/%F0%9D%98%BC%F0%9D%99%A7%F0%9D%99%A3%F0%9D%99%96%F0%9D%99%AB-%F0%9D%99%9B%F0%9D%99%A4%F0%9D%99%98%F0%9D%99%A3%F0%9D%99%96%F0%9D%99%AB-51b022389?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="parent-link" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+              </svg>
+              Connect on LinkedIn
+            </a>
+          </div>
         </div>
-        <div class="founder-name">Arnav Focneth</div>
-        <div class="founder-title">Founder & Chief Architect</div>
-        <div class="founder-desc">Designing, building, and optimizing digital educational systems to empower IPU engineering students with seamless resources.</div>
-        <button class="btn-linkedin">
-          <svg style="width: 18px; height: 18px; fill: currentColor;" viewBox="0 0 24 24">
-            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-          </svg>
-          Connect on LinkedIn
-        </button>
-      </a>
+      </div>
+
+      <!-- Children Nodes (Open Roles) -->
+      <div class="children-row">
+        <!-- Card 1: Co-Founder -->
+        <div class="child-node">
+          <div class="slot-avatar">❓<div class="plus-badge">+</div></div>
+          <h3 class="slot-role">Co-Founder</h3>
+          <span class="slot-status">Open Slot</span>
+          <p class="slot-joke">Aise khali seat acchi nahi lagti, apply karo aur occupies karo! We are looking for someone to lead with us.</p>
+          <a href="#" class="slot-apply">Join us ➔</a>
+        </div>
+
+        <!-- Card 2: Notes Manager -->
+        <div class="child-node">
+          <div class="slot-avatar">📚<div class="plus-badge">+</div></div>
+          <h3 class="slot-role">Notes Manager</h3>
+          <span class="slot-status">Open Slot</span>
+          <p class="slot-joke">We have not appointed anyone yet. Join us or take the chance to manage our humongous database of syllabus notes!</p>
+          <a href="#" class="slot-apply">Join us ➔</a>
+        </div>
+
+        <!-- Card 3: PYQ Curator -->
+        <div class="child-node">
+          <div class="slot-avatar">📝<div class="plus-badge">+</div></div>
+          <h3 class="slot-role">PYQ Curator</h3>
+          <span class="slot-status">Open Slot</span>
+          <p class="slot-joke">No PYQ mastermind here yet. Do you love collecting previous year papers? Claim your spot in this hierarchy.</p>
+          <a href="#" class="slot-apply">Join us ➔</a>
+        </div>
+
+        <!-- Card 4: UI/UX Designer -->
+        <div class="child-node">
+          <div class="slot-avatar">🎨<div class="plus-badge">+</div></div>
+          <h3 class="slot-role">UI/UX Designer</h3>
+          <span class="slot-status">Open Slot</span>
+          <p class="slot-joke">Our canvas is empty. Join us to build gorgeous botanical dashboards and make users wow at first sight!</p>
+          <a href="#" class="slot-apply">Join us ➔</a>
+        </div>
+
+        <!-- Card 5: AI Specialist -->
+        <div class="child-node">
+          <div class="slot-avatar">🤖<div class="plus-badge">+</div></div>
+          <h3 class="slot-role">AI Engineer</h3>
+          <span class="slot-status">Open Slot</span>
+          <p class="slot-joke">Neural networks are waiting for an architect. Help us design intelligent student assistants and features.</p>
+          <a href="#" class="slot-apply">Join us ➔</a>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -185,27 +511,137 @@
       ProxyUI.injectNavbar('Founders');
       ProxyUI.injectBackgroundGlows();
 
-      // 3D Tilt Interaction
-      const card = document.querySelector('.founder-card');
-      const container = document.querySelector('.founder-container');
+      // Draw Connection Lines
+      function drawConnections() {
+        const svg = document.getElementById('tree-connections');
+        svg.innerHTML = '';
+        
+        const parent = document.querySelector('.parent-node');
+        const children = document.querySelectorAll('.child-node');
+        if(!parent || children.length === 0) return;
 
-      if (card && container) {
-        container.addEventListener('mousemove', (e) => {
-          const rect = container.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-          
-          // Max rotation angles (degrees)
-          const rX = (y / (rect.height / 2)) * -12;
-          const rY = (x / (rect.width / 2)) * 12;
-          
-          card.style.transform = `rotateY(${rY}deg) rotateX(${rX}deg) translateY(-8px)`;
-        });
+        const parentRect = parent.getBoundingClientRect();
+        const wrapperRect = document.querySelector('.tree-wrapper').getBoundingClientRect();
 
-        container.addEventListener('mouseleave', () => {
-          card.style.transform = `rotateY(0deg) rotateX(0deg) translateY(0)`;
+        // Parent Bottom Center (relative to wrapper)
+        const px = parentRect.left + parentRect.width / 2 - wrapperRect.left;
+        const py = parentRect.bottom - wrapperRect.top;
+
+        children.forEach((child, index) => {
+          const childRect = child.getBoundingClientRect();
+          // Child Top Center (relative to wrapper)
+          const cx = childRect.left + childRect.width / 2 - wrapperRect.left;
+          const cy = childRect.top - wrapperRect.top;
+
+          // Draw organic curved Bezier connector
+          const controlY = py + (cy - py) * 0.55;
+          const pathD = `M ${px} ${py} C ${px} ${controlY}, ${cx} ${controlY - 20}, ${cx} ${cy}`;
+
+          // Create SVG Path
+          const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          path.setAttribute('d', pathD);
+          path.setAttribute('class', 'tree-line');
+          svg.appendChild(path);
+
+          // Add animated flowing light particle
+          const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          circle.setAttribute('r', '2.5');
+          circle.setAttribute('class', 'tree-particle');
+          
+          const anim = document.createElementNS('http://www.w3.org/2000/svg', 'animateMotion');
+          anim.setAttribute('dur', `${3 + index * 0.5}s`);
+          anim.setAttribute('repeatCount', 'indefinite');
+          anim.setAttribute('path', pathD);
+          
+          circle.appendChild(anim);
+          svg.appendChild(circle);
         });
       }
+
+      // Initial draw and bind events
+      setTimeout(drawConnections, 100);
+      window.addEventListener('resize', drawConnections);
+
+      // Card hover effect updates connection lines
+      const childNodes = document.querySelectorAll('.child-node');
+      const lines = document.getElementsByClassName('tree-line');
+      childNodes.forEach((node, i) => {
+        node.addEventListener('mouseenter', () => {
+          if(lines[i]) lines[i].classList.add('active');
+        });
+        node.addEventListener('mouseleave', () => {
+          if(lines[i]) lines[i].classList.remove('active');
+        });
+      });
+
+      // Canvas Rendering Flow Animation
+      const canvas = document.getElementById('video-render-canvas');
+      const ctx = canvas.getContext('2d');
+      let animFrame;
+
+      function resizeCanvas() {
+        canvas.width = canvas.parentElement.clientWidth;
+        canvas.height = canvas.parentElement.clientHeight;
+      }
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+
+      let time = 0;
+      function drawWaves() {
+        ctx.fillStyle = 'rgba(10, 24, 14, 0.15)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Tech grid lines in background
+        ctx.strokeStyle = 'rgba(34, 197, 94, 0.08)';
+        ctx.lineWidth = 1;
+        for (let i = 0; i < canvas.width; i += 16) {
+          ctx.beginPath();
+          ctx.moveTo(i, 0);
+          ctx.lineTo(i, canvas.height);
+          ctx.stroke();
+        }
+        for (let j = 0; j < canvas.height; j += 16) {
+          ctx.beginPath();
+          ctx.moveTo(0, j);
+          ctx.lineTo(canvas.width, j);
+          ctx.stroke();
+        }
+
+        // Multiple sin waves simulating live digital data feed
+        ctx.strokeStyle = 'rgba(74, 222, 128, 0.7)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        for (let x = 0; x < canvas.width; x++) {
+          const y = canvas.height * 0.45 + Math.sin(x * 0.025 + time) * 16 + Math.cos(x * 0.015 - time * 0.4) * 8;
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+
+        ctx.strokeStyle = 'rgba(34, 197, 94, 0.35)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        for (let x = 0; x < canvas.width; x++) {
+          const y = canvas.height * 0.55 + Math.cos(x * 0.03 - time * 0.8) * 12 + Math.sin(x * 0.01 + time) * 6;
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+
+        // Particles moving along the stream
+        ctx.fillStyle = '#4ade80';
+        for (let i = 0; i < 4; i++) {
+          const px = (time * 40 + i * 50) % canvas.width;
+          const py = canvas.height * 0.45 + Math.sin(px * 0.025 + time) * 16 + Math.cos(px * 0.015 - time * 0.4) * 8;
+          ctx.beginPath();
+          ctx.arc(px, py, 3, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        time += 0.025;
+        animFrame = requestAnimationFrame(drawWaves);
+      }
+      drawWaves();
     });
   </script>
 </body>
