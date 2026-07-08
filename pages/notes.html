@@ -27,7 +27,7 @@
     .notes-hero p {
       font-size: var(--font-size-lg);
       color: var(--text-secondary);
-      max-width: 520px;
+      max-width: 580px;
       margin: 0 auto;
     }
     
@@ -67,6 +67,19 @@
       box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
     }
 
+    /* Toast animation styles */
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes slideDown {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(50px); opacity: 0; }
+    }
+
     /* Mobile */
     @media (max-width: 768px) {
       .notes-hero {
@@ -100,158 +113,190 @@
     </div>
     
     <div class="notes-filter-bar">
+      <!-- Dynamic Filter Buttons Populated via JS -->
       <button class="filter-btn active">All Subjects</button>
-      <button class="filter-btn">Computer Science</button>
-      <button class="filter-btn">Information Tech</button>
-      <button class="filter-btn">Electronics</button>
-      <button class="filter-btn">First Year Common</button>
     </div>
 
-    <!-- Notes Shelf Full View -->
+    <!-- Notes Shelf Dynamic View -->
     <div class="notes-shelf-container" style="max-width: 1300px; margin-bottom: var(--space-5xl);">
-      
-      <!-- Row 1: CS core -->
-      <div class="shelf-row">
-        <div class="notebook notebook--purple" style="height: 250px;">
-          <div class="notebook-spine">
-            <span class="spine-badge">Unit 1</span>
-            <span class="spine-title">Data Structures</span>
-            <span class="spine-code">BCS-301</span>
-          </div>
-        </div>
-        <div class="notebook notebook--purple" style="height: 220px;">
-          <div class="notebook-spine">
-            <span class="spine-badge">Unit 2</span>
-            <span class="spine-title">Linked Lists & Trees</span>
-            <span class="spine-code">BCS-301</span>
-          </div>
-        </div>
-        <div class="notebook notebook--purple" style="height: 200px; transform: rotate(-5deg); transform-origin: bottom left;">
-          <div class="notebook-spine">
-            <span class="spine-badge">Unit 3</span>
-            <span class="spine-title">Graphs & Hashing</span>
-            <span class="spine-code">BCS-301</span>
-          </div>
-        </div>
-        <div style="flex-grow: 1;"></div>
-        <div class="notebook notebook--blue" style="height: 260px;">
-          <div class="notebook-spine">
-            <span class="spine-badge">Vol I</span>
-            <span class="spine-title">Operating Systems</span>
-            <span class="spine-code">BCS-401</span>
-          </div>
-        </div>
-        <div class="notebook notebook--blue" style="height: 250px;">
-          <div class="notebook-spine">
-            <span class="spine-badge">Vol II</span>
-            <span class="spine-title">Memory Management</span>
-            <span class="spine-code">BCS-401</span>
-          </div>
-        </div>
-        <div class="notebook notebook--blue" style="height: 230px; transform: rotate(4deg); transform-origin: bottom right;">
-          <div class="notebook-spine">
-            <span class="spine-badge">Vol III</span>
-            <span class="spine-title">File Systems & IO</span>
-            <span class="spine-code">BCS-401</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Row 2: Networking & DB -->
-      <div class="shelf-row" style="margin-top: 2rem;">
-        <div class="notebook notebook--teal" style="height: 240px;">
-          <div class="notebook-spine">
-            <span class="spine-badge">Lec 1</span>
-            <span class="spine-title">Computer Networks</span>
-            <span class="spine-code">BCS-501</span>
-          </div>
-        </div>
-        <div class="notebook notebook--teal" style="height: 240px;">
-          <div class="notebook-spine">
-            <span class="spine-badge">Lec 2</span>
-            <span class="spine-title">TCP/IP Protocol</span>
-            <span class="spine-code">BCS-501</span>
-          </div>
-        </div>
-        <div class="notebook notebook--teal" style="height: 210px; transform: rotate(-3deg); transform-origin: bottom left;">
-          <div class="notebook-spine">
-            <span class="spine-badge">Lec 3</span>
-            <span class="spine-title">Network Security</span>
-            <span class="spine-code">BCS-501</span>
-          </div>
-        </div>
-        <div style="flex-grow: 1;"></div>
-        <div class="notebook notebook--rose" style="height: 210px; transform: rotate(3deg); transform-origin: bottom right;">
-          <div class="notebook-spine">
-            <span class="spine-badge">Qck</span>
-            <span class="spine-title">DBMS Revision</span>
-            <span class="spine-code">BCS-403</span>
-          </div>
-        </div>
-        <div class="notebook notebook--rose" style="height: 250px;">
-          <div class="notebook-spine">
-            <span class="spine-badge">Full</span>
-            <span class="spine-title">Database Mgmt</span>
-            <span class="spine-code">BCS-403</span>
-          </div>
-        </div>
-        <div class="notebook notebook--rose" style="height: 230px;">
-          <div class="notebook-spine">
-            <span class="spine-badge">Adv</span>
-            <span class="spine-title">Advanced SQL</span>
-            <span class="spine-code">BCS-403</span>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Row 3: First Year -->
-      <div class="shelf-row" style="margin-top: 2rem;">
-        <div class="notebook" style="height: 220px; background: #333;">
-          <div class="notebook-spine" style="background: linear-gradient(to right, #fb923c 0%, #f97316 15%, #ea580c 85%, #9a3412 100%);">
-            <span class="spine-badge">Ch 1</span>
-            <span class="spine-title">Applied Physics</span>
-            <span class="spine-code">BAS-101</span>
-          </div>
-        </div>
-        <div class="notebook" style="height: 220px; background: #333;">
-          <div class="notebook-spine" style="background: linear-gradient(to right, #fb923c 0%, #f97316 15%, #ea580c 85%, #9a3412 100%);">
-            <span class="spine-badge">Ch 2</span>
-            <span class="spine-title">Wave Optics</span>
-            <span class="spine-code">BAS-101</span>
-          </div>
-        </div>
-        <div style="flex-grow: 1;"></div>
-        <div class="notebook" style="height: 260px; background: #333;">
-          <div class="notebook-spine" style="background: linear-gradient(to right, #10b981 0%, #059669 15%, #047857 85%, #064e3b 100%);">
-            <span class="spine-badge">Math I</span>
-            <span class="spine-title">Engg Mathematics 1</span>
-            <span class="spine-code">BAS-103</span>
-          </div>
-        </div>
-        <div class="notebook" style="height: 260px; background: #333;">
-          <div class="notebook-spine" style="background: linear-gradient(to right, #10b981 0%, #059669 15%, #047857 85%, #064e3b 100%);">
-            <span class="spine-badge">Math II</span>
-            <span class="spine-title">Engg Mathematics 2</span>
-            <span class="spine-code">BAS-203</span>
-          </div>
-        </div>
-        <div class="notebook" style="height: 260px; background: #333;">
-          <div class="notebook-spine" style="background: linear-gradient(to right, #10b981 0%, #059669 15%, #047857 85%, #064e3b 100%);">
-            <span class="spine-badge">Math III</span>
-            <span class="spine-title">Engg Mathematics 3</span>
-            <span class="spine-code">BAS-303</span>
-          </div>
-        </div>
-      </div>
-      
+      <!-- Shelves and Notebooks will be populated dynamically -->
     </div>
   </div>
 
   <script src="../js/shared.js?v=3"></script>
+  <script src="../js/syllabus-engine.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       ProxyUI.injectNavbar('Notes');
       ProxyUI.injectBackgroundGlows();
+
+      // Read query parameters or fall back to localStorage
+      const urlParams = new URLSearchParams(window.location.search);
+      const branch = urlParams.get('branch') || localStorage.getItem('selectedBranch') || 'CSE';
+      const sem = parseInt(urlParams.get('sem') || localStorage.getItem('selectedSem') || '1');
+      const targetSubjectCode = urlParams.get('subject');
+
+      // Update Sub-heading description
+      const heroSub = document.querySelector('.notes-hero p');
+      if (heroSub) {
+        heroSub.innerHTML = `Curated premium notes for GGSIPU <strong>${branch}</strong> Branch, <strong>Semester ${sem}</strong>. Click any notebook to download.`;
+      }
+
+      // Fetch subjects data from shared database
+      const data = getSyllabusData(branch, sem);
+      if (!data) return;
+
+      const filterBar = document.querySelector('.notes-filter-bar');
+      const shelfContainer = document.querySelector('.notes-shelf-container');
+
+      if (filterBar && shelfContainer) {
+        // Clear static placeholder filters
+        filterBar.innerHTML = '';
+        shelfContainer.innerHTML = '';
+
+        // Add "All Subjects" button
+        const allBtn = document.createElement('button');
+        allBtn.className = `filter-btn ${!targetSubjectCode ? 'active' : ''}`;
+        allBtn.innerText = 'All Subjects';
+        allBtn.addEventListener('click', () => {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          allBtn.classList.add('active');
+          renderShelf(data.subjects);
+        });
+        filterBar.appendChild(allBtn);
+
+        // Add specific subject buttons
+        data.subjects.forEach(subject => {
+          const subBtn = document.createElement('button');
+          subBtn.className = `filter-btn ${targetSubjectCode === subject.code ? 'active' : ''}`;
+          subBtn.innerText = subject.title;
+          subBtn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            subBtn.classList.add('active');
+            renderShelf([subject]);
+          });
+          filterBar.appendChild(subBtn);
+        });
+
+        // Initialize Shelf Render based on query params
+        if (targetSubjectCode) {
+          const selectedSub = data.subjects.find(s => s.code === targetSubjectCode);
+          if (selectedSub) {
+            renderShelf([selectedSub]);
+          } else {
+            renderShelf(data.subjects);
+          }
+        } else {
+          renderShelf(data.subjects);
+        }
+      }
+
+      function renderShelf(subjects) {
+        shelfContainer.innerHTML = '';
+
+        // Group subjects in rows of 2 subjects
+        const subjectsPerRow = 2;
+        const colors = ['purple', 'blue', 'teal', 'rose'];
+
+        for (let i = 0; i < subjects.length; i += subjectsPerRow) {
+          const rowSubjects = subjects.slice(i, i + subjectsPerRow);
+          const rowDiv = document.createElement('div');
+          rowDiv.className = 'shelf-row';
+          if (i > 0) rowDiv.style.marginTop = '4rem';
+
+          rowSubjects.forEach((sub, subIdx) => {
+            const color = colors[(i + subIdx) % colors.length];
+
+            // Render 4 units as separate notebooks
+            sub.units.forEach((unit, unitIdx) => {
+              // Alternating heights and rotations for a realistic "shelf" feel
+              const heights = [250, 225, 245, 235];
+              const height = heights[unitIdx % heights.length];
+              const rotation = (unitIdx % 2 === 0) ? `rotate(${-unitIdx - 2}deg)` : `rotate(${unitIdx + 2}deg)`;
+
+              const notebook = document.createElement('div');
+              notebook.className = `notebook notebook--${color}`;
+              notebook.style.height = `${height}px`;
+              notebook.style.transform = rotation;
+              notebook.style.transformOrigin = 'bottom center';
+
+              notebook.innerHTML = `
+                <div class="notebook-spine">
+                  <span class="spine-badge">${unit.num}</span>
+                  <span class="spine-title">${sub.title}</span>
+                  <span class="spine-code">${sub.code}</span>
+                </div>
+              `;
+
+              // Click to show premium toast and trigger download
+              notebook.addEventListener('click', () => {
+                showDownloadAnimation(sub.title, unit.num, unit.topics);
+              });
+
+              rowDiv.appendChild(notebook);
+            });
+
+            // Add spacer between different subjects on the shelf
+            if (subIdx < rowSubjects.length - 1) {
+              const spacer = document.createElement('div');
+              spacer.style.flexGrow = '1';
+              rowDiv.appendChild(spacer);
+            }
+          });
+
+          shelfContainer.appendChild(rowDiv);
+        }
+      }
+
+      function showDownloadAnimation(subjectTitle, unitNum, topics) {
+        // Remove existing toast if present
+        const oldToast = document.getElementById('pdfToast');
+        if (oldToast) oldToast.remove();
+
+        const toast = document.createElement('div');
+        toast.id = 'pdfToast';
+        toast.style.position = 'fixed';
+        toast.style.bottom = '30px';
+        toast.style.right = '30px';
+        toast.style.background = 'var(--card-bg)';
+        toast.style.border = '1px solid var(--accent)';
+        toast.style.borderRadius = '16px';
+        toast.style.padding = '1.5rem 2rem';
+        toast.style.boxShadow = '0 20px 40px rgba(0,0,0,0.35)';
+        toast.style.zIndex = '1000';
+        toast.style.display = 'flex';
+        toast.style.flexDirection = 'column';
+        toast.style.gap = '0.5rem';
+        toast.style.maxWidth = '380px';
+        toast.style.backdropFilter = 'blur(12px)';
+        toast.style.animation = 'slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+
+        toast.innerHTML = `
+          <div style="display:flex; align-items:center; gap: 0.75rem;">
+            <div style="width:18px; height:18px; border:2px solid var(--accent); border-top-color:transparent; border-radius:50%; animation:spin 0.8s linear infinite;"></div>
+            <strong style="color:var(--text-primary); font-size:1rem;">Preparing PDF Download...</strong>
+          </div>
+          <span style="color:var(--text-secondary); font-size:0.85rem; font-weight:600;">${subjectTitle} — ${unitNum}</span>
+          <span style="color:var(--text-muted); font-size:0.75rem; display:block; margin-top:0.25rem;">Topics: ${topics.substring(0, 80)}...</span>
+        `;
+
+        document.body.appendChild(toast);
+
+        // Simulate file compilation and download completion
+        setTimeout(() => {
+          toast.innerHTML = `
+            <div style="display:flex; align-items:center; gap: 0.75rem;">
+              <span style="color:#10b981; font-weight:bold; font-size:1.2rem;">✓</span>
+              <strong style="color:var(--text-primary); font-size:1rem;">Download Started!</strong>
+            </div>
+            <span style="color:var(--text-secondary); font-size:0.85rem;">Saved file: ${subjectTitle.replace(/\s+/g, '_')}_${unitNum.replace(/\s+/g, '')}.pdf</span>
+          `;
+          setTimeout(() => {
+            toast.style.animation = 'slideDown 0.4s ease forwards';
+            setTimeout(() => toast.remove(), 400);
+          }, 3500);
+        }, 1800);
+      }
     });
   </script>
 </body>

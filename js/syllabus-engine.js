@@ -1158,8 +1158,34 @@ function getSyllabusData(branch, sem) {
 
 document.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('semesterSelector')) {
+    // Restore selection state from localStorage if exists
+    currentBranch = localStorage.getItem('selectedBranch') || 'CSE';
+    currentSemester = parseInt(localStorage.getItem('selectedSem') || '1');
+    
+    // Highlight the active branch pill
+    const activePill = document.querySelector(`.branch-pill[data-branch="${currentBranch}"]`);
+    if (activePill) {
+      document.querySelectorAll('.branch-pill').forEach(p => p.classList.remove('active'));
+      activePill.classList.add('active');
+    }
+    
+    // Highlight active semester pill in explorer
+    const activeSemPill = document.querySelector(`.sem-pill-btn[data-sem="${currentSemester}"]`);
+    if (activeSemPill) {
+      document.querySelectorAll('.sem-pill-btn').forEach(b => b.classList.remove('active'));
+      activeSemPill.classList.add('active');
+    }
+
+    // Highlight active semester card in finder
+    const activeSemCard = document.querySelector(`.sem-card-btn[data-sem="${currentSemester}"]`);
+    if (activeSemCard) {
+      document.querySelectorAll('.sem-card-btn').forEach(c => c.classList.remove('active'));
+      activeSemCard.classList.add('active');
+    }
+
     setupSemesterSelector();
     setupBranchSelection();
+    updateSyllabusHeader();
     renderSemester(); // default load
   }
 });
@@ -1174,6 +1200,7 @@ function setupSemesterSelector() {
       buttons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentSemester = parseInt(btn.dataset.sem);
+      localStorage.setItem('selectedSem', currentSemester);
       renderSemester();
     });
   });
@@ -1189,6 +1216,7 @@ function setupBranchSelection() {
       branchPills.forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
       currentBranch = pill.dataset.branch;
+      localStorage.setItem('selectedBranch', currentBranch);
       
       // Update main explorer titles
       updateSyllabusHeader();
@@ -1204,6 +1232,7 @@ function setupBranchSelection() {
       
       // Sync with active state in engine
       currentSemester = sem;
+      localStorage.setItem('selectedSem', currentSemester);
       
       // Sync semester tabs in explorer
       const mainSelector = document.getElementById('semesterSelector');
@@ -1300,11 +1329,11 @@ function renderSemester() {
           `).join('')}
         </div>
         <div class="unit-actions-row">
-          <a href="${basePrefix}notes.html" class="action-link">
+          <a href="${basePrefix}notes.html?branch=${currentBranch}&sem=${currentSemester}&subject=${subject.code}" class="action-link">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
             View Notes
           </a>
-          <a href="${basePrefix}pyqs.html" class="action-link">
+          <a href="${basePrefix}pyqs.html?branch=${currentBranch}&sem=${currentSemester}&subject=${subject.code}" class="action-link">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
             View PYQs
           </a>

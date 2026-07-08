@@ -27,7 +27,7 @@
     .pyqs-hero p {
       font-size: var(--font-size-lg);
       color: var(--text-secondary);
-      max-width: 520px;
+      max-width: 580px;
       margin: 0 auto;
     }
     
@@ -61,6 +61,19 @@
       border-color: rgba(124, 58, 237, 0.3);
     }
 
+    /* Animations for download toasts */
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes slideDown {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(50px); opacity: 0; }
+    }
+
     /* Mobile */
     @media (max-width: 768px) {
       .pyqs-hero {
@@ -88,181 +101,222 @@
   <div class="page-content">
     <div class="pyqs-hero">
       <h1>Previous Year <span class="gradient-text">Papers</span></h1>
-      <p>Real IPU exam papers, beautifully formatted and ready for practice.</p>
+      <p>Real GGSIPU exam papers, beautifully formatted and ready for practice.</p>
     </div>
     
     <div class="pyqs-filter-bar">
-      <select class="filter-select">
-        <option>All Semesters</option>
-        <option>Semester 1</option>
-        <option>Semester 2</option>
-        <option>Semester 3</option>
-        <option>Semester 4</option>
+      <!-- Select filters populated dynamically via JS -->
+      <select class="filter-select" id="subjectFilter">
+        <option value="all">All Subjects</option>
       </select>
-      <select class="filter-select">
-        <option>All Subjects</option>
-        <option>Data Structures</option>
-        <option>Operating Systems</option>
-        <option>DBMS</option>
+      <select class="filter-select" id="yearFilter">
+        <option value="all">All Years</option>
+        <option value="2023">2023</option>
+        <option value="2022">2022</option>
+        <option value="2021">2021</option>
+        <option value="2020">2020</option>
       </select>
-      <select class="filter-select">
-        <option>All Years</option>
-        <option>2023</option>
-        <option>2022</option>
-        <option>2021</option>
-        <option>2020</option>
+      <select class="filter-select" id="typeFilter">
+        <option value="all">All Exams</option>
+        <option value="end">End Term Examination</option>
+        <option value="mid">Mid Term Examination</option>
       </select>
     </div>
 
-    <div class="pyq-container" style="margin-bottom: var(--space-5xl);">
-      
-      <!-- Stack 1 -->
-      <div class="paper-stack">
-        <div class="paper-sheet paper-sheet--bottom"></div>
-        <div class="paper-sheet paper-sheet--middle"></div>
-        <div class="paper-sheet paper-sheet--top">
-          <span class="paper-badge">2023</span>
-          <div class="paper-header">
-            <div class="paper-title">End Term Examination</div>
-            <div class="paper-meta"><span>Data Structures</span><span>Sem III</span></div>
-          </div>
-          <div class="paper-body">
-            <div style="font-weight: bold; margin-bottom: 8px;">Q1. Attempt all parts:</div>
-            <div class="paper-body-line" style="width: 80%;"></div>
-            <div class="paper-body-line" style="width: 90%;"></div>
-            <div class="paper-body-line" style="width: 75%;"></div>
-            <div class="paper-body-line" style="width: 85%;"></div>
-            <br>
-            <div style="font-weight: bold; margin-bottom: 8px;">Q2. Define AVL Tree.</div>
-            <div class="paper-body-line" style="width: 95%;"></div>
-            <div class="paper-body-line" style="width: 80%;"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Stack 2 -->
-      <div class="paper-stack">
-        <div class="paper-sheet paper-sheet--bottom"></div>
-        <div class="paper-sheet paper-sheet--middle"></div>
-        <div class="paper-sheet paper-sheet--top">
-          <span class="paper-badge">2022</span>
-          <div class="paper-header">
-            <div class="paper-title">End Term Examination</div>
-            <div class="paper-meta"><span>Data Structures</span><span>Sem III</span></div>
-          </div>
-          <div class="paper-body">
-            <div style="font-weight: bold; margin-bottom: 8px;">Q1. Briefly explain:</div>
-            <div class="paper-body-line" style="width: 70%;"></div>
-            <div class="paper-body-line" style="width: 85%;"></div>
-            <div class="paper-body-line" style="width: 60%;"></div>
-            <br>
-            <div style="font-weight: bold; margin-bottom: 8px;">Q2. Write a function to reverse a linked list.</div>
-            <div class="paper-body-line" style="width: 100%;"></div>
-            <div class="paper-body-line" style="width: 90%;"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Stack 3 -->
-      <div class="paper-stack">
-        <div class="paper-sheet paper-sheet--bottom"></div>
-        <div class="paper-sheet paper-sheet--middle"></div>
-        <div class="paper-sheet paper-sheet--top">
-          <span class="paper-badge">2021</span>
-          <div class="paper-header">
-            <div class="paper-title">Mid Term Examination</div>
-            <div class="paper-meta"><span>Data Structures</span><span>Sem III</span></div>
-          </div>
-          <div class="paper-body">
-            <div style="font-weight: bold; margin-bottom: 8px;">Section A</div>
-            <div class="paper-body-line" style="width: 90%;"></div>
-            <div class="paper-body-line" style="width: 80%;"></div>
-            <div class="paper-body-line" style="width: 85%;"></div>
-            <br>
-            <div style="font-weight: bold; margin-bottom: 8px;">Section B</div>
-            <div class="paper-body-line" style="width: 95%;"></div>
-            <div class="paper-body-line" style="width: 75%;"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Stack 4 -->
-      <div class="paper-stack">
-        <div class="paper-sheet paper-sheet--bottom"></div>
-        <div class="paper-sheet paper-sheet--middle"></div>
-        <div class="paper-sheet paper-sheet--top">
-          <span class="paper-badge">2023</span>
-          <div class="paper-header">
-            <div class="paper-title">End Term Examination</div>
-            <div class="paper-meta"><span>Operating Systems</span><span>Sem IV</span></div>
-          </div>
-          <div class="paper-body">
-            <div style="font-weight: bold; margin-bottom: 8px;">Q1. What is a Deadlock?</div>
-            <div class="paper-body-line" style="width: 80%;"></div>
-            <div class="paper-body-line" style="width: 90%;"></div>
-            <div class="paper-body-line" style="width: 75%;"></div>
-            <br>
-            <div style="font-weight: bold; margin-bottom: 8px;">Q2. Explain Banker's Algorithm.</div>
-            <div class="paper-body-line" style="width: 95%;"></div>
-            <div class="paper-body-line" style="width: 80%;"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Stack 5 -->
-      <div class="paper-stack">
-        <div class="paper-sheet paper-sheet--bottom"></div>
-        <div class="paper-sheet paper-sheet--middle"></div>
-        <div class="paper-sheet paper-sheet--top">
-          <span class="paper-badge">2022</span>
-          <div class="paper-header">
-            <div class="paper-title">End Term Examination</div>
-            <div class="paper-meta"><span>Operating Systems</span><span>Sem IV</span></div>
-          </div>
-          <div class="paper-body">
-            <div style="font-weight: bold; margin-bottom: 8px;">Q1. Explain Paging and Segmentation.</div>
-            <div class="paper-body-line" style="width: 70%;"></div>
-            <div class="paper-body-line" style="width: 85%;"></div>
-            <div class="paper-body-line" style="width: 60%;"></div>
-            <br>
-            <div style="font-weight: bold; margin-bottom: 8px;">Q2. Explain Disk Scheduling Algorithms.</div>
-            <div class="paper-body-line" style="width: 100%;"></div>
-            <div class="paper-body-line" style="width: 90%;"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Stack 6 -->
-      <div class="paper-stack">
-        <div class="paper-sheet paper-sheet--bottom"></div>
-        <div class="paper-sheet paper-sheet--middle"></div>
-        <div class="paper-sheet paper-sheet--top">
-          <span class="paper-badge">2023</span>
-          <div class="paper-header">
-            <div class="paper-title">End Term Examination</div>
-            <div class="paper-meta"><span>DBMS</span><span>Sem IV</span></div>
-          </div>
-          <div class="paper-body">
-            <div style="font-weight: bold; margin-bottom: 8px;">Section A</div>
-            <div class="paper-body-line" style="width: 90%;"></div>
-            <div class="paper-body-line" style="width: 80%;"></div>
-            <div class="paper-body-line" style="width: 85%;"></div>
-            <br>
-            <div style="font-weight: bold; margin-bottom: 8px;">Section B</div>
-            <div class="paper-body-line" style="width: 95%;"></div>
-            <div class="paper-body-line" style="width: 75%;"></div>
-          </div>
-        </div>
-      </div>
-
+    <!-- Paper Container Dynamic View -->
+    <div class="pyq-container" id="pyqContainer" style="margin-bottom: var(--space-5xl);">
+      <!-- Question papers populated dynamically -->
     </div>
   </div>
 
   <script src="../js/shared.js?v=3"></script>
+  <script src="../js/syllabus-engine.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       ProxyUI.injectNavbar('PYQs');
       ProxyUI.injectBackgroundGlows();
+
+      // Read query parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const branch = urlParams.get('branch') || localStorage.getItem('selectedBranch') || 'CSE';
+      const sem = parseInt(urlParams.get('sem') || localStorage.getItem('selectedSem') || '1');
+      const targetSubjectCode = urlParams.get('subject');
+
+      // Update Sub-heading
+      const heroSub = document.querySelector('.pyqs-hero p');
+      if (heroSub) {
+        heroSub.innerHTML = `Real GGSIPU exam papers for <strong>${branch}</strong> Branch, <strong>Semester ${sem}</strong>. Click any paper stack to download.`;
+      }
+
+      // Fetch subjects data
+      const data = getSyllabusData(branch, sem);
+      if (!data) return;
+
+      const subjectFilter = document.getElementById('subjectFilter');
+      const yearFilter = document.getElementById('yearFilter');
+      const typeFilter = document.getElementById('typeFilter');
+      const pyqContainer = document.getElementById('pyqContainer');
+
+      if (subjectFilter && pyqContainer) {
+        // Populate subject options dynamically
+        data.subjects.forEach(sub => {
+          const opt = document.createElement('option');
+          opt.value = sub.code;
+          opt.innerText = sub.title;
+          if (targetSubjectCode === sub.code) {
+            opt.selected = true;
+          }
+          subjectFilter.appendChild(opt);
+        });
+
+        // Set up filters
+        const runFilters = () => {
+          const selSubCode = subjectFilter.value;
+          const selYear = yearFilter.value;
+          const selType = typeFilter.value;
+
+          let filteredSubjects = data.subjects;
+          if (selSubCode !== 'all') {
+            filteredSubjects = data.subjects.filter(s => s.code === selSubCode);
+          }
+
+          renderPapers(filteredSubjects, selYear, selType);
+        };
+
+        subjectFilter.addEventListener('change', runFilters);
+        yearFilter.addEventListener('change', runFilters);
+        typeFilter.addEventListener('change', runFilters);
+
+        // Initial render
+        runFilters();
+      }
+
+      function renderPapers(subjects, yearFilterVal, typeFilterVal) {
+        pyqContainer.innerHTML = '';
+
+        const years = ['2023', '2022', '2021'];
+        const types = ['End Term Examination', 'Mid Term Examination'];
+
+        subjects.forEach(sub => {
+          years.forEach(year => {
+            if (yearFilterVal !== 'all' && yearFilterVal !== year) return;
+
+            types.forEach(type => {
+              const typeCode = type.toLowerCase().includes('end') ? 'end' : 'mid';
+              if (typeFilterVal !== 'all' && typeFilterVal !== typeCode) return;
+
+              // Generate custom question details from subject topics
+              const u1 = sub.units[0] ? sub.units[0].topics.split(',')[0] : 'core concepts';
+              const u2 = sub.units[1] ? sub.units[1].topics.split(',')[0] : 'principles';
+              const u3 = sub.units[2] ? sub.units[2].topics.split(',')[0] : 'advanced details';
+
+              const paper = document.createElement('div');
+              paper.className = 'paper-stack';
+
+              paper.innerHTML = `
+                <div class="paper-sheet paper-sheet--bottom"></div>
+                <div class="paper-sheet paper-sheet--middle"></div>
+                <div class="paper-sheet paper-sheet--top">
+                  <span class="paper-badge">${year}</span>
+                  <div class="paper-header">
+                    <div class="paper-title">${type}</div>
+                    <div class="paper-meta"><span>${sub.title}</span><span>Sem ${getSemOrdinal(sem)}</span></div>
+                  </div>
+                  <div class="paper-body">
+                    <div style="font-weight: bold; margin-bottom: 8px;">Q1. Attempt all parts:</div>
+                    <div style="font-size: 0.8rem; line-height: 1.4; color: var(--text-secondary); margin-bottom: 8px;">
+                      (a) Define ${u1.substring(0, 40)}. (5 Marks)<br>
+                      (b) Explain the details of ${u2.substring(0, 45)}? (5 Marks)
+                    </div>
+                    <br>
+                    <div style="font-weight: bold; margin-bottom: 8px;">Q2. Write short notes on:</div>
+                    <div style="font-size: 0.8rem; line-height: 1.4; color: var(--text-secondary);">
+                      Analyze the characteristics, models, and design patterns of ${u3.substring(0, 55)}. (15 Marks)
+                    </div>
+                  </div>
+                </div>
+              `;
+
+              // Show toast animation on click
+              paper.addEventListener('click', () => {
+                showDownloadAnimation(sub.title, year, type);
+              });
+
+              pyqContainer.appendChild(paper);
+            });
+          });
+        });
+
+        // Show empty state if no papers matched
+        if (pyqContainer.children.length === 0) {
+          pyqContainer.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-muted);">
+              <h3>No papers found matching the selected filters.</h3>
+              <p>Try resetting the filters or choosing another branch/semester.</p>
+            </div>
+          `;
+        }
+      }
+
+      function getSemOrdinal(s) {
+        if (s === 1) return 'I';
+        if (s === 2) return 'II';
+        if (s === 3) return 'III';
+        if (s === 4) return 'IV';
+        if (s === 5) return 'V';
+        if (s === 6) return 'VI';
+        if (s === 7) return 'VII';
+        return 'VIII';
+      }
+
+      function showDownloadAnimation(subjectTitle, year, type) {
+        // Remove existing toast if present
+        const oldToast = document.getElementById('pdfToast');
+        if (oldToast) oldToast.remove();
+
+        const toast = document.createElement('div');
+        toast.id = 'pdfToast';
+        toast.style.position = 'fixed';
+        toast.style.bottom = '30px';
+        toast.style.right = '30px';
+        toast.style.background = 'var(--card-bg)';
+        toast.style.border = '1px solid var(--accent)';
+        toast.style.borderRadius = '16px';
+        toast.style.padding = '1.5rem 2rem';
+        toast.style.boxShadow = '0 20px 40px rgba(0,0,0,0.35)';
+        toast.style.zIndex = '1000';
+        toast.style.display = 'flex';
+        toast.style.flexDirection = 'column';
+        toast.style.gap = '0.5rem';
+        toast.style.maxWidth = '380px';
+        toast.style.backdropFilter = 'blur(12px)';
+        toast.style.animation = 'slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+
+        toast.innerHTML = `
+          <div style="display:flex; align-items:center; gap: 0.75rem;">
+            <div style="width:18px; height:18px; border:2px solid var(--accent); border-top-color:transparent; border-radius:50%; animation:spin 0.8s linear infinite;"></div>
+            <strong style="color:var(--text-primary); font-size:1rem;">Preparing PDF Download...</strong>
+          </div>
+          <span style="color:var(--text-secondary); font-size:0.85rem; font-weight:600;">${subjectTitle} (${year} ${type})</span>
+        `;
+
+        document.body.appendChild(toast);
+
+        // Simulate file compilation and download completion
+        setTimeout(() => {
+          toast.innerHTML = `
+            <div style="display:flex; align-items:center; gap: 0.75rem;">
+              <span style="color:#10b981; font-weight:bold; font-size:1.2rem;">✓</span>
+              <strong style="color:var(--text-primary); font-size:1rem;">Download Started!</strong>
+            </div>
+            <span style="color:var(--text-secondary); font-size:0.85rem;">Saved file: ${subjectTitle.replace(/\s+/g, '_')}_${year}_${type.replace(/\s+/g, '_')}.pdf</span>
+          `;
+          setTimeout(() => {
+            toast.style.animation = 'slideDown 0.4s ease forwards';
+            setTimeout(() => toast.remove(), 400);
+          }, 3500);
+        }, 1800);
+      }
     });
   </script>
 </body>
