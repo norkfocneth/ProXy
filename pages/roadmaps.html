@@ -3,1185 +3,816 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Roadmaps — Proxy</title>
-  <meta name="description" content="Interactive career roadmaps for IPU students — Web Dev, Android, AI/ML, Cloud, Cybersecurity, Data Science.">
+  <title>Career Tree — Proxy</title>
+  <meta name="description" content="Interactive career tree for IPU students. Choose your path and grow organically.">
   <link rel="stylesheet" href="../css/design-system.css?v=3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    /* Hide mobile menu overlay on desktop viewports */
-    @media (min-width: 769px) {
-      .mobile-menu-overlay {
-        display: none !important;
-      }
+    /* ── Hide mobile menu on desktop ── */
+    @media (min-width: 769px) { .mobile-menu-overlay { display: none !important; } }
+
+    /* ── Reset & Override Body ── */
+    body, body.light-mode {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+      background: #f6f8f3 !important;
+      color: #1a2e1a !important;
+      overflow: hidden !important;
+      height: 100vh !important;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ── Hero ── */
-    .roadmap-hero {
-      padding: calc(var(--navbar-height) + var(--space-4xl)) 0 var(--space-2xl);
-      text-align: center;
-    }
-    .roadmap-hero h1 {
-      font-size: var(--font-size-5xl);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-bottom: var(--space-md);
-    }
-    .roadmap-hero p {
-      font-size: var(--font-size-lg);
-      color: var(--text-secondary);
-      max-width: 560px;
-      margin: 0 auto;
+    .page-content { display: none !important; }
+
+    /* ── CSS Variables ── */
+    :root {
+      --g50: #f0fdf4; --g100: #dcfce7; --g200: #bbf7d0; --g300: #86efac;
+      --g400: #4ade80; --g500: #22c55e; --g600: #16a34a; --g700: #15803d;
+      --g800: #166534; --g900: #14532d;
+      --txt: #1a2e1a; --txt2: #4a6a4a; --txt3: #7a9a7a;
+      --card: rgba(255,255,255,0.78); --card-b: rgba(21,128,61,0.06);
+      --sh-s: 0 2px 8px rgba(20,83,45,0.04), 0 1px 3px rgba(20,83,45,0.06);
+      --sh-m: 0 4px 16px rgba(20,83,45,0.06), 0 2px 6px rgba(20,83,45,0.04);
+      --sh-l: 0 12px 40px rgba(20,83,45,0.08), 0 4px 12px rgba(20,83,45,0.04);
+      --sh-p: 0 20px 60px rgba(20,83,45,0.12), 0 8px 20px rgba(20,83,45,0.06);
+      --r-s: 10px; --r-m: 14px; --r-l: 20px; --r-xl: 24px;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    /* ── Timeline Container ── */
-    .roadmap-timeline {
-      max-width: 780px;
-      margin: 0 auto var(--space-5xl);
-      padding: 0 6%;
-      position: relative;
+    /* ── Ambient Background ── */
+    .tree-bg {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background: linear-gradient(165deg, #f6f8f3 0%, #eef5e8 40%, #f2f7ee 100%);
+    }
+    .tree-bg::before {
+      content: ''; position: absolute; top: -15%; left: -10%; width: 65%; height: 65%;
+      background: radial-gradient(circle, rgba(187,247,208,0.22) 0%, transparent 70%);
+      filter: blur(80px);
+    }
+    .tree-bg::after {
+      content: ''; position: absolute; bottom: -8%; right: -5%; width: 45%; height: 45%;
+      background: radial-gradient(circle, rgba(134,239,172,0.1) 0%, transparent 60%);
+      filter: blur(90px);
     }
 
-    /* ── The Vertical Line ── */
-    .timeline-track {
-      position: absolute;
-      left: 32px;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: linear-gradient(to bottom,
-        transparent 0%,
-        rgba(124, 58, 237, 0.15) 5%,
-        rgba(124, 58, 237, 0.25) 50%,
-        rgba(124, 58, 237, 0.15) 95%,
-        transparent 100%
-      );
-      border-radius: 2px;
+    /* Floating spores */
+    .spore {
+      position: fixed; border-radius: 50%; pointer-events: none; z-index: 1;
+      animation: sporeFloat linear infinite;
+    }
+    @keyframes sporeFloat {
+      0% { transform: translateY(105vh) rotate(0deg) scale(0.8); opacity: 0; }
+      8% { opacity: 0.35; }
+      92% { opacity: 0.25; }
+      100% { transform: translateY(-8vh) rotate(360deg) scale(1.1); opacity: 0; }
     }
 
-    /* Animated glow pulse on the track */
-    .timeline-track::after {
-      content: '';
-      position: absolute;
-      left: -2px;
-      width: 7px;
-      height: 80px;
-      background: linear-gradient(to bottom, transparent, var(--accent), transparent);
-      border-radius: 4px;
-      animation: trackPulse 4s ease-in-out infinite;
-      opacity: 0.5;
-    }
-
-    @keyframes trackPulse {
-      0%, 100% { top: 0%; opacity: 0; }
-      10% { opacity: 0.6; }
-      90% { opacity: 0.6; }
-      50% { top: calc(100% - 80px); }
-    }
-
-    /* ── Profession Node ── */
-    .profession-node {
-      position: relative;
-      padding-left: 68px;
-      margin-bottom: var(--space-xl);
-    }
-
-    /* ── Timeline Dot ── */
-    .timeline-dot {
-      position: absolute;
-      left: 22px;
-      top: 24px;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: var(--bg-primary);
-      border: 3px solid rgba(124, 58, 237, 0.3);
+    /* ── Layout: Sidebar + Canvas ── */
+    .tree-layout {
+      position: fixed; inset: 0; top: var(--navbar-height, 64px);
+      display: grid; grid-template-columns: 260px 1fr;
       z-index: 2;
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      cursor: pointer;
     }
 
-    .timeline-dot::after {
-      content: '';
-      position: absolute;
-      inset: 3px;
+    /* ── Sidebar ── */
+    .tree-sidebar {
+      background: rgba(255,255,255,0.52);
+      backdrop-filter: blur(24px) saturate(1.5);
+      border-right: 1px solid rgba(21,128,61,0.05);
+      padding: 1.75rem 1.15rem;
+      display: flex; flex-direction: column; gap: 0.4rem;
+      overflow-y: auto;
+    }
+    .tree-sidebar::-webkit-scrollbar { width: 3px; }
+    .tree-sidebar::-webkit-scrollbar-thumb { background: rgba(21,128,61,0.1); border-radius: 3px; }
+
+    .sb-hd { margin-bottom: 1.5rem; padding: 0 0.2rem; }
+    .sb-hd h1 { font-size: 1.5rem; font-weight: 900; letter-spacing: -0.03em; color: var(--txt); }
+    .sb-hd h1 span { font-weight: 400; color: var(--txt2); }
+    .sb-hd p { font-size: 0.78rem; color: var(--txt3); margin-top: 0.3rem; font-weight: 500; }
+
+    .sb-list { display: flex; flex-direction: column; gap: 0.3rem; flex: 1; }
+
+    .sb-btn {
+      display: flex; align-items: center; gap: 0.8rem;
+      padding: 0.78rem 0.9rem; border: 1.5px solid transparent;
+      border-radius: var(--r-m); background: transparent; cursor: pointer;
+      font-family: inherit; text-align: left;
+      transition: all 0.3s var(--ease); position: relative;
+    }
+    .sb-btn:hover { background: rgba(22,163,74,0.03); border-color: rgba(21,128,61,0.06); }
+    .sb-btn.active {
+      background: var(--g50); border-color: rgba(21,128,61,0.12);
+      box-shadow: var(--sh-s);
+    }
+
+    .sb-ico {
+      width: 40px; height: 40px; border-radius: var(--r-s);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem; flex-shrink: 0; background: var(--g100);
+      transition: all 0.3s ease;
+    }
+    .sb-btn.active .sb-ico {
+      background: var(--g700); box-shadow: 0 4px 12px rgba(21,128,61,0.2);
+    }
+
+    .sb-txt h3 { font-size: 0.85rem; font-weight: 700; color: var(--txt); line-height: 1.2; }
+    .sb-txt p { font-size: 0.7rem; color: var(--txt3); font-weight: 500; margin-top: 1px; }
+
+    .sb-chev {
+      margin-left: auto; width: 16px; height: 16px; color: var(--txt3);
+      opacity: 0; transition: opacity 0.2s ease;
+    }
+    .sb-btn:hover .sb-chev, .sb-btn.active .sb-chev { opacity: 1; color: var(--g600); }
+
+    /* Zoom Controls */
+    .sb-zoom {
+      margin-top: auto; padding-top: 1rem;
+      border-top: 1px solid rgba(21,128,61,0.05);
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .z-btn {
+      width: 30px; height: 30px; border-radius: 8px;
+      border: 1px solid rgba(21,128,61,0.08); background: white;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 0.85rem; color: var(--txt2);
+      font-family: inherit; font-weight: 700;
+      transition: all 0.2s ease;
+    }
+    .z-btn:hover { border-color: var(--g400); color: var(--g700); }
+    .z-lbl { font-size: 0.75rem; font-weight: 600; color: var(--txt3); min-width: 38px; text-align: center; }
+
+    /* ── Canvas Area ── */
+    .tree-canvas { position: relative; overflow: hidden; cursor: grab; background: transparent; }
+    .tree-canvas:active { cursor: grabbing; }
+
+    .canvas-world {
+      position: absolute; width: 4000px; height: 3000px;
+      transform-origin: 0 0;
+    }
+
+    /* ── SVG Lines ── */
+    .tree-svg {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 1;
+    }
+    .vine {
+      fill: none; stroke: var(--g200); stroke-width: 2.5; stroke-linecap: round;
+    }
+    .vine.a { stroke: var(--g300); stroke-width: 2.8; filter: drop-shadow(0 0 3px rgba(34,197,94,0.1)); }
+    .vsub { fill: none; stroke: var(--g200); stroke-width: 2; stroke-linecap: round; }
+    .vsub.a { stroke: var(--g300); stroke-width: 2.2; }
+    .vleaf { fill: none; stroke: rgba(21,128,61,0.08); stroke-width: 1.5; stroke-linecap: round; stroke-dasharray: 5 4; }
+    .vleaf.a { stroke: var(--g200); stroke-dasharray: none; stroke-width: 1.8; }
+    .vp { fill: var(--g400); opacity: 0.5; }
+
+    /* ── Tree Nodes ── */
+    .nd { position: absolute; z-index: 5; cursor: pointer; }
+
+    /* Root Hub */
+    .nd-root {
+      width: 150px; height: 150px; border-radius: 50%;
+      background: linear-gradient(145deg, var(--g700) 0%, var(--g800) 100%);
+      border: 3px solid var(--g600);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      box-shadow: 0 0 0 7px rgba(22,163,74,0.07), 0 0 0 18px rgba(22,163,74,0.025), var(--sh-l);
+      text-align: center; color: white;
+      animation: hubPulse 4.5s ease-in-out infinite;
+      transform: translate(-50%, -50%);
+    }
+    @keyframes hubPulse {
+      0%, 100% { box-shadow: 0 0 0 7px rgba(22,163,74,0.07), 0 0 0 18px rgba(22,163,74,0.025), var(--sh-l); }
+      50% { box-shadow: 0 0 0 10px rgba(22,163,74,0.1), 0 0 0 24px rgba(22,163,74,0.04), var(--sh-l); }
+    }
+    .nd-root .ri { font-size: 2rem; margin-bottom: 0.2rem; }
+    .nd-root h2 { font-size: 0.82rem; font-weight: 800; letter-spacing: -0.01em; line-height: 1.2; }
+
+    /* Category Cards */
+    .nd-cat {
+      background: var(--card); backdrop-filter: blur(20px) saturate(1.6);
+      border: 1.5px solid var(--card-b); border-radius: var(--r-l);
+      padding: 0.9rem 1.15rem; display: flex; align-items: center; gap: 0.7rem;
+      box-shadow: var(--sh-s); min-width: 205px;
+      transition: all 0.3s var(--ease); user-select: none;
+      transform: translate(-50%, -50%);
+    }
+    .nd-cat:hover { border-color: rgba(21,128,61,0.16); box-shadow: var(--sh-m); }
+    .nd-cat.open { border-color: rgba(21,128,61,0.25); box-shadow: var(--sh-m), 0 0 18px rgba(34,197,94,0.05); background: rgba(255,255,255,0.9); }
+
+    .ci {
+      width: 36px; height: 36px; border-radius: var(--r-s);
+      background: var(--g100); display: flex; align-items: center; justify-content: center;
+      font-size: 1.05rem; flex-shrink: 0;
+    }
+    .nd-cat.open .ci { background: var(--g600); box-shadow: 0 3px 10px rgba(21,128,61,0.2); }
+
+    .ct h4 { font-size: 0.8rem; font-weight: 700; color: var(--txt); line-height: 1.2; }
+    .ct p { font-size: 0.68rem; color: var(--txt3); font-weight: 500; margin-top: 1px; }
+
+    .cc {
+      margin-left: auto; width: 14px; height: 14px; color: var(--txt3);
+      transition: transform 0.3s var(--spring), color 0.3s ease;
+    }
+    .nd-cat.open .cc { color: var(--g600); transform: rotate(90deg); }
+
+    /* Leaf Nodes */
+    .nd-leaf {
+      background: var(--card); backdrop-filter: blur(16px) saturate(1.4);
+      border: 1.5px solid rgba(21,128,61,0.05); border-radius: var(--r-m);
+      padding: 0.65rem 1rem; display: flex; align-items: center; gap: 0.55rem;
+      box-shadow: var(--sh-s); min-width: 165px;
+      transition: all 0.3s var(--ease); user-select: none;
+      animation: leafGrow 0.45s var(--spring) forwards;
+      opacity: 0; transform: translate(-50%, -50%) scale(0.85);
+    }
+    @keyframes leafGrow { to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+
+    .nd-leaf:hover { border-color: rgba(21,128,61,0.16); box-shadow: var(--sh-m); }
+    .nd-leaf.sel { border-color: var(--g500); background: rgba(240,253,244,0.92); }
+
+    .ld { width: 7px; height: 7px; border-radius: 50%; background: var(--g300); flex-shrink: 0; }
+    .nd-leaf.sel .ld { background: var(--g500); box-shadow: 0 0 6px rgba(34,197,94,0.3); }
+    .nd-leaf span { font-size: 0.76rem; font-weight: 600; color: var(--txt); }
+    .lc { margin-left: auto; color: var(--txt3); opacity: 0; transition: opacity 0.2s; width: 12px; height: 12px; }
+    .nd-leaf:hover .lc { opacity: 1; }
+
+    /* ── Detail Panel ── */
+    .dtl-panel {
+      position: fixed; top: var(--navbar-height, 64px); right: 0;
+      width: 400px; height: calc(100vh - var(--navbar-height, 64px));
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(32px) saturate(1.8);
+      border-left: 1px solid rgba(21,128,61,0.05);
+      box-shadow: var(--sh-p); z-index: 50;
+      transform: translateX(100%); transition: transform 0.45s var(--ease);
+      overflow-y: auto; overflow-x: hidden;
+    }
+    .dtl-panel.open { transform: translateX(0); }
+    .dtl-panel::-webkit-scrollbar { width: 3px; }
+    .dtl-panel::-webkit-scrollbar-thumb { background: rgba(21,128,61,0.1); border-radius: 3px; }
+
+    .p-close {
+      position: absolute; top: 1.1rem; right: 1.1rem;
+      width: 30px; height: 30px; border-radius: 50%;
+      background: rgba(0,0,0,0.04); border: none;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 0.9rem; color: var(--txt2);
+      transition: all 0.2s ease; z-index: 5;
+    }
+    .p-close:hover { background: rgba(0,0,0,0.08); color: var(--txt); }
+
+    .p-hero {
+      background: linear-gradient(145deg, var(--g700), var(--g800));
+      padding: 2.2rem 1.75rem 1.8rem; color: white; position: relative; overflow: hidden;
+    }
+    .p-hero::after {
+      content: ''; position: absolute; top: -25%; right: -15%;
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 70%);
       border-radius: 50%;
-      background: var(--accent);
-      opacity: 0;
-      transition: opacity 0.3s ease;
+    }
+    .p-hero h3 { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.3rem; position: relative; z-index: 2; }
+    .p-hero p { font-size: 0.78rem; opacity: 0.8; font-weight: 500; position: relative; z-index: 2; line-height: 1.5; }
+
+    /* Video Card */
+    .p-video {
+      margin: 1.35rem 1.5rem 0; border-radius: var(--r-m); overflow: hidden;
+      position: relative; aspect-ratio: 16/9;
+      background: linear-gradient(135deg, var(--g800), var(--g900));
+      box-shadow: var(--sh-m);
+    }
+    .p-video-inner {
+      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+    }
+    .p-video-placeholder { text-align: center; color: rgba(255,255,255,0.35); }
+    .p-video-placeholder .vp-icon { font-size: 1.8rem; margin-bottom: 0.3rem; }
+    .p-video-placeholder .vp-text { font-size: 0.7rem; font-weight: 600; }
+
+    .play-btn {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 48px; height: 48px; border-radius: 50%;
+      background: rgba(255,255,255,0.88); backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.12); cursor: pointer;
+    }
+    .play-btn::after {
+      content: ''; width: 0; height: 0;
+      border-left: 12px solid var(--g700); border-top: 8px solid transparent; border-bottom: 8px solid transparent;
+      margin-left: 2px;
     }
 
-    .profession-node.active .timeline-dot {
-      border-color: var(--accent);
-      transform: scale(1.25);
-      box-shadow: 0 0 20px rgba(124, 58, 237, 0.35);
+    .vid-cap {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 2rem 0.9rem 0.7rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.6));
+      color: white; font-size: 0.72rem; font-weight: 600;
+      display: flex; justify-content: space-between; align-items: flex-end;
     }
+    .vid-dur { font-size: 0.65rem; background: rgba(0,0,0,0.3); padding: 2px 5px; border-radius: 3px; font-weight: 600; }
 
-    .profession-node.active .timeline-dot::after {
-      opacity: 1;
+    /* Content Section */
+    .p-content { padding: 1.5rem 1.5rem 2rem; }
+    .p-stitle { font-size: 0.9rem; font-weight: 800; color: var(--txt); margin-bottom: 0.8rem; letter-spacing: -0.01em; }
+
+    .spec {
+      display: flex; align-items: flex-start; gap: 0.7rem;
+      padding: 0.6rem 0; border-bottom: 1px solid rgba(21,128,61,0.03);
     }
+    .spec:last-child { border-bottom: none; }
+    .spec-i { width: 22px; text-align: center; font-size: 0.8rem; flex-shrink: 0; margin-top: 1px; }
+    .spec-l { font-size: 0.78rem; font-weight: 700; color: var(--txt); min-width: 72px; }
+    .spec-v { font-size: 0.78rem; color: var(--txt2); font-weight: 500; }
 
-    /* ── Profession Card ── */
-    .profession-card {
-      background: var(--glass-bg-strong);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--border-radius-lg);
-      backdrop-filter: blur(var(--glass-blur));
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-shadow: var(--shadow-sm);
+    .p-sub { font-size: 0.82rem; font-weight: 800; color: var(--txt); margin: 1.5rem 0 0.4rem; }
+    .p-text { font-size: 0.75rem; color: var(--txt2); line-height: 1.6; font-weight: 500; }
+
+    .tip-box {
+      margin-top: 1.25rem; background: var(--g50);
+      border: 1px solid rgba(21,128,61,0.06); border-radius: var(--r-m);
+      padding: 0.9rem 1.1rem; display: flex; gap: 0.7rem;
     }
-
-    .profession-card:hover {
-      box-shadow: var(--shadow-md);
-      border-color: rgba(124, 58, 237, 0.15);
+    .tip-ico {
+      width: 26px; height: 26px; border-radius: 50%; background: var(--g200);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; flex-shrink: 0;
     }
+    .tip-box h5 { font-size: 0.78rem; font-weight: 700; color: var(--txt); margin-bottom: 1px; }
+    .tip-box p { font-size: 0.72rem; color: var(--txt2); line-height: 1.45; font-weight: 500; }
 
-    .profession-node.active .profession-card {
-      border-color: rgba(124, 58, 237, 0.3);
-      box-shadow: var(--shadow-lg), 0 0 40px rgba(124, 58, 237, 0.06);
+    /* Botanical deco */
+    .botan {
+      position: fixed; bottom: 0; left: 260px; right: 0; height: 90px;
+      pointer-events: none; z-index: 3;
+      background: linear-gradient(transparent, rgba(240,253,244,0.2));
+      display: flex; align-items: flex-end; justify-content: center; gap: 2.5rem;
+      padding-bottom: 0.4rem; opacity: 0.45;
     }
-
-    /* ── Card Header ── */
-    .profession-header {
-      display: flex;
-      align-items: center;
-      gap: var(--space-md);
-      padding: var(--space-lg) var(--space-xl);
-      cursor: pointer;
-      user-select: none;
-      transition: background 0.2s ease;
-    }
-
-    .profession-header:hover {
-      background: rgba(124, 58, 237, 0.03);
-    }
-
-    .profession-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: var(--border-radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      flex-shrink: 0;
-      background: var(--accent-soft);
-      transition: all 0.3s ease;
-    }
-
-    .profession-node.active .profession-icon {
-      background: var(--accent);
-      box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
-    }
-
-    .profession-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .profession-info h3 {
-      font-size: var(--font-size-xl);
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 2px;
-      letter-spacing: -0.01em;
-    }
-
-    .profession-tagline {
-      font-size: var(--font-size-sm);
-      color: var(--text-secondary);
-    }
-
-    .toggle-chevron {
-      width: 24px;
-      height: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      color: var(--text-muted);
-    }
-
-    .toggle-chevron svg {
-      width: 18px;
-      height: 18px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .profession-node.active .toggle-chevron {
-      transform: rotate(90deg);
-      color: var(--accent);
-    }
-
-    /* ── Branches Container ── */
-    .profession-branches {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
-                  opacity 0.4s ease;
-      opacity: 0;
-    }
-
-    .profession-node.active .profession-branches {
-      max-height: 3000px;
-      opacity: 1;
-    }
-
-    .branches-inner {
-      padding: 0 var(--space-xl) var(--space-xl);
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-sm);
-    }
-
-    /* ── Branch Card ── */
-    .branch {
-      border-radius: var(--border-radius-md);
-      border: 1px solid rgba(0,0,0,0.04);
-      background: rgba(255,255,255,0.5);
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .branch:hover {
-      border-color: rgba(124, 58, 237, 0.1);
-    }
-
-    .branch.open {
-      border-color: rgba(124, 58, 237, 0.15);
-      background: rgba(255,255,255,0.7);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .branch-header {
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-      padding: var(--space-md) var(--space-lg);
-      cursor: pointer;
-      user-select: none;
-      font-weight: 600;
-      font-size: var(--font-size-sm);
-      color: var(--text-primary);
-      transition: background 0.2s ease;
-    }
-
-    .branch-header:hover {
-      background: rgba(124, 58, 237, 0.03);
-    }
-
-    .branch-emoji {
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-
-    .branch-label {
-      flex: 1;
-    }
-
-    .branch-chevron {
-      width: 16px;
-      height: 16px;
-      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-      color: var(--text-muted);
-      flex-shrink: 0;
-    }
-
-    .branch-chevron svg {
-      width: 14px;
-      height: 14px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .branch.open .branch-chevron {
-      transform: rotate(90deg);
-      color: var(--accent);
-    }
-
-    /* ── Branch Body ── */
-    .branch-body {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
-                  opacity 0.3s ease;
-      opacity: 0;
-    }
-
-    .branch.open .branch-body {
-      max-height: 800px;
-      opacity: 1;
-    }
-
-    .branch-content {
-      padding: 0 var(--space-lg) var(--space-lg);
-      padding-top: 0;
-    }
-
-    .branch-content ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .branch-content li {
-      font-size: var(--font-size-sm);
-      color: var(--text-secondary);
-      line-height: 1.6;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
-
-    .branch-content li::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      flex-shrink: 0;
-      margin-top: 8px;
-      opacity: 0.5;
-    }
-
-    .spec-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .spec-item {
-      background: rgba(124, 58, 237, 0.03);
-      border-radius: var(--border-radius-sm);
-      padding: 10px 14px;
-      border: 1px solid rgba(124, 58, 237, 0.06);
-    }
-
-    .spec-label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 4px;
-    }
-
-    .spec-value {
-      font-size: var(--font-size-sm);
-      font-weight: 500;
-      color: var(--text-primary);
-    }
-
-    /* ── Step List (Learning Path) ── */
-    .step-list {
-      list-style: none !important;
-      counter-reset: step;
-      display: flex;
-      flex-direction: column;
-      gap: 6px !important;
-      padding-left: 0;
-    }
-
-    .step-list li {
-      counter-increment: step;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 8px 12px;
-      border-radius: 10px;
-      transition: background 0.2s ease;
-    }
-
-    .step-list li:hover {
-      background: rgba(124, 58, 237, 0.03);
-    }
-
-    .step-list li::before {
-      content: counter(step) !important;
-      width: 26px !important;
-      height: 26px !important;
-      border-radius: 50% !important;
-      background: var(--accent-soft) !important;
-      color: var(--accent) !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      font-size: 0.7rem !important;
-      font-weight: 700 !important;
-      flex-shrink: 0 !important;
-      margin-top: 0 !important;
-      opacity: 1 !important;
-    }
-
-    .career-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .career-tag {
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 6px 14px;
-      border-radius: var(--border-radius-full);
-      background: var(--accent-soft);
-      color: var(--accent);
-      transition: all 0.3s ease;
-    }
-
-    .career-tag:hover {
-      background: var(--accent);
-      color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
-    }
-
-    .salary-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #10b981;
-      padding: 6px 14px;
-      background: rgba(16, 185, 129, 0.06);
-      border-radius: var(--border-radius-full);
-      border: 1px solid rgba(16, 185, 129, 0.12);
-      margin-top: 10px;
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 768px) {
-      .roadmap-hero {
-        padding: calc(var(--navbar-height) + var(--space-3xl)) 1.25rem var(--space-xl);
-      }
-      .roadmap-hero h1 { font-size: var(--font-size-3xl); }
-
-      .roadmap-timeline {
-        padding: 0 1rem;
-        margin-bottom: var(--space-4xl);
-      }
-
-      .timeline-track {
-        left: 20px;
-      }
-
-      .profession-node {
-        padding-left: 48px;
-      }
-
-      .timeline-dot {
-        left: 11px;
-        width: 18px;
-        height: 18px;
-      }
-
-      .profession-header {
-        padding: var(--space-md) var(--space-lg);
-      }
-
-      .profession-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
-      }
-
-      .profession-info h3 {
-        font-size: var(--font-size-lg);
-      }
-
-      .branches-inner {
-        padding: 0 var(--space-lg) var(--space-lg);
-      }
-
-      .spec-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .roadmap-timeline {
-        padding: 0 0.75rem;
-      }
-      .profession-node {
-        padding-left: 42px;
-      }
-      .timeline-track { left: 16px; }
-      .timeline-dot { left: 7px; width: 18px; height: 18px; }
-    }
+    .bf { filter: blur(0.8px) saturate(0.6); opacity: 0.35; }
+    .bf:nth-child(1) { font-size: 2.2rem; transform: rotate(-12deg); }
+    .bf:nth-child(2) { font-size: 1.8rem; transform: rotate(22deg); opacity: 0.25; }
+    .bf:nth-child(3) { font-size: 2.5rem; transform: rotate(-5deg); opacity: 0.2; }
   </style>
 </head>
 <body class="light-mode">
-  <div class="page-content">
-    <div class="roadmap-hero">
-      <h1>Career <span class="gradient-text">Roadmaps</span></h1>
-      <p>Choose your path. Click any profession to explore device requirements, tools, learning paths, and career outcomes.</p>
+
+  <div class="tree-bg"></div>
+
+  <!-- Layout -->
+  <div class="tree-layout">
+    <!-- Sidebar -->
+    <div class="tree-sidebar">
+      <div class="sb-hd">
+        <h1>Career <span>Roadmaps</span></h1>
+        <p>Choose a path. Master your future.</p>
+      </div>
+      <div class="sb-list" id="sbList"></div>
+      <div class="sb-zoom">
+        <button class="z-btn" onclick="zoom(-0.1)">−</button>
+        <span class="z-lbl" id="zLbl">100%</span>
+        <button class="z-btn" onclick="zoom(0.1)">+</button>
+        <button class="z-btn" onclick="resetPan()" style="margin-left:auto; font-size:0.65rem;">⟳</button>
+      </div>
     </div>
 
-    <div class="roadmap-timeline">
-      <div class="timeline-track"></div>
-
-      <!-- ═══════════ 1. Web Development ═══════════ -->
-      <div class="profession-node" data-id="web">
-        <div class="timeline-dot"></div>
-        <div class="profession-card">
-          <div class="profession-header" onclick="toggleProfession('web')">
-            <div class="profession-icon">🌐</div>
-            <div class="profession-info">
-              <h3>Web Development</h3>
-              <p class="profession-tagline">Build the internet — frontend, backend & full-stack</p>
-            </div>
-            <div class="toggle-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
-          </div>
-          <div class="profession-branches">
-            <div class="branches-inner">
-
-              <!-- Device Requirements -->
-              <div class="branch">
-                <div class="branch-header" onclick="toggleBranch(event, this)">
-                  <span class="branch-emoji">💻</span>
-                  <span class="branch-label">Device Requirements</span>
-                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-                </div>
-                <div class="branch-body">
-                  <div class="branch-content">
-                    <div class="spec-grid">
-                      <div class="spec-item"><div class="spec-label">Processor</div><div class="spec-value">Intel i5 / Ryzen 5+</div></div>
-                      <div class="spec-item"><div class="spec-label">RAM</div><div class="spec-value">8 GB minimum</div></div>
-                      <div class="spec-item"><div class="spec-label">Storage</div><div class="spec-value">256 GB SSD</div></div>
-                      <div class="spec-item"><div class="spec-label">OS</div><div class="spec-value">Windows / macOS / Linux</div></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Tools & Software -->
-              <div class="branch">
-                <div class="branch-header" onclick="toggleBranch(event, this)">
-                  <span class="branch-emoji">🛠️</span>
-                  <span class="branch-label">Tools & Software</span>
-                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-                </div>
-                <div class="branch-body">
-                  <div class="branch-content">
-                    <ul>
-                      <li>VS Code — Primary code editor with extensions</li>
-                      <li>Chrome DevTools — Debugging & performance profiling</li>
-                      <li>Git & GitHub — Version control & collaboration</li>
-                      <li>Node.js & npm — JavaScript runtime & package manager</li>
-                      <li>Figma — UI/UX design reference & prototyping</li>
-                      <li>Postman — API testing & debugging</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Learning Path -->
-              <div class="branch">
-                <div class="branch-header" onclick="toggleBranch(event, this)">
-                  <span class="branch-emoji">📚</span>
-                  <span class="branch-label">Learning Path</span>
-                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-                </div>
-                <div class="branch-body">
-                  <div class="branch-content">
-                    <ul class="step-list">
-                      <li>HTML & CSS — Structure & styling fundamentals</li>
-                      <li>JavaScript — DOM manipulation, ES6+, async/await</li>
-                      <li>Responsive Design — Flexbox, Grid, media queries</li>
-                      <li>React.js or Vue.js — Component-based UI frameworks</li>
-                      <li>Node.js & Express — Backend APIs & server-side logic</li>
-                      <li>Databases — MongoDB, PostgreSQL, Firebase</li>
-                      <li>Deployment — Vercel, Netlify, AWS, Docker basics</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Career Outcomes -->
-              <div class="branch">
-                <div class="branch-header" onclick="toggleBranch(event, this)">
-                  <span class="branch-emoji">🎯</span>
-                  <span class="branch-label">Career Outcomes</span>
-                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-                </div>
-                <div class="branch-body">
-                  <div class="branch-content">
-                    <div class="career-tags">
-                      <span class="career-tag">Frontend Developer</span>
-                      <span class="career-tag">Backend Developer</span>
-                      <span class="career-tag">Full-Stack Developer</span>
-                      <span class="career-tag">UI Engineer</span>
-                      <span class="career-tag">DevOps Engineer</span>
-                    </div>
-                    <div class="salary-badge">💰 ₹5 LPA – ₹25 LPA (fresher to mid-level)</div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
+    <!-- Canvas -->
+    <div class="tree-canvas" id="treeCanvas">
+      <div class="canvas-world" id="world">
+        <svg class="tree-svg" id="svg"></svg>
       </div>
-
-      <!-- ═══════════ 2. Android Development ═══════════ -->
-      <div class="profession-node" data-id="android">
-        <div class="timeline-dot"></div>
-        <div class="profession-card">
-          <div class="profession-header" onclick="toggleProfession('android')">
-            <div class="profession-icon">📱</div>
-            <div class="profession-info">
-              <h3>Android Development</h3>
-              <p class="profession-tagline">Build apps for 3 billion+ Android devices worldwide</p>
-            </div>
-            <div class="toggle-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
-          </div>
-          <div class="profession-branches">
-            <div class="branches-inner">
-
-              <div class="branch">
-                <div class="branch-header" onclick="toggleBranch(event, this)">
-                  <span class="branch-emoji">💻</span>
-                  <span class="branch-label">Device Requirements</span>
-                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-                </div>
-                <div class="branch-body">
-                  <div class="branch-content">
-                    <div class="spec-grid">
-                      <div class="spec-item"><div class="spec-label">Processor</div><div class="spec-value">Intel i5 / Ryzen 5+ (multi-core)</div></div>
-                      <div class="spec-item"><div class="spec-label">RAM</div><div class="spec-value">16 GB recommended</div></div>
-                      <div class="spec-item"><div class="spec-label">Storage</div><div class="spec-value">512 GB SSD (emulators need space)</div></div>
-                      <div class="spec-item"><div class="spec-label">Extra</div><div class="spec-value">Android phone for testing</div></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="branch">
-                <div class="branch-header" onclick="toggleBranch(event, this)">
-                  <span class="branch-emoji">🛠️</span>
-                  <span class="branch-label">Tools & Software</span>
-                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-                </div>
-                <div class="branch-body">
-                  <div class="branch-content">
-                    <ul>
-                      <li>Android Studio — Official IDE with emulator & debugger</li>
-                      <li>Kotlin — Modern primary language for Android</li>
-                      <li>Firebase — Auth, database, analytics, push notifications</li>
-                      <li>Git & GitHub — Version control</li>
-                      <li>Figma — UI/UX design for mobile screens</li>
-                      <li>ADB — Android Debug Bridge for device testing</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div class="branch">
-                <div class="branch-header" onclick="toggleBranch(event, this)">
-                  <span class="branch-emoji">📚</span>
-                  <span class="branch-label">Learning Path</span>
-                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-                </div>
-                <div class="branch-body">
-                  <div class="branch-content">
-                    <ul class="step-list">
-                      <li>Java or Kotlin fundamentals — OOP, collections, coroutines</li>
-                      <li>Android Studio setup — Project structure, Gradle</li>
-                      <li>UI Design — XML Layouts or Jetpack Compose</li>
-                      <li>Navigation & Architecture — MVVM, ViewModel, LiveData</li>
-                      <li>APIs & Networking — Retrofit, OkHttp, REST APIs</li>
-                      <li>Local Storage — Room Database, SharedPreferences</li>
-                      <li>Firebase Integration — Auth, Firestore, Cloud Messaging</li>
-                      <li>Publishing — Google Play Store deployment</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div class="branch">
-                <div class="branch-header" onclick="toggleBranch(event, this)">
-                  <span class="branch-emoji">🎯</span>
-                  <span class="branch-label">Career Outcomes</span>
-                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-                </div>
-                <div class="branch-body">
-                  <div class="branch-content">
-                    <div class="career-tags">
-                      <span class="career-tag">Android Developer</span>
-                      <span class="career-tag">Mobile Engineer</span>
-                      <span class="career-tag">Kotlin Developer</span>
-                      <span class="career-tag">App Architect</span>
-                    </div>
-                    <div class="salary-badge">💰 ₹6 LPA – ₹30 LPA (fresher to mid-level)</div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ═══════════ 3. AI / Machine Learning ═══════════ -->
-      <div class="profession-node" data-id="aiml">
-        <div class="timeline-dot"></div>
-        <div class="profession-card">
-          <div class="profession-header" onclick="toggleProfession('aiml')">
-            <div class="profession-icon">🤖</div>
-            <div class="profession-info">
-              <h3>AI / Machine Learning</h3>
-              <p class="profession-tagline">Teach machines to think, learn, and create</p>
-            </div>
-            <div class="toggle-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
-          </div>
-          <div class="profession-branches">
-            <div class="branches-inner">
-
-              <div class="branch">
-                <div class="branch-header" onclick="toggleBranch(event, this)">
-                  <span class="branch-emoji">💻</span>
-                  <span class="branch-label">Device Requirements</span>
-                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-                </div>
-                <div class="branch-body">
-                  <div class="branch-content">
-                    <div class="spec-grid">
-                      <div class="spec-item"><div class="spec-label">Processor</div><div class="spec-value">Intel i7 / Ryzen 7+ recommended</div></div>
-                      <div class="spec-item"><div class="spec-label">RAM</div><div class="spec-value">16 GB minimum (32 GB ideal)</div></div>
-                      <div class="spec-item"><div class="spec-label">GPU</div><div class="spec-value">NVIDIA GPU with CUDA (or use Colab)</div></div>
-                      <div class="spec-item"><div class="spec-label">OS</div><div class="spec-value">Linux preferred, macOS / Windows OK</div></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="branch">
-                <div class="branch-header" onclick="toggleBranch(event, this)">
-                  <span class="branch-emoji">🛠️</span>
-                  <span class="branch-label">Tools & Software</span>
-                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-                </div>
-                <div class="branch-body">
-                  <div class="branch-content">
-                    <ul>
-                      <li>Python 3 — Primary language for ML/AI</li>
-                      <li>Jupyter Notebook / Google Colab — Interactive experimentation</li>
-                      <li>TensorFlow & PyTorch — Deep learning frameworks</li>
-                      <li>scikit-learn — Classical ML algorithms</li>
-                      <li>Pandas & NumPy — Data manipulation & math</li>
-                      <li>Hugging Face — Pre-trained models & NLP pipelines</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div class="branch">
-                <div class="branch-header" onclick="toggleBranch(event, this)">
-                  <span class="branch-emoji">📚</span>
-                  <span class="branch-label">Learning Path</span>
-                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-                </div>
-                <div class="branch-body">
-                  <div class="branch-content">
-                    <ul class="step-list">
-                      <li>Python Programming — Data types, OOP, file I/O</li>
-                      <li>Mathematics — Linear algebra, calculus, probability & statistics</li>
-                      <li>Data Analysis — Pandas, NumPy, Matplotlib, EDA</li>
-                      <li>Machine Learning — Supervised, unsupervised, ensemble methods</li>
-                      <li>Deep Learning — Neural networks, CNNs, RNNs, Transformers</li>
-                      <li>Specialization — NLP, Computer Vision, or Reinforcement Learning</li>
-                      <li>MLOps — Model deployment, monitoring, CI/CD for ML</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div class="branch">
-                <div class="branch-header" onclick="toggleBranch(event, this)">
-                  <span class="branch-emoji">🎯</span>
-                  <span class="branch-label">Career Outcomes</span>
-                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-                </div>
-                <div class="branch-body">
-                  <div class="branch-content">
-                    <div class="career-tags">
-                      <span class="career-tag">ML Engineer</span>
-                      <span class="career-tag">Data Scientist</span>
-                      <span class="career-tag">AI Researcher</span>
-                      <span class="career-tag">NLP Engineer</span>
-                      <span class="career-tag">Computer Vision Engineer</span>
-                    </div>
-                    <div class="salary-badge">💰 ₹8 LPA – ₹40 LPA (fresher to mid-level)</div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ═══════════ 4. Cloud & DevOps ═══════════ -->
-      <div class="profession-node" data-id="cloud">
-        <div class="timeline-dot"></div>
-        <div class="profession-card">
-          <div class="profession-header" onclick="toggleProfession('cloud')">
-            <div class="profession-icon">☁️</div>
-            <div class="profession-info">
-              <h3>Cloud & DevOps</h3>
-              <p class="profession-tagline">Automate, deploy & scale infrastructure at global level</p>
-            </div>
-            <div class="toggle-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
-          </div>
-          <div class="profession-branches">
-            <div class="branches-inner">
-
-              <div class="branch">
-                <div class="branch-header" onclick="toggleBranch(event, this)">
-                  <span class="branch-emoji">💻</span>
-                  <span class="branch-label">Device Requirements</span>
-                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-                </div>
-                <div class="branch-body">
-                  <div class="branch-content">
-                    <div class="spec-grid">
-                      <div class="spec-item"><div class="spec-label">Processor</div><div class="spec-value">Intel i5 / Ryzen 5+</div></div>
-                      <div class="spec-item"><div class="spec-label">RAM</div><div class="spec-value">8 GB min (16 GB for VMs)</div></div>
-                      <div class="spec-item"><div class="spec-label">Storage</div><div class="spec-value">256 GB SSD</div></div>
-                      <div class="spec-item"><div class="spec-label">OS</div><div class="spec-value">Linux / WSL on Windows</div></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="branch">
-                <div class="branch-header" onclick="toggleBranch(event, this)">
-                  <span class="branch-emoji">🛠️</span>
-                  <span class="branch-label">Tools & Software</span>
-                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-                </div>
-                <div class="branch-body">
-                  <div class="branch-content">
-                    <ul>
-                      <li>AWS / GCP / Azure — Major cloud platforms</li>
-                      <li>Docker — Containerization & image management</li>
-                      <li>Kubernetes — Container orchestration at scale</li>
-                      <li>Terraform — Infrastructure as Code (IaC)</li>
-                      <li>Jenkins / GitHub Actions — CI/CD pipelines</li>
-                      <li>Linux CLI — Shell scripting, system administration</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div class="branch">
-                <div class="branch-header" onclick="toggleBranch(event, this)">
-                  <span class="branch-emoji">📚</span>
-                  <span class="branch-label">Learning Path</span>
-                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-                </div>
-                <div class="branch-body">
-                  <div class="branch-content">
-                    <ul class="step-list">
-                      <li>Linux Fundamentals — File system, permissions, shell scripting</li>
-                      <li>Networking — TCP/IP, DNS, load balancing, firewalls</li>
-                      <li>Cloud Basics — Compute, storage, IAM on AWS/GCP</li>
-                      <li>Docker — Containers, images, Docker Compose</li>
-                      <li>CI/CD — GitHub Actions, Jenkins, automated pipelines</li>
-                      <li>Kubernetes — Pods, services, deployments, Helm</li>
-                      <li>Infrastructure as Code — Terraform, Ansible</li>
-                      <li>Monitoring — Prometheus, Grafana, ELK stack</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div class="branch">
-                <div class="branch-header" onclick="toggleBranch(event, this)">
-                  <span class="branch-emoji">🎯</span>
-                  <span class="branch-label">Career Outcomes</span>
-                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-                </div>
-                <div class="branch-body">
-                  <div class="branch-content">
-                    <div class="career-tags">
-                      <span class="career-tag">DevOps Engineer</span>
-                      <span class="career-tag">Cloud Architect</span>
-                      <span class="career-tag">SRE</span>
-                      <span class="career-tag">Platform Engineer</span>
-                      <span class="career-tag">Infrastructure Engineer</span>
-                    </div>
-                    <div class="salary-badge">💰 ₹7 LPA – ₹35 LPA (fresher to mid-level)</div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ═══════════ 5. Cybersecurity ═══════════ -->
-      <div class="profession-node" data-id="cyber">
-        <div class="timeline-dot"></div>
-        <div class="profession-card">
-          <div class="profession-header" onclick="toggleProfession('cyber')">
-            <div class="profession-icon">🛡️</div>
-            <div class="profession-info">
-              <h3>Cybersecurity</h3>
-              <p class="profession-tagline">Defend systems, hunt threats, and break to protect</p>
-            </div>
-            <div class="toggle-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
-          </div>
-          <div class="profession-branches">
-            <div class="branches-inner">
-
-              <div class="branch">
-                <div class="branch-header" onclick="toggleBranch(event, this)">
-                  <span class="branch-emoji">💻</span>
-                  <span class="branch-label">Device Requirements</span>
-                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-                </div>
-                <div class="branch-body">
-                  <div class="branch-content">
-                    <div class="spec-grid">
-                      <div class="spec-item"><div class="spec-label">Processor</div><div class="spec-value">Intel i5 / Ryzen 5+ (VMs needed)</div></div>
-                      <div class="spec-item"><div class="spec-label">RAM</div><div class="spec-value">16 GB recommended (multiple VMs)</div></div>
-                      <div class="spec-item"><div class="spec-label">Storage</div><div class="spec-value">512 GB SSD (Kali + VMs)</div></div>
-                      <div class="spec-item"><div class="spec-label">OS</div><div class="spec-value">Kali Linux + Windows dual-boot</div></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="branch">
-                <div class="branch-header" onclick="toggleBranch(event, this)">
-                  <span class="branch-emoji">🛠️</span>
-                  <span class="branch-label">Tools & Software</span>
-                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-                </div>
-                <div class="branch-body">
-                  <div class="branch-content">
-                    <ul>
-                      <li>Kali Linux — Penetration testing distribution</li>
-                      <li>Burp Suite — Web application security testing</li>
-                      <li>Wireshark — Network packet analysis</li>
-                      <li>Metasploit — Exploitation framework</li>
-                      <li>Nmap — Network scanning & enumeration</li>
-                      <li>VirtualBox / VMware — Running isolated lab environments</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div class="branch">
-                <div class="branch-header" onclick="toggleBranch(event, this)">
-                  <span class="branch-emoji">📚</span>
-                  <span class="branch-label">Learning Path</span>
-                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-                </div>
-                <div class="branch-body">
-                  <div class="branch-content">
-                    <ul class="step-list">
-                      <li>Networking Fundamentals — OSI model, TCP/IP, DNS, HTTP</li>
-                      <li>Linux Administration — Command line, users, file permissions</li>
-                      <li>Web Security — OWASP Top 10, XSS, SQL injection, CSRF</li>
-                      <li>Cryptography — Encryption, hashing, PKI, SSL/TLS</li>
-                      <li>Penetration Testing — Recon, scanning, exploitation, reporting</li>
-                      <li>Digital Forensics — Disk imaging, memory analysis, log review</li>
-                      <li>Bug Bounty — HackerOne, Bugcrowd, real-world hunting</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div class="branch">
-                <div class="branch-header" onclick="toggleBranch(event, this)">
-                  <span class="branch-emoji">🎯</span>
-                  <span class="branch-label">Career Outcomes</span>
-                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-                </div>
-                <div class="branch-body">
-                  <div class="branch-content">
-                    <div class="career-tags">
-                      <span class="career-tag">Security Analyst</span>
-                      <span class="career-tag">Penetration Tester</span>
-                      <span class="career-tag">Security Engineer</span>
-                      <span class="career-tag">SOC Analyst</span>
-                      <span class="career-tag">Bug Bounty Hunter</span>
-                    </div>
-                    <div class="salary-badge">💰 ₹6 LPA – ₹35 LPA (fresher to mid-level)</div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ═══════════ 6. Data Science ═══════════ -->
-      <div class="profession-node" data-id="data">
-        <div class="timeline-dot"></div>
-        <div class="profession-card">
-          <div class="profession-header" onclick="toggleProfession('data')">
-            <div class="profession-icon">📊</div>
-            <div class="profession-info">
-              <h3>Data Science</h3>
-              <p class="profession-tagline">Turn raw data into decisions, stories & business value</p>
-            </div>
-            <div class="toggle-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
-          </div>
-          <div class="profession-branches">
-            <div class="branches-inner">
-
-              <div class="branch">
-                <div class="branch-header" onclick="toggleBranch(event, this)">
-                  <span class="branch-emoji">💻</span>
-                  <span class="branch-label">Device Requirements</span>
-                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-                </div>
-                <div class="branch-body">
-                  <div class="branch-content">
-                    <div class="spec-grid">
-                      <div class="spec-item"><div class="spec-label">Processor</div><div class="spec-value">Intel i5 / Ryzen 5+</div></div>
-                      <div class="spec-item"><div class="spec-label">RAM</div><div class="spec-value">8–16 GB</div></div>
-                      <div class="spec-item"><div class="spec-label">Storage</div><div class="spec-value">256 GB SSD</div></div>
-                      <div class="spec-item"><div class="spec-label">GPU</div><div class="spec-value">Optional (use Colab for heavy work)</div></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="branch">
-                <div class="branch-header" onclick="toggleBranch(event, this)">
-                  <span class="branch-emoji">🛠️</span>
-                  <span class="branch-label">Tools & Software</span>
-                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-                </div>
-                <div class="branch-body">
-                  <div class="branch-content">
-                    <ul>
-                      <li>Python & R — Primary analysis languages</li>
-                      <li>SQL — Database querying (MySQL, PostgreSQL)</li>
-                      <li>Tableau / Power BI — Data visualization dashboards</li>
-                      <li>Excel / Google Sheets — Quick data exploration</li>
-                      <li>Jupyter Notebook — Interactive coding & documentation</li>
-                      <li>Apache Spark — Big data processing at scale</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div class="branch">
-                <div class="branch-header" onclick="toggleBranch(event, this)">
-                  <span class="branch-emoji">📚</span>
-                  <span class="branch-label">Learning Path</span>
-                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-                </div>
-                <div class="branch-body">
-                  <div class="branch-content">
-                    <ul class="step-list">
-                      <li>Statistics & Probability — Distributions, hypothesis testing</li>
-                      <li>Python / R Programming — Data types, libraries, scripting</li>
-                      <li>SQL Mastery — Joins, subqueries, window functions</li>
-                      <li>Data Visualization — Matplotlib, Seaborn, Plotly, Tableau</li>
-                      <li>Exploratory Data Analysis — Cleaning, feature engineering</li>
-                      <li>Machine Learning Basics — Regression, classification, clustering</li>
-                      <li>Big Data — Spark, Hadoop, data warehouses</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div class="branch">
-                <div class="branch-header" onclick="toggleBranch(event, this)">
-                  <span class="branch-emoji">🎯</span>
-                  <span class="branch-label">Career Outcomes</span>
-                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-                </div>
-                <div class="branch-body">
-                  <div class="branch-content">
-                    <div class="career-tags">
-                      <span class="career-tag">Data Analyst</span>
-                      <span class="career-tag">Business Analyst</span>
-                      <span class="career-tag">Data Scientist</span>
-                      <span class="career-tag">Data Engineer</span>
-                      <span class="career-tag">BI Developer</span>
-                    </div>
-                    <div class="salary-badge">💰 ₹5 LPA – ₹30 LPA (fresher to mid-level)</div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 
+  <!-- Detail Panel -->
+  <div class="dtl-panel" id="dtlPanel">
+    <button class="p-close" onclick="closePanel()">✕</button>
+    <div id="panelBody"></div>
+  </div>
+
+  <!-- Botanical -->
+  <div class="botan"><span class="bf">🌿</span><span class="bf">🍃</span><span class="bf">🌱</span></div>
+
+  <!-- Spore particles -->
+  <script>
+    for (let i = 0; i < 10; i++) {
+      const s = document.createElement('div');
+      s.className = 'spore';
+      const sz = 2 + Math.random() * 3;
+      Object.assign(s.style, {
+        width: sz+'px', height: sz+'px', left: Math.random()*100+'%',
+        background: `rgba(${34+Math.random()*30},${175+Math.random()*50},${80+Math.random()*30},${0.12+Math.random()*0.12})`,
+        animationDuration: (20+Math.random()*18)+'s', animationDelay: (Math.random()*12)+'s'
+      });
+      document.body.appendChild(s);
+    }
+  </script>
+
   <script src="../js/shared.js?v=3"></script>
   <script>
-    // ── Accordion: Toggle Profession ──
-    function toggleProfession(id) {
-      const allNodes = document.querySelectorAll('.profession-node');
-      const target = document.querySelector(`.profession-node[data-id="${id}"]`);
-      if (!target) return;
+    /* ═══════════════════════════════════════════
+       CAREER TREE ENGINE v2
+    ═══════════════════════════════════════════ */
 
-      const isActive = target.classList.contains('active');
+    const DB = {
+      web: {
+        icon:"🌐", title:"Web Development", desc:"Build websites and web applications.",
+        cats: [
+          { id:"req", icon:"📋", title:"1. Requirements", desc:"Everything you need to get started.", kids:[
+            { id:"dev-req", label:"Device Requirements", panel:"deviceReq" },
+            { id:"soft-req", label:"Software Requirements", panel:"softReq" },
+            { id:"know-req", label:"Knowledge Requirements", panel:"knowReq" }
+          ]},
+          { id:"learn", icon:"📚", title:"2. Learning Path", desc:"Step-by-step path to master skills.", kids:[
+            { id:"frontend", label:"Frontend Development", panel:"frontend" },
+            { id:"backend", label:"Backend Development", panel:"backend" },
+            { id:"database", label:"Database & Server", panel:"database" },
+            { id:"vcs", label:"Version Control", panel:"vcs" }
+          ]},
+          { id:"skills", icon:"⭐", title:"3. Skills You'll Learn", desc:"Essential skills you'll master.", kids:[
+            { id:"html-css", label:"HTML & CSS", panel:"htmlcss" },
+            { id:"javascript", label:"JavaScript", panel:"javascript" },
+            { id:"reactjs", label:"React.js", panel:"reactjs" },
+            { id:"more-skills", label:"And More…", panel:"moreSkills" }
+          ]},
+          { id:"tools", icon:"🛠", title:"4. Tools You'll Use", desc:"Tools & technologies professionals use.", kids:[
+            { id:"editors", label:"Code Editors", panel:"editors" },
+            { id:"browsers", label:"Browser DevTools", panel:"browsers" },
+            { id:"deploy-tools", label:"Deployment Tools", panel:"deployTools" }
+          ]},
+          { id:"projects", icon:"📂", title:"5. Projects You'll Build", desc:"Real-world projects to build your portfolio.", kids:[
+            { id:"portfolio", label:"Portfolio Website", panel:"portfolio" },
+            { id:"ecommerce", label:"E-Commerce Store", panel:"ecommerce" },
+            { id:"dashboard", label:"Admin Dashboard", panel:"dashboard" }
+          ]},
+          { id:"career", icon:"🚀", title:"6. Career & Growth", desc:"Career options & growth opportunities.", kids:[
+            { id:"freelance", label:"Freelancing", panel:"freelance" },
+            { id:"startup", label:"Startup Jobs", panel:"startup" },
+            { id:"remote", label:"Remote / FAANG", panel:"remote" }
+          ]}
+        ]
+      },
+      android: {
+        icon:"📱", title:"Android Development", desc:"Build powerful apps for Android devices.",
+        cats: [
+          { id:"a-req", icon:"📋", title:"1. Requirements", desc:"Setup your dev environment.", kids:[
+            { id:"a-dev", label:"Laptop Specs", panel:"aDevReq" },
+            { id:"a-soft", label:"Android Studio Setup", panel:"aSoftReq" }
+          ]},
+          { id:"a-learn", icon:"📚", title:"2. Learning Path", desc:"Master Android development.", kids:[
+            { id:"a-kotlin", label:"Kotlin Basics", panel:"aKotlin" },
+            { id:"a-compose", label:"Jetpack Compose", panel:"aCompose" },
+            { id:"a-arch", label:"App Architecture", panel:"aArch" }
+          ]},
+          { id:"a-proj", icon:"📂", title:"3. Projects", desc:"Build real Android apps.", kids:[
+            { id:"a-todo", label:"Todo App", panel:"aTodo" },
+            { id:"a-weather", label:"Weather App", panel:"aWeather" },
+            { id:"a-social", label:"Social Media App", panel:"aSocial" }
+          ]},
+          { id:"a-career", icon:"🚀", title:"4. Career", desc:"Android career paths.", kids:[
+            { id:"a-intern", label:"Internships", panel:"aIntern" },
+            { id:"a-jobs", label:"Job Market", panel:"aJobs" }
+          ]}
+        ]
+      },
+      datascience: {
+        icon:"📊", title:"Data Science", desc:"Extract insights from data and build models.",
+        cats: [
+          { id:"ds-req", icon:"📋", title:"1. Requirements", desc:"Tools and setup.", kids:[
+            { id:"ds-hw", label:"Hardware Needs", panel:"dsHw" },
+            { id:"ds-sw", label:"Python & Jupyter", panel:"dsSw" }
+          ]},
+          { id:"ds-learn", icon:"📚", title:"2. Learning Path", desc:"From basics to advanced.", kids:[
+            { id:"ds-stats", label:"Statistics & Math", panel:"dsStats" },
+            { id:"ds-pandas", label:"Pandas & NumPy", panel:"dsPandas" },
+            { id:"ds-viz", label:"Data Visualization", panel:"dsViz" }
+          ]},
+          { id:"ds-career", icon:"🚀", title:"3. Career", desc:"Data science opportunities.", kids:[
+            { id:"ds-analyst", label:"Data Analyst", panel:"dsAnalyst" },
+            { id:"ds-scientist", label:"Data Scientist", panel:"dsScientist" }
+          ]}
+        ]
+      },
+      ai: {
+        icon:"🧠", title:"Artificial Intelligence", desc:"Build intelligent systems that learn.",
+        cats: [
+          { id:"ai-req", icon:"📋", title:"1. Requirements", desc:"GPU and compute setup.", kids:[
+            { id:"ai-hw", label:"GPU Requirements", panel:"aiHw" },
+            { id:"ai-sw", label:"TensorFlow / PyTorch", panel:"aiSw" }
+          ]},
+          { id:"ai-learn", icon:"📚", title:"2. Learning Path", desc:"Math to neural networks.", kids:[
+            { id:"ai-math", label:"Linear Algebra", panel:"aiMath" },
+            { id:"ai-nn", label:"Neural Networks", panel:"aiNn" },
+            { id:"ai-dl", label:"Deep Learning", panel:"aiDl" }
+          ]},
+          { id:"ai-career", icon:"🚀", title:"3. Career", desc:"AI/ML career paths.", kids:[
+            { id:"ai-eng", label:"ML Engineer", panel:"aiEng" },
+            { id:"ai-res", label:"AI Researcher", panel:"aiRes" }
+          ]}
+        ]
+      },
+      cyber: {
+        icon:"🔒", title:"Cyber Security", desc:"Protect systems, networks and digital assets.",
+        cats: [
+          { id:"cy-req", icon:"📋", title:"1. Requirements", desc:"Security lab setup.", kids:[
+            { id:"cy-hw", label:"Lab Setup", panel:"cyHw" },
+            { id:"cy-os", label:"Kali Linux / Parrot", panel:"cyOs" }
+          ]},
+          { id:"cy-learn", icon:"📚", title:"2. Learning Path", desc:"From networking to pentesting.", kids:[
+            { id:"cy-net", label:"Networking Basics", panel:"cyNet" },
+            { id:"cy-pen", label:"Penetration Testing", panel:"cyPen" },
+            { id:"cy-owasp", label:"OWASP Top 10", panel:"cyOwasp" }
+          ]},
+          { id:"cy-career", icon:"🚀", title:"3. Career", desc:"Security career paths.", kids:[
+            { id:"cy-hack", label:"Ethical Hacker", panel:"cyHack" },
+            { id:"cy-analyst", label:"Security Analyst", panel:"cyAnalyst" }
+          ]}
+        ]
+      },
+      uiux: {
+        icon:"🎨", title:"UI/UX Design", desc:"Design beautiful and user-friendly products.",
+        cats: [
+          { id:"ux-req", icon:"📋", title:"1. Requirements", desc:"Design tools setup.", kids:[
+            { id:"ux-tools", label:"Figma & Adobe XD", panel:"uxTools" },
+            { id:"ux-hw", label:"Display & Tablet", panel:"uxHw" }
+          ]},
+          { id:"ux-learn", icon:"📚", title:"2. Learning Path", desc:"Design principles.", kids:[
+            { id:"ux-fund", label:"Design Fundamentals", panel:"uxFund" },
+            { id:"ux-proto", label:"Prototyping", panel:"uxProto" },
+            { id:"ux-research", label:"User Research", panel:"uxResearch" }
+          ]},
+          { id:"ux-career", icon:"🚀", title:"3. Career", desc:"Design career paths.", kids:[
+            { id:"ux-pd", label:"Product Designer", panel:"uxPd" },
+            { id:"ux-free", label:"Freelance Designer", panel:"uxFree" }
+          ]}
+        ]
+      }
+    };
 
-      // Close all nodes & their branches
-      allNodes.forEach(node => {
-        node.classList.remove('active');
-        node.querySelectorAll('.branch').forEach(b => b.classList.remove('open'));
-      });
+    // Panel Content Database
+    const PANELS = {
+      deviceReq: {
+        title: "Device Requirements", desc: "Find the perfect device setup for web development.",
+        videoTitle: "How to choose the right laptop\nfor web development", videoDur: "8:42",
+        specs: [
+          { i:"💻", l:"CPU", v:"Intel i5 / Ryzen 5 or higher" },
+          { i:"🧠", l:"RAM", v:"8 GB (16 GB recommended)" },
+          { i:"💾", l:"Storage", v:"512 GB SSD minimum" },
+          { i:"🎮", l:"GPU", v:"Integrated graphics (dedicated GPU optional)" },
+          { i:"🖥", l:"Display", v:'13" or larger, FHD+ resolution' },
+          { i:"🔋", l:"Battery", v:"6+ hours backup" }
+        ],
+        why: "These specifications ensure smooth performance while running code editors, browsers, emulators and other development tools without any lag.",
+        tip: "SSD and 16GB RAM will future-proof your setup and boost productivity significantly."
+      },
+      softReq: {
+        title: "Software Requirements", desc: "Essential software and tools for web dev.",
+        specs: [
+          { i:"📝", l:"Editor", v:"VS Code with extensions" },
+          { i:"🌐", l:"Browser", v:"Chrome or Firefox Developer Edition" },
+          { i:"⚙", l:"Runtime", v:"Node.js LTS + npm" },
+          { i:"🗃", l:"VCS", v:"Git + GitHub Desktop" },
+          { i:"📦", l:"Package Mgr", v:"npm / yarn / pnpm" }
+        ],
+        why: "These tools form the foundation of any web developer's workflow.",
+        tip: "Install VS Code extensions: ESLint, Prettier, Live Server, GitLens."
+      },
+      knowReq: {
+        title: "Knowledge Requirements", desc: "Core concepts to know before starting.",
+        specs: [
+          { i:"🔤", l:"Typing", v:"40+ WPM touch typing recommended" },
+          { i:"🧮", l:"Logic", v:"Basic logic and problem-solving skills" },
+          { i:"🌍", l:"English", v:"Comfortable reading English documentation" }
+        ],
+        why: "Strong foundational skills accelerate your learning curve tremendously.",
+        tip: "Practice typing on keybr.com and solve puzzles on HackerRank for logic."
+      },
+      frontend: {
+        title: "Frontend Development", desc: "Build beautiful user interfaces.",
+        specs: [
+          { i:"1️⃣", l:"HTML5", v:"Semantic elements, forms, accessibility" },
+          { i:"2️⃣", l:"CSS3", v:"Flexbox, Grid, animations, responsive" },
+          { i:"3️⃣", l:"JavaScript", v:"ES6+, DOM, events, async/await" },
+          { i:"4️⃣", l:"React", v:"Components, hooks, state, routing" },
+          { i:"5️⃣", l:"TypeScript", v:"Type safety for large projects" }
+        ],
+        why: "Frontend is the visible layer of web — the part users directly interact with.",
+        tip: "Build 3 personal projects before applying for your first frontend role."
+      },
+      backend: {
+        title: "Backend Development", desc: "Server-side logic and APIs.",
+        specs: [
+          { i:"1️⃣", l:"Node.js", v:"JavaScript runtime for servers" },
+          { i:"2️⃣", l:"Express", v:"Web framework for REST APIs" },
+          { i:"3️⃣", l:"Auth", v:"JWT, OAuth, session management" },
+          { i:"4️⃣", l:"Testing", v:"Jest, Mocha, API testing" }
+        ],
+        why: "Backend handles data processing, authentication, and business logic.",
+        tip: "Learn REST APIs before moving to GraphQL."
+      }
+    };
 
-      // If it wasn't active, open it
-      if (!isActive) {
-        target.classList.add('active');
-        // Smooth scroll to the node
-        setTimeout(() => {
-          target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }, 100);
+    function getPanel(k) {
+      if (PANELS[k]) return PANELS[k];
+      const pretty = k.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase());
+      return {
+        title: pretty, desc: "Detailed information and learning resources.",
+        specs: [{ i:"📌", l:"Status", v:"Premium content coming soon" }, { i:"📚", l:"Resources", v:"Curated materials in progress" }],
+        why: "This section is being prepared with high-quality content by our team.",
+        tip: "Stay tuned — detailed guides, videos and recommendations are on the way."
+      };
+    }
+
+    // State
+    let career = 'web';
+    let openCats = {};
+    let selLeaf = null;
+    let sc = 1, px = 0, py = 0;
+    let drag = false, lm = {x:0,y:0};
+
+    const HUB = { x: 550, y: 550 };
+
+    // Init
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof ProxyUI !== 'undefined') {
+        ProxyUI.injectNavbar('Roadmaps');
+        ProxyUI.injectBackgroundGlows();
+      }
+      buildSidebar();
+      renderTree();
+      setupPanZoom();
+      resetPan();
+    });
+
+    function buildSidebar() {
+      const c = document.getElementById('sbList');
+      c.innerHTML = '';
+      const chev = '<svg class="sb-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>';
+      for (const k in DB) {
+        const d = DB[k];
+        const b = document.createElement('button');
+        b.className = 'sb-btn' + (k===career?' active':'');
+        b.innerHTML = `<div class="sb-ico">${d.icon}</div><div class="sb-txt"><h3>${d.title}</h3><p>${d.desc}</p></div>${chev}`;
+        b.onclick = () => { career=k; openCats={}; selLeaf=null; closePanel(); buildSidebar(); renderTree(); };
+        c.appendChild(b);
       }
     }
 
-    // ── Toggle Branch ──
-    function toggleBranch(event, headerEl) {
-      event.stopPropagation();
-      const branch = headerEl.closest('.branch');
-      if (!branch) return;
-      branch.classList.toggle('open');
+    function renderTree() {
+      const w = document.getElementById('world');
+      const svg = document.getElementById('svg');
+      w.querySelectorAll('.nd').forEach(n=>n.remove());
+      svg.innerHTML = '';
+      const d = DB[career]; if(!d) return;
+
+      // Root
+      mk(w, HUB.x, HUB.y, `<div class="nd-root"><div class="ri">${d.icon}</div><h2>${d.title}</h2></div>`);
+
+      // Layout categories vertically on the right side of root
+      const catCount = d.cats.length;
+      const catSpacingY = 110;
+      const catStartY = HUB.y - ((catCount-1)*catSpacingY)/2;
+      const catX = HUB.x + 340;
+
+      d.cats.forEach((cat, i) => {
+        const cy = catStartY + i * catSpacingY;
+        const isOpen = !!openCats[cat.id];
+
+        // Vine: root -> category
+        vine(svg, HUB.x+75, HUB.y, catX-105, cy, isOpen ? 'a' : '');
+
+        mk(w, catX, cy, `
+          <div class="nd-cat ${isOpen?'open':''}" onclick="toggleCat('${cat.id}')">
+            <div class="ci">${cat.icon}</div>
+            <div class="ct"><h4>${cat.title}</h4><p>${cat.desc}</p></div>
+            <svg class="cc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+        `);
+
+        // Children
+        if (isOpen && cat.kids) {
+          const kidX = catX + 300;
+          const kidSpacing = 48;
+          const kidStartY = cy - ((cat.kids.length-1)*kidSpacing)/2;
+
+          cat.kids.forEach((kid, ki) => {
+            const ky = kidStartY + ki * kidSpacing;
+            const isSel = selLeaf === kid.id;
+
+            // Sub-vine: category -> leaf
+            vine(svg, catX+105, cy, kidX-85, ky, 'a', true);
+
+            mk(w, kidX, ky, `
+              <div class="nd-leaf ${isSel?'sel':''}" onclick="openPanel('${kid.id}','${kid.panel}')" style="animation-delay:${ki*0.06}s">
+                <div class="ld"></div>
+                <span>${kid.label}</span>
+                <svg class="lc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+            `);
+          });
+        }
+      });
     }
 
-    // ── Init ──
-    document.addEventListener('DOMContentLoaded', () => {
-      ProxyUI.injectNavbar('Roadmaps');
-      ProxyUI.injectBackgroundGlows();
+    function mk(container, x, y, html) {
+      const el = document.createElement('div');
+      el.className = 'nd';
+      el.style.left = x+'px'; el.style.top = y+'px';
+      el.innerHTML = html;
+      container.appendChild(el);
+    }
 
-      // Entrance animations — stagger profession nodes
-      const nodes = document.querySelectorAll('.profession-node');
-      nodes.forEach((node, i) => {
-        node.style.opacity = '0';
-        node.style.transform = 'translateY(30px)';
-        node.style.transition = `all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${i * 0.1}s`;
-        setTimeout(() => {
-          node.style.opacity = '1';
-          node.style.transform = 'translateY(0)';
-        }, 100);
+    function vine(svg, x1, y1, x2, y2, cls, isSub) {
+      const mx = (x1+x2)/2;
+      const dd = `M ${x1} ${y1} C ${mx} ${y1}, ${mx} ${y2}, ${x2} ${y2}`;
+      const p = ns('path');
+      p.setAttribute('d', dd);
+      p.setAttribute('class', (isSub ? 'vsub' : 'vine') + (cls ? ' ' + cls : ''));
+      svg.appendChild(p);
+
+      // Particle
+      if (cls) {
+        const c = ns('circle');
+        c.setAttribute('r', isSub ? '2.2' : '3');
+        c.setAttribute('class', 'vp');
+        const a = ns('animateMotion');
+        a.setAttribute('dur', isSub ? '2.5s' : '3.8s');
+        a.setAttribute('repeatCount', 'indefinite');
+        a.setAttribute('path', dd);
+        c.appendChild(a);
+        svg.appendChild(c);
+      }
+    }
+
+    function ns(tag) { return document.createElementNS('http://www.w3.org/2000/svg', tag); }
+
+    function toggleCat(id) {
+      openCats[id] = !openCats[id];
+      selLeaf = null; closePanel(); renderTree();
+    }
+
+    function openPanel(leafId, panelKey) {
+      selLeaf = leafId; renderTree();
+      const d = getPanel(panelKey);
+      const body = document.getElementById('panelBody');
+
+      let specs = d.specs ? d.specs.map(s =>
+        `<div class="spec"><span class="spec-i">${s.i}</span><span class="spec-l">${s.l}</span><span class="spec-v">: ${s.v}</span></div>`
+      ).join('') : '';
+
+      body.innerHTML = `
+        <div class="p-hero"><h3>${d.title}</h3><p>${d.desc}</p></div>
+        ${d.videoTitle ? `
+        <div class="p-video">
+          <div class="p-video-inner"><div class="p-video-placeholder"><div class="vp-icon">🎬</div><div class="vp-text">Video Preview</div></div></div>
+          <div class="play-btn"></div>
+          <div class="vid-cap"><span>${d.videoTitle}</span><span class="vid-dur">${d.videoDur}</span></div>
+        </div>` : ''}
+        <div class="p-content">
+          <h4 class="p-stitle">Recommended Specs</h4>
+          ${specs}
+          ${d.why ? `<h4 class="p-sub">Why these specs?</h4><p class="p-text">${d.why}</p>` : ''}
+          ${d.tip ? `
+          <div class="tip-box">
+            <div class="tip-ico">💡</div>
+            <div><h5>Pro Tip</h5><p>${d.tip}</p></div>
+          </div>` : ''}
+        </div>
+      `;
+      document.getElementById('dtlPanel').classList.add('open');
+    }
+
+    function closePanel() { document.getElementById('dtlPanel').classList.remove('open'); selLeaf=null; }
+
+    // Pan & Zoom
+    function setupPanZoom() {
+      const c = document.getElementById('treeCanvas');
+      c.addEventListener('mousedown', e => {
+        if (e.target.closest('.nd')) return;
+        drag = true; lm = {x:e.clientX, y:e.clientY}; c.style.cursor='grabbing';
       });
-    });
+      window.addEventListener('mousemove', e => {
+        if (!drag) return;
+        px += e.clientX - lm.x; py += e.clientY - lm.y;
+        lm = {x:e.clientX, y:e.clientY}; applyTx();
+      });
+      window.addEventListener('mouseup', () => { drag=false; document.getElementById('treeCanvas').style.cursor='grab'; });
+      c.addEventListener('wheel', e => { e.preventDefault(); zoom(e.deltaY>0?-0.08:0.08); }, {passive:false});
+    }
+
+    function zoom(d) {
+      sc = Math.max(0.3, Math.min(2, sc+d));
+      document.getElementById('zLbl').textContent = Math.round(sc*100)+'%';
+      applyTx();
+    }
+
+    function applyTx() {
+      document.getElementById('world').style.transform = `translate(${px}px,${py}px) scale(${sc})`;
+    }
+
+    function resetPan() {
+      sc = 0.95; px = -180; py = -160;
+      document.getElementById('zLbl').textContent = Math.round(sc*100)+'%';
+      applyTx();
+    }
   </script>
 </body>
 </html>
