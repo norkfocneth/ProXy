@@ -389,16 +389,22 @@
 
     /* Mobile adjustments */
     @media (max-width: 768px) {
+      .founder-page {
+        padding: calc(var(--navbar-height, 64px) + 2rem) 1rem 4rem;
+      }
       .tree-wrapper {
         gap: 3rem;
+        overflow: hidden;
       }
       .tree-svg {
-        display: none;
+        display: none !important;
       }
       .parent-node {
         grid-template-columns: 1fr;
         justify-items: center;
         text-align: center;
+        padding: 1.5rem 1rem;
+        max-width: 100%;
       }
       .parent-tag {
         align-self: center;
@@ -407,10 +413,12 @@
         flex-direction: column;
         align-items: center;
         gap: 1.5rem;
+        width: 100%;
       }
       .child-node {
         width: 100%;
-        max-width: 320px;
+        max-width: 100%;
+        box-sizing: border-box;
       }
     }
   </style>
@@ -441,7 +449,7 @@
             </div>
           </div>
           <div class="parent-info">
-            <span class="parent-tag">Root Founder</span>
+            <span class="parent-tag font-mono-tech">Root Founder</span>
             <h2 class="parent-name">Arnav Focneth</h2>
             <div class="parent-title">Founder & Chief Architect</div>
             <p class="parent-desc">Designing, building, and optimizing digital educational systems to empower IPU engineering students with seamless resources.</p>
@@ -461,45 +469,45 @@
         <div class="child-node">
           <div class="slot-avatar">❓<div class="plus-badge">+</div></div>
           <h3 class="slot-role">Co-Founder</h3>
-          <span class="slot-status">Open Slot</span>
-          <p class="slot-joke">Aise khali seat acchi nahi lagti, apply karo aur occupies karo! We are looking for someone to lead with us.</p>
-          <a href="#" class="slot-apply">Join us ➔</a>
+          <span class="slot-status font-mono-tech">Open Slot</span>
+          <p class="slot-joke font-handwritten">Aise khali seat acchi nahi lagti, apply karo aur occupies karo! We are looking for someone to lead with us.</p>
+          <a href="#" class="slot-apply font-mono-tech">Join us ➔</a>
         </div>
 
         <!-- Card 2: Notes Manager -->
         <div class="child-node">
           <div class="slot-avatar">📚<div class="plus-badge">+</div></div>
           <h3 class="slot-role">Notes Manager</h3>
-          <span class="slot-status">Open Slot</span>
-          <p class="slot-joke">We have not appointed anyone yet. Join us or take the chance to manage our humongous database of syllabus notes!</p>
-          <a href="#" class="slot-apply">Join us ➔</a>
+          <span class="slot-status font-mono-tech">Open Slot</span>
+          <p class="slot-joke font-handwritten">We have not appointed anyone yet. Join us or take the chance to manage our humongous database of syllabus notes!</p>
+          <a href="#" class="slot-apply font-mono-tech">Join us ➔</a>
         </div>
 
         <!-- Card 3: PYQ Curator -->
         <div class="child-node">
           <div class="slot-avatar">📝<div class="plus-badge">+</div></div>
           <h3 class="slot-role">PYQ Curator</h3>
-          <span class="slot-status">Open Slot</span>
-          <p class="slot-joke">No PYQ mastermind here yet. Do you love collecting previous year papers? Claim your spot in this hierarchy.</p>
-          <a href="#" class="slot-apply">Join us ➔</a>
+          <span class="slot-status font-mono-tech">Open Slot</span>
+          <p class="slot-joke font-handwritten">No PYQ mastermind here yet. Do you love collecting previous year papers? Claim your spot in this hierarchy.</p>
+          <a href="#" class="slot-apply font-mono-tech">Join us ➔</a>
         </div>
 
         <!-- Card 4: UI/UX Designer -->
         <div class="child-node">
           <div class="slot-avatar">🎨<div class="plus-badge">+</div></div>
           <h3 class="slot-role">UI/UX Designer</h3>
-          <span class="slot-status">Open Slot</span>
-          <p class="slot-joke">Our canvas is empty. Join us to build gorgeous botanical dashboards and make users wow at first sight!</p>
-          <a href="#" class="slot-apply">Join us ➔</a>
+          <span class="slot-status font-mono-tech">Open Slot</span>
+          <p class="slot-joke font-handwritten">Our canvas is empty. Join us to build gorgeous botanical dashboards and make users wow at first sight!</p>
+          <a href="#" class="slot-apply font-mono-tech">Join us ➔</a>
         </div>
 
         <!-- Card 5: AI Specialist -->
         <div class="child-node">
           <div class="slot-avatar">🤖<div class="plus-badge">+</div></div>
           <h3 class="slot-role">AI Engineer</h3>
-          <span class="slot-status">Open Slot</span>
-          <p class="slot-joke">Neural networks are waiting for an architect. Help us design intelligent student assistants and features.</p>
-          <a href="#" class="slot-apply">Join us ➔</a>
+          <span class="slot-status font-mono-tech">Open Slot</span>
+          <p class="slot-joke font-handwritten">Neural networks are waiting for an architect. Help us design intelligent student assistants and features.</p>
+          <a href="#" class="slot-apply font-mono-tech">Join us ➔</a>
         </div>
       </div>
     </div>

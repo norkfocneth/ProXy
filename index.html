@@ -39,6 +39,33 @@
       pointer-events: none;
     }
 
+    /* Mobile responsive overrides for Home hero section */
+    @media (max-width: 768px) {
+      .hero-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 0 1.5rem;
+      }
+      .hero-content {
+        align-items: center;
+        text-align: center;
+        max-width: 100%;
+      }
+      .hero-badge {
+        align-self: center;
+      }
+      .hero-actions {
+        align-items: center;
+        width: 100%;
+      }
+      .canvas-container {
+        opacity: 0.45; /* Soften the background notebook on mobile for readability */
+      }
+    }
+
     canvas {
       display: block;
       width: 100vw;
@@ -212,7 +239,7 @@
       </div>
       <section class="hero-section">
         <div class="hero-content" id="heroContent">
-          <span class="hero-badge">✦ Made for IPU Students</span>
+          <span class="hero-badge font-mono-tech">✦ Made for IPU Students</span>
           <h1 class="hero-title">
             Everything an<br>
             IPU student needs.<br>
@@ -220,7 +247,7 @@
           </h1>
           <p class="hero-desc">
             Premium notes, PYQs, syllabus, roadmaps and more.<br>
-            Built to make your academic journey effortless.
+            Built to make your academic journey <span class="font-serif-italic">effortless</span>.
           </p>
           <div class="hero-actions">
             <a href="#subjects" class="btn btn--primary">Explore Notes <span class="arrow">→</span></a>
@@ -400,11 +427,11 @@
     <!-- Stats Bar -->
     <div class="stats-wrapper">
       <div class="stats-bar">
-        <div class="stat-item"><span class="stat-badge">👥</span><span class="stat-val">10K+</span><span class="stat-lbl">Students</span></div>
-        <div class="stat-item"><span class="stat-badge">📚</span><span class="stat-val">500+</span><span class="stat-lbl">Subjects</span></div>
-        <div class="stat-item"><span class="stat-badge">📝</span><span class="stat-val">25K+</span><span class="stat-lbl">Notes</span></div>
-        <div class="stat-item"><span class="stat-badge">📄</span><span class="stat-val">15K+</span><span class="stat-lbl">PYQs</span></div>
-        <div class="stat-item"><span class="stat-badge">🎯</span><span class="stat-val">100%</span><span class="stat-lbl">IPU Focused</span></div>
+        <div class="stat-item"><span class="stat-badge">👥</span><span class="stat-val font-mono-tech">10K+</span><span class="stat-lbl">Students</span></div>
+        <div class="stat-item"><span class="stat-badge">📚</span><span class="stat-val font-mono-tech">500+</span><span class="stat-lbl">Subjects</span></div>
+        <div class="stat-item"><span class="stat-badge">📝</span><span class="stat-val font-mono-tech">25K+</span><span class="stat-lbl">Notes</span></div>
+        <div class="stat-item"><span class="stat-badge">📄</span><span class="stat-val font-mono-tech">15K+</span><span class="stat-lbl">PYQs</span></div>
+        <div class="stat-item"><span class="stat-badge">🎯</span><span class="stat-val font-mono-tech">100%</span><span class="stat-lbl">IPU Focused</span></div>
       </div>
     </div>
 
@@ -412,7 +439,7 @@
     <section class="section-container branch-selection-section" id="branch-select-section">
       <div class="section-header">
         <h2>Syllabus Path Finder</h2>
-        <p>Select your GGSIPU engineering branch and semester to access the unified syllabus, premium notes, and PYQs.</p>
+        <p>Select your GGSIPU engineering branch and semester to access the unified syllabus, <span class="font-serif-italic">premium notes</span>, and PYQs.</p>
       </div>
       
       <div class="path-finder-container">
@@ -662,7 +689,11 @@
 
       const imgR = img.width / img.height, canR = w / h;
       let dw, dh, dx, dy;
-      if (canR > imgR) { 
+      
+      // On mobile viewports (width <= 768px), force the image to fit the width (no cropping/zoom-in)
+      const forceFitWidth = w <= 768;
+
+      if (canR > imgR || forceFitWidth) { 
         dw = w; 
         dh = w / imgR; 
         dx = 0; 
@@ -670,7 +701,7 @@
       } else { 
         dw = h * imgR; 
         dh = h; 
-        dx = (w - dw) * 0.82; // Align to the right to keep the 3D book cover fully visible on mobile/portrait
+        dx = (w - dw) * 0.82; 
         dy = 0; 
       }
       ctx.drawImage(img, dx, dy, dw, dh);
