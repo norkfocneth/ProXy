@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Roadmaps — Proxy</title>
-  <meta name="description" content="Visual career and study roadmaps for IPU students.">
+  <meta name="description" content="Interactive career roadmaps for IPU students — Web Dev, Android, AI/ML, Cloud, Cybersecurity, Data Science.">
   <link rel="stylesheet" href="../css/design-system.css?v=3">
   <style>
     /* Hide mobile menu overlay on desktop viewports */
@@ -14,258 +14,1173 @@
       }
     }
 
+    /* ── Hero ── */
     .roadmap-hero {
-      padding: calc(var(--navbar-height) + var(--space-4xl)) 0 var(--space-3xl);
+      padding: calc(var(--navbar-height) + var(--space-4xl)) 0 var(--space-2xl);
       text-align: center;
     }
     .roadmap-hero h1 {
       font-size: var(--font-size-5xl);
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: -0.03em;
       margin-bottom: var(--space-md);
     }
     .roadmap-hero p {
       font-size: var(--font-size-lg);
       color: var(--text-secondary);
-      max-width: 520px;
+      max-width: 560px;
       margin: 0 auto;
     }
-    
-    .roadmap-container {
-      max-width: 1000px;
+
+    /* ── Timeline Container ── */
+    .roadmap-timeline {
+      max-width: 780px;
       margin: 0 auto var(--space-5xl);
       padding: 0 6%;
       position: relative;
     }
 
-    .roadmap-line {
+    /* ── The Vertical Line ── */
+    .timeline-track {
       position: absolute;
-      left: 50%;
+      left: 32px;
       top: 0;
       bottom: 0;
-      width: 4px;
-      background: rgba(0,0,0,0.05);
-      transform: translateX(-50%);
+      width: 3px;
+      background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(124, 58, 237, 0.15) 5%,
+        rgba(124, 58, 237, 0.25) 50%,
+        rgba(124, 58, 237, 0.15) 95%,
+        transparent 100%
+      );
       border-radius: 2px;
     }
-    
-    .roadmap-node {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: var(--space-3xl);
+
+    /* Animated glow pulse on the track */
+    .timeline-track::after {
+      content: '';
+      position: absolute;
+      left: -2px;
+      width: 7px;
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+      border-radius: 4px;
+      animation: trackPulse 4s ease-in-out infinite;
+      opacity: 0.5;
+    }
+
+    @keyframes trackPulse {
+      0%, 100% { top: 0%; opacity: 0; }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.6; }
+      50% { top: calc(100% - 80px); }
+    }
+
+    /* ── Profession Node ── */
+    .profession-node {
       position: relative;
-      width: 100%;
+      padding-left: 68px;
+      margin-bottom: var(--space-xl);
     }
-    
-    .roadmap-node:nth-child(even) {
-      flex-direction: row-reverse;
+
+    /* ── Timeline Dot ── */
+    .timeline-dot {
+      position: absolute;
+      left: 22px;
+      top: 24px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--bg-primary);
+      border: 3px solid rgba(124, 58, 237, 0.3);
+      z-index: 2;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
     }
-    
-    .roadmap-content {
-      width: calc(50% - 40px);
-      background: var(--glass-bg);
+
+    .timeline-dot::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .profession-node.active .timeline-dot {
+      border-color: var(--accent);
+      transform: scale(1.25);
+      box-shadow: 0 0 20px rgba(124, 58, 237, 0.35);
+    }
+
+    .profession-node.active .timeline-dot::after {
+      opacity: 1;
+    }
+
+    /* ── Profession Card ── */
+    .profession-card {
+      background: var(--glass-bg-strong);
       border: 1px solid var(--glass-border);
       border-radius: var(--border-radius-lg);
       backdrop-filter: blur(var(--glass-blur));
-      padding: var(--space-xl);
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .profession-card:hover {
       box-shadow: var(--shadow-md);
-      transition: all 0.3s var(--ease-out);
+      border-color: rgba(124, 58, 237, 0.15);
     }
-    
-    .roadmap-content:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-lg);
-      border-color: rgba(124, 58, 237, 0.2);
+
+    .profession-node.active .profession-card {
+      border-color: rgba(124, 58, 237, 0.3);
+      box-shadow: var(--shadow-lg), 0 0 40px rgba(124, 58, 237, 0.06);
     }
-    
-    .roadmap-node:nth-child(odd) .roadmap-content {
-      text-align: right;
+
+    /* ── Card Header ── */
+    .profession-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding: var(--space-lg) var(--space-xl);
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s ease;
     }
-    
-    .roadmap-point {
-      width: 24px;
-      height: 24px;
+
+    .profession-header:hover {
+      background: rgba(124, 58, 237, 0.03);
+    }
+
+    .profession-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--border-radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      background: var(--accent-soft);
+      transition: all 0.3s ease;
+    }
+
+    .profession-node.active .profession-icon {
       background: var(--accent);
-      border: 4px solid var(--bg-color);
-      border-radius: 50%;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 2;
-      box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+      box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
     }
-    
-    .node-title {
+
+    .profession-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .profession-info h3 {
       font-size: var(--font-size-xl);
       font-weight: 700;
-      margin-bottom: var(--space-sm);
       color: var(--text-primary);
+      margin-bottom: 2px;
+      letter-spacing: -0.01em;
     }
-    
-    .node-desc {
+
+    .profession-tagline {
+      font-size: var(--font-size-sm);
+      color: var(--text-secondary);
+    }
+
+    .toggle-chevron {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      color: var(--text-muted);
+    }
+
+    .toggle-chevron svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .profession-node.active .toggle-chevron {
+      transform: rotate(90deg);
+      color: var(--accent);
+    }
+
+    /* ── Branches Container ── */
+    .profession-branches {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  opacity 0.4s ease;
+      opacity: 0;
+    }
+
+    .profession-node.active .profession-branches {
+      max-height: 3000px;
+      opacity: 1;
+    }
+
+    .branches-inner {
+      padding: 0 var(--space-xl) var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    /* ── Branch Card ── */
+    .branch {
+      border-radius: var(--border-radius-md);
+      border: 1px solid rgba(0,0,0,0.04);
+      background: rgba(255,255,255,0.5);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .branch:hover {
+      border-color: rgba(124, 58, 237, 0.1);
+    }
+
+    .branch.open {
+      border-color: rgba(124, 58, 237, 0.15);
+      background: rgba(255,255,255,0.7);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .branch-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-md) var(--space-lg);
+      cursor: pointer;
+      user-select: none;
+      font-weight: 600;
+      font-size: var(--font-size-sm);
+      color: var(--text-primary);
+      transition: background 0.2s ease;
+    }
+
+    .branch-header:hover {
+      background: rgba(124, 58, 237, 0.03);
+    }
+
+    .branch-emoji {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .branch-label {
+      flex: 1;
+    }
+
+    .branch-chevron {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .branch-chevron svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .branch.open .branch-chevron {
+      transform: rotate(90deg);
+      color: var(--accent);
+    }
+
+    /* ── Branch Body ── */
+    .branch-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    .branch.open .branch-body {
+      max-height: 800px;
+      opacity: 1;
+    }
+
+    .branch-content {
+      padding: 0 var(--space-lg) var(--space-lg);
+      padding-top: 0;
+    }
+
+    .branch-content ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .branch-content li {
       font-size: var(--font-size-sm);
       color: var(--text-secondary);
       line-height: 1.6;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
     }
-    
-    .node-tags {
+
+    .branch-content li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      margin-top: 8px;
+      opacity: 0.5;
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .spec-item {
+      background: rgba(124, 58, 237, 0.03);
+      border-radius: var(--border-radius-sm);
+      padding: 10px 14px;
+      border: 1px solid rgba(124, 58, 237, 0.06);
+    }
+
+    .spec-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .spec-value {
+      font-size: var(--font-size-sm);
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    /* ── Step List (Learning Path) ── */
+    .step-list {
+      list-style: none !important;
+      counter-reset: step;
+      display: flex;
+      flex-direction: column;
+      gap: 6px !important;
+      padding-left: 0;
+    }
+
+    .step-list li {
+      counter-increment: step;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      transition: background 0.2s ease;
+    }
+
+    .step-list li:hover {
+      background: rgba(124, 58, 237, 0.03);
+    }
+
+    .step-list li::before {
+      content: counter(step) !important;
+      width: 26px !important;
+      height: 26px !important;
+      border-radius: 50% !important;
+      background: var(--accent-soft) !important;
+      color: var(--accent) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-size: 0.7rem !important;
+      font-weight: 700 !important;
+      flex-shrink: 0 !important;
+      margin-top: 0 !important;
+      opacity: 1 !important;
+    }
+
+    .career-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: var(--space-md);
     }
-    
-    .roadmap-node:nth-child(odd) .node-tags {
-      justify-content: flex-end;
-    }
-    
-    .tag {
-      font-size: 0.7rem;
+
+    .career-tag {
+      font-size: 0.75rem;
       font-weight: 600;
-      padding: 4px 10px;
-      background: rgba(124, 58, 237, 0.05);
+      padding: 6px 14px;
+      border-radius: var(--border-radius-full);
+      background: var(--accent-soft);
       color: var(--accent);
-      border-radius: 12px;
+      transition: all 0.3s ease;
     }
-    
+
+    .career-tag:hover {
+      background: var(--accent);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+    }
+
+    .salary-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #10b981;
+      padding: 6px 14px;
+      background: rgba(16, 185, 129, 0.06);
+      border-radius: var(--border-radius-full);
+      border: 1px solid rgba(16, 185, 129, 0.12);
+      margin-top: 10px;
+    }
+
+    /* ── Responsive ── */
     @media (max-width: 768px) {
       .roadmap-hero {
-        padding: calc(var(--navbar-height) + var(--space-3xl)) 1.25rem var(--space-2xl);
+        padding: calc(var(--navbar-height) + var(--space-3xl)) 1.25rem var(--space-xl);
       }
+      .roadmap-hero h1 { font-size: var(--font-size-3xl); }
 
-      .roadmap-container {
-        padding: 0 1.25rem;
+      .roadmap-timeline {
+        padding: 0 1rem;
         margin-bottom: var(--space-4xl);
       }
 
-      .roadmap-line {
-        left: 24px;
-      }
-      
-      .roadmap-node, .roadmap-node:nth-child(even) {
-        flex-direction: row;
-        justify-content: flex-end;
-      }
-      
-      .roadmap-point {
-        left: 24px;
-        width: 20px;
-        height: 20px;
-      }
-      
-      .roadmap-content {
-        width: calc(100% - 56px);
-        text-align: left !important;
-        padding: var(--space-lg);
+      .timeline-track {
+        left: 20px;
       }
 
-      .node-title {
+      .profession-node {
+        padding-left: 48px;
+      }
+
+      .timeline-dot {
+        left: 11px;
+        width: 18px;
+        height: 18px;
+      }
+
+      .profession-header {
+        padding: var(--space-md) var(--space-lg);
+      }
+
+      .profession-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+
+      .profession-info h3 {
         font-size: var(--font-size-lg);
       }
-      
-      .roadmap-node:nth-child(odd) .node-tags {
-        justify-content: flex-start;
+
+      .branches-inner {
+        padding: 0 var(--space-lg) var(--space-lg);
+      }
+
+      .spec-grid {
+        grid-template-columns: 1fr;
       }
     }
 
     @media (max-width: 480px) {
-      .roadmap-container {
-        padding: 0 1rem;
+      .roadmap-timeline {
+        padding: 0 0.75rem;
       }
-
-      .roadmap-content {
-        width: calc(100% - 48px);
-        padding: var(--space-md);
+      .profession-node {
+        padding-left: 42px;
       }
+      .timeline-track { left: 16px; }
+      .timeline-dot { left: 7px; width: 18px; height: 18px; }
     }
   </style>
 </head>
 <body class="light-mode">
   <div class="page-content">
     <div class="roadmap-hero">
-      <h1>Tech <span class="gradient-text">Roadmaps</span></h1>
-      <p>Step-by-step guides to mastering domains alongside your IPU degree.</p>
+      <h1>Career <span class="gradient-text">Roadmaps</span></h1>
+      <p>Choose your path. Click any profession to explore device requirements, tools, learning paths, and career outcomes.</p>
     </div>
-    
-    <div class="roadmap-container">
-      <div class="roadmap-line"></div>
-      
-      <div class="roadmap-node">
-        <div class="roadmap-content">
-          <div class="node-title">1. The Fundamentals</div>
-          <div class="node-desc">Start by building a strong foundation in programming and computer science basics. Focus on logic, not just syntax.</div>
-          <div class="node-tags">
-            <span class="tag">C/C++</span>
-            <span class="tag">Python</span>
-            <span class="tag">Data Structures</span>
+
+    <div class="roadmap-timeline">
+      <div class="timeline-track"></div>
+
+      <!-- ═══════════ 1. Web Development ═══════════ -->
+      <div class="profession-node" data-id="web">
+        <div class="timeline-dot"></div>
+        <div class="profession-card">
+          <div class="profession-header" onclick="toggleProfession('web')">
+            <div class="profession-icon">🌐</div>
+            <div class="profession-info">
+              <h3>Web Development</h3>
+              <p class="profession-tagline">Build the internet — frontend, backend & full-stack</p>
+            </div>
+            <div class="toggle-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+          </div>
+          <div class="profession-branches">
+            <div class="branches-inner">
+
+              <!-- Device Requirements -->
+              <div class="branch">
+                <div class="branch-header" onclick="toggleBranch(event, this)">
+                  <span class="branch-emoji">💻</span>
+                  <span class="branch-label">Device Requirements</span>
+                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+                <div class="branch-body">
+                  <div class="branch-content">
+                    <div class="spec-grid">
+                      <div class="spec-item"><div class="spec-label">Processor</div><div class="spec-value">Intel i5 / Ryzen 5+</div></div>
+                      <div class="spec-item"><div class="spec-label">RAM</div><div class="spec-value">8 GB minimum</div></div>
+                      <div class="spec-item"><div class="spec-label">Storage</div><div class="spec-value">256 GB SSD</div></div>
+                      <div class="spec-item"><div class="spec-label">OS</div><div class="spec-value">Windows / macOS / Linux</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tools & Software -->
+              <div class="branch">
+                <div class="branch-header" onclick="toggleBranch(event, this)">
+                  <span class="branch-emoji">🛠️</span>
+                  <span class="branch-label">Tools & Software</span>
+                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+                <div class="branch-body">
+                  <div class="branch-content">
+                    <ul>
+                      <li>VS Code — Primary code editor with extensions</li>
+                      <li>Chrome DevTools — Debugging & performance profiling</li>
+                      <li>Git & GitHub — Version control & collaboration</li>
+                      <li>Node.js & npm — JavaScript runtime & package manager</li>
+                      <li>Figma — UI/UX design reference & prototyping</li>
+                      <li>Postman — API testing & debugging</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Learning Path -->
+              <div class="branch">
+                <div class="branch-header" onclick="toggleBranch(event, this)">
+                  <span class="branch-emoji">📚</span>
+                  <span class="branch-label">Learning Path</span>
+                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+                <div class="branch-body">
+                  <div class="branch-content">
+                    <ul class="step-list">
+                      <li>HTML & CSS — Structure & styling fundamentals</li>
+                      <li>JavaScript — DOM manipulation, ES6+, async/await</li>
+                      <li>Responsive Design — Flexbox, Grid, media queries</li>
+                      <li>React.js or Vue.js — Component-based UI frameworks</li>
+                      <li>Node.js & Express — Backend APIs & server-side logic</li>
+                      <li>Databases — MongoDB, PostgreSQL, Firebase</li>
+                      <li>Deployment — Vercel, Netlify, AWS, Docker basics</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Career Outcomes -->
+              <div class="branch">
+                <div class="branch-header" onclick="toggleBranch(event, this)">
+                  <span class="branch-emoji">🎯</span>
+                  <span class="branch-label">Career Outcomes</span>
+                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+                <div class="branch-body">
+                  <div class="branch-content">
+                    <div class="career-tags">
+                      <span class="career-tag">Frontend Developer</span>
+                      <span class="career-tag">Backend Developer</span>
+                      <span class="career-tag">Full-Stack Developer</span>
+                      <span class="career-tag">UI Engineer</span>
+                      <span class="career-tag">DevOps Engineer</span>
+                    </div>
+                    <div class="salary-badge">💰 ₹5 LPA – ₹25 LPA (fresher to mid-level)</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
-        <div class="roadmap-point"></div>
       </div>
-      
-      <div class="roadmap-node">
-        <div class="roadmap-content">
-          <div class="node-title">2. Web Development</div>
-          <div class="node-desc">Learn how the internet works and build your first full-stack applications. A crucial skill for modern software engineering.</div>
-          <div class="node-tags">
-            <span class="tag">HTML/CSS</span>
-            <span class="tag">JavaScript</span>
-            <span class="tag">React</span>
-            <span class="tag">Node.js</span>
+
+      <!-- ═══════════ 2. Android Development ═══════════ -->
+      <div class="profession-node" data-id="android">
+        <div class="timeline-dot"></div>
+        <div class="profession-card">
+          <div class="profession-header" onclick="toggleProfession('android')">
+            <div class="profession-icon">📱</div>
+            <div class="profession-info">
+              <h3>Android Development</h3>
+              <p class="profession-tagline">Build apps for 3 billion+ Android devices worldwide</p>
+            </div>
+            <div class="toggle-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+          </div>
+          <div class="profession-branches">
+            <div class="branches-inner">
+
+              <div class="branch">
+                <div class="branch-header" onclick="toggleBranch(event, this)">
+                  <span class="branch-emoji">💻</span>
+                  <span class="branch-label">Device Requirements</span>
+                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+                <div class="branch-body">
+                  <div class="branch-content">
+                    <div class="spec-grid">
+                      <div class="spec-item"><div class="spec-label">Processor</div><div class="spec-value">Intel i5 / Ryzen 5+ (multi-core)</div></div>
+                      <div class="spec-item"><div class="spec-label">RAM</div><div class="spec-value">16 GB recommended</div></div>
+                      <div class="spec-item"><div class="spec-label">Storage</div><div class="spec-value">512 GB SSD (emulators need space)</div></div>
+                      <div class="spec-item"><div class="spec-label">Extra</div><div class="spec-value">Android phone for testing</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="branch">
+                <div class="branch-header" onclick="toggleBranch(event, this)">
+                  <span class="branch-emoji">🛠️</span>
+                  <span class="branch-label">Tools & Software</span>
+                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+                <div class="branch-body">
+                  <div class="branch-content">
+                    <ul>
+                      <li>Android Studio — Official IDE with emulator & debugger</li>
+                      <li>Kotlin — Modern primary language for Android</li>
+                      <li>Firebase — Auth, database, analytics, push notifications</li>
+                      <li>Git & GitHub — Version control</li>
+                      <li>Figma — UI/UX design for mobile screens</li>
+                      <li>ADB — Android Debug Bridge for device testing</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="branch">
+                <div class="branch-header" onclick="toggleBranch(event, this)">
+                  <span class="branch-emoji">📚</span>
+                  <span class="branch-label">Learning Path</span>
+                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+                <div class="branch-body">
+                  <div class="branch-content">
+                    <ul class="step-list">
+                      <li>Java or Kotlin fundamentals — OOP, collections, coroutines</li>
+                      <li>Android Studio setup — Project structure, Gradle</li>
+                      <li>UI Design — XML Layouts or Jetpack Compose</li>
+                      <li>Navigation & Architecture — MVVM, ViewModel, LiveData</li>
+                      <li>APIs & Networking — Retrofit, OkHttp, REST APIs</li>
+                      <li>Local Storage — Room Database, SharedPreferences</li>
+                      <li>Firebase Integration — Auth, Firestore, Cloud Messaging</li>
+                      <li>Publishing — Google Play Store deployment</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="branch">
+                <div class="branch-header" onclick="toggleBranch(event, this)">
+                  <span class="branch-emoji">🎯</span>
+                  <span class="branch-label">Career Outcomes</span>
+                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+                <div class="branch-body">
+                  <div class="branch-content">
+                    <div class="career-tags">
+                      <span class="career-tag">Android Developer</span>
+                      <span class="career-tag">Mobile Engineer</span>
+                      <span class="career-tag">Kotlin Developer</span>
+                      <span class="career-tag">App Architect</span>
+                    </div>
+                    <div class="salary-badge">💰 ₹6 LPA – ₹30 LPA (fresher to mid-level)</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
-        <div class="roadmap-point"></div>
       </div>
-      
-      <div class="roadmap-node">
-        <div class="roadmap-content">
-          <div class="node-title">3. Core CS Concepts</div>
-          <div class="node-desc">Deepen your understanding of how systems operate under the hood. Important for product companies and GATE.</div>
-          <div class="node-tags">
-            <span class="tag">OS</span>
-            <span class="tag">DBMS</span>
-            <span class="tag">Computer Networks</span>
+
+      <!-- ═══════════ 3. AI / Machine Learning ═══════════ -->
+      <div class="profession-node" data-id="aiml">
+        <div class="timeline-dot"></div>
+        <div class="profession-card">
+          <div class="profession-header" onclick="toggleProfession('aiml')">
+            <div class="profession-icon">🤖</div>
+            <div class="profession-info">
+              <h3>AI / Machine Learning</h3>
+              <p class="profession-tagline">Teach machines to think, learn, and create</p>
+            </div>
+            <div class="toggle-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+          </div>
+          <div class="profession-branches">
+            <div class="branches-inner">
+
+              <div class="branch">
+                <div class="branch-header" onclick="toggleBranch(event, this)">
+                  <span class="branch-emoji">💻</span>
+                  <span class="branch-label">Device Requirements</span>
+                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+                <div class="branch-body">
+                  <div class="branch-content">
+                    <div class="spec-grid">
+                      <div class="spec-item"><div class="spec-label">Processor</div><div class="spec-value">Intel i7 / Ryzen 7+ recommended</div></div>
+                      <div class="spec-item"><div class="spec-label">RAM</div><div class="spec-value">16 GB minimum (32 GB ideal)</div></div>
+                      <div class="spec-item"><div class="spec-label">GPU</div><div class="spec-value">NVIDIA GPU with CUDA (or use Colab)</div></div>
+                      <div class="spec-item"><div class="spec-label">OS</div><div class="spec-value">Linux preferred, macOS / Windows OK</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="branch">
+                <div class="branch-header" onclick="toggleBranch(event, this)">
+                  <span class="branch-emoji">🛠️</span>
+                  <span class="branch-label">Tools & Software</span>
+                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+                <div class="branch-body">
+                  <div class="branch-content">
+                    <ul>
+                      <li>Python 3 — Primary language for ML/AI</li>
+                      <li>Jupyter Notebook / Google Colab — Interactive experimentation</li>
+                      <li>TensorFlow & PyTorch — Deep learning frameworks</li>
+                      <li>scikit-learn — Classical ML algorithms</li>
+                      <li>Pandas & NumPy — Data manipulation & math</li>
+                      <li>Hugging Face — Pre-trained models & NLP pipelines</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="branch">
+                <div class="branch-header" onclick="toggleBranch(event, this)">
+                  <span class="branch-emoji">📚</span>
+                  <span class="branch-label">Learning Path</span>
+                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+                <div class="branch-body">
+                  <div class="branch-content">
+                    <ul class="step-list">
+                      <li>Python Programming — Data types, OOP, file I/O</li>
+                      <li>Mathematics — Linear algebra, calculus, probability & statistics</li>
+                      <li>Data Analysis — Pandas, NumPy, Matplotlib, EDA</li>
+                      <li>Machine Learning — Supervised, unsupervised, ensemble methods</li>
+                      <li>Deep Learning — Neural networks, CNNs, RNNs, Transformers</li>
+                      <li>Specialization — NLP, Computer Vision, or Reinforcement Learning</li>
+                      <li>MLOps — Model deployment, monitoring, CI/CD for ML</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="branch">
+                <div class="branch-header" onclick="toggleBranch(event, this)">
+                  <span class="branch-emoji">🎯</span>
+                  <span class="branch-label">Career Outcomes</span>
+                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+                <div class="branch-body">
+                  <div class="branch-content">
+                    <div class="career-tags">
+                      <span class="career-tag">ML Engineer</span>
+                      <span class="career-tag">Data Scientist</span>
+                      <span class="career-tag">AI Researcher</span>
+                      <span class="career-tag">NLP Engineer</span>
+                      <span class="career-tag">Computer Vision Engineer</span>
+                    </div>
+                    <div class="salary-badge">💰 ₹8 LPA – ₹40 LPA (fresher to mid-level)</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
-        <div class="roadmap-point"></div>
       </div>
-      
-      <div class="roadmap-node">
-        <div class="roadmap-content">
-          <div class="node-title">4. Specialization</div>
-          <div class="node-desc">Pick a domain that interests you and go deep. Build projects that solve real-world problems.</div>
-          <div class="node-tags">
-            <span class="tag">AI/ML</span>
-            <span class="tag">Cloud Computing</span>
-            <span class="tag">App Dev</span>
-            <span class="tag">Web3</span>
+
+      <!-- ═══════════ 4. Cloud & DevOps ═══════════ -->
+      <div class="profession-node" data-id="cloud">
+        <div class="timeline-dot"></div>
+        <div class="profession-card">
+          <div class="profession-header" onclick="toggleProfession('cloud')">
+            <div class="profession-icon">☁️</div>
+            <div class="profession-info">
+              <h3>Cloud & DevOps</h3>
+              <p class="profession-tagline">Automate, deploy & scale infrastructure at global level</p>
+            </div>
+            <div class="toggle-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+          </div>
+          <div class="profession-branches">
+            <div class="branches-inner">
+
+              <div class="branch">
+                <div class="branch-header" onclick="toggleBranch(event, this)">
+                  <span class="branch-emoji">💻</span>
+                  <span class="branch-label">Device Requirements</span>
+                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+                <div class="branch-body">
+                  <div class="branch-content">
+                    <div class="spec-grid">
+                      <div class="spec-item"><div class="spec-label">Processor</div><div class="spec-value">Intel i5 / Ryzen 5+</div></div>
+                      <div class="spec-item"><div class="spec-label">RAM</div><div class="spec-value">8 GB min (16 GB for VMs)</div></div>
+                      <div class="spec-item"><div class="spec-label">Storage</div><div class="spec-value">256 GB SSD</div></div>
+                      <div class="spec-item"><div class="spec-label">OS</div><div class="spec-value">Linux / WSL on Windows</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="branch">
+                <div class="branch-header" onclick="toggleBranch(event, this)">
+                  <span class="branch-emoji">🛠️</span>
+                  <span class="branch-label">Tools & Software</span>
+                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+                <div class="branch-body">
+                  <div class="branch-content">
+                    <ul>
+                      <li>AWS / GCP / Azure — Major cloud platforms</li>
+                      <li>Docker — Containerization & image management</li>
+                      <li>Kubernetes — Container orchestration at scale</li>
+                      <li>Terraform — Infrastructure as Code (IaC)</li>
+                      <li>Jenkins / GitHub Actions — CI/CD pipelines</li>
+                      <li>Linux CLI — Shell scripting, system administration</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="branch">
+                <div class="branch-header" onclick="toggleBranch(event, this)">
+                  <span class="branch-emoji">📚</span>
+                  <span class="branch-label">Learning Path</span>
+                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+                <div class="branch-body">
+                  <div class="branch-content">
+                    <ul class="step-list">
+                      <li>Linux Fundamentals — File system, permissions, shell scripting</li>
+                      <li>Networking — TCP/IP, DNS, load balancing, firewalls</li>
+                      <li>Cloud Basics — Compute, storage, IAM on AWS/GCP</li>
+                      <li>Docker — Containers, images, Docker Compose</li>
+                      <li>CI/CD — GitHub Actions, Jenkins, automated pipelines</li>
+                      <li>Kubernetes — Pods, services, deployments, Helm</li>
+                      <li>Infrastructure as Code — Terraform, Ansible</li>
+                      <li>Monitoring — Prometheus, Grafana, ELK stack</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="branch">
+                <div class="branch-header" onclick="toggleBranch(event, this)">
+                  <span class="branch-emoji">🎯</span>
+                  <span class="branch-label">Career Outcomes</span>
+                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+                <div class="branch-body">
+                  <div class="branch-content">
+                    <div class="career-tags">
+                      <span class="career-tag">DevOps Engineer</span>
+                      <span class="career-tag">Cloud Architect</span>
+                      <span class="career-tag">SRE</span>
+                      <span class="career-tag">Platform Engineer</span>
+                      <span class="career-tag">Infrastructure Engineer</span>
+                    </div>
+                    <div class="salary-badge">💰 ₹7 LPA – ₹35 LPA (fresher to mid-level)</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
-        <div class="roadmap-point"></div>
       </div>
-      
-      <div class="roadmap-node">
-        <div class="roadmap-content">
-          <div class="node-title">5. Interview Prep</div>
-          <div class="node-desc">Master system design and advanced algorithms to crack top product-based companies.</div>
-          <div class="node-tags">
-            <span class="tag">System Design</span>
-            <span class="tag">Advanced DSA</span>
-            <span class="tag">Mock Interviews</span>
+
+      <!-- ═══════════ 5. Cybersecurity ═══════════ -->
+      <div class="profession-node" data-id="cyber">
+        <div class="timeline-dot"></div>
+        <div class="profession-card">
+          <div class="profession-header" onclick="toggleProfession('cyber')">
+            <div class="profession-icon">🛡️</div>
+            <div class="profession-info">
+              <h3>Cybersecurity</h3>
+              <p class="profession-tagline">Defend systems, hunt threats, and break to protect</p>
+            </div>
+            <div class="toggle-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+          </div>
+          <div class="profession-branches">
+            <div class="branches-inner">
+
+              <div class="branch">
+                <div class="branch-header" onclick="toggleBranch(event, this)">
+                  <span class="branch-emoji">💻</span>
+                  <span class="branch-label">Device Requirements</span>
+                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+                <div class="branch-body">
+                  <div class="branch-content">
+                    <div class="spec-grid">
+                      <div class="spec-item"><div class="spec-label">Processor</div><div class="spec-value">Intel i5 / Ryzen 5+ (VMs needed)</div></div>
+                      <div class="spec-item"><div class="spec-label">RAM</div><div class="spec-value">16 GB recommended (multiple VMs)</div></div>
+                      <div class="spec-item"><div class="spec-label">Storage</div><div class="spec-value">512 GB SSD (Kali + VMs)</div></div>
+                      <div class="spec-item"><div class="spec-label">OS</div><div class="spec-value">Kali Linux + Windows dual-boot</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="branch">
+                <div class="branch-header" onclick="toggleBranch(event, this)">
+                  <span class="branch-emoji">🛠️</span>
+                  <span class="branch-label">Tools & Software</span>
+                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+                <div class="branch-body">
+                  <div class="branch-content">
+                    <ul>
+                      <li>Kali Linux — Penetration testing distribution</li>
+                      <li>Burp Suite — Web application security testing</li>
+                      <li>Wireshark — Network packet analysis</li>
+                      <li>Metasploit — Exploitation framework</li>
+                      <li>Nmap — Network scanning & enumeration</li>
+                      <li>VirtualBox / VMware — Running isolated lab environments</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="branch">
+                <div class="branch-header" onclick="toggleBranch(event, this)">
+                  <span class="branch-emoji">📚</span>
+                  <span class="branch-label">Learning Path</span>
+                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+                <div class="branch-body">
+                  <div class="branch-content">
+                    <ul class="step-list">
+                      <li>Networking Fundamentals — OSI model, TCP/IP, DNS, HTTP</li>
+                      <li>Linux Administration — Command line, users, file permissions</li>
+                      <li>Web Security — OWASP Top 10, XSS, SQL injection, CSRF</li>
+                      <li>Cryptography — Encryption, hashing, PKI, SSL/TLS</li>
+                      <li>Penetration Testing — Recon, scanning, exploitation, reporting</li>
+                      <li>Digital Forensics — Disk imaging, memory analysis, log review</li>
+                      <li>Bug Bounty — HackerOne, Bugcrowd, real-world hunting</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="branch">
+                <div class="branch-header" onclick="toggleBranch(event, this)">
+                  <span class="branch-emoji">🎯</span>
+                  <span class="branch-label">Career Outcomes</span>
+                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+                <div class="branch-body">
+                  <div class="branch-content">
+                    <div class="career-tags">
+                      <span class="career-tag">Security Analyst</span>
+                      <span class="career-tag">Penetration Tester</span>
+                      <span class="career-tag">Security Engineer</span>
+                      <span class="career-tag">SOC Analyst</span>
+                      <span class="career-tag">Bug Bounty Hunter</span>
+                    </div>
+                    <div class="salary-badge">💰 ₹6 LPA – ₹35 LPA (fresher to mid-level)</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
-        <div class="roadmap-point"></div>
       </div>
+
+      <!-- ═══════════ 6. Data Science ═══════════ -->
+      <div class="profession-node" data-id="data">
+        <div class="timeline-dot"></div>
+        <div class="profession-card">
+          <div class="profession-header" onclick="toggleProfession('data')">
+            <div class="profession-icon">📊</div>
+            <div class="profession-info">
+              <h3>Data Science</h3>
+              <p class="profession-tagline">Turn raw data into decisions, stories & business value</p>
+            </div>
+            <div class="toggle-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+          </div>
+          <div class="profession-branches">
+            <div class="branches-inner">
+
+              <div class="branch">
+                <div class="branch-header" onclick="toggleBranch(event, this)">
+                  <span class="branch-emoji">💻</span>
+                  <span class="branch-label">Device Requirements</span>
+                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+                <div class="branch-body">
+                  <div class="branch-content">
+                    <div class="spec-grid">
+                      <div class="spec-item"><div class="spec-label">Processor</div><div class="spec-value">Intel i5 / Ryzen 5+</div></div>
+                      <div class="spec-item"><div class="spec-label">RAM</div><div class="spec-value">8–16 GB</div></div>
+                      <div class="spec-item"><div class="spec-label">Storage</div><div class="spec-value">256 GB SSD</div></div>
+                      <div class="spec-item"><div class="spec-label">GPU</div><div class="spec-value">Optional (use Colab for heavy work)</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="branch">
+                <div class="branch-header" onclick="toggleBranch(event, this)">
+                  <span class="branch-emoji">🛠️</span>
+                  <span class="branch-label">Tools & Software</span>
+                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+                <div class="branch-body">
+                  <div class="branch-content">
+                    <ul>
+                      <li>Python & R — Primary analysis languages</li>
+                      <li>SQL — Database querying (MySQL, PostgreSQL)</li>
+                      <li>Tableau / Power BI — Data visualization dashboards</li>
+                      <li>Excel / Google Sheets — Quick data exploration</li>
+                      <li>Jupyter Notebook — Interactive coding & documentation</li>
+                      <li>Apache Spark — Big data processing at scale</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="branch">
+                <div class="branch-header" onclick="toggleBranch(event, this)">
+                  <span class="branch-emoji">📚</span>
+                  <span class="branch-label">Learning Path</span>
+                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+                <div class="branch-body">
+                  <div class="branch-content">
+                    <ul class="step-list">
+                      <li>Statistics & Probability — Distributions, hypothesis testing</li>
+                      <li>Python / R Programming — Data types, libraries, scripting</li>
+                      <li>SQL Mastery — Joins, subqueries, window functions</li>
+                      <li>Data Visualization — Matplotlib, Seaborn, Plotly, Tableau</li>
+                      <li>Exploratory Data Analysis — Cleaning, feature engineering</li>
+                      <li>Machine Learning Basics — Regression, classification, clustering</li>
+                      <li>Big Data — Spark, Hadoop, data warehouses</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="branch">
+                <div class="branch-header" onclick="toggleBranch(event, this)">
+                  <span class="branch-emoji">🎯</span>
+                  <span class="branch-label">Career Outcomes</span>
+                  <span class="branch-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+                <div class="branch-body">
+                  <div class="branch-content">
+                    <div class="career-tags">
+                      <span class="career-tag">Data Analyst</span>
+                      <span class="career-tag">Business Analyst</span>
+                      <span class="career-tag">Data Scientist</span>
+                      <span class="career-tag">Data Engineer</span>
+                      <span class="career-tag">BI Developer</span>
+                    </div>
+                    <div class="salary-badge">💰 ₹5 LPA – ₹30 LPA (fresher to mid-level)</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
   <script src="../js/shared.js?v=3"></script>
   <script>
+    // ── Accordion: Toggle Profession ──
+    function toggleProfession(id) {
+      const allNodes = document.querySelectorAll('.profession-node');
+      const target = document.querySelector(`.profession-node[data-id="${id}"]`);
+      if (!target) return;
+
+      const isActive = target.classList.contains('active');
+
+      // Close all nodes & their branches
+      allNodes.forEach(node => {
+        node.classList.remove('active');
+        node.querySelectorAll('.branch').forEach(b => b.classList.remove('open'));
+      });
+
+      // If it wasn't active, open it
+      if (!isActive) {
+        target.classList.add('active');
+        // Smooth scroll to the node
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+      }
+    }
+
+    // ── Toggle Branch ──
+    function toggleBranch(event, headerEl) {
+      event.stopPropagation();
+      const branch = headerEl.closest('.branch');
+      if (!branch) return;
+      branch.classList.toggle('open');
+    }
+
+    // ── Init ──
     document.addEventListener('DOMContentLoaded', () => {
       ProxyUI.injectNavbar('Roadmaps');
       ProxyUI.injectBackgroundGlows();
+
+      // Entrance animations — stagger profession nodes
+      const nodes = document.querySelectorAll('.profession-node');
+      nodes.forEach((node, i) => {
+        node.style.opacity = '0';
+        node.style.transform = 'translateY(30px)';
+        node.style.transition = `all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${i * 0.1}s`;
+        setTimeout(() => {
+          node.style.opacity = '1';
+          node.style.transform = 'translateY(0)';
+        }, 100);
+      });
     });
   </script>
 </body>

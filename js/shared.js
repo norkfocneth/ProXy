@@ -16,7 +16,7 @@ function injectNavbar(activePage = 'Home') {
         <li><a class="nav-link${activePage === 'Syllabus' ? ' active' : ''}" href="/index.html#syllabus-section">Syllabus</a></li>
         <li><a class="nav-link${activePage === 'Notes' ? ' active' : ''}" href="/pages/notes.html">Notes</a></li>
         <li><a class="nav-link${activePage === 'PYQs' ? ' active' : ''}" href="/pages/pyqs.html">PYQs</a></li>
-        <li><a class="nav-link${activePage === 'Faculty' ? ' active' : ''}" href="/pages/faculty.html">Faculty</a></li>
+        <li><a class="nav-link${activePage === 'Founders' ? ' active' : ''}" href="/pages/founders.html">Founders</a></li>
         <li><a class="nav-link${activePage === 'Roadmaps' ? ' active' : ''}" href="/pages/roadmaps.html">Roadmaps</a></li>
         <li><a class="nav-link${activePage === 'More' ? ' active' : ''}" href="#">More</a></li>
       </ul>
@@ -50,7 +50,7 @@ function injectNavbar(activePage = 'Home') {
   const searchOverlayHTML = `
     <div class="search-overlay" id="searchOverlay">
       <div class="search-modal">
-        <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search notes, PYQs, subjects, faculty..." autofocus>
+        <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search notes, PYQs, subjects, founders..." autofocus>
         <div class="search-modal-hint">
           <span>Type to search across everything</span>
           <span><kbd>Esc</kbd> to close</span>
@@ -67,7 +67,7 @@ function injectNavbar(activePage = 'Home') {
         <li><a class="${activePage === 'Syllabus' ? 'active' : ''}" href="/index.html#syllabus-section">Syllabus</a></li>
         <li><a class="${activePage === 'Notes' ? 'active' : ''}" href="/pages/notes.html">Notes</a></li>
         <li><a class="${activePage === 'PYQs' ? 'active' : ''}" href="/pages/pyqs.html">PYQs</a></li>
-        <li><a class="${activePage === 'Faculty' ? 'active' : ''}" href="/pages/faculty.html">Faculty</a></li>
+        <li><a class="${activePage === 'Founders' ? 'active' : ''}" href="/pages/founders.html">Founders</a></li>
         <li><a class="${activePage === 'Roadmaps' ? 'active' : ''}" href="/pages/roadmaps.html">Roadmaps</a></li>
       </ul>
     </div>
@@ -208,6 +208,213 @@ function setupCarousel(carouselId, prevId, nextId, scrollAmount = 300) {
   }
 }
 
+// ── Netflix-Style Cinematic Intro ──
+function injectCinematicIntro() {
+  // Inject CSS
+  const style = document.createElement('style');
+  style.textContent = `
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+    /* ── Cinematic Intro Overlay ── */
+    #proxyIntro {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: #000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: all;
+      transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+      overflow: hidden;
+    }
+    #proxyIntro.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    /* Ambient Moving Light Glows */
+    .intro-glow {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 2s ease;
+      filter: blur(120px);
+    }
+    .intro-glow-pink {
+      width: 55vw;
+      height: 55vw;
+      background: radial-gradient(circle, rgba(255, 77, 109, 0.18) 0%, transparent 70%);
+      top: 10%;
+      left: 10%;
+    }
+    .intro-glow-purple {
+      width: 65vw;
+      height: 65vw;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
+      bottom: 5%;
+      right: 5%;
+    }
+    
+    @keyframes slowPulsePink {
+      0%, 100% { transform: scale(1) translate(0, 0); opacity: 0.7; }
+      50% { transform: scale(1.15) translate(4vw, -3vh); opacity: 1; }
+    }
+    @keyframes slowPulsePurple {
+      0%, 100% { transform: scale(1.15) translate(0, 0); opacity: 0.7; }
+      50% { transform: scale(1) translate(-4vw, 3vh); opacity: 1; }
+    }
+    
+    .intro-glow-pink.visible {
+      opacity: 1;
+      animation: slowPulsePink 10s ease-in-out infinite alternate;
+    }
+    .intro-glow-purple.visible {
+      opacity: 1;
+      animation: slowPulsePurple 12s ease-in-out infinite alternate;
+    }
+
+    .intro-letters {
+      display: flex;
+      align-items: baseline;
+      gap: 0.02em;
+      white-space: nowrap;
+      transform-origin: center center;
+      transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1),
+                  filter 1.5s cubic-bezier(0.25, 1, 0.5, 1),
+                  opacity 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .intro-letters.zoom {
+      transform: scale(1.8) translateZ(100px);
+      filter: blur(20px);
+      opacity: 0;
+    }
+    
+    .intro-letter {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(6.5rem, 18vw, 15rem);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: #ffffff;
+      opacity: 0;
+      filter: blur(20px);
+      transform: translateY(40px) scale(0.85);
+      display: inline-block;
+      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                  text-shadow 0.8s ease;
+    }
+    .intro-letter.visible {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0) scale(1);
+    }
+    
+    /* Hyper-realistic Glow Colors */
+    .intro-letter.red {
+      color: #ff85a1; /* Soft pink-red */
+      text-shadow: 0 0 20px rgba(255, 117, 143, 0.6),
+                   0 0 40px rgba(255, 77, 109, 0.4),
+                   0 0 80px rgba(255, 77, 109, 0.2),
+                   0 0 150px rgba(255, 77, 109, 0.1);
+    }
+    .intro-letter.white {
+      color: #fff5f6; /* White with a hint of rose */
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.5),
+                   0 0 35px rgba(255, 240, 243, 0.3),
+                   0 0 70px rgba(255, 240, 243, 0.1);
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Inject HTML
+  const intro = document.createElement('div');
+  intro.id = 'proxyIntro';
+  intro.innerHTML = `
+    <div class="intro-glow intro-glow-pink" id="introGlowPink"></div>
+    <div class="intro-glow intro-glow-purple" id="introGlowPurple"></div>
+    <div class="intro-letters" id="introLetters">
+      <span class="intro-letter red" data-delay="500">P</span>
+      <span class="intro-letter white" data-delay="1100">r</span>
+      <span class="intro-letter white" data-delay="1700">o</span>
+      <span class="intro-letter red" data-delay="2300">X</span>
+      <span class="intro-letter white" data-delay="2900">y</span>
+    </div>
+  `;
+  document.body.prepend(intro);
+
+  // Animate letters one-by-one
+  const letters = intro.querySelectorAll('.intro-letter');
+  const lettersContainer = intro.querySelector('#introLetters');
+
+  letters.forEach(letter => {
+    const delay = parseInt(letter.dataset.delay);
+    setTimeout(() => {
+      letter.classList.add('visible');
+    }, delay);
+  });
+
+  // Show ambient glows
+  setTimeout(() => {
+    const pinkGlow = intro.querySelector('#introGlowPink');
+    const purpleGlow = intro.querySelector('#introGlowPurple');
+    if (pinkGlow) pinkGlow.classList.add('visible');
+    if (purpleGlow) purpleGlow.classList.add('visible');
+  }, 300);
+
+  // After all letters visible — brief pause, then zoom toward camera
+  setTimeout(() => {
+    lettersContainer.classList.add('zoom');
+  }, 4000);
+
+  // Fade out the intro overlay
+  setTimeout(() => {
+    intro.classList.add('fade-out');
+  }, 4600);
+
+  // Remove from DOM completely
+  setTimeout(() => {
+    intro.remove();
+    style.remove();
+  }, 5400);
+}
+
+// ── Auto-inject intro on every page ──
+(function() {
+  // We determine if we should play the intro:
+  // 1. If 'site_loaded' is not set in sessionStorage (first time opening the website in this tab/session).
+  // 2. OR if the page is a manual reload.
+  const isReload = (
+    window.performance &&
+    window.performance.getEntriesByType &&
+    window.performance.getEntriesByType('navigation')[0] &&
+    window.performance.getEntriesByType('navigation')[0].type === 'reload'
+  ) || (
+    window.performance &&
+    window.performance.navigation &&
+    window.performance.navigation.type === 1
+  );
+
+  let hasLoaded = false;
+  try {
+    hasLoaded = sessionStorage.getItem('site_loaded');
+  } catch (e) {
+    // If sessionStorage is disabled (e.g., sandbox or strict privacy settings), fallback to false
+    hasLoaded = false;
+  }
+
+  if (!hasLoaded || isReload) {
+    // Inject immediately so the black screen covers the page before any paint
+    injectCinematicIntro();
+    try {
+      // Mark as loaded so subsequent navigation in the same session skips the intro
+      sessionStorage.setItem('site_loaded', 'true');
+    } catch (e) {}
+  }
+})();
+
 // ── Export for use ──
 window.ProxyUI = {
   injectNavbar,
@@ -215,6 +422,7 @@ window.ProxyUI = {
   setupCubeInteractions,
   injectBackgroundGlows,
   setupCarousel,
+  injectCinematicIntro,
 };
 
 // Global smooth scroll interceptor for home section links

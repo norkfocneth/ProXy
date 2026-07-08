@@ -172,6 +172,24 @@
 </head>
 <body>
 
+  <script>
+    (function() {
+      const isReload = (
+        window.performance &&
+        window.performance.getEntriesByType &&
+        window.performance.getEntriesByType('navigation')[0] &&
+        window.performance.getEntriesByType('navigation')[0].type === 'reload'
+      ) || (
+        window.performance &&
+        window.performance.navigation &&
+        window.performance.navigation.type === 1
+      );
+      if (sessionStorage.getItem('site_loaded') && !isReload) {
+        document.write('<style>#loadingOverlay { display: none !important; }</style>');
+      }
+    })();
+  </script>
+
   <!-- Loading Screen -->
   <div class="loading-overlay" id="loadingOverlay">
     <div class="loading-card">

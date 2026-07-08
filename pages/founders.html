@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Founders — Proxy</title>
+  <meta name="description" content="Meet the founders of Proxy.">
+  <link rel="stylesheet" href="../css/design-system.css?v=3">
+  <style>
+    /* Hide mobile menu overlay on desktop viewports */
+    @media (min-width: 769px) {
+      .mobile-menu-overlay {
+        display: none !important;
+      }
+    }
+
+    .founder-hero {
+      padding: calc(var(--navbar-height) + var(--space-4xl)) 0 var(--space-2xl);
+      text-align: center;
+    }
+    .founder-hero h1 {
+      font-size: var(--font-size-5xl);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--space-md);
+    }
+    .founder-hero p {
+      font-size: var(--font-size-lg);
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    
+    .founder-container {
+      max-width: 600px;
+      margin: 0 auto var(--space-5xl);
+      padding: 0 1.25rem;
+      display: flex;
+      justify-content: center;
+      perspective: 1000px;
+    }
+    
+    .founder-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius-2xl);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      padding: var(--space-2xl);
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+      transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s ease, border-color 0.3s;
+      width: 100%;
+      max-width: 400px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform-style: preserve-3d;
+    }
+
+    .founder-card:hover {
+      box-shadow: 0 30px 60px rgba(124, 58, 237, 0.25), 0 0 40px rgba(124, 58, 237, 0.1);
+      border-color: rgba(124, 58, 237, 0.4);
+    }
+    
+    .founder-avatar-wrapper {
+      position: relative;
+      margin-bottom: var(--space-xl);
+      transform: translateZ(50px);
+    }
+
+    .founder-avatar {
+      width: 160px;
+      height: 160px;
+      border-radius: var(--border-radius-xl);
+      object-fit: cover;
+      border: 4px solid var(--glass-border);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      background: var(--bg-secondary);
+      transition: transform 0.3s ease;
+    }
+
+    .founder-card:hover .founder-avatar {
+      transform: scale(1.05) translateZ(30px);
+    }
+    
+    .founder-name {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      transform: translateZ(30px);
+    }
+    
+    .founder-title {
+      font-size: var(--font-size-md);
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: var(--space-lg);
+      transform: translateZ(20px);
+    }
+    
+    .founder-desc {
+      font-size: var(--font-size-sm);
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: var(--space-xl);
+      max-width: 320px;
+      transform: translateZ(10px);
+    }
+
+    .btn-linkedin {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.85rem;
+      border-radius: 14px;
+      border: none;
+      background: var(--accent);
+      color: white;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+      transition: all 0.3s var(--ease-out);
+      transform: translateZ(40px);
+    }
+    
+    .btn-linkedin:hover {
+      background: var(--accent-hover);
+      box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+      transform: translateZ(50px) scale(1.02);
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .founder-hero {
+        padding: calc(var(--navbar-height) + var(--space-3xl)) 1.25rem var(--space-xl);
+      }
+      .founder-card {
+        padding: var(--space-xl);
+      }
+      .founder-avatar {
+        width: 140px;
+        height: 140px;
+      }
+    }
+  </style>
+</head>
+<body class="light-mode">
+  <div class="page-content">
+    <div class="founder-hero">
+      <h1>The <span class="gradient-text">Founders</span></h1>
+      <p>The minds behind Proxy, dedicated to building the ultimate academic platform for IPU students.</p>
+    </div>
+    
+    <div class="founder-container">
+      <a href="https://www.linkedin.com/in/%F0%9D%98%BC%F0%9D%99%A7%F0%9D%99%A3%F0%9D%99%96%F0%9D%99%AB-%F0%9D%99%9B%F0%9D%99%A4%F0%9D%99%98%F0%9D%99%A3%F0%9D%99%9A%F0%9D%99%A9%F0%9D%99%9D-51b022389?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="founder-card" target="_blank" style="text-decoration: none;">
+        <div class="founder-avatar-wrapper">
+          <img src="../images/founder_avatar.jpg" alt="Arnav Focneth" class="founder-avatar">
+        </div>
+        <div class="founder-name">Arnav Focneth</div>
+        <div class="founder-title">Founder & Chief Architect</div>
+        <div class="founder-desc">Designing, building, and optimizing digital educational systems to empower IPU engineering students with seamless resources.</div>
+        <button class="btn-linkedin">
+          <svg style="width: 18px; height: 18px; fill: currentColor;" viewBox="0 0 24 24">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+          </svg>
+          Connect on LinkedIn
+        </button>
+      </a>
+    </div>
+  </div>
+
+  <script src="../js/shared.js?v=3"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      ProxyUI.injectNavbar('Founders');
+      ProxyUI.injectBackgroundGlows();
+
+      // 3D Tilt Interaction
+      const card = document.querySelector('.founder-card');
+      const container = document.querySelector('.founder-container');
+
+      if (card && container) {
+        container.addEventListener('mousemove', (e) => {
+          const rect = container.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          
+          // Max rotation angles (degrees)
+          const rX = (y / (rect.height / 2)) * -12;
+          const rY = (x / (rect.width / 2)) * 12;
+          
+          card.style.transform = `rotateY(${rY}deg) rotateX(${rX}deg) translateY(-8px)`;
+        });
+
+        container.addEventListener('mouseleave', () => {
+          card.style.transform = `rotateY(0deg) rotateX(0deg) translateY(0)`;
+        });
+      }
+    });
+  </script>
+</body>
+</html>

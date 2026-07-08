@@ -1848,7 +1848,7 @@ body {
   .page-hero h1,
   .notes-hero h1,
   .pyqs-hero h1,
-  .faculty-hero h1,
+  .founder-hero h1,
   .roadmap-hero h1,
   .ai-header h1 {
     font-size: var(--font-size-2xl);
@@ -1857,7 +1857,7 @@ body {
   .page-hero p,
   .notes-hero p,
   .pyqs-hero p,
-  .faculty-hero p,
+  .founder-hero p,
   .roadmap-hero p {
     font-size: var(--font-size-sm);
   }
