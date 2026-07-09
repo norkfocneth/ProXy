@@ -1934,6 +1934,9 @@ h1, h2, h3, h4, h5, h6 {
   .preview-column {
     width: 100% !important;
   }
+  .showcase-scene-container {
+    display: none !important;
+  }
 }
 
 .explorer-column {
