@@ -238,7 +238,6 @@
         position: fixed;
         inset: 0;
         background: rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(4px);
         z-index: 999;
         opacity: 0;
         visibility: hidden;
@@ -287,6 +286,9 @@
         transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         z-index: 1005;
         background: rgba(255, 255, 255, 0.97);
+        overflow-y: auto !important;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
       }
       .dtl-panel.open {
         transform: translateY(0);
