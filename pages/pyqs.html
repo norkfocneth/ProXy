@@ -169,6 +169,10 @@
           subjectFilter.appendChild(opt);
         });
 
+        if (targetSubjectCode) {
+          subjectFilter.value = targetSubjectCode;
+        }
+
         // Set up filters
         const runFilters = () => {
           const selSubCode = subjectFilter.value;

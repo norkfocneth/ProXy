@@ -1221,6 +1221,12 @@ function setupBranchSelection() {
       // Update main explorer titles
       updateSyllabusHeader();
       renderSemester();
+      
+      // Smooth scroll to syllabus section
+      const syllabusSect = document.getElementById('syllabus-section');
+      if (syllabusSect) {
+        syllabusSect.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
   });
 
