@@ -294,7 +294,7 @@
       border: 1.5px dashed rgba(21, 128, 61, 0.18);
       border-radius: var(--border-radius-xl);
       padding: 1.5rem;
-      width: 210px;
+      width: 230px;
       box-shadow: var(--sh-s);
       display: flex;
       flex-direction: column;
@@ -329,6 +329,12 @@
       background: var(--g100);
       border-color: var(--g500);
       transform: scale(1.05);
+    }
+    .slot-avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
     }
     .plus-badge {
       position: absolute;
@@ -384,6 +390,67 @@
     }
     .child-node:hover .slot-apply {
       opacity: 1;
+      text-decoration: underline;
+    }
+
+    /* Occupied Team Member Cards */
+    .child-node.occupied {
+      border: 1.5px solid rgba(21, 128, 61, 0.08);
+      box-shadow: var(--sh-s);
+    }
+    .child-node.occupied:hover {
+      border-color: var(--g500);
+      box-shadow: var(--sh-m), 0 8px 24px rgba(34, 197, 94, 0.05);
+    }
+    .child-node.occupied .slot-avatar {
+      background: var(--g100);
+      border: 1.5px solid var(--g300);
+      color: var(--g700);
+    }
+    .child-node.occupied:hover .slot-avatar {
+      background: var(--g200);
+      border-color: var(--g500);
+      transform: scale(1.05);
+    }
+    .member-name {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--txt);
+      margin-bottom: 0.2rem;
+      letter-spacing: -0.02em;
+    }
+    .member-role {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--g800);
+      background: var(--g100);
+      padding: 3px 8px;
+      border-radius: 20px;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      border: 1px solid rgba(21, 128, 61, 0.05);
+    }
+    .member-desc {
+      font-size: 0.72rem;
+      color: var(--txt2);
+      line-height: 1.45;
+      font-weight: 500;
+      flex-grow: 1;
+      margin-bottom: 0.8rem;
+    }
+    .member-link {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--g700);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      transition: all 0.2s;
+    }
+    .member-link:hover {
+      color: var(--g500);
       text-decoration: underline;
     }
 
@@ -463,51 +530,50 @@
         </div>
       </div>
 
-      <!-- Children Nodes (Open Roles) -->
+      <!-- Children Nodes (Team Members) -->
       <div class="children-row">
-        <!-- Card 1: Co-Founder -->
-        <div class="child-node">
-          <div class="slot-avatar">❓<div class="plus-badge">+</div></div>
-          <h3 class="slot-role">Co-Founder</h3>
-          <span class="slot-status font-mono-tech">Open Slot</span>
-          <p class="slot-joke font-handwritten">Aise khali seat acchi nahi lagti, apply karo aur occupies karo! We are looking for someone to lead with us.</p>
-          <a href="#" class="slot-apply font-mono-tech">Join us ➔</a>
+        <!-- Card 1: Manya Arya -->
+        <div class="child-node occupied">
+          <div class="slot-avatar font-mono-tech">
+            <img src="../images/member_manya.png" alt="Manya Arya">
+          </div>
+          <h3 class="member-name">Manya Arya</h3>
+          <span class="member-role font-mono-tech">Content & Academic Lead</span>
+          <p class="member-desc">Ye person har din content maintain karega. Notes, PYQs, Syllabus, Semester updates, Faculty info, and Roadmaps compile karna inki main responsibility hai.</p>
+          <a href="https://www.linkedin.com/in/manya-arya-a253033a3?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="member-link font-mono-tech" target="_blank">LinkedIn ➔</a>
         </div>
 
-        <!-- Card 2: Notes Manager -->
-        <div class="child-node">
-          <div class="slot-avatar">📚<div class="plus-badge">+</div></div>
-          <h3 class="slot-role">Notes Manager</h3>
-          <span class="slot-status font-mono-tech">Open Slot</span>
-          <p class="slot-joke font-handwritten">We have not appointed anyone yet. Join us or take the chance to manage our humongous database of syllabus notes!</p>
-          <a href="#" class="slot-apply font-mono-tech">Join us ➔</a>
+        <!-- Card 2: Ritik Gautam -->
+        <div class="child-node occupied">
+          <div class="slot-avatar font-mono-tech">
+            <img src="../images/member_ritik.png" alt="Ritik Gautam">
+          </div>
+          <h3 class="member-name">Ritik Gautam</h3>
+          <span class="member-role font-mono-tech">Growth & Community Lead</span>
+          <p class="member-desc">Growth aur marketing handles. Instagram, LinkedIn, College ambassadors, Telegram, and WhatsApp groups managed dynamically. Goal: Har college me Proxy famous karna.</p>
+          <a href="https://www.linkedin.com/in/ritik-gautam-3431a32b6?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="member-link font-mono-tech" target="_blank">LinkedIn ➔</a>
         </div>
 
-        <!-- Card 3: PYQ Curator -->
-        <div class="child-node">
-          <div class="slot-avatar">📝<div class="plus-badge">+</div></div>
-          <h3 class="slot-role">PYQ Curator</h3>
-          <span class="slot-status font-mono-tech">Open Slot</span>
-          <p class="slot-joke font-handwritten">No PYQ mastermind here yet. Do you love collecting previous year papers? Claim your spot in this hierarchy.</p>
-          <a href="#" class="slot-apply font-mono-tech">Join us ➔</a>
+        <!-- Card 3: Priyanka Kaim -->
+        <div class="child-node occupied">
+          <div class="slot-avatar font-mono-tech">
+            <img src="../images/member_priyanka.png" alt="Priyanka Kaim">
+          </div>
+          <h3 class="member-name">Priyanka Kaim</h3>
+          <span class="member-role font-mono-tech">Creative Designer</span>
+          <p class="member-desc">Posters, Social media graphics, 3D renders, Book mockups, Icons, Motion graphics, and beautiful landing page assets for visual wow.</p>
+          <a href="https://www.linkedin.com/in/priyanka-kaim-235b113a7?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="member-link font-mono-tech" target="_blank">LinkedIn ➔</a>
         </div>
 
-        <!-- Card 4: UI/UX Designer -->
-        <div class="child-node">
-          <div class="slot-avatar">🎨<div class="plus-badge">+</div></div>
-          <h3 class="slot-role">UI/UX Designer</h3>
-          <span class="slot-status font-mono-tech">Open Slot</span>
-          <p class="slot-joke font-handwritten">Our canvas is empty. Join us to build gorgeous botanical dashboards and make users wow at first sight!</p>
-          <a href="#" class="slot-apply font-mono-tech">Join us ➔</a>
-        </div>
-
-        <!-- Card 5: AI Specialist -->
-        <div class="child-node">
-          <div class="slot-avatar">🤖<div class="plus-badge">+</div></div>
-          <h3 class="slot-role">AI Engineer</h3>
-          <span class="slot-status font-mono-tech">Open Slot</span>
-          <p class="slot-joke font-handwritten">Neural networks are waiting for an architect. Help us design intelligent student assistants and features.</p>
-          <a href="#" class="slot-apply font-mono-tech">Join us ➔</a>
+        <!-- Card 4: Samarth Agnihotri -->
+        <div class="child-node occupied">
+          <div class="slot-avatar font-mono-tech">
+            <img src="../images/member_samarth.png" alt="Samarth Agnihotri">
+          </div>
+          <h3 class="member-name">Samarth Agnihotri</h3>
+          <span class="member-role font-mono-tech">QA & Operations</span>
+          <p class="member-desc">Bugs management, Quality testing, Cross-browser & device testing, Performance optimization, and Documentation. Ye role log underestimate karte hain.</p>
+          <span class="member-link font-mono-tech" style="color: var(--txt3); cursor: default;">Core Member</span>
         </div>
       </div>
     </div>
