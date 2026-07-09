@@ -1169,13 +1169,13 @@ const ProxyAI = {
 };
 
 
-// Dynamic Injection of AI Assistant Widget
+// Dynamic Injection of AI Assistant and Calculator Widgets
 (function() {
   const isAIAssistantPage = window.location.pathname.includes('ai-assistant.html');
   
   // Inject CSS
-  const aiStyle = document.createElement('style');
-  aiStyle.textContent = `
+  const style = document.createElement('style');
+  style.textContent = `
     /* AI Bubble styles */
     .proxy-ai-bubble {
       position: fixed;
@@ -1404,6 +1404,274 @@ const ProxyAI = {
       transform: scale(1.05);
     }
 
+    /* Bunk & CGPA Bubble Styles (Left Side) */
+    .proxy-bunk-bubble {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 8px 32px rgba(239, 68, 68, 0.35);
+      z-index: 9999;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .proxy-bunk-bubble:hover {
+      transform: scale(1.1) translateY(-3px);
+      box-shadow: 0 12px 40px rgba(239, 68, 68, 0.5);
+    }
+    .proxy-bunk-bubble:active {
+      transform: scale(0.95);
+    }
+    .proxy-bunk-bubble.active {
+      transform: rotate(45deg) scale(0.9);
+      background: #ef4444;
+    }
+
+    .proxy-cgpa-bubble {
+      position: fixed;
+      bottom: 96px;
+      left: 30px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 8px 32px rgba(16, 185, 129, 0.35);
+      z-index: 9999;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .proxy-cgpa-bubble:hover {
+      transform: scale(1.1) translateY(-3px);
+      box-shadow: 0 12px 40px rgba(16, 185, 129, 0.5);
+    }
+    .proxy-cgpa-bubble:active {
+      transform: scale(0.95);
+    }
+    .proxy-cgpa-bubble.active {
+      transform: scale(0.9);
+      background: #10b981;
+    }
+
+    /* Left Side Tool Card Base Style */
+    .proxy-tool-card {
+      position: fixed;
+      bottom: 100px;
+      left: 30px;
+      width: 380px;
+      height: 560px;
+      max-height: calc(100vh - 150px);
+      background: var(--glass-bg-strong, rgba(255, 255, 255, 0.75));
+      border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.6));
+      border-radius: 24px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-lg, 0 20px 50px rgba(0, 0, 0, 0.08));
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 9998;
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+      pointer-events: none;
+      transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .proxy-tool-card.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: all;
+    }
+
+    /* Tool Card Elements */
+    .proxy-tool-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--glass-border-subtle, rgba(255, 255, 255, 0.35));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.08);
+    }
+    .proxy-tool-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary, #0f172a);
+    }
+    .proxy-tool-close {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary, #475569);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      border-radius: 50%;
+      transition: background 0.2s;
+    }
+    .proxy-tool-close:hover {
+      background: rgba(0,0,0,0.06);
+      color: var(--text-primary, #0f172a);
+    }
+
+    .proxy-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--glass-border-subtle, rgba(255,255,255,0.3));
+      background: rgba(255,255,255,0.02);
+      flex-shrink: 0;
+    }
+    .proxy-tab {
+      flex: 1;
+      padding: 12px;
+      background: transparent;
+      border: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted, #94a3b8);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    .proxy-tab.active {
+      color: var(--accent, #7c3aed);
+      border-bottom: 2px solid var(--accent, #7c3aed);
+      background: rgba(124, 58, 237, 0.04);
+    }
+
+    .proxy-tool-body {
+      flex: 1;
+      padding: 1.25rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .proxy-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .proxy-form-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary, #475569);
+    }
+    .proxy-input, .proxy-select {
+      padding: 10px 14px;
+      background: var(--glass-bg-strong, rgba(255,255,255,0.65));
+      border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.6));
+      border-radius: 12px;
+      color: var(--text-primary, #0f172a);
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .proxy-input:focus, .proxy-select:focus {
+      border-color: var(--accent, #7c3aed);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+    }
+    .proxy-btn {
+      padding: 12px;
+      background: var(--accent, #7c3aed);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .proxy-btn:hover {
+      background: var(--accent-hover, #6d28d9);
+      transform: translateY(-1px);
+    }
+    .proxy-btn:active {
+      transform: translateY(0);
+    }
+
+    /* Result Box styling */
+    .proxy-result-box {
+      margin-top: 10px;
+      padding: 1rem;
+      background: rgba(124, 58, 237, 0.06);
+      border: 1px dashed rgba(124, 58, 237, 0.25);
+      border-radius: 16px;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      animation: msgFadeIn 0.3s ease forwards;
+    }
+    .proxy-result-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent, #7c3aed);
+    }
+    .proxy-result-comment {
+      font-size: 0.92rem;
+      font-style: italic;
+      color: var(--text-primary, #0f172a);
+      line-height: 1.4;
+    }
+    .proxy-result-detail {
+      font-size: 0.85rem;
+      color: var(--text-secondary, #475569);
+      line-height: 1.4;
+    }
+
+    /* Progress bar */
+    .proxy-progress-container {
+      width: 100%;
+      height: 8px;
+      background: rgba(0,0,0,0.06);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+    .proxy-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--accent, #7c3aed);
+      border-radius: 4px;
+      transition: width 0.5s ease-in-out;
+    }
+
+    /* Subject list in SGPA */
+    .proxy-subject-row {
+      display: grid;
+      grid-template-columns: 1.5fr 0.6fr 1fr;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+    .proxy-subject-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary, #0f172a);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .proxy-subject-credit {
+      font-size: 0.8rem;
+      color: var(--text-muted, #94a3b8);
+      text-align: center;
+    }
+
     /* Keyframes */
     @keyframes pulse-dot {
       0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
@@ -1417,15 +1685,28 @@ const ProxyAI = {
 
     /* Mobile responsive */
     @media (max-width: 768px) {
-      .proxy-ai-card {
+      .proxy-ai-card, .proxy-tool-card {
         width: 92%;
         right: 4%;
+        left: 4%;
         bottom: 20px;
         height: 75vh;
       }
+      .proxy-bunk-bubble {
+        bottom: 30px;
+        left: 20px;
+      }
+      .proxy-cgpa-bubble {
+        bottom: 96px;
+        left: 20px;
+      }
+      .proxy-ai-bubble {
+        bottom: 30px;
+        right: 20px;
+      }
     }
   `;
-  document.head.appendChild(aiStyle);
+  document.head.appendChild(style);
 
   if (isAIAssistantPage) {
     // Hook to existing UI on the ai-assistant page
@@ -1436,7 +1717,6 @@ const ProxyAI = {
 
       if (!messagesContainer || !chatInput || !sendBtn) return;
 
-      // Set initial greeting
       messagesContainer.innerHTML = `
         <div class="message message--ai">
           <div class="message-avatar">✨</div>
@@ -1464,7 +1744,6 @@ const ProxyAI = {
         appendMessage('user', text);
         chatInput.value = '';
 
-        // Show typing indicator
         const typingDiv = document.createElement('div');
         typingDiv.className = 'message message--ai typing-msg-temp';
         typingDiv.innerHTML = `
@@ -1492,18 +1771,21 @@ const ProxyAI = {
         if (e.key === 'Enter') handleSendMessage();
       });
     });
-  } else {
-    // Inject floating bubble and card
-    document.addEventListener('DOMContentLoaded', () => {
-      const bubble = document.createElement('div');
+  }
+
+  // Inject floating elements (except bubbles if on AI assistant page, but calculators are shown everywhere!)
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Inject Right Side AI bubble and card if not on the dedicated AI page
+    let bubble, card;
+    if (!isAIAssistantPage) {
+      bubble = document.createElement('div');
       bubble.className = 'proxy-ai-bubble';
       bubble.id = 'proxyAIBubble';
       bubble.innerHTML = '✨';
       
-      const card = document.createElement('div');
+      card = document.createElement('div');
       card.className = 'proxy-ai-card';
       card.id = 'proxyAICard';
-      
       card.innerHTML = `
         <div class="proxy-ai-header">
           <div class="proxy-ai-header-info">
@@ -1536,32 +1818,201 @@ const ProxyAI = {
           </button>
         </div>
       `;
-
       document.body.appendChild(bubble);
       document.body.appendChild(card);
+    }
 
-      const msgsContainer = card.querySelector('#proxyAIMessages');
-      const input = card.querySelector('#proxyAIInput');
-      const sendBtn = card.querySelector('#proxyAISend');
-      const closeBtn = card.querySelector('#proxyAIClose');
-      const chips = card.querySelectorAll('.proxy-ai-chip');
+    // 2. Inject Left Side Bunk and CGPA elements on every page
+    const bunkBubble = document.createElement('div');
+    bunkBubble.className = 'proxy-bunk-bubble';
+    bunkBubble.id = 'proxyBunkBubble';
+    bunkBubble.innerHTML = '🏫';
 
-      function togglePanel() {
+    const cgpaBubble = document.createElement('div');
+    cgpaBubble.className = 'proxy-cgpa-bubble';
+    cgpaBubble.id = 'proxyCGPABubble';
+    cgpaBubble.innerHTML = '🎓';
+
+    const bunkCard = document.createElement('div');
+    bunkCard.className = 'proxy-tool-card';
+    bunkCard.id = 'proxyBunkCard';
+    bunkCard.innerHTML = `
+      <div class="proxy-tool-header">
+        <span class="proxy-tool-title">Bunk Calculator 🏫</span>
+        <button class="proxy-tool-close" id="proxyBunkClose">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="proxy-tool-body">
+        <div style="font-size: 0.82rem; color: var(--text-secondary, #475569); line-height: 1.4; margin-bottom: 6px;">
+          GGSIPU requires at least **75% attendance**. Calculate if you can bunk or how many classes you must attend!
+        </div>
+        <div class="proxy-form-group">
+          <label for="bunkAttended">Classes Attended so far</label>
+          <input type="number" class="proxy-input" id="bunkAttended" min="0" placeholder="e.g. 15">
+        </div>
+        <div class="proxy-form-group">
+          <label for="bunkTotal">Total Classes conducted so far</label>
+          <input type="number" class="proxy-input" id="bunkTotal" min="1" placeholder="e.g. 20">
+        </div>
+        <button class="proxy-btn" id="btnCalculateBunk">Calculate Attendance 📊</button>
+        
+        <div class="proxy-result-box" id="bunkResultBox">
+          <span class="proxy-result-title" id="bunkResultPercent">0% Attendance</span>
+          <div class="proxy-progress-container">
+            <div class="proxy-progress-bar" id="bunkProgressBar"></div>
+          </div>
+          <p class="proxy-result-comment" id="bunkResultComment"></p>
+          <p class="proxy-result-detail" id="bunkResultDetail"></p>
+        </div>
+      </div>
+    `;
+
+    const cgpaCard = document.createElement('div');
+    cgpaCard.className = 'proxy-tool-card';
+    cgpaCard.id = 'proxyCGPACard';
+    cgpaCard.innerHTML = `
+      <div class="proxy-tool-header">
+        <span class="proxy-tool-title">CGPA & SGPA Calculator 🎓</span>
+        <button class="proxy-tool-close" id="proxyCGPAClose">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="proxy-tabs">
+        <button class="proxy-tab active" id="tabSGPA">SGPA Calculator</button>
+        <button class="proxy-tab" id="tabCGPA">CGPA Calculator</button>
+      </div>
+      <div class="proxy-tool-body">
+        <!-- SGPA Section -->
+        <div id="sectionSGPA" style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="proxy-form-group">
+            <label for="sgpaSemester">Select Semester</label>
+            <select class="proxy-select" id="sgpaSemester">
+              <option value="" disabled selected>Choose Semester...</option>
+              <option value="1">Semester 1</option>
+              <option value="2">Semester 2</option>
+              <option value="3">Semester 3</option>
+              <option value="4">Semester 4</option>
+              <option value="5">Semester 5</option>
+              <option value="6">Semester 6</option>
+              <option value="7">Semester 7</option>
+              <option value="8">Semester 8</option>
+            </select>
+          </div>
+          <div id="sgpaSubjectsContainer" style="display: flex; flex-direction: column; gap: 8px; max-height: 250px; overflow-y: auto; padding-right: 4px;">
+            <p style="font-size: 0.85rem; color: var(--text-muted, #94a3b8); text-align: center; margin: 10px 0;">Select a semester to load subjects.</p>
+          </div>
+          <button class="proxy-btn" id="btnCalculateSGPA" style="display: none;">Calculate SGPA 📊</button>
+        </div>
+
+        <!-- CGPA Section -->
+        <div id="sectionCGPA" style="display: none; flex-direction: column; gap: 10px;">
+          <p style="font-size: 0.82rem; color: var(--text-secondary, #475569); line-height: 1.4; margin-bottom: 2px;">Enter SGPAs below. We use standard semester credits to calculate your overall CGPA.</p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <div class="proxy-form-group">
+              <label for="cgpaSem1">Sem 1 SGPA</label>
+              <input type="number" class="proxy-input" id="cgpaSem1" step="0.01" min="0" max="10" placeholder="e.g. 8.5">
+            </div>
+            <div class="proxy-form-group">
+              <label for="cgpaSem2">Sem 2 SGPA</label>
+              <input type="number" class="proxy-input" id="cgpaSem2" step="0.01" min="0" max="10" placeholder="e.g. 8.2">
+            </div>
+            <div class="proxy-form-group">
+              <label for="cgpaSem3">Sem 3 SGPA</label>
+              <input type="number" class="proxy-input" id="cgpaSem3" step="0.01" min="0" max="10" placeholder="e.g. 7.9">
+            </div>
+            <div class="proxy-form-group">
+              <label for="cgpaSem4">Sem 4 SGPA</label>
+              <input type="number" class="proxy-input" id="cgpaSem4" step="0.01" min="0" max="10" placeholder="e.g. 8.0">
+            </div>
+            <div class="proxy-form-group">
+              <label for="cgpaSem5">Sem 5 SGPA</label>
+              <input type="number" class="proxy-input" id="cgpaSem5" step="0.01" min="0" max="10" placeholder="e.g. 8.3">
+            </div>
+            <div class="proxy-form-group">
+              <label for="cgpaSem6">Sem 6 SGPA</label>
+              <input type="number" class="proxy-input" id="cgpaSem6" step="0.01" min="0" max="10" placeholder="e.g. 8.6">
+            </div>
+            <div class="proxy-form-group">
+              <label for="cgpaSem7">Sem 7 SGPA</label>
+              <input type="number" class="proxy-input" id="cgpaSem7" step="0.01" min="0" max="10" placeholder="e.g. 9.0">
+            </div>
+            <div class="proxy-form-group">
+              <label for="cgpaSem8">Sem 8 SGPA</label>
+              <input type="number" class="proxy-input" id="cgpaSem8" step="0.01" min="0" max="10" placeholder="e.g. 9.1">
+            </div>
+          </div>
+          <button class="proxy-btn" id="btnCalculateCGPA">Calculate CGPA 📊</button>
+        </div>
+
+        <!-- Result Box Shared -->
+        <div class="proxy-result-box" id="cgpaResultBox">
+          <span class="proxy-result-title" id="cgpaResultTitle">Your Score</span>
+          <p class="proxy-result-comment" id="cgpaResultComment"></p>
+          <p class="proxy-result-detail" id="cgpaResultDetail"></p>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(bunkBubble);
+    document.body.appendChild(cgpaBubble);
+    document.body.appendChild(bunkCard);
+    document.body.appendChild(cgpaCard);
+
+    // Helpers to manage toggling of widgets
+    function closeAllWidgets() {
+      bunkCard.classList.remove('active');
+      bunkBubble.classList.remove('active');
+      cgpaCard.classList.remove('active');
+      cgpaBubble.classList.remove('active');
+      if (card) {
+        card.classList.remove('active');
+        bubble.classList.remove('active');
+        bubble.innerHTML = '✨';
+      }
+    }
+
+    // Toggle Bunk Calculator
+    bunkBubble.addEventListener('click', () => {
+      const isOpen = bunkCard.classList.contains('active');
+      closeAllWidgets();
+      if (!isOpen) {
+        bunkCard.classList.add('active');
+        bunkBubble.classList.add('active');
+      }
+    });
+    bunkCard.querySelector('#proxyBunkClose').addEventListener('click', closeAllWidgets);
+
+    // Toggle CGPA Calculator
+    cgpaBubble.addEventListener('click', () => {
+      const isOpen = cgpaCard.classList.contains('active');
+      closeAllWidgets();
+      if (!isOpen) {
+        cgpaCard.classList.add('active');
+        cgpaBubble.classList.add('active');
+      }
+    });
+    cgpaCard.querySelector('#proxyCGPAClose').addEventListener('click', closeAllWidgets);
+
+    // AI Assistant toggle handler (if bubble/card exist)
+    if (bubble && card) {
+      bubble.addEventListener('click', () => {
         const isOpen = card.classList.contains('active');
-        if (isOpen) {
-          card.classList.remove('active');
-          bubble.classList.remove('active');
-          bubble.innerHTML = '✨';
-        } else {
+        closeAllWidgets();
+        if (!isOpen) {
           card.classList.add('active');
           bubble.classList.add('active');
           bubble.innerHTML = '✕';
-          setTimeout(() => input.focus(), 150);
+          setTimeout(() => card.querySelector('#proxyAIInput').focus(), 150);
         }
-      }
+      });
+      card.querySelector('#proxyAIClose').addEventListener('click', closeAllWidgets);
 
-      bubble.addEventListener('click', togglePanel);
-      closeBtn.addEventListener('click', togglePanel);
+      // Setup chat logic
+      const msgsContainer = card.querySelector('#proxyAIMessages');
+      const input = card.querySelector('#proxyAIInput');
+      const sendBtn = card.querySelector('#proxyAISend');
+      const chips = card.querySelectorAll('.proxy-ai-chip');
 
       function appendBotMessage(text) {
         const msg = document.createElement('div');
@@ -1586,7 +2037,6 @@ const ProxyAI = {
         appendUserMessage(query);
         if (!textToSend) input.value = '';
 
-        // Show typing dot container
         const typingDiv = document.createElement('div');
         typingDiv.className = 'proxy-ai-msg proxy-ai-msg-bot';
         typingDiv.innerHTML = `
@@ -1623,6 +2073,248 @@ const ProxyAI = {
           handleSend(query);
         });
       });
+    }
+
+    // ==========================================
+    // BUNK CALCULATOR LOGIC
+    // ==========================================
+    const btnCalculateBunk = bunkCard.querySelector('#btnCalculateBunk');
+    const bunkAttendedInput = bunkCard.querySelector('#bunkAttended');
+    const bunkTotalInput = bunkCard.querySelector('#bunkTotal');
+    const bunkResultBox = bunkCard.querySelector('#bunkResultBox');
+    const bunkResultPercent = bunkCard.querySelector('#bunkResultPercent');
+    const bunkProgressBar = bunkCard.querySelector('#bunkProgressBar');
+    const bunkResultComment = bunkCard.querySelector('#bunkResultComment');
+    const bunkResultDetail = bunkCard.querySelector('#bunkResultDetail');
+
+    const bunkPositiveComments = [
+      "Arre wah! Sarkaari damad banoge, full attendance! 💅",
+      "Bade tejasvi log hain hamare paas! Ghumi-ghumi kar sakte ho thoda. 🌴",
+      "Ghar waale proud hain tumpe! Safe zone me ho. 😎",
+      "Attendance check pass! Topper vibes ultra pro max. 🚀"
+    ];
+
+    const bunkNegativeComments = [
+      "Oh beta ji! Professor se dosti badhao, detention khatra mandra raha hai! 😱",
+      "Proxy lagwane ka time aa gaya hai, ya chupchap class chale jao! 🏃‍♂️",
+      "Ghar walo ko kya bologe? College me ghumi-ghumi band karo! 🙊",
+      "Borderline danger zone! Attendance criteria 75% door dikh raha hai. 💀"
+    ];
+
+    btnCalculateBunk.addEventListener('click', () => {
+      const A = parseInt(bunkAttendedInput.value);
+      const H = parseInt(bunkTotalInput.value);
+
+      if (isNaN(A) || isNaN(H) || A < 0 || H <= 0) {
+        alert("Please enter valid attended and total classes (Total must be greater than 0).");
+        return;
+      }
+      if (A > H) {
+        alert("Classes attended cannot be greater than total classes held!");
+        return;
+      }
+
+      const percent = parseFloat(((A / H) * 100).toFixed(1));
+      bunkResultPercent.innerText = `${percent}% Attendance`;
+      bunkProgressBar.style.width = `${percent}%`;
+
+      if (percent >= 75) {
+        bunkProgressBar.style.background = "#10b981"; // green
+        const bunkLimit = Math.floor((4 * A - 3 * H) / 3);
+        const comment = bunkPositiveComments[Math.floor(Math.random() * bunkPositiveComments.length)];
+        
+        bunkResultComment.innerText = comment;
+        if (bunkLimit > 0) {
+          bunkResultDetail.innerHTML = `You can consecutively bunk next **${bunkLimit}** class(es) safely without falling below 75%!`;
+        } else {
+          bunkResultDetail.innerHTML = `You are exactly at 75% attendance. Bunking any classes right now is risky!`;
+        }
+      } else {
+        bunkProgressBar.style.background = "#ef4444"; // red
+        const reqClasses = (3 * H) - (4 * A);
+        const comment = bunkNegativeComments[Math.floor(Math.random() * bunkNegativeComments.length)];
+        
+        bunkResultComment.innerText = comment;
+        bunkResultDetail.innerHTML = `You must attend the next **${reqClasses}** class(es) consecutively to cross GGSIPU's 75% attendance threshold!`;
+      }
+
+      bunkResultBox.style.display = 'flex';
+      setTimeout(() => {
+        bunkResultBox.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      }, 80);
+      setTimeout(() => {
+        bunkResultBox.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      }, 50);
     });
-  }
+
+    // ==========================================
+    // CGPA & SGPA CALCULATOR LOGIC
+    // ==========================================
+    const tabSGPA = cgpaCard.querySelector('#tabSGPA');
+    const tabCGPA = cgpaCard.querySelector('#tabCGPA');
+    const sectionSGPA = cgpaCard.querySelector('#sectionSGPA');
+    const sectionCGPA = cgpaCard.querySelector('#sectionCGPA');
+    const cgpaResultBox = cgpaCard.querySelector('#cgpaResultBox');
+    const cgpaResultTitle = cgpaCard.querySelector('#cgpaResultTitle');
+    const cgpaResultComment = cgpaCard.querySelector('#cgpaResultComment');
+    const cgpaResultDetail = cgpaCard.querySelector('#cgpaResultDetail');
+
+    // Tab Switching
+    tabSGPA.addEventListener('click', () => {
+      tabSGPA.classList.add('active');
+      tabCGPA.classList.remove('active');
+      sectionSGPA.style.display = 'flex';
+      sectionCGPA.style.display = 'none';
+      cgpaResultBox.style.display = 'none';
+    });
+
+    tabCGPA.addEventListener('click', () => {
+      tabCGPA.classList.add('active');
+      tabSGPA.classList.remove('active');
+      sectionCGPA.style.display = 'flex';
+      sectionSGPA.style.display = 'none';
+      cgpaResultBox.style.display = 'none';
+    });
+
+    // Load subjects for SGPA
+    const sgpaSemester = cgpaCard.querySelector('#sgpaSemester');
+    const sgpaSubjectsContainer = cgpaCard.querySelector('#sgpaSubjectsContainer');
+    const btnCalculateSGPA = cgpaCard.querySelector('#btnCalculateSGPA');
+
+    // Credit mappings helper
+    function getCreditForSubject(code) {
+      code = code.toUpperCase();
+      if (code.startsWith("BS-111") || code.startsWith("BS-121") || code.startsWith("BS-204")) return 4;
+      if (code.startsWith("CS-101") || code.startsWith("CS-122") || code.startsWith("CS-201") || 
+          code.startsWith("CS-203") || code.startsWith("CS-205") || code.startsWith("CS-207") || 
+          code.startsWith("CS-204") || code.startsWith("CS-206") || code.startsWith("CS-208") || 
+          code.startsWith("CS-301") || code.startsWith("CS-303") || code.startsWith("CS-305") || 
+          code.startsWith("CS-309")) return 4;
+      return 3;
+    }
+
+    sgpaSemester.addEventListener('change', () => {
+      const sem = parseInt(sgpaSemester.value);
+      if (isNaN(sem)) return;
+
+      sgpaSubjectsContainer.innerHTML = '';
+      const subjects = [];
+      for (let key in ProxyAI.knowledge.subjects) {
+        if (ProxyAI.knowledge.subjects[key].sem === sem) {
+          subjects.push(ProxyAI.knowledge.subjects[key]);
+        }
+      }
+
+      if (subjects.length === 0) {
+        sgpaSubjectsContainer.innerHTML = '<p style="font-size: 0.85rem; color: var(--text-muted, #94a3b8); text-align: center; margin: 10px 0;">No subjects found for this semester.</p>';
+        btnCalculateSGPA.style.display = 'none';
+        return;
+      }
+
+      subjects.forEach(sub => {
+        const credit = getCreditForSubject(sub.code);
+        const row = document.createElement('div');
+        row.className = 'proxy-subject-row';
+        row.dataset.code = sub.code;
+        row.dataset.credit = credit;
+        row.innerHTML = `
+          <span class="proxy-subject-name" title="${sub.name}">${sub.name}</span>
+          <span class="proxy-subject-credit">${credit} Cr</span>
+          <select class="proxy-select sgpa-grade-select" style="padding: 4px 8px; font-size: 0.82rem; border-radius: 8px;">
+            <option value="10">O (10)</option>
+            <option value="9">A+ (9)</option>
+            <option value="8">A (8)</option>
+            <option value="7">B+ (7)</option>
+            <option value="6">B (6)</option>
+            <option value="5">C (5)</option>
+            <option value="4">P (4)</option>
+            <option value="0">F (0)</option>
+          </select>
+        `;
+        sgpaSubjectsContainer.appendChild(row);
+      });
+
+      btnCalculateSGPA.style.display = 'block';
+    });
+
+    const scoreComments = [
+      { max: 10, min: 9.0, text: "Aap toh devta hain! Universe ko control kar rahe ho. 🌌" },
+      { max: 9.0, min: 8.0, text: "Bohot badhiya score! Placement cell wale aapko dhoond rahe honge. 💼" },
+      { max: 8.0, min: 7.0, text: "Safe zone! GGSIPU standard pass. Party banti hai. 🎉" },
+      { max: 7.0, min: 5.0, text: "Average score, thodi aur mehnat karni padegi dost! 📚" },
+      { max: 5.0, min: 0.0, text: "Chud gaye guru! Agli baar backlog mat aane dena. 💀" }
+    ];
+
+    function getScoreComment(val) {
+      for (let c of scoreComments) {
+        if (val >= c.min && val <= c.max) return c.text;
+      }
+      return "Sahi khel gaye!";
+    }
+
+    // Calculate SGPA
+    btnCalculateSGPA.addEventListener('click', () => {
+      const rows = sgpaSubjectsContainer.querySelectorAll('.proxy-subject-row');
+      let totalPoints = 0;
+      let totalCredits = 0;
+
+      rows.forEach(row => {
+        const credit = parseFloat(row.dataset.credit);
+        const gradeVal = parseFloat(row.querySelector('.sgpa-grade-select').value);
+        totalPoints += (credit * gradeVal);
+        totalCredits += credit;
+      });
+
+      if (totalCredits === 0) return;
+
+      const sgpaVal = parseFloat((totalPoints / totalCredits).toFixed(2));
+      cgpaResultTitle.innerText = `SGPA: ${sgpaVal}`;
+      cgpaResultComment.innerText = getScoreComment(sgpaVal);
+      cgpaResultDetail.innerHTML = `Total Credits: **${totalCredits}** | Grade Points: **${totalPoints}**`;
+      cgpaResultBox.style.display = 'flex';
+      setTimeout(() => {
+        cgpaResultBox.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      }, 80);
+      setTimeout(() => {
+        cgpaResultBox.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      }, 50);
+    });
+
+    // Calculate CGPA
+    const btnCalculateCGPA = cgpaCard.querySelector('#btnCalculateCGPA');
+    const semCredits = [27, 27, 26, 26, 24, 24, 20, 20]; // GGSIPU Semester Credits
+
+    btnCalculateCGPA.addEventListener('click', () => {
+      let totalWeightedSGPA = 0;
+      let totalCredits = 0;
+      let inputCount = 0;
+
+      for (let i = 1; i <= 8; i++) {
+        const inputVal = parseFloat(cgpaCard.querySelector(`#cgpaSem${i}`).value);
+        if (!isNaN(inputVal) && inputVal >= 0 && inputVal <= 10) {
+          const cred = semCredits[i-1];
+          totalWeightedSGPA += (inputVal * cred);
+          totalCredits += cred;
+          inputCount++;
+        }
+      }
+
+      if (inputCount === 0) {
+        alert("Please enter at least one valid semester SGPA (0 to 10).");
+        return;
+      }
+
+      const cgpaVal = parseFloat((totalWeightedSGPA / totalCredits).toFixed(2));
+      cgpaResultTitle.innerText = `CGPA: ${cgpaVal}`;
+      cgpaResultComment.innerText = getScoreComment(cgpaVal);
+      cgpaResultDetail.innerHTML = `Weighted average based on **${inputCount}** semester(s) | Calculated credits: **${totalCredits}**`;
+      cgpaResultBox.style.display = 'flex';
+      setTimeout(() => {
+        cgpaResultBox.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      }, 80);
+      setTimeout(() => {
+        cgpaResultBox.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      }, 50);
+    });
+  });
 })();
