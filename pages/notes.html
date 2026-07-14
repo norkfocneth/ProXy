@@ -248,12 +248,27 @@
                 const currentSubject = sub.title.toLowerCase().trim();
                 if (noteSubject !== currentSubject) return false;
 
-                const unitNumStr = unit.num.toLowerCase(); // "unit 1"
                 const noteTitle = (note.title || '').toLowerCase();
                 const noteDesc = (note.description || '').toLowerCase();
-                return noteTitle.includes(unitNumStr) || noteDesc.includes(unitNumStr) ||
-                       noteTitle.includes('unit' + unit.num.replace(/\D/g, '')) ||
-                       noteTitle.includes('u' + unit.num.replace(/\D/g, ''));
+
+                const hasUnit1 = noteTitle.includes('unit 1') || noteTitle.includes('unit i') || noteTitle.includes('u1');
+                const hasUnit2 = noteTitle.includes('unit 2') || noteTitle.includes('unit ii') || noteTitle.includes('u2');
+                const hasUnit3 = noteTitle.includes('unit 3') || noteTitle.includes('unit iii') || noteTitle.includes('u3');
+                const hasUnit4 = noteTitle.includes('unit 4') || noteTitle.includes('unit iv') || noteTitle.includes('u4');
+
+                const specifiesAnyUnit = hasUnit1 || hasUnit2 || hasUnit3 || hasUnit4;
+
+                if (specifiesAnyUnit) {
+                  // If it specifies a unit, match if it matches this unit
+                  if (unit.num.toLowerCase().includes('unit i') && hasUnit1) return true;
+                  if (unit.num.toLowerCase().includes('unit ii') && hasUnit2) return true;
+                  if (unit.num.toLowerCase().includes('unit iii') && hasUnit3) return true;
+                  if (unit.num.toLowerCase().includes('unit iv') && hasUnit4) return true;
+                  return false;
+                } else {
+                  // Fallback: If it doesn't specify any unit, match it to Unit I by default
+                  return unit.num.toLowerCase().includes('unit i');
+                }
               });
 
               if (matchingNote) {
