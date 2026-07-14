@@ -763,6 +763,7 @@
           <div class="wizard-dot"></div>
           <div class="wizard-dot"></div>
           <div class="wizard-dot"></div>
+          <div class="wizard-dot"></div>
         </div>
 
         <!-- Step 1: Resource Type -->
@@ -851,31 +852,45 @@
           </div>
         </div>
 
-        <!-- Step 6: Title -->
+        <!-- Step 6: Exam Type (Only for PYQs) -->
         <div class="wizard-step" data-step="6">
-          <div class="step-label">Step 6 of 8</div>
-          <div class="step-title">Resource Title</div>
-          <input type="text" class="wizard-input" id="resourceTitle" placeholder="e.g. Data Structures Unit 1 — Complete Notes">
+          <div class="step-label" id="examStepLabel">Step 6 of 9</div>
+          <div class="step-title">Choose Exam Type</div>
+          <div class="pill-grid" id="examTypePills">
+            <button class="pill-option" data-value="mid">📝 Mid Term Examination</button>
+            <button class="pill-option" data-value="end">🎓 End Term Examination</button>
+          </div>
           <div class="wizard-nav">
             <button class="wizard-btn wizard-btn--back" onclick="goStep(5)">← Back</button>
             <button class="wizard-btn wizard-btn--next" id="nextStep6" disabled>Continue →</button>
           </div>
         </div>
 
-        <!-- Step 7: Description -->
+        <!-- Step 7: Title -->
         <div class="wizard-step" data-step="7">
-          <div class="step-label">Step 7 of 8</div>
-          <div class="step-title">Description (optional)</div>
-          <textarea class="wizard-input wizard-textarea" id="resourceDesc" placeholder="Brief description of the resource..."></textarea>
+          <div class="step-label" id="titleStepLabel">Step 7 of 9</div>
+          <div class="step-title">Resource Title</div>
+          <input type="text" class="wizard-input" id="resourceTitle" placeholder="e.g. Data Structures Unit 1 — Complete Notes">
           <div class="wizard-nav">
-            <button class="wizard-btn wizard-btn--back" onclick="goStep(6)">← Back</button>
-            <button class="wizard-btn wizard-btn--next" id="nextStep7">Continue →</button>
+            <button class="wizard-btn wizard-btn--back" onclick="goBackFromTitle()">← Back</button>
+            <button class="wizard-btn wizard-btn--next" id="nextStep7" disabled>Continue →</button>
           </div>
         </div>
 
-        <!-- Step 8: File Upload -->
+        <!-- Step 8: Description (optional) -->
         <div class="wizard-step" data-step="8">
-          <div class="step-label">Step 8 of 8</div>
+          <div class="step-label" id="descStepLabel">Step 8 of 9</div>
+          <div class="step-title">Description (optional)</div>
+          <textarea class="wizard-input wizard-textarea" id="resourceDesc" placeholder="Brief description of the resource..."></textarea>
+          <div class="wizard-nav">
+            <button class="wizard-btn wizard-btn--back" onclick="goStep(7)">← Back</button>
+            <button class="wizard-btn wizard-btn--next" id="nextStep8">Continue →</button>
+          </div>
+        </div>
+
+        <!-- Step 9: File Upload -->
+        <div class="wizard-step" data-step="9">
+          <div class="step-label" id="fileStepLabel">Step 9 of 9</div>
           <div class="step-title">Upload PDF</div>
 
           <div class="dropzone" id="dropzone">
@@ -897,7 +912,7 @@
           </div>
 
           <div class="wizard-nav">
-            <button class="wizard-btn wizard-btn--back" onclick="goStep(7)">← Back</button>
+            <button class="wizard-btn wizard-btn--back" onclick="goStep(8)">← Back</button>
             <button class="wizard-btn wizard-btn--next" id="uploadBtn" disabled>Upload Resource 🚀</button>
           </div>
         </div>
@@ -938,12 +953,12 @@
       semester: '',
       subject: '',
       year: '',
+      examType: '',
       title: '',
       description: ''
     };
     let selectedFile = null;
     let currentStep = 1;
-    const totalSteps = 8;
 
     // ── Check existing session ──
     const existingSession = NotesProviderEngine.getSession();
@@ -1041,6 +1056,7 @@
     setupPillGrid('branchPills', 'branch', 'nextStep2');
     setupPillGrid('semPills', 'semester', 'nextStep3');
     setupPillGrid('yearPills', 'year', 'nextStep5');
+    setupPillGrid('examTypePills', 'examType', 'nextStep6');
 
     // ── Subject Dropdown ──
     function updateSubjectDropdown() {
@@ -1066,7 +1082,7 @@
     // ── Title Input ──
     document.getElementById('resourceTitle').addEventListener('input', (e) => {
       formState.title = e.target.value.trim();
-      document.getElementById('nextStep6').disabled = !formState.title;
+      document.getElementById('nextStep7').disabled = !formState.title;
     });
 
     // ── Description ──
@@ -1133,24 +1149,78 @@
       const target = document.querySelector(`.wizard-step[data-step="${step}"]`);
       if (target) target.classList.add('active');
       updateProgressDots();
+      updateStepLabels();
+    }
+
+    function updateStepLabels() {
+      const isPyq = formState.resourceType === 'pyqs';
+      const total = isPyq ? 9 : 8;
+
+      const examLabel = document.getElementById('examStepLabel');
+      if (examLabel) examLabel.textContent = `Step 6 of 9`;
+
+      const titleLabel = document.getElementById('titleStepLabel');
+      if (titleLabel) titleLabel.textContent = `Step ${isPyq ? 7 : 6} of ${total}`;
+
+      const descLabel = document.getElementById('descStepLabel');
+      if (descLabel) descLabel.textContent = `Step ${isPyq ? 8 : 7} of ${total}`;
+
+      const fileLabel = document.getElementById('fileStepLabel');
+      if (fileLabel) fileLabel.textContent = `Step ${isPyq ? 9 : 8} of ${total}`;
+    }
+
+    function goBackFromTitle() {
+      if (formState.resourceType === 'pyqs') {
+        goStep(6);
+      } else {
+        goStep(5);
+      }
     }
 
     function updateProgressDots() {
       const dots = document.querySelectorAll('.wizard-dot');
       dots.forEach((dot, i) => {
         dot.classList.remove('active', 'done');
-        if (i + 1 === currentStep) dot.classList.add('active');
-        else if (i + 1 < currentStep) dot.classList.add('done');
       });
-    }
 
-    // Next buttons
-    for (let i = 1; i <= 7; i++) {
-      const btn = document.getElementById(`nextStep${i}`);
-      if (btn && i < 8) {
-        btn.addEventListener('click', () => goStep(i + 1));
+      if (formState.resourceType === 'pyqs') {
+        const activeIndex = currentStep - 1;
+        dots.forEach((dot, i) => {
+          dot.style.display = '';
+          if (i === activeIndex) dot.classList.add('active');
+          else if (i < activeIndex) dot.classList.add('done');
+        });
+      } else {
+        dots.forEach((dot, i) => {
+          if (i === 8) {
+            dot.style.display = 'none';
+          } else {
+            dot.style.display = '';
+            let logicalStep = currentStep;
+            if (currentStep > 6) logicalStep = currentStep - 1;
+            const activeIndex = logicalStep - 1;
+            if (i === activeIndex) dot.classList.add('active');
+            else if (i < activeIndex) dot.classList.add('done');
+          }
+        });
       }
     }
+
+    // Step Explicit Navigation bindings
+    document.getElementById('nextStep1').addEventListener('click', () => goStep(2));
+    document.getElementById('nextStep2').addEventListener('click', () => goStep(3));
+    document.getElementById('nextStep3').addEventListener('click', () => goStep(4));
+    document.getElementById('nextStep4').addEventListener('click', () => goStep(5));
+    document.getElementById('nextStep5').addEventListener('click', () => {
+      if (formState.resourceType === 'pyqs') {
+        goStep(6);
+      } else {
+        goStep(7);
+      }
+    });
+    document.getElementById('nextStep6').addEventListener('click', () => goStep(7));
+    document.getElementById('nextStep7').addEventListener('click', () => goStep(8));
+    document.getElementById('nextStep8').addEventListener('click', () => goStep(9));
 
     // ── Upload Button ──
     document.getElementById('uploadBtn').addEventListener('click', async () => {
@@ -1163,6 +1233,14 @@
       const progressDiv = document.getElementById('uploadProgress');
       progressDiv.classList.add('active');
 
+      let finalTitle = formState.title;
+      if (formState.resourceType === 'pyqs') {
+        const typeLabel = formState.examType === 'mid' ? '[Mid Term]' : '[End Term]';
+        if (!finalTitle.includes('[Mid Term]') && !finalTitle.includes('[End Term]')) {
+          finalTitle = `${finalTitle} ${typeLabel}`;
+        }
+      }
+
       const result = await NotesProviderEngine.uploadResource({
         providerUuid: provider.id,
         resourceType: formState.resourceType,
@@ -1170,7 +1248,7 @@
         semester: parseInt(formState.semester),
         subject: formState.subject,
         year: formState.year,
-        title: formState.title,
+        title: finalTitle,
         description: formState.description
       }, selectedFile, (pct, text) => {
         document.getElementById('progressFill').style.width = pct + '%';
@@ -1196,7 +1274,7 @@
     // ── Upload Another ──
     document.getElementById('uploadAnotherBtn').addEventListener('click', () => {
       // Reset everything
-      formState = { resourceType: '', branch: '', semester: '', subject: '', year: '', title: '', description: '' };
+      formState = { resourceType: '', branch: '', semester: '', subject: '', year: '', examType: '', title: '', description: '' };
       selectedFile = null;
       fileInput.value = '';
 
@@ -1209,7 +1287,7 @@
       document.getElementById('uploadBtn').disabled = true;
 
       // Disable next buttons
-      for (let i = 1; i <= 6; i++) {
+      for (let i = 1; i <= 7; i++) {
         const btn = document.getElementById(`nextStep${i}`);
         if (btn) btn.disabled = true;
       }
