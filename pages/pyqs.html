@@ -111,6 +111,7 @@
       </select>
       <select class="filter-select" id="yearFilter">
         <option value="all">All Years</option>
+        <option value="2025">2025</option>
         <option value="2023">2023</option>
         <option value="2022">2022</option>
         <option value="2021">2021</option>
@@ -129,10 +130,11 @@
     </div>
   </div>
 
+  <script src="../js/supabase.js"></script>
   <script src="../js/shared.js?v=5"></script>
   <script src="../js/syllabus-engine.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
       ProxyUI.injectNavbar('PYQs');
       ProxyUI.injectBackgroundGlows();
 
@@ -151,6 +153,27 @@
       // Fetch subjects data
       const data = getSyllabusData(branch, sem);
       if (!data) return;
+
+      // ── Supabase Init & Query ──
+      const SUPABASE_URL = 'https://iynmupzkeevjwjcgajxs.supabase.co';
+      const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml5bm11cHprZWV2andqY2dhanhzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3NDY3NTMsImV4cCI6MjA5OTMyMjc1M30.JBqi4ZsbDhFb8Ic9BimXoCf0zCJbpc12XVkG-sydyFc';
+      const db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+      let dbPyqs = [];
+      try {
+        const { data: resData, error } = await db
+          .from('resources')
+          .select('*')
+          .eq('branch', branch)
+          .eq('semester', sem)
+          .eq('resource_type', 'pyqs')
+          .eq('status', 'approved');
+        if (!error && resData) {
+          dbPyqs = resData;
+        }
+      } catch (e) {
+        console.error('Failed to load resources from Supabase:', e);
+      }
 
       const subjectFilter = document.getElementById('subjectFilter');
       const yearFilter = document.getElementById('yearFilter');
@@ -198,7 +221,7 @@
       function renderPapers(subjects, yearFilterVal, typeFilterVal) {
         pyqContainer.innerHTML = '';
 
-        const years = ['2023', '2022', '2021'];
+        const years = ['2025', '2023', '2022', '2021'];
         const types = ['End Term Examination', 'Mid Term Examination'];
 
         subjects.forEach(sub => {
@@ -214,14 +237,36 @@
               const u2 = sub.units[1] ? sub.units[1].topics.split(',')[0] : 'principles';
               const u3 = sub.units[2] ? sub.units[2].topics.split(',')[0] : 'advanced details';
 
+              // Match with Supabase PYQ uploads
+              const matchingPyq = dbPyqs.find(pyq => {
+                const pyqSubject = (pyq.subject || '').toLowerCase().trim();
+                const currentSubject = sub.title.toLowerCase().trim();
+                if (pyqSubject !== currentSubject) return false;
+                if (String(pyq.year) !== String(year)) return false;
+
+                const pyqTitle = (pyq.title || '').toLowerCase();
+                const pyqDesc = (pyq.description || '').toLowerCase();
+                
+                if (typeCode === 'end') {
+                  return pyqTitle.includes('end') || pyqTitle.includes('major') || pyqTitle.includes('final') || 
+                         (!pyqTitle.includes('mid') && !pyqTitle.includes('minor') && !pyqTitle.includes('sessional'));
+                } else {
+                  return pyqTitle.includes('mid') || pyqTitle.includes('minor') || pyqTitle.includes('sessional');
+                }
+              });
+
               const paper = document.createElement('div');
               paper.className = 'paper-stack';
+              if (matchingPyq) {
+                paper.dataset.fileUrl = matchingPyq.file_url;
+                paper.classList.add('has-resource');
+              }
 
               paper.innerHTML = `
                 <div class="paper-sheet paper-sheet--bottom"></div>
                 <div class="paper-sheet paper-sheet--middle"></div>
                 <div class="paper-sheet paper-sheet--top">
-                  <span class="paper-badge">${year}</span>
+                  <span class="paper-badge" style="${matchingPyq ? 'background: #10b981; box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);' : ''}">${year} ${matchingPyq ? '• Real' : ''}</span>
                   <div class="paper-header">
                     <div class="paper-title">${type}</div>
                     <div class="paper-meta"><span>${sub.title}</span><span>Sem ${getSemOrdinal(sem)}</span></div>
@@ -243,7 +288,7 @@
 
               // Show toast animation on click
               paper.addEventListener('click', () => {
-                showDownloadAnimation(sub.title, year, type);
+                showDownloadAnimation(sub.title, year, type, paper.dataset.fileUrl);
               });
 
               pyqContainer.appendChild(paper);
@@ -273,7 +318,7 @@
         return 'VIII';
       }
 
-      function showDownloadAnimation(subjectTitle, year, type) {
+      function showDownloadAnimation(subjectTitle, year, type, fileUrl) {
         // Remove existing toast if present
         const oldToast = document.getElementById('pdfToast');
         if (oldToast) oldToast.remove();
@@ -315,6 +360,11 @@
             </div>
             <span style="color:var(--text-secondary); font-size:0.85rem;">Saved file: ${subjectTitle.replace(/\s+/g, '_')}_${year}_${type.replace(/\s+/g, '_')}.pdf</span>
           `;
+          
+          if (fileUrl) {
+            window.open(fileUrl, '_blank');
+          }
+
           setTimeout(() => {
             toast.style.animation = 'slideDown 0.4s ease forwards';
             setTimeout(() => toast.remove(), 400);
