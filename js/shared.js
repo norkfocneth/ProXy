@@ -951,7 +951,6 @@ const ProxyAI = {
       members: {
         "arnav": "**Arnav Focneth** (Founder & Chief Architect): Designs and codes the Proxy educational engines, UI systems, and resources layout.",
         "manya": "**Manya Arya** (Content & Academic Lead): Compiles syllabus docs, compiles premium notes, PYQs, and organizes academic updates.",
-        "ritik": "**Ritik Gautam** (Growth & Community Lead): Manages marketing, community handles (Instagram, LinkedIn, Telegram/WhatsApp groups), and student relations.",
         "priyanka": "**Priyanka Kaim** (Creative Designer): Creates stunning posters, social visuals, 3D mockups, landing page designs, and visual assets.",
         "samarth": "**Samarth Agnihotri** (QA & Operations): In charge of QA testing, device rendering compatibility, bugs debugging, and documentation."
       }
@@ -1019,17 +1018,15 @@ const ProxyAI = {
     }
 
     // Founders
-    if (/founder|team|who built|creator|made by|arnav|manya|ritik|priyanka|samarth/.test(text)) {
+    if (/founder|team|who built|creator|made by|arnav|manya|priyanka|samarth/.test(text)) {
       let resp = `${this.knowledge.team.intro}<br><br>`;
       if (/arnav/.test(text)) resp += `• ${this.knowledge.team.members.arnav}<br>`;
       else if (/manya/.test(text)) resp += `• ${this.knowledge.team.members.manya}<br>`;
-      else if (/ritik/.test(text)) resp += `• ${this.knowledge.team.members.ritik}<br>`;
       else if (/priyanka/.test(text)) resp += `• ${this.knowledge.team.members.priyanka}<br>`;
       else if (/samarth/.test(text)) resp += `• ${this.knowledge.team.members.samarth}<br>`;
       else {
         resp += `• ${this.knowledge.team.members.arnav}<br><br>
                  • ${this.knowledge.team.members.manya}<br><br>
-                 • ${this.knowledge.team.members.ritik}<br><br>
                  • ${this.knowledge.team.members.priyanka}<br><br>
                  • ${this.knowledge.team.members.samarth}<br><br>`;
       }
