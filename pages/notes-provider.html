@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes Provider — Proxy</title>
+  <meta name="description" content="Verified Notes Provider portal for uploading study resources to Proxy.">
+  <link rel="stylesheet" href="../css/design-system.css?v=3">
+  <style>
+    /* Hide mobile menu overlay on desktop viewports */
+    @media (min-width: 769px) {
+      .mobile-menu-overlay { display: none !important; }
+    }
+
+    /* ── Provider Page Layout ── */
+    .provider-page {
+      min-height: 100vh;
+      padding-top: var(--navbar-height);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ── Auth Screen ── */
+    .provider-auth {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - var(--navbar-height));
+      padding: 2rem;
+      position: relative;
+    }
+
+    .auth-ambient-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .auth-ambient-orb--purple {
+      width: 500px; height: 500px;
+      background: rgba(124, 58, 237, 0.08);
+      top: 10%; right: 15%;
+    }
+    .auth-ambient-orb--blue {
+      width: 400px; height: 400px;
+      background: rgba(59, 130, 246, 0.06);
+      bottom: 15%; left: 10%;
+    }
+
+    .auth-card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 440px;
+      background: var(--glass-bg-strong);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius-xl);
+      padding: 3rem 2.5rem;
+      box-shadow: var(--shadow-xl), 0 0 80px rgba(124, 58, 237, 0.04);
+      text-align: center;
+      animation: authCardIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes authCardIn {
+      from { opacity: 0; transform: translateY(30px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .auth-notebook-icon {
+      width: 64px; height: 64px;
+      margin: 0 auto 1.5rem;
+      background: var(--accent-gradient);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(124, 58, 237, 0.25);
+    }
+    .auth-notebook-icon svg {
+      width: 32px; height: 32px;
+      stroke: white;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .auth-title {
+      font-size: var(--font-size-2xl);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .auth-subtitle {
+      font-size: var(--font-size-sm);
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .auth-field {
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+    .auth-field label {
+      display: block;
+      font-size: var(--font-size-xs);
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.4rem;
+    }
+    .auth-field input {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: var(--border-radius-sm);
+      background: rgba(255, 255, 255, 0.6);
+      font-family: inherit;
+      font-size: var(--font-size-base);
+      color: var(--text-primary);
+      transition: all 0.2s ease;
+      outline: none;
+      box-sizing: border-box;
+    }
+    .auth-field input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.08);
+    }
+    .auth-field input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .auth-btn {
+      width: 100%;
+      padding: 0.9rem;
+      margin-top: 0.5rem;
+      background: var(--accent-gradient);
+      color: white;
+      border: none;
+      border-radius: var(--border-radius-sm);
+      font-family: inherit;
+      font-size: var(--font-size-base);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: 0 4px 16px rgba(124, 58, 237, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .auth-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(124, 58, 237, 0.3);
+    }
+    .auth-btn:active { transform: translateY(0); }
+    .auth-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .auth-error {
+      margin-top: 1.25rem;
+      padding: 0.85rem 1rem;
+      background: rgba(239, 68, 68, 0.06);
+      border: 1px solid rgba(239, 68, 68, 0.15);
+      border-radius: var(--border-radius-sm);
+      color: #dc2626;
+      font-size: var(--font-size-sm);
+      font-weight: 500;
+      display: none;
+      animation: shakeIn 0.4s ease;
+    }
+    .auth-error.visible { display: block; }
+
+    @keyframes shakeIn {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+
+    /* ── Dashboard ── */
+    .provider-dashboard {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem 6rem;
+      animation: dashIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .provider-dashboard.active { display: block; }
+
+    @keyframes dashIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Welcome Card */
+    .welcome-card {
+      background: var(--glass-bg-strong);
+      backdrop-filter: blur(30px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius-lg);
+      padding: 2rem 2.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      box-shadow: var(--shadow-md);
+    }
+    .welcome-avatar {
+      width: 56px; height: 56px;
+      background: var(--accent-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+      box-shadow: 0 4px 16px rgba(124, 58, 237, 0.2);
+    }
+    .welcome-info h2 {
+      font-size: var(--font-size-xl);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+    .welcome-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: var(--font-size-xs);
+      font-weight: 600;
+      color: #059669;
+      background: rgba(5, 150, 105, 0.08);
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--border-radius-full);
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .stat-card {
+      background: var(--glass-bg-strong);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius-md);
+      padding: 1.25rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+    }
+    .stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+    .stat-emoji {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .stat-value {
+      font-size: var(--font-size-2xl);
+      font-weight: 800;
+      color: var(--text-primary);
+      font-family: var(--font-family-mono);
+    }
+    .stat-label {
+      font-size: var(--font-size-xs);
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 0.25rem;
+    }
+
+    /* Upload Card */
+    .upload-card {
+      background: var(--glass-bg-strong);
+      backdrop-filter: blur(30px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-md);
+    }
+    .upload-card-title {
+      font-size: var(--font-size-xl);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    .upload-card-desc {
+      font-size: var(--font-size-sm);
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+
+    /* Wizard Steps */
+    .wizard-step {
+      display: none;
+      animation: stepIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .wizard-step.active { display: block; }
+
+    @keyframes stepIn {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .step-label {
+      font-size: var(--font-size-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .step-title {
+      font-size: var(--font-size-lg);
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+    }
+
+    /* Pill Selectors */
+    .pill-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+    }
+    .pill-option {
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--border-radius-full);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      background: rgba(255, 255, 255, 0.5);
+      font-family: inherit;
+      font-size: var(--font-size-sm);
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .pill-option:hover {
+      background: rgba(124, 58, 237, 0.05);
+      border-color: rgba(124, 58, 237, 0.2);
+      color: var(--text-primary);
+    }
+    .pill-option.selected {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
+    }
+
+    /* Semester Selector Grid */
+    .sem-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+    }
+    .sem-option {
+      padding: 1rem;
+      border-radius: var(--border-radius-sm);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      background: rgba(255, 255, 255, 0.5);
+      font-family: inherit;
+      font-size: var(--font-size-lg);
+      font-weight: 700;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+    .sem-option:hover {
+      background: rgba(124, 58, 237, 0.05);
+      border-color: rgba(124, 58, 237, 0.2);
+    }
+    .sem-option.selected {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
+    }
+
+    /* Text Inputs */
+    .wizard-input {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: var(--border-radius-sm);
+      background: rgba(255, 255, 255, 0.6);
+      font-family: inherit;
+      font-size: var(--font-size-base);
+      color: var(--text-primary);
+      transition: all 0.2s ease;
+      outline: none;
+      margin-bottom: 1.5rem;
+      box-sizing: border-box;
+    }
+    .wizard-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.08);
+    }
+    .wizard-textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .wizard-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23475569' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+
+    /* Dropzone */
+    .dropzone {
+      border: 2px dashed rgba(124, 58, 237, 0.2);
+      border-radius: var(--border-radius-lg);
+      padding: 3rem 2rem;
+      text-align: center;
+      background: rgba(124, 58, 237, 0.02);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      margin-bottom: 1.5rem;
+    }
+    .dropzone:hover, .dropzone.dragover {
+      border-color: var(--accent);
+      background: rgba(124, 58, 237, 0.05);
+      transform: scale(1.01);
+    }
+    .dropzone-icon {
+      width: 56px; height: 56px;
+      margin: 0 auto 1rem;
+      background: var(--accent-soft);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dropzone-icon svg {
+      width: 24px; height: 24px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 2;
+    }
+    .dropzone-text {
+      font-size: var(--font-size-base);
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.3rem;
+    }
+    .dropzone-hint {
+      font-size: var(--font-size-xs);
+      color: var(--text-muted);
+    }
+    .dropzone-file {
+      display: none;
+    }
+    .file-preview {
+      display: none;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem;
+      background: rgba(124, 58, 237, 0.04);
+      border-radius: var(--border-radius-sm);
+      margin-bottom: 1.5rem;
+    }
+    .file-preview.visible { display: flex; }
+    .file-preview-icon {
+      width: 40px; height: 40px;
+      background: rgba(239, 68, 68, 0.08);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: #dc2626;
+    }
+    .file-preview-info {
+      flex: 1;
+    }
+    .file-preview-name {
+      font-size: var(--font-size-sm);
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .file-preview-size {
+      font-size: var(--font-size-xs);
+      color: var(--text-muted);
+    }
+    .file-preview-remove {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.2rem;
+      padding: 0.25rem;
+      transition: color 0.2s;
+    }
+    .file-preview-remove:hover { color: #dc2626; }
+
+    /* Navigation Buttons */
+    .wizard-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .wizard-btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--border-radius-sm);
+      font-family: inherit;
+      font-size: var(--font-size-sm);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+    }
+    .wizard-btn--back {
+      background: rgba(0, 0, 0, 0.04);
+      color: var(--text-secondary);
+    }
+    .wizard-btn--back:hover { background: rgba(0, 0, 0, 0.08); }
+    .wizard-btn--next {
+      background: var(--accent-gradient);
+      color: white;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.15);
+      margin-left: auto;
+    }
+    .wizard-btn--next:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(124, 58, 237, 0.25);
+    }
+    .wizard-btn--next:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Progress Bar */
+    .upload-progress {
+      display: none;
+      text-align: center;
+      padding: 2rem 0;
+    }
+    .upload-progress.active { display: block; }
+    .progress-bar-track {
+      width: 100%;
+      height: 8px;
+      background: rgba(0, 0, 0, 0.06);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--accent-gradient);
+      border-radius: 10px;
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      width: 0%;
+    }
+    .progress-text {
+      font-size: var(--font-size-sm);
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    /* Success State */
+    .upload-success {
+      display: none;
+      text-align: center;
+      padding: 2rem 0;
+      animation: successIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .upload-success.active { display: block; }
+
+    @keyframes successIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .success-check {
+      width: 72px; height: 72px;
+      background: rgba(5, 150, 105, 0.08);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2rem;
+    }
+    .success-title {
+      font-size: var(--font-size-xl);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    .success-desc {
+      font-size: var(--font-size-sm);
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    /* Progress Steps Indicator */
+    .wizard-progress {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .wizard-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    .wizard-dot.active {
+      background: var(--accent);
+      width: 24px;
+      border-radius: 4px;
+    }
+    .wizard-dot.done {
+      background: var(--accent);
+    }
+
+    /* Logout Button */
+    .logout-btn {
+      background: none;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      color: var(--text-muted);
+      font-size: var(--font-size-xs);
+      font-weight: 500;
+      padding: 0.4rem 0.8rem;
+      border-radius: var(--border-radius-full);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .logout-btn:hover {
+      background: rgba(239, 68, 68, 0.04);
+      border-color: rgba(239, 68, 68, 0.2);
+      color: #dc2626;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .auth-card { padding: 2rem 1.5rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .sem-grid { grid-template-columns: repeat(4, 1fr); }
+      .welcome-card { flex-direction: column; text-align: center; padding: 1.5rem; }
+      .upload-card { padding: 1.5rem; }
+      .provider-dashboard { padding: 2rem 1.25rem 4rem; }
+      .dropzone { padding: 2rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="provider-page">
+
+    <!-- ── Auth Screen ── -->
+    <div class="provider-auth" id="authScreen">
+      <div class="auth-ambient-orb auth-ambient-orb--purple"></div>
+      <div class="auth-ambient-orb auth-ambient-orb--blue"></div>
+
+      <div class="auth-card">
+        <div class="auth-notebook-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            <line x1="12" y1="6" x2="12" y2="14"></line>
+            <line x1="8" y1="10" x2="16" y2="10"></line>
+          </svg>
+        </div>
+
+        <h1 class="auth-title">Are you a verified<br>Notes Provider?</h1>
+        <p class="auth-subtitle">Only verified contributors can upload study resources.</p>
+
+        <form id="authForm" autocomplete="off">
+          <div class="auth-field">
+            <label for="providerId">Provider ID</label>
+            <input type="text" id="providerId" placeholder="e.g. arnav_cse" required autocomplete="off">
+          </div>
+          <div class="auth-field">
+            <label for="providerPassword">Password</label>
+            <input type="password" id="providerPassword" placeholder="••••••••" required autocomplete="off">
+          </div>
+          <button type="submit" class="auth-btn" id="authBtn">Continue</button>
+        </form>
+
+        <div class="auth-error" id="authError">
+          Access Denied. This portal is only for verified Notes Providers.
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Dashboard ── -->
+    <div class="provider-dashboard" id="dashboardScreen">
+
+      <!-- Welcome Card -->
+      <div class="welcome-card">
+        <div class="welcome-avatar" id="welcomeAvatar">A</div>
+        <div class="welcome-info">
+          <h2 id="welcomeName">Welcome Back</h2>
+          <span class="welcome-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Verified Notes Provider
+          </span>
+        </div>
+        <button class="logout-btn" id="logoutBtn" style="margin-left: auto;">Logout</button>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid" id="statsGrid">
+        <div class="stat-card">
+          <div class="stat-emoji">👀</div>
+          <div class="stat-value" id="statViews">0</div>
+          <div class="stat-label">Total Views</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-emoji">⬇️</div>
+          <div class="stat-value" id="statDownloads">0</div>
+          <div class="stat-label">Total Downloads</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-emoji">⭐</div>
+          <div class="stat-value" id="statRating">0</div>
+          <div class="stat-label">Avg Rating</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-emoji">🔥</div>
+          <div class="stat-value" id="statPopular">—</div>
+          <div class="stat-label">Most Popular</div>
+        </div>
+      </div>
+
+      <!-- Upload Card -->
+      <div class="upload-card">
+        <h3 class="upload-card-title">Upload Resource</h3>
+        <p class="upload-card-desc">Share your study materials with thousands of IPU students.</p>
+
+        <!-- Wizard Progress Dots -->
+        <div class="wizard-progress" id="wizardProgress">
+          <div class="wizard-dot active"></div>
+          <div class="wizard-dot"></div>
+          <div class="wizard-dot"></div>
+          <div class="wizard-dot"></div>
+          <div class="wizard-dot"></div>
+          <div class="wizard-dot"></div>
+          <div class="wizard-dot"></div>
+          <div class="wizard-dot"></div>
+          <div class="wizard-dot"></div>
+        </div>
+
+        <!-- Step 1: Resource Type -->
+        <div class="wizard-step active" data-step="1">
+          <div class="step-label">Step 1 of 8</div>
+          <div class="step-title">Choose Resource Type</div>
+          <div class="pill-grid" id="resourceTypePills">
+            <button class="pill-option" data-value="notes">📝 Notes</button>
+            <button class="pill-option" data-value="pyqs">📄 PYQs</button>
+            <button class="pill-option" data-value="lab_files">🧪 Lab Files</button>
+            <button class="pill-option" data-value="assignments">📋 Assignments</button>
+          </div>
+          <div class="wizard-nav">
+            <button class="wizard-btn wizard-btn--next" id="nextStep1" disabled>Continue →</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Branch -->
+        <div class="wizard-step" data-step="2">
+          <div class="step-label">Step 2 of 8</div>
+          <div class="step-title">Choose Branch</div>
+          <div class="pill-grid" id="branchPills">
+            <button class="pill-option" data-value="CSE">💻 CSE</button>
+            <button class="pill-option" data-value="IT">🌐 IT</button>
+            <button class="pill-option" data-value="ECE">📡 ECE</button>
+            <button class="pill-option" data-value="EEE">⚡ EEE</button>
+            <button class="pill-option" data-value="EE">🔌 EE</button>
+            <button class="pill-option" data-value="MAE">⚙ MAE</button>
+            <button class="pill-option" data-value="ME">🧱 ME</button>
+            <button class="pill-option" data-value="CE">🏗 Civil</button>
+            <button class="pill-option" data-value="AIDS">📊 AI & DS</button>
+            <button class="pill-option" data-value="AIML">🤖 AI & ML</button>
+          </div>
+          <div class="wizard-nav">
+            <button class="wizard-btn wizard-btn--back" onclick="goStep(1)">← Back</button>
+            <button class="wizard-btn wizard-btn--next" id="nextStep2" disabled>Continue →</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Semester -->
+        <div class="wizard-step" data-step="3">
+          <div class="step-label">Step 3 of 8</div>
+          <div class="step-title">Choose Semester</div>
+          <div class="sem-grid" id="semPills">
+            <button class="sem-option" data-value="1">1</button>
+            <button class="sem-option" data-value="2">2</button>
+            <button class="sem-option" data-value="3">3</button>
+            <button class="sem-option" data-value="4">4</button>
+            <button class="sem-option" data-value="5">5</button>
+            <button class="sem-option" data-value="6">6</button>
+            <button class="sem-option" data-value="7">7</button>
+            <button class="sem-option" data-value="8">8</button>
+          </div>
+          <div class="wizard-nav">
+            <button class="wizard-btn wizard-btn--back" onclick="goStep(2)">← Back</button>
+            <button class="wizard-btn wizard-btn--next" id="nextStep3" disabled>Continue →</button>
+          </div>
+        </div>
+
+        <!-- Step 4: Subject -->
+        <div class="wizard-step" data-step="4">
+          <div class="step-label">Step 4 of 8</div>
+          <div class="step-title">Choose Subject</div>
+          <select class="wizard-input wizard-select" id="subjectSelect">
+            <option value="">Select a subject...</option>
+          </select>
+          <div class="wizard-nav">
+            <button class="wizard-btn wizard-btn--back" onclick="goStep(3)">← Back</button>
+            <button class="wizard-btn wizard-btn--next" id="nextStep4" disabled>Continue →</button>
+          </div>
+        </div>
+
+        <!-- Step 5: Year -->
+        <div class="wizard-step" data-step="5">
+          <div class="step-label">Step 5 of 8</div>
+          <div class="step-title">Academic Year</div>
+          <div class="pill-grid" id="yearPills">
+            <button class="pill-option" data-value="2026">2026</button>
+            <button class="pill-option" data-value="2025">2025</button>
+            <button class="pill-option" data-value="2024">2024</button>
+            <button class="pill-option" data-value="2023">2023</button>
+          </div>
+          <div class="wizard-nav">
+            <button class="wizard-btn wizard-btn--back" onclick="goStep(4)">← Back</button>
+            <button class="wizard-btn wizard-btn--next" id="nextStep5" disabled>Continue →</button>
+          </div>
+        </div>
+
+        <!-- Step 6: Exam Type (Only for PYQs) -->
+        <div class="wizard-step" data-step="6">
+          <div class="step-label" id="examStepLabel">Step 6 of 9</div>
+          <div class="step-title">Choose Exam Type</div>
+          <div class="pill-grid" id="examTypePills">
+            <button class="pill-option" data-value="mid">📝 Mid Term Examination</button>
+            <button class="pill-option" data-value="end">🎓 End Term Examination</button>
+          </div>
+          <div class="wizard-nav">
+            <button class="wizard-btn wizard-btn--back" onclick="goStep(5)">← Back</button>
+            <button class="wizard-btn wizard-btn--next" id="nextStep6" disabled>Continue →</button>
+          </div>
+        </div>
+
+        <!-- Step 7: Title -->
+        <div class="wizard-step" data-step="7">
+          <div class="step-label" id="titleStepLabel">Step 7 of 9</div>
+          <div class="step-title">Resource Title</div>
+          <input type="text" class="wizard-input" id="resourceTitle" placeholder="e.g. Data Structures Unit 1 — Complete Notes">
+          <div class="wizard-nav">
+            <button class="wizard-btn wizard-btn--back" onclick="goBackFromTitle()">← Back</button>
+            <button class="wizard-btn wizard-btn--next" id="nextStep7" disabled>Continue →</button>
+          </div>
+        </div>
+
+        <!-- Step 8: Description (optional) -->
+        <div class="wizard-step" data-step="8">
+          <div class="step-label" id="descStepLabel">Step 8 of 9</div>
+          <div class="step-title">Description (optional)</div>
+          <textarea class="wizard-input wizard-textarea" id="resourceDesc" placeholder="Brief description of the resource..."></textarea>
+          <div class="wizard-nav">
+            <button class="wizard-btn wizard-btn--back" onclick="goStep(7)">← Back</button>
+            <button class="wizard-btn wizard-btn--next" id="nextStep8">Continue →</button>
+          </div>
+        </div>
+
+        <!-- Step 9: File Upload -->
+        <div class="wizard-step" data-step="9">
+          <div class="step-label" id="fileStepLabel">Step 9 of 9</div>
+          <div class="step-title">Upload PDF</div>
+
+          <div class="dropzone" id="dropzone">
+            <div class="dropzone-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            </div>
+            <div class="dropzone-text">Drag & Drop PDF</div>
+            <div class="dropzone-hint">or click to browse files • Max 50MB</div>
+            <input type="file" class="dropzone-file" id="fileInput" accept=".pdf">
+          </div>
+
+          <div class="file-preview" id="filePreview">
+            <div class="file-preview-icon">PDF</div>
+            <div class="file-preview-info">
+              <div class="file-preview-name" id="fileName">document.pdf</div>
+              <div class="file-preview-size" id="fileSize">0 KB</div>
+            </div>
+            <button class="file-preview-remove" id="fileRemove" title="Remove file">✕</button>
+          </div>
+
+          <div class="wizard-nav">
+            <button class="wizard-btn wizard-btn--back" onclick="goStep(8)">← Back</button>
+            <button class="wizard-btn wizard-btn--next" id="uploadBtn" disabled>Upload Resource 🚀</button>
+          </div>
+        </div>
+
+        <!-- Upload Progress -->
+        <div class="upload-progress" id="uploadProgress">
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="progressFill"></div>
+          </div>
+          <div class="progress-text" id="progressText">Uploading...</div>
+        </div>
+
+        <!-- Success -->
+        <div class="upload-success" id="uploadSuccess">
+          <div class="success-check">✓</div>
+          <div class="success-title">Successfully uploaded!</div>
+          <div class="success-desc">Students can now access this resource once it's approved by our team.</div>
+          <button class="wizard-btn wizard-btn--next" id="uploadAnotherBtn">Upload Another 📝</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../js/supabase.js"></script>
+  <script src="../js/shared.js?v=5"></script>
+  <script src="../js/syllabus-engine.js"></script>
+  <script src="../js/notes-provider-engine.js"></script>
+  <script>
+    // ── Init Shared Components ──
+    ProxyUI.injectNavbar('Notes Provider');
+    ProxyUI.injectBackgroundGlows();
+
+    // ── State ──
+    let formState = {
+      resourceType: '',
+      branch: '',
+      semester: '',
+      subject: '',
+      year: '',
+      examType: '',
+      title: '',
+      description: ''
+    };
+    let selectedFile = null;
+    let currentStep = 1;
+
+    // ── Check existing session ──
+    const existingSession = NotesProviderEngine.getSession();
+    if (existingSession) {
+      showDashboard(existingSession);
+    }
+
+    // ── Auth Form ──
+    document.getElementById('authForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('authBtn');
+      const errorDiv = document.getElementById('authError');
+      const providerId = document.getElementById('providerId').value.trim();
+      const password = document.getElementById('providerPassword').value;
+
+      btn.disabled = true;
+      btn.textContent = 'Verifying...';
+      errorDiv.classList.remove('visible');
+
+      const result = await NotesProviderEngine.login(providerId, password);
+
+      if (result.success) {
+        document.getElementById('authScreen').style.display = 'none';
+        showDashboard(result.provider);
+      } else {
+        errorDiv.textContent = 'Access Denied. This portal is only for verified Notes Providers.';
+        errorDiv.classList.add('visible');
+        btn.disabled = false;
+        btn.textContent = 'Continue';
+      }
+    });
+
+    // ── Dashboard ──
+    async function showDashboard(provider) {
+      document.getElementById('authScreen').style.display = 'none';
+      const dash = document.getElementById('dashboardScreen');
+      dash.classList.add('active');
+
+      // Welcome card
+      document.getElementById('welcomeAvatar').textContent = provider.display_name.charAt(0);
+      document.getElementById('welcomeName').textContent = `Welcome Back, ${provider.display_name}`;
+
+      // Load stats
+      const stats = await NotesProviderEngine.getStats(provider.id);
+      if (stats) {
+        document.getElementById('statViews').textContent = formatNumber(stats.total_views);
+        document.getElementById('statDownloads').textContent = formatNumber(stats.total_downloads);
+        document.getElementById('statRating').textContent = stats.average_rating || '0';
+        if (stats.most_popular && stats.most_popular.title !== 'No uploads yet') {
+          document.getElementById('statPopular').textContent = truncate(stats.most_popular.title, 12);
+          document.getElementById('statPopular').title = stats.most_popular.title;
+        }
+      }
+    }
+
+    function formatNumber(n) {
+      if (n >= 1000) return (n / 1000).toFixed(1) + 'K';
+      return String(n);
+    }
+
+    function truncate(str, len) {
+      return str.length > len ? str.substring(0, len) + '…' : str;
+    }
+
+    // ── Logout ──
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      NotesProviderEngine.logout();
+      document.getElementById('dashboardScreen').classList.remove('active');
+      document.getElementById('authScreen').style.display = '';
+      document.getElementById('providerId').value = '';
+      document.getElementById('providerPassword').value = '';
+      document.getElementById('authError').classList.remove('visible');
+    });
+
+    // ── Pill Selectors ──
+    function setupPillGrid(containerId, stateKey, nextBtnId) {
+      const container = document.getElementById(containerId);
+      const nextBtn = document.getElementById(nextBtnId);
+      container.addEventListener('click', (e) => {
+        const pill = e.target.closest('.pill-option, .sem-option');
+        if (!pill) return;
+        container.querySelectorAll('.pill-option, .sem-option').forEach(p => p.classList.remove('selected'));
+        pill.classList.add('selected');
+        formState[stateKey] = pill.dataset.value;
+        if (nextBtn) nextBtn.disabled = false;
+
+        // If branch/semester changed, update subjects
+        if (stateKey === 'branch' || stateKey === 'semester') {
+          updateSubjectDropdown();
+        }
+      });
+    }
+
+    setupPillGrid('resourceTypePills', 'resourceType', 'nextStep1');
+    setupPillGrid('branchPills', 'branch', 'nextStep2');
+    setupPillGrid('semPills', 'semester', 'nextStep3');
+    setupPillGrid('yearPills', 'year', 'nextStep5');
+    setupPillGrid('examTypePills', 'examType', 'nextStep6');
+
+    // ── Subject Dropdown ──
+    function updateSubjectDropdown() {
+      const select = document.getElementById('subjectSelect');
+      select.innerHTML = '<option value="">Select a subject...</option>';
+
+      if (formState.branch && formState.semester) {
+        const subjects = NotesProviderEngine.getSubjects(formState.branch, formState.semester);
+        subjects.forEach(s => {
+          const opt = document.createElement('option');
+          opt.value = s.title;
+          opt.textContent = `${s.code} — ${s.title}`;
+          select.appendChild(opt);
+        });
+      }
+    }
+
+    document.getElementById('subjectSelect').addEventListener('change', (e) => {
+      formState.subject = e.target.value;
+      document.getElementById('nextStep4').disabled = !e.target.value;
+    });
+
+    // ── Title Input ──
+    document.getElementById('resourceTitle').addEventListener('input', (e) => {
+      formState.title = e.target.value.trim();
+      document.getElementById('nextStep7').disabled = !formState.title;
+    });
+
+    // ── Description ──
+    document.getElementById('resourceDesc').addEventListener('input', (e) => {
+      formState.description = e.target.value.trim();
+    });
+
+    // ── Drag & Drop ──
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('fileInput');
+
+    dropzone.addEventListener('click', () => fileInput.click());
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.classList.add('dragover');
+    });
+    dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('dragover');
+      if (e.dataTransfer.files.length > 0) {
+        handleFile(e.dataTransfer.files[0]);
+      }
+    });
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files.length > 0) handleFile(e.target.files[0]);
+    });
+
+    function handleFile(file) {
+      if (!file.name.toLowerCase().endsWith('.pdf')) {
+        alert('Only PDF files are allowed.');
+        return;
+      }
+      if (file.size > 50 * 1024 * 1024) {
+        alert('File size exceeds 50MB limit.');
+        return;
+      }
+      selectedFile = file;
+      document.getElementById('fileName').textContent = file.name;
+      document.getElementById('fileSize').textContent = formatFileSize(file.size);
+      document.getElementById('filePreview').classList.add('visible');
+      dropzone.style.display = 'none';
+      document.getElementById('uploadBtn').disabled = false;
+    }
+
+    function formatFileSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+      return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+    }
+
+    document.getElementById('fileRemove').addEventListener('click', () => {
+      selectedFile = null;
+      fileInput.value = '';
+      document.getElementById('filePreview').classList.remove('visible');
+      dropzone.style.display = '';
+      document.getElementById('uploadBtn').disabled = true;
+    });
+
+    // ── Wizard Navigation ──
+    function goStep(step) {
+      currentStep = step;
+      document.querySelectorAll('.wizard-step').forEach(s => s.classList.remove('active'));
+      const target = document.querySelector(`.wizard-step[data-step="${step}"]`);
+      if (target) target.classList.add('active');
+      updateProgressDots();
+      updateStepLabels();
+    }
+
+    function updateStepLabels() {
+      const isPyq = formState.resourceType === 'pyqs';
+      const total = isPyq ? 9 : 8;
+
+      const examLabel = document.getElementById('examStepLabel');
+      if (examLabel) examLabel.textContent = `Step 6 of 9`;
+
+      const titleLabel = document.getElementById('titleStepLabel');
+      if (titleLabel) titleLabel.textContent = `Step ${isPyq ? 7 : 6} of ${total}`;
+
+      const descLabel = document.getElementById('descStepLabel');
+      if (descLabel) descLabel.textContent = `Step ${isPyq ? 8 : 7} of ${total}`;
+
+      const fileLabel = document.getElementById('fileStepLabel');
+      if (fileLabel) fileLabel.textContent = `Step ${isPyq ? 9 : 8} of ${total}`;
+    }
+
+    function goBackFromTitle() {
+      if (formState.resourceType === 'pyqs') {
+        goStep(6);
+      } else {
+        goStep(5);
+      }
+    }
+
+    function updateProgressDots() {
+      const dots = document.querySelectorAll('.wizard-dot');
+      dots.forEach((dot, i) => {
+        dot.classList.remove('active', 'done');
+      });
+
+      if (formState.resourceType === 'pyqs') {
+        const activeIndex = currentStep - 1;
+        dots.forEach((dot, i) => {
+          dot.style.display = '';
+          if (i === activeIndex) dot.classList.add('active');
+          else if (i < activeIndex) dot.classList.add('done');
+        });
+      } else {
+        dots.forEach((dot, i) => {
+          if (i === 8) {
+            dot.style.display = 'none';
+          } else {
+            dot.style.display = '';
+            let logicalStep = currentStep;
+            if (currentStep > 6) logicalStep = currentStep - 1;
+            const activeIndex = logicalStep - 1;
+            if (i === activeIndex) dot.classList.add('active');
+            else if (i < activeIndex) dot.classList.add('done');
+          }
+        });
+      }
+    }
+
+    // Step Explicit Navigation bindings
+    document.getElementById('nextStep1').addEventListener('click', () => goStep(2));
+    document.getElementById('nextStep2').addEventListener('click', () => goStep(3));
+    document.getElementById('nextStep3').addEventListener('click', () => goStep(4));
+    document.getElementById('nextStep4').addEventListener('click', () => goStep(5));
+    document.getElementById('nextStep5').addEventListener('click', () => {
+      if (formState.resourceType === 'pyqs') {
+        goStep(6);
+      } else {
+        goStep(7);
+      }
+    });
+    document.getElementById('nextStep6').addEventListener('click', () => goStep(7));
+    document.getElementById('nextStep7').addEventListener('click', () => goStep(8));
+    document.getElementById('nextStep8').addEventListener('click', () => goStep(9));
+
+    // ── Upload Button ──
+    document.getElementById('uploadBtn').addEventListener('click', async () => {
+      const provider = NotesProviderEngine.getSession();
+      if (!provider || !selectedFile) return;
+
+      // Hide wizard steps, show progress
+      document.querySelectorAll('.wizard-step').forEach(s => s.classList.remove('active'));
+      document.getElementById('wizardProgress').style.display = 'none';
+      const progressDiv = document.getElementById('uploadProgress');
+      progressDiv.classList.add('active');
+
+      let finalTitle = formState.title;
+      if (formState.resourceType === 'pyqs') {
+        const typeLabel = formState.examType === 'mid' ? '[Mid Term]' : '[End Term]';
+        if (!finalTitle.includes('[Mid Term]') && !finalTitle.includes('[End Term]')) {
+          finalTitle = `${finalTitle} ${typeLabel}`;
+        }
+      }
+
+      const result = await NotesProviderEngine.uploadResource({
+        providerUuid: provider.id,
+        resourceType: formState.resourceType,
+        branch: formState.branch,
+        semester: parseInt(formState.semester),
+        subject: formState.subject,
+        year: formState.year,
+        title: finalTitle,
+        description: formState.description
+      }, selectedFile, (pct, text) => {
+        document.getElementById('progressFill').style.width = pct + '%';
+        document.getElementById('progressText').textContent = text;
+      });
+
+      if (result.success) {
+        progressDiv.classList.remove('active');
+        document.getElementById('uploadSuccess').classList.add('active');
+
+        // Refresh stats
+        const stats = await NotesProviderEngine.getStats(provider.id);
+        if (stats) {
+          document.getElementById('statViews').textContent = formatNumber(stats.total_views);
+          document.getElementById('statDownloads').textContent = formatNumber(stats.total_downloads);
+        }
+      } else {
+        document.getElementById('progressText').textContent = 'Upload failed: ' + (result.error || 'Unknown error');
+        document.getElementById('progressFill').style.background = 'linear-gradient(135deg, #dc2626, #ef4444)';
+      }
+    });
+
+    // ── Upload Another ──
+    document.getElementById('uploadAnotherBtn').addEventListener('click', () => {
+      // Reset everything
+      formState = { resourceType: '', branch: '', semester: '', subject: '', year: '', examType: '', title: '', description: '' };
+      selectedFile = null;
+      fileInput.value = '';
+
+      document.querySelectorAll('.pill-option, .sem-option').forEach(p => p.classList.remove('selected'));
+      document.getElementById('subjectSelect').value = '';
+      document.getElementById('resourceTitle').value = '';
+      document.getElementById('resourceDesc').value = '';
+      document.getElementById('filePreview').classList.remove('visible');
+      document.getElementById('dropzone').style.display = '';
+      document.getElementById('uploadBtn').disabled = true;
+
+      // Disable next buttons
+      for (let i = 1; i <= 7; i++) {
+        const btn = document.getElementById(`nextStep${i}`);
+        if (btn) btn.disabled = true;
+      }
+
+      document.getElementById('uploadSuccess').classList.remove('active');
+      document.getElementById('uploadProgress').classList.remove('active');
+      document.getElementById('progressFill').style.width = '0%';
+      document.getElementById('progressFill').style.background = '';
+      document.getElementById('wizardProgress').style.display = '';
+
+      goStep(1);
+    });
+  </script>
+</body>
+</html>

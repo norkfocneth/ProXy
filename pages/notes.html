@@ -123,10 +123,11 @@
     </div>
   </div>
 
-  <script src="../js/shared.js?v=4"></script>
+  <script src="../js/supabase.js"></script>
+  <script src="../js/shared.js?v=5"></script>
   <script src="../js/syllabus-engine.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
       ProxyUI.injectNavbar('Notes');
       ProxyUI.injectBackgroundGlows();
 
@@ -145,6 +146,27 @@
       // Fetch subjects data from shared database
       const data = getSyllabusData(branch, sem);
       if (!data) return;
+
+      // ── Supabase Init & Query ──
+      const SUPABASE_URL = 'https://iynmupzkeevjwjcgajxs.supabase.co';
+      const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml5bm11cHprZWV2andqY2dhanhzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3NDY3NTMsImV4cCI6MjA5OTMyMjc1M30.JBqi4ZsbDhFb8Ic9BimXoCf0zCJbpc12XVkG-sydyFc';
+      const db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      
+      let dbNotes = [];
+      try {
+        const { data: resData, error } = await db
+          .from('resources')
+          .select('*')
+          .eq('branch', branch)
+          .eq('semester', sem)
+          .eq('resource_type', 'notes')
+          .eq('status', 'approved');
+        if (!error && resData) {
+          dbNotes = resData;
+        }
+      } catch (e) {
+        console.error('Failed to load resources from Supabase:', e);
+      }
 
       const filterBar = document.querySelector('.notes-filter-bar');
       const shelfContainer = document.querySelector('.notes-shelf-container');
@@ -220,17 +242,52 @@
               notebook.style.transform = rotation;
               notebook.style.transformOrigin = 'bottom center';
 
+              // Match with Supabase note uploads
+              const matchingNote = dbNotes.find(note => {
+                const noteSubject = (note.subject || '').toLowerCase().trim();
+                const currentSubject = sub.title.toLowerCase().trim();
+                if (noteSubject !== currentSubject) return false;
+
+                const noteTitle = (note.title || '').toLowerCase();
+                const noteDesc = (note.description || '').toLowerCase();
+
+                const hasUnit1 = noteTitle.includes('unit 1') || noteTitle.includes('unit i') || noteTitle.includes('u1');
+                const hasUnit2 = noteTitle.includes('unit 2') || noteTitle.includes('unit ii') || noteTitle.includes('u2');
+                const hasUnit3 = noteTitle.includes('unit 3') || noteTitle.includes('unit iii') || noteTitle.includes('u3');
+                const hasUnit4 = noteTitle.includes('unit 4') || noteTitle.includes('unit iv') || noteTitle.includes('u4');
+
+                const specifiesAnyUnit = hasUnit1 || hasUnit2 || hasUnit3 || hasUnit4;
+
+                if (specifiesAnyUnit) {
+                  // If it specifies a unit, match if it matches this unit
+                  if (unit.num.toLowerCase().includes('unit i') && hasUnit1) return true;
+                  if (unit.num.toLowerCase().includes('unit ii') && hasUnit2) return true;
+                  if (unit.num.toLowerCase().includes('unit iii') && hasUnit3) return true;
+                  if (unit.num.toLowerCase().includes('unit iv') && hasUnit4) return true;
+                  return false;
+                } else {
+                  // Fallback: If it doesn't specify any unit, match it to Unit I by default
+                  return unit.num.toLowerCase().includes('unit i');
+                }
+              });
+
+              if (matchingNote) {
+                notebook.dataset.fileUrl = matchingNote.file_url;
+                notebook.classList.add('has-resource');
+              }
+
               notebook.innerHTML = `
                 <div class="notebook-spine">
                   <span class="spine-badge">${unit.num}</span>
                   <span class="spine-title">${sub.title}</span>
                   <span class="spine-code">${sub.code}</span>
+                  ${matchingNote ? '<div class="spine-verified-dot" title="Verified Uploaded Resource" style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; margin: 12px auto 0; box-shadow: 0 0 8px #10b981;"></div>' : ''}
                 </div>
               `;
 
               // Click to show premium toast and trigger download
               notebook.addEventListener('click', () => {
-                showDownloadAnimation(sub.title, unit.num, unit.topics);
+                showDownloadAnimation(sub.title, unit.num, unit.topics, notebook.dataset.fileUrl);
               });
 
               rowDiv.appendChild(notebook);
@@ -248,7 +305,7 @@
         }
       }
 
-      function showDownloadAnimation(subjectTitle, unitNum, topics) {
+      function showDownloadAnimation(subjectTitle, unitNum, topics, fileUrl) {
         // Remove existing toast if present
         const oldToast = document.getElementById('pdfToast');
         if (oldToast) oldToast.remove();
@@ -291,6 +348,11 @@
             </div>
             <span style="color:var(--text-secondary); font-size:0.85rem;">Saved file: ${subjectTitle.replace(/\s+/g, '_')}_${unitNum.replace(/\s+/g, '')}.pdf</span>
           `;
+          
+          if (fileUrl) {
+            window.open(fileUrl, '_blank');
+          }
+
           setTimeout(() => {
             toast.style.animation = 'slideDown 0.4s ease forwards';
             setTimeout(() => toast.remove(), 400);

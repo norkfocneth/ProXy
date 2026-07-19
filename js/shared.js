@@ -18,7 +18,7 @@ function injectNavbar(activePage = 'Home') {
         <li><a class="nav-link${activePage === 'PYQs' ? ' active' : ''}" href="/pages/pyqs.html">PYQs</a></li>
         <li><a class="nav-link${activePage === 'Founders' ? ' active' : ''}" href="/pages/founders.html">Founders</a></li>
         <li><a class="nav-link${activePage === 'Roadmaps' ? ' active' : ''}" href="/pages/roadmaps.html">Roadmaps</a></li>
-        <li><a class="nav-link${activePage === 'More' ? ' active' : ''}" href="#">More</a></li>
+        <li><a class="nav-link${activePage === 'Notes Provider' ? ' active' : ''}" href="/pages/notes-provider.html">Notes Provider</a></li>
       </ul>
 
       <div class="nav-right">
@@ -69,6 +69,7 @@ function injectNavbar(activePage = 'Home') {
         <li><a class="${activePage === 'PYQs' ? 'active' : ''}" href="/pages/pyqs.html">PYQs</a></li>
         <li><a class="${activePage === 'Founders' ? 'active' : ''}" href="/pages/founders.html">Founders</a></li>
         <li><a class="${activePage === 'Roadmaps' ? 'active' : ''}" href="/pages/roadmaps.html">Roadmaps</a></li>
+        <li><a class="${activePage === 'Notes Provider' ? 'active' : ''}" href="/pages/notes-provider.html">Notes Provider</a></li>
       </ul>
     </div>
   `;
