@@ -91,12 +91,13 @@ const NotesProviderEngine = (() => {
   }
 
   // ── File Upload ──
-  async function uploadFile(file, providerUuid, resourceType, branch, semester, subject) {
+  async function uploadFile(file, providerUuid, resourceType, branch, semester, subject, unit) {
     const client = getClient();
     const fileExt = file.name.split('.').pop();
     const timestamp = Date.now();
     const sanitizedName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
-    const filePath = `${branch}/${semester}/${subject}/${resourceType}/${timestamp}_${sanitizedName}`;
+    const unitFolder = unit ? `unit_${unit}` : 'unit_1';
+    const filePath = `${branch}/${semester}/${subject}/${unitFolder}/${resourceType}/${timestamp}_${sanitizedName}`;
 
     const { data, error } = await client.storage
       .from('resources')
@@ -125,6 +126,8 @@ const NotesProviderEngine = (() => {
   // ── Insert Resource ──
   async function insertResource(formData) {
     const client = getClient();
+    
+    // Call insert_resource RPC using exact 9-parameter signature supported by Supabase DB
     const { data, error } = await client.rpc('insert_resource', {
       p_provider_uuid: formData.providerUuid,
       p_resource_type: formData.resourceType,
@@ -155,7 +158,8 @@ const NotesProviderEngine = (() => {
       formData.resourceType,
       formData.branch,
       formData.semester,
-      formData.subject
+      formData.subject,
+      formData.unit
     );
 
     if (!uploadResult.success) {

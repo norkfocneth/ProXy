@@ -160,7 +160,7 @@
           .eq('branch', branch)
           .eq('semester', sem)
           .eq('resource_type', 'notes')
-          .eq('status', 'approved');
+          .in('status', ['approved', 'pending']);
         if (!error && resData) {
           dbNotes = resData;
         }
@@ -248,6 +248,19 @@
                 const currentSubject = sub.title.toLowerCase().trim();
                 if (noteSubject !== currentSubject) return false;
 
+                // Explicit unit check if specified
+                const noteUnitStr = note.unit ? String(note.unit).toLowerCase().trim() : '';
+                if (noteUnitStr) {
+                  if (noteUnitStr === 'all') return true;
+                  if ((noteUnitStr === '1' || noteUnitStr === 'unit 1' || noteUnitStr === 'unit i') && unitIdx === 0) return true;
+                  if ((noteUnitStr === '2' || noteUnitStr === 'unit 2' || noteUnitStr === 'unit ii') && unitIdx === 1) return true;
+                  if ((noteUnitStr === '3' || noteUnitStr === 'unit 3' || noteUnitStr === 'unit iii') && unitIdx === 2) return true;
+                  if ((noteUnitStr === '4' || noteUnitStr === 'unit 4' || noteUnitStr === 'unit iv') && unitIdx === 3) return true;
+                  if (parseInt(noteUnitStr) - 1 === unitIdx) return true;
+                  return false;
+                }
+
+                // Fallback for legacy notes without unit property (inspect title/desc)
                 const noteTitle = (note.title || '').toLowerCase();
                 const noteDesc = (note.description || '').toLowerCase();
 
@@ -259,15 +272,14 @@
                 const specifiesAnyUnit = hasUnit1 || hasUnit2 || hasUnit3 || hasUnit4;
 
                 if (specifiesAnyUnit) {
-                  // If it specifies a unit, match if it matches this unit
-                  if (unit.num.toLowerCase().includes('unit i') && hasUnit1) return true;
-                  if (unit.num.toLowerCase().includes('unit ii') && hasUnit2) return true;
-                  if (unit.num.toLowerCase().includes('unit iii') && hasUnit3) return true;
-                  if (unit.num.toLowerCase().includes('unit iv') && hasUnit4) return true;
+                  if (unitIdx === 0 && hasUnit1) return true;
+                  if (unitIdx === 1 && hasUnit2) return true;
+                  if (unitIdx === 2 && hasUnit3) return true;
+                  if (unitIdx === 3 && hasUnit4) return true;
                   return false;
                 } else {
                   // Fallback: If it doesn't specify any unit, match it to Unit I by default
-                  return unit.num.toLowerCase().includes('unit i');
+                  return unitIdx === 0;
                 }
               });
 

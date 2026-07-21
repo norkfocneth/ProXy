@@ -764,11 +764,12 @@
           <div class="wizard-dot"></div>
           <div class="wizard-dot"></div>
           <div class="wizard-dot"></div>
+          <div class="wizard-dot"></div>
         </div>
 
         <!-- Step 1: Resource Type -->
         <div class="wizard-step active" data-step="1">
-          <div class="step-label">Step 1 of 8</div>
+          <div class="step-label" id="step1Label">Step 1 of 9</div>
           <div class="step-title">Choose Resource Type</div>
           <div class="pill-grid" id="resourceTypePills">
             <button class="pill-option" data-value="notes">📝 Notes</button>
@@ -783,7 +784,7 @@
 
         <!-- Step 2: Branch -->
         <div class="wizard-step" data-step="2">
-          <div class="step-label">Step 2 of 8</div>
+          <div class="step-label" id="step2Label">Step 2 of 9</div>
           <div class="step-title">Choose Branch</div>
           <div class="pill-grid" id="branchPills">
             <button class="pill-option" data-value="CSE">💻 CSE</button>
@@ -805,7 +806,7 @@
 
         <!-- Step 3: Semester -->
         <div class="wizard-step" data-step="3">
-          <div class="step-label">Step 3 of 8</div>
+          <div class="step-label" id="step3Label">Step 3 of 9</div>
           <div class="step-title">Choose Semester</div>
           <div class="sem-grid" id="semPills">
             <button class="sem-option" data-value="1">1</button>
@@ -825,7 +826,7 @@
 
         <!-- Step 4: Subject -->
         <div class="wizard-step" data-step="4">
-          <div class="step-label">Step 4 of 8</div>
+          <div class="step-label" id="step4Label">Step 4 of 9</div>
           <div class="step-title">Choose Subject</div>
           <select class="wizard-input wizard-select" id="subjectSelect">
             <option value="">Select a subject...</option>
@@ -836,9 +837,26 @@
           </div>
         </div>
 
-        <!-- Step 5: Year -->
+        <!-- Step 5: Unit Selection -->
         <div class="wizard-step" data-step="5">
-          <div class="step-label">Step 5 of 8</div>
+          <div class="step-label" id="step5Label">Step 5 of 9</div>
+          <div class="step-title">Choose Unit</div>
+          <div class="pill-grid" id="unitPills">
+            <button class="pill-option" data-value="1">📌 Unit 1</button>
+            <button class="pill-option" data-value="2">📌 Unit 2</button>
+            <button class="pill-option" data-value="3">📌 Unit 3</button>
+            <button class="pill-option" data-value="4">📌 Unit 4</button>
+            <button class="pill-option" data-value="all">📚 All Units (Complete Subject)</button>
+          </div>
+          <div class="wizard-nav">
+            <button class="wizard-btn wizard-btn--back" onclick="goStep(4)">← Back</button>
+            <button class="wizard-btn wizard-btn--next" id="nextStep5Unit" disabled>Continue →</button>
+          </div>
+        </div>
+
+        <!-- Step 6: Academic Year -->
+        <div class="wizard-step" data-step="6">
+          <div class="step-label" id="step6Label">Step 6 of 9</div>
           <div class="step-title">Academic Year</div>
           <div class="pill-grid" id="yearPills">
             <button class="pill-option" data-value="2026">2026</button>
@@ -847,50 +865,50 @@
             <button class="pill-option" data-value="2023">2023</button>
           </div>
           <div class="wizard-nav">
-            <button class="wizard-btn wizard-btn--back" onclick="goStep(4)">← Back</button>
-            <button class="wizard-btn wizard-btn--next" id="nextStep5" disabled>Continue →</button>
+            <button class="wizard-btn wizard-btn--back" onclick="goStep(5)">← Back</button>
+            <button class="wizard-btn wizard-btn--next" id="nextStep6Year" disabled>Continue →</button>
           </div>
         </div>
 
-        <!-- Step 6: Exam Type (Only for PYQs) -->
-        <div class="wizard-step" data-step="6">
-          <div class="step-label" id="examStepLabel">Step 6 of 9</div>
+        <!-- Step 7: Exam Type (Only for PYQs) -->
+        <div class="wizard-step" data-step="7">
+          <div class="step-label" id="examStepLabel">Step 7 of 10</div>
           <div class="step-title">Choose Exam Type</div>
           <div class="pill-grid" id="examTypePills">
             <button class="pill-option" data-value="mid">📝 Mid Term Examination</button>
             <button class="pill-option" data-value="end">🎓 End Term Examination</button>
           </div>
           <div class="wizard-nav">
-            <button class="wizard-btn wizard-btn--back" onclick="goStep(5)">← Back</button>
-            <button class="wizard-btn wizard-btn--next" id="nextStep6" disabled>Continue →</button>
+            <button class="wizard-btn wizard-btn--back" onclick="goStep(6)">← Back</button>
+            <button class="wizard-btn wizard-btn--next" id="nextStep7Exam" disabled>Continue →</button>
           </div>
         </div>
 
-        <!-- Step 7: Title -->
-        <div class="wizard-step" data-step="7">
-          <div class="step-label" id="titleStepLabel">Step 7 of 9</div>
+        <!-- Step 8: Title -->
+        <div class="wizard-step" data-step="8">
+          <div class="step-label" id="titleStepLabel">Step 8 of 9</div>
           <div class="step-title">Resource Title</div>
           <input type="text" class="wizard-input" id="resourceTitle" placeholder="e.g. Data Structures Unit 1 — Complete Notes">
           <div class="wizard-nav">
             <button class="wizard-btn wizard-btn--back" onclick="goBackFromTitle()">← Back</button>
-            <button class="wizard-btn wizard-btn--next" id="nextStep7" disabled>Continue →</button>
+            <button class="wizard-btn wizard-btn--next" id="nextStep8Title" disabled>Continue →</button>
           </div>
         </div>
 
-        <!-- Step 8: Description (optional) -->
-        <div class="wizard-step" data-step="8">
-          <div class="step-label" id="descStepLabel">Step 8 of 9</div>
+        <!-- Step 9: Description (optional) -->
+        <div class="wizard-step" data-step="9">
+          <div class="step-label" id="descStepLabel">Step 9 of 9</div>
           <div class="step-title">Description (optional)</div>
           <textarea class="wizard-input wizard-textarea" id="resourceDesc" placeholder="Brief description of the resource..."></textarea>
           <div class="wizard-nav">
-            <button class="wizard-btn wizard-btn--back" onclick="goStep(7)">← Back</button>
-            <button class="wizard-btn wizard-btn--next" id="nextStep8">Continue →</button>
+            <button class="wizard-btn wizard-btn--back" onclick="goStep(8)">← Back</button>
+            <button class="wizard-btn wizard-btn--next" id="nextStep9Desc">Continue →</button>
           </div>
         </div>
 
-        <!-- Step 9: File Upload -->
-        <div class="wizard-step" data-step="9">
-          <div class="step-label" id="fileStepLabel">Step 9 of 9</div>
+        <!-- Step 10: File Upload -->
+        <div class="wizard-step" data-step="10">
+          <div class="step-label" id="fileStepLabel">Step 10 of 10</div>
           <div class="step-title">Upload PDF</div>
 
           <div class="dropzone" id="dropzone">
@@ -912,7 +930,7 @@
           </div>
 
           <div class="wizard-nav">
-            <button class="wizard-btn wizard-btn--back" onclick="goStep(8)">← Back</button>
+            <button class="wizard-btn wizard-btn--back" onclick="goStep(9)">← Back</button>
             <button class="wizard-btn wizard-btn--next" id="uploadBtn" disabled>Upload Resource 🚀</button>
           </div>
         </div>
@@ -952,6 +970,7 @@
       branch: '',
       semester: '',
       subject: '',
+      unit: '',
       year: '',
       examType: '',
       title: '',
@@ -1037,6 +1056,7 @@
     function setupPillGrid(containerId, stateKey, nextBtnId) {
       const container = document.getElementById(containerId);
       const nextBtn = document.getElementById(nextBtnId);
+      if (!container) return;
       container.addEventListener('click', (e) => {
         const pill = e.target.closest('.pill-option, .sem-option');
         if (!pill) return;
@@ -1055,8 +1075,9 @@
     setupPillGrid('resourceTypePills', 'resourceType', 'nextStep1');
     setupPillGrid('branchPills', 'branch', 'nextStep2');
     setupPillGrid('semPills', 'semester', 'nextStep3');
-    setupPillGrid('yearPills', 'year', 'nextStep5');
-    setupPillGrid('examTypePills', 'examType', 'nextStep6');
+    setupPillGrid('unitPills', 'unit', 'nextStep5Unit');
+    setupPillGrid('yearPills', 'year', 'nextStep6Year');
+    setupPillGrid('examTypePills', 'examType', 'nextStep7Exam');
 
     // ── Subject Dropdown ──
     function updateSubjectDropdown() {
@@ -1082,7 +1103,7 @@
     // ── Title Input ──
     document.getElementById('resourceTitle').addEventListener('input', (e) => {
       formState.title = e.target.value.trim();
-      document.getElementById('nextStep7').disabled = !formState.title;
+      document.getElementById('nextStep8Title').disabled = !formState.title;
     });
 
     // ── Description ──
@@ -1154,32 +1175,50 @@
 
     function updateStepLabels() {
       const isPyq = formState.resourceType === 'pyqs';
-      const total = isPyq ? 9 : 8;
+      const total = isPyq ? 10 : 9;
+
+      const s1Label = document.getElementById('step1Label');
+      if (s1Label) s1Label.textContent = `Step 1 of ${total}`;
+
+      const s2Label = document.getElementById('step2Label');
+      if (s2Label) s2Label.textContent = `Step 2 of ${total}`;
+
+      const s3Label = document.getElementById('step3Label');
+      if (s3Label) s3Label.textContent = `Step 3 of ${total}`;
+
+      const s4Label = document.getElementById('step4Label');
+      if (s4Label) s4Label.textContent = `Step 4 of ${total}`;
+
+      const s5Label = document.getElementById('step5Label');
+      if (s5Label) s5Label.textContent = `Step 5 of ${total}`;
+
+      const s6Label = document.getElementById('step6Label');
+      if (s6Label) s6Label.textContent = `Step 6 of ${total}`;
 
       const examLabel = document.getElementById('examStepLabel');
-      if (examLabel) examLabel.textContent = `Step 6 of 9`;
+      if (examLabel) examLabel.textContent = `Step 7 of 10`;
 
       const titleLabel = document.getElementById('titleStepLabel');
-      if (titleLabel) titleLabel.textContent = `Step ${isPyq ? 7 : 6} of ${total}`;
+      if (titleLabel) titleLabel.textContent = `Step ${isPyq ? 8 : 7} of ${total}`;
 
       const descLabel = document.getElementById('descStepLabel');
-      if (descLabel) descLabel.textContent = `Step ${isPyq ? 8 : 7} of ${total}`;
+      if (descLabel) descLabel.textContent = `Step ${isPyq ? 9 : 8} of ${total}`;
 
       const fileLabel = document.getElementById('fileStepLabel');
-      if (fileLabel) fileLabel.textContent = `Step ${isPyq ? 9 : 8} of ${total}`;
+      if (fileLabel) fileLabel.textContent = `Step ${isPyq ? 10 : 9} of ${total}`;
     }
 
     function goBackFromTitle() {
       if (formState.resourceType === 'pyqs') {
-        goStep(6);
+        goStep(7);
       } else {
-        goStep(5);
+        goStep(6);
       }
     }
 
     function updateProgressDots() {
       const dots = document.querySelectorAll('.wizard-dot');
-      dots.forEach((dot, i) => {
+      dots.forEach((dot) => {
         dot.classList.remove('active', 'done');
       });
 
@@ -1192,12 +1231,12 @@
         });
       } else {
         dots.forEach((dot, i) => {
-          if (i === 8) {
+          if (i === 6) { // Exam step dot is index 6
             dot.style.display = 'none';
           } else {
             dot.style.display = '';
             let logicalStep = currentStep;
-            if (currentStep > 6) logicalStep = currentStep - 1;
+            if (currentStep > 7) logicalStep = currentStep - 1;
             const activeIndex = logicalStep - 1;
             if (i === activeIndex) dot.classList.add('active');
             else if (i < activeIndex) dot.classList.add('done');
@@ -1211,16 +1250,17 @@
     document.getElementById('nextStep2').addEventListener('click', () => goStep(3));
     document.getElementById('nextStep3').addEventListener('click', () => goStep(4));
     document.getElementById('nextStep4').addEventListener('click', () => goStep(5));
-    document.getElementById('nextStep5').addEventListener('click', () => {
+    document.getElementById('nextStep5Unit').addEventListener('click', () => goStep(6));
+    document.getElementById('nextStep6Year').addEventListener('click', () => {
       if (formState.resourceType === 'pyqs') {
-        goStep(6);
-      } else {
         goStep(7);
+      } else {
+        goStep(8);
       }
     });
-    document.getElementById('nextStep6').addEventListener('click', () => goStep(7));
-    document.getElementById('nextStep7').addEventListener('click', () => goStep(8));
-    document.getElementById('nextStep8').addEventListener('click', () => goStep(9));
+    document.getElementById('nextStep7Exam').addEventListener('click', () => goStep(8));
+    document.getElementById('nextStep8Title').addEventListener('click', () => goStep(9));
+    document.getElementById('nextStep9Desc').addEventListener('click', () => goStep(10));
 
     // ── Upload Button ──
     document.getElementById('uploadBtn').addEventListener('click', async () => {
@@ -1240,6 +1280,12 @@
           finalTitle = `${finalTitle} ${typeLabel}`;
         }
       }
+      if (formState.unit) {
+        const unitTag = formState.unit === 'all' ? '[All Units]' : `[Unit ${formState.unit}]`;
+        if (!finalTitle.toLowerCase().includes('unit')) {
+          finalTitle = `${finalTitle} ${unitTag}`;
+        }
+      }
 
       const result = await NotesProviderEngine.uploadResource({
         providerUuid: provider.id,
@@ -1247,6 +1293,7 @@
         branch: formState.branch,
         semester: parseInt(formState.semester),
         subject: formState.subject,
+        unit: formState.unit || '1',
         year: formState.year,
         title: finalTitle,
         description: formState.description
@@ -1274,7 +1321,7 @@
     // ── Upload Another ──
     document.getElementById('uploadAnotherBtn').addEventListener('click', () => {
       // Reset everything
-      formState = { resourceType: '', branch: '', semester: '', subject: '', year: '', examType: '', title: '', description: '' };
+      formState = { resourceType: '', branch: '', semester: '', subject: '', unit: '', year: '', examType: '', title: '', description: '' };
       selectedFile = null;
       fileInput.value = '';
 
@@ -1287,10 +1334,11 @@
       document.getElementById('uploadBtn').disabled = true;
 
       // Disable next buttons
-      for (let i = 1; i <= 7; i++) {
-        const btn = document.getElementById(`nextStep${i}`);
+      const nextBtnIds = ['nextStep1', 'nextStep2', 'nextStep3', 'nextStep4', 'nextStep5Unit', 'nextStep6Year', 'nextStep7Exam', 'nextStep8Title'];
+      nextBtnIds.forEach(id => {
+        const btn = document.getElementById(id);
         if (btn) btn.disabled = true;
-      }
+      });
 
       document.getElementById('uploadSuccess').classList.remove('active');
       document.getElementById('uploadProgress').classList.remove('active');

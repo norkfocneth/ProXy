@@ -30,6 +30,7 @@ create table public.resources (
   branch text not null,
   semester int not null,
   subject text not null,
+  unit text default '1',
   year text not null,
   title text not null,
   description text,
@@ -139,7 +140,7 @@ begin
   return coalesce(
     (select json_agg(row_to_json(r))
      from (
-       select id, resource_type, branch, semester, subject, year, title, description,
+       select id, resource_type, branch, semester, subject, unit, year, title, description,
               file_url, upload_date, status, view_count, download_count
        from public.resources
        where provider_id = p_provider_uuid
@@ -159,10 +160,11 @@ create or replace function public.insert_resource(
   p_branch text,
   p_semester int,
   p_subject text,
-  p_year text,
-  p_title text,
-  p_description text,
-  p_file_url text
+  p_unit text default '1',
+  p_year text default '2026',
+  p_title text default '',
+  p_description text default '',
+  p_file_url text default ''
 ) returns json language plpgsql security definer as $$
 declare
   provider_exists boolean;
@@ -179,10 +181,10 @@ begin
   end if;
 
   insert into public.resources (
-    provider_id, resource_type, branch, semester, subject,
+    provider_id, resource_type, branch, semester, subject, unit,
     year, title, description, file_url, status
   ) values (
-    p_provider_uuid, p_resource_type, p_branch, p_semester, p_subject,
+    p_provider_uuid, p_resource_type, p_branch, p_semester, p_subject, coalesce(p_unit, '1'),
     p_year, p_title, p_description, p_file_url, 'pending'
   ) returning id into new_id;
 
