@@ -134,16 +134,11 @@
     }
 
     /* Rows */
-    .parent-row {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-    }
-    .children-row {
+    .founders-row {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 2.2rem;
+      gap: 1.5rem;
       width: 100%;
     }
 
@@ -294,7 +289,7 @@
       border: 1.5px dashed rgba(21, 128, 61, 0.18);
       border-radius: var(--border-radius-xl);
       padding: 1.5rem;
-      width: 230px;
+      width: 210px;
       box-shadow: var(--sh-s);
       display: flex;
       flex-direction: column;
@@ -459,24 +454,7 @@
       .founder-page {
         padding: calc(var(--navbar-height, 64px) + 2rem) 1rem 4rem;
       }
-      .tree-wrapper {
-        gap: 3rem;
-        overflow: hidden;
-      }
-      .tree-svg {
-        display: none !important;
-      }
-      .parent-node {
-        grid-template-columns: 1fr;
-        justify-items: center;
-        text-align: center;
-        padding: 1.5rem 1rem;
-        max-width: 100%;
-      }
-      .parent-tag {
-        align-self: center;
-      }
-      .children-row {
+      .founders-row {
         flex-direction: column;
         align-items: center;
         gap: 1.5rem;
@@ -499,82 +477,60 @@
       <p>Building the academic hub for IPU. Our core hierarchy represents a growing tree of educational tools and platforms.</p>
     </div>
 
-    <div class="tree-wrapper">
-      <svg class="tree-svg" id="tree-connections"></svg>
-
-      <!-- Parent Node (Arnav Focneth) -->
-      <div class="parent-row">
-        <div class="parent-node">
-          <div class="video-feed">
-            <span class="video-badge">Live</span>
-            <canvas class="video-canvas" id="video-render-canvas"></canvas>
-            <img src="../images/founder_avatar.jpg" alt="Arnav Focneth" class="video-avatar">
-            <div class="video-controls">
-              <div class="control-dot"></div>
-              <div class="control-dot"></div>
-              <div class="control-dot"></div>
-            </div>
-          </div>
-          <div class="parent-info">
-            <span class="parent-tag font-mono-tech">Root Founder</span>
-            <h2 class="parent-name">Arnav Focneth</h2>
-            <div class="parent-title">Founder & Chief Architect</div>
-            <p class="parent-desc">Designing, building, and optimizing digital educational systems to empower IPU engineering students with seamless resources.</p>
-            <a href="https://www.linkedin.com/in/𝘼𝙧𝙣𝙖𝙫-𝙛𝙤𝙘𝙣𝙚𝙩𝙝-51b022389?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="parent-link" target="_blank">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-              </svg>
-              Connect on LinkedIn
-            </a>
-          </div>
+    <div class="founders-row">
+      <!-- Card 1: Arnav Focneth -->
+      <div class="child-node occupied">
+        <div class="slot-avatar font-mono-tech">
+          <img src="../images/founder_avatar.jpg" alt="Arnav Focneth">
         </div>
+        <h3 class="member-name">Arnav Focneth</h3>
+        <span class="member-role font-mono-tech">Founder & Chief Architect</span>
+        <p class="member-desc">Designing, building, and optimizing digital educational systems to empower IPU engineering students with seamless resources.</p>
+        <a href="https://www.linkedin.com/in/𝘼𝙧𝙣𝙖𝙫-𝙛𝙤𝙘𝙣𝙚𝙩𝙝-51b022389?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="member-link font-mono-tech" target="_blank">LinkedIn ➔</a>
       </div>
 
-      <!-- Children Nodes (Team Members) -->
-      <div class="children-row">
-        <!-- Card 1: Manya Arya -->
-        <div class="child-node occupied">
-          <div class="slot-avatar font-mono-tech">
-            <img src="../images/member_manya.png" alt="Manya Arya">
-          </div>
-          <h3 class="member-name">Manya Arya</h3>
-          <span class="member-role font-mono-tech">Content & Academic Lead</span>
-          <p class="member-desc">Ye person har din content maintain karega. Notes, PYQs, Syllabus, Semester updates, aur Faculty info compile karna inki main responsibility hai.</p>
-          <a href="https://www.linkedin.com/in/manya-arya-a253033a3?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="member-link font-mono-tech" target="_blank">LinkedIn ➔</a>
+      <!-- Card 2: Manya Arya -->
+      <div class="child-node occupied">
+        <div class="slot-avatar font-mono-tech">
+          <img src="../images/member_manya.png" alt="Manya Arya">
         </div>
+        <h3 class="member-name">Manya Arya</h3>
+        <span class="member-role font-mono-tech">Content & Academic Lead</span>
+        <p class="member-desc">Ye person har din content maintain karega. Notes, PYQs, Syllabus, Semester updates, aur Faculty info compile karna inki main responsibility hai.</p>
+        <a href="https://www.linkedin.com/in/manya-arya-a253033a3?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="member-link font-mono-tech" target="_blank">LinkedIn ➔</a>
+      </div>
 
-        <!-- Card 3: Priyanka Kaim -->
-        <div class="child-node occupied">
-          <div class="slot-avatar font-mono-tech">
-            <img src="../images/member_priyanka.png" alt="Priyanka Kaim">
-          </div>
-          <h3 class="member-name">Priyanka Kaim</h3>
-          <span class="member-role font-mono-tech">Creative Designer</span>
-          <p class="member-desc">Posters, Social media graphics, 3D renders, Book mockups, Icons, Motion graphics, and beautiful landing page assets for visual wow.</p>
-          <a href="https://www.linkedin.com/in/priyanka-kaim-235b113a7?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="member-link font-mono-tech" target="_blank">LinkedIn ➔</a>
+      <!-- Card 3: Aryan Shukla -->
+      <div class="child-node occupied">
+        <div class="slot-avatar font-mono-tech">
+          <img src="../images/member_aryan.png" alt="Aryan Shukla">
         </div>
+        <h3 class="member-name">Aryan Shukla</h3>
+        <span class="member-role font-mono-tech">Content Manager (PYQ/Notes)</span>
+        <p class="member-desc">Managing, organizing, and verifying Previous Year Questions (PYQs) and study notes to ensure accurate academic resources for students.</p>
+        <a href="https://www.linkedin.com/in/aryan-shukla-927a22421" class="member-link font-mono-tech" target="_blank">LinkedIn ➔</a>
+      </div>
 
-        <!-- Card 4: Samarth Agnihotri -->
-        <div class="child-node occupied">
-          <div class="slot-avatar font-mono-tech">
-            <img src="../images/member_samarth.png" alt="Samarth Agnihotri">
-          </div>
-          <h3 class="member-name">Samarth Agnihotri</h3>
-          <span class="member-role font-mono-tech">QA & Operations</span>
-          <p class="member-desc">Bugs management, Quality testing, Cross-browser & device testing, Performance optimization, and Documentation.</p>
-          <span class="member-link font-mono-tech" style="color: var(--txt3); cursor: default;">Core Member</span>
+      <!-- Card 4: Priyanka Kaim -->
+      <div class="child-node occupied">
+        <div class="slot-avatar font-mono-tech">
+          <img src="../images/member_priyanka.png" alt="Priyanka Kaim">
         </div>
+        <h3 class="member-name">Priyanka Kaim</h3>
+        <span class="member-role font-mono-tech">Creative Designer</span>
+        <p class="member-desc">Posters, Social media graphics, 3D renders, Book mockups, Icons, Motion graphics, and beautiful landing page assets for visual wow.</p>
+        <a href="https://www.linkedin.com/in/priyanka-kaim-235b113a7?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="member-link font-mono-tech" target="_blank">LinkedIn ➔</a>
+      </div>
 
-        <!-- Card 5: Aryan Shukla -->
-        <div class="child-node occupied">
-          <div class="slot-avatar font-mono-tech">
-            <img src="../images/member_aryan.png" alt="Aryan Shukla">
-          </div>
-          <h3 class="member-name">Aryan Shukla</h3>
-          <span class="member-role font-mono-tech">Content Manager (PYQ/Notes)</span>
-          <p class="member-desc">Managing, organizing, and verifying Previous Year Questions (PYQs) and study notes to ensure accurate academic resources for students.</p>
-          <a href="https://www.linkedin.com/in/aryan-shukla-927a22421" class="member-link font-mono-tech" target="_blank">LinkedIn ➔</a>
+      <!-- Card 5: Samarth Agnihotri -->
+      <div class="child-node occupied">
+        <div class="slot-avatar font-mono-tech">
+          <img src="../images/member_samarth.png" alt="Samarth Agnihotri">
         </div>
+        <h3 class="member-name">Samarth Agnihotri</h3>
+        <span class="member-role font-mono-tech">QA & Operations</span>
+        <p class="member-desc">Bugs management, Quality testing, Cross-browser & device testing, Performance optimization, and Documentation.</p>
+        <span class="member-link font-mono-tech" style="color: var(--txt3); cursor: default;">Core Member</span>
       </div>
     </div>
   </div>
@@ -585,137 +541,76 @@
       ProxyUI.injectNavbar('Founders');
       ProxyUI.injectBackgroundGlows();
 
-      // Draw Connection Lines
-      function drawConnections() {
-        const svg = document.getElementById('tree-connections');
-        svg.innerHTML = '';
-        
-        const parent = document.querySelector('.parent-node');
-        const children = document.querySelectorAll('.child-node');
-        if(!parent || children.length === 0) return;
-
-        const parentRect = parent.getBoundingClientRect();
-        const wrapperRect = document.querySelector('.tree-wrapper').getBoundingClientRect();
-
-        // Parent Bottom Center (relative to wrapper)
-        const px = parentRect.left + parentRect.width / 2 - wrapperRect.left;
-        const py = parentRect.bottom - wrapperRect.top;
-
-        children.forEach((child, index) => {
-          const childRect = child.getBoundingClientRect();
-          // Child Top Center (relative to wrapper)
-          const cx = childRect.left + childRect.width / 2 - wrapperRect.left;
-          const cy = childRect.top - wrapperRect.top;
-
-          // Draw organic curved Bezier connector
-          const controlY = py + (cy - py) * 0.55;
-          const pathD = `M ${px} ${py} C ${px} ${controlY}, ${cx} ${controlY - 20}, ${cx} ${cy}`;
-
-          // Create SVG Path
-          const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-          path.setAttribute('d', pathD);
-          path.setAttribute('class', 'tree-line');
-          svg.appendChild(path);
-
-          // Add animated flowing light particle
-          const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-          circle.setAttribute('r', '2.5');
-          circle.setAttribute('class', 'tree-particle');
-          
-          const anim = document.createElementNS('http://www.w3.org/2000/svg', 'animateMotion');
-          anim.setAttribute('dur', `${3 + index * 0.5}s`);
-          anim.setAttribute('repeatCount', 'indefinite');
-          anim.setAttribute('path', pathD);
-          
-          circle.appendChild(anim);
-          svg.appendChild(circle);
-        });
-      }
-
-      // Initial draw and bind events
-      setTimeout(drawConnections, 100);
-      window.addEventListener('resize', drawConnections);
-
-      // Card hover effect updates connection lines
-      const childNodes = document.querySelectorAll('.child-node');
-      const lines = document.getElementsByClassName('tree-line');
-      childNodes.forEach((node, i) => {
-        node.addEventListener('mouseenter', () => {
-          if(lines[i]) lines[i].classList.add('active');
-        });
-        node.addEventListener('mouseleave', () => {
-          if(lines[i]) lines[i].classList.remove('active');
-        });
-      });
-
       // Canvas Rendering Flow Animation
       const canvas = document.getElementById('video-render-canvas');
-      const ctx = canvas.getContext('2d');
-      let animFrame;
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let animFrame;
 
-      function resizeCanvas() {
-        canvas.width = canvas.parentElement.clientWidth;
-        canvas.height = canvas.parentElement.clientHeight;
-      }
-      resizeCanvas();
-      window.addEventListener('resize', resizeCanvas);
+        function resizeCanvas() {
+          canvas.width = canvas.parentElement.clientWidth;
+          canvas.height = canvas.parentElement.clientHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
 
-      let time = 0;
-      function drawWaves() {
-        ctx.fillStyle = 'rgba(10, 24, 14, 0.15)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        let time = 0;
+        function drawWaves() {
+          ctx.fillStyle = 'rgba(10, 24, 14, 0.15)';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // Tech grid lines in background
-        ctx.strokeStyle = 'rgba(34, 197, 94, 0.08)';
-        ctx.lineWidth = 1;
-        for (let i = 0; i < canvas.width; i += 16) {
+          // Tech grid lines in background
+          ctx.strokeStyle = 'rgba(34, 197, 94, 0.08)';
+          ctx.lineWidth = 1;
+          for (let i = 0; i < canvas.width; i += 16) {
+            ctx.beginPath();
+            ctx.moveTo(i, 0);
+            ctx.lineTo(i, canvas.height);
+            ctx.stroke();
+          }
+          for (let j = 0; j < canvas.height; j += 16) {
+            ctx.beginPath();
+            ctx.moveTo(0, j);
+            ctx.lineTo(canvas.width, j);
+            ctx.stroke();
+          }
+
+          // Multiple sin waves simulating live digital data feed
+          ctx.strokeStyle = 'rgba(74, 222, 128, 0.7)';
+          ctx.lineWidth = 2;
           ctx.beginPath();
-          ctx.moveTo(i, 0);
-          ctx.lineTo(i, canvas.height);
+          for (let x = 0; x < canvas.width; x++) {
+            const y = canvas.height * 0.45 + Math.sin(x * 0.025 + time) * 16 + Math.cos(x * 0.015 - time * 0.4) * 8;
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
           ctx.stroke();
-        }
-        for (let j = 0; j < canvas.height; j += 16) {
+
+          ctx.strokeStyle = 'rgba(34, 197, 94, 0.35)';
+          ctx.lineWidth = 1;
           ctx.beginPath();
-          ctx.moveTo(0, j);
-          ctx.lineTo(canvas.width, j);
+          for (let x = 0; x < canvas.width; x++) {
+            const y = canvas.height * 0.55 + Math.cos(x * 0.03 - time * 0.8) * 12 + Math.sin(x * 0.01 + time) * 6;
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
           ctx.stroke();
-        }
 
-        // Multiple sin waves simulating live digital data feed
-        ctx.strokeStyle = 'rgba(74, 222, 128, 0.7)';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        for (let x = 0; x < canvas.width; x++) {
-          const y = canvas.height * 0.45 + Math.sin(x * 0.025 + time) * 16 + Math.cos(x * 0.015 - time * 0.4) * 8;
-          if (x === 0) ctx.moveTo(x, y);
-          else ctx.lineTo(x, y);
-        }
-        ctx.stroke();
+          // Particles moving along the stream
+          ctx.fillStyle = '#4ade80';
+          for (let i = 0; i < 4; i++) {
+            const px = (time * 40 + i * 50) % canvas.width;
+            const py = canvas.height * 0.45 + Math.sin(px * 0.025 + time) * 16 + Math.cos(px * 0.015 - time * 0.4) * 8;
+            ctx.beginPath();
+            ctx.arc(px, py, 3, 0, Math.PI * 2);
+            ctx.fill();
+          }
 
-        ctx.strokeStyle = 'rgba(34, 197, 94, 0.35)';
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        for (let x = 0; x < canvas.width; x++) {
-          const y = canvas.height * 0.55 + Math.cos(x * 0.03 - time * 0.8) * 12 + Math.sin(x * 0.01 + time) * 6;
-          if (x === 0) ctx.moveTo(x, y);
-          else ctx.lineTo(x, y);
+          time += 0.025;
+          animFrame = requestAnimationFrame(drawWaves);
         }
-        ctx.stroke();
-
-        // Particles moving along the stream
-        ctx.fillStyle = '#4ade80';
-        for (let i = 0; i < 4; i++) {
-          const px = (time * 40 + i * 50) % canvas.width;
-          const py = canvas.height * 0.45 + Math.sin(px * 0.025 + time) * 16 + Math.cos(px * 0.015 - time * 0.4) * 8;
-          ctx.beginPath();
-          ctx.arc(px, py, 3, 0, Math.PI * 2);
-          ctx.fill();
-        }
-
-        time += 0.025;
-        animFrame = requestAnimationFrame(drawWaves);
+        drawWaves();
       }
-      drawWaves();
     });
   </script>
 </body>
