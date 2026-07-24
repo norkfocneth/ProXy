@@ -1308,7 +1308,7 @@ const syllabusData = {
 // Dynamic Subject Mapping for All Other Branches (ECE, EEE, EE, MAE, ME, CE, AIDS, AIML)
 const dynamicBranchSubjects = {
   ECE: {
-    3: ["Discrete Structure", "Data Structures", "Signals and Systems", "Network Analysis & Synthesis", "Switching Theory & Logic Design"],
+    3: ["Analog Communication", "Data Structures", "Analog Electronics-1", "Computational Methods (CSE)", "Digital Logic and Computer Design", "Signals and Systems"],
     4: ["Applied Mathematics - IV", "Analog Communications", "Computer Organization & Architecture", "Linear Integrated Circuits", "Electro-Magnetic Fields"],
     5: ["Digital Communication", "Control Systems", "Microprocessors & Microcontrollers", "Digital Signal Processing", "Transmission Lines & Waveguides"],
     6: ["VLSI Design", "Information Theory & Coding", "Wireless Communication", "Antenna & Wave Propagation", "Embedded Systems"],

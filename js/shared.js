@@ -883,6 +883,42 @@ const ProxyAI = {
         ],
         tips: "Be familiar with resume structures, IEEE citation formats, and the standard layouts of reports and proposals."
       },
+      "ec-203": {
+        name: "Analog Communication",
+        code: "EC-203",
+        sem: 3,
+        important: [
+          "Amplitude Modulation: AM, DSB-SC, SSB-SC, VSB modulation and demodulation",
+          "Angle Modulation: Frequency Modulation (FM), Phase Modulation (PM), transmission bandwidth",
+          "Noise in Communication Systems: Noise figure, noise temperature, performance of AM/FM in noise",
+          "Transmitters & Receivers: Superheterodyne receiver, AGC, AM/FM transmitters"
+        ],
+        tips: "Master frequency translation, modulation index derivations, and block diagrams of receivers."
+      },
+      "ec-205": {
+        name: "Analog Electronics-1",
+        code: "EC-205",
+        sem: 3,
+        important: [
+          "Semiconductor Diodes: PN junction, Zener diode, Clippers, Clampers, Rectifiers",
+          "Bipolar Junction Transistors (BJT): Biasing, stability factor, h-parameter model",
+          "Field Effect Transistors (FET) & MOSFETs: Biasing, small-signal model, CS/CD amplifiers",
+          "Feedback Amplifiers & Oscillators: Negative feedback, Barkhausen criterion, RC/LC oscillators"
+        ],
+        tips: "Stability factor derivations and h-parameter equivalent circuits numericals are very common. Focus on oscillator derivations."
+      },
+      "ec-207": {
+        name: "Signals and Systems",
+        code: "EC-207",
+        sem: 3,
+        important: [
+          "Signal Classification: Continuous/discrete, periodic/aperiodic, even/odd, energy/power signals",
+          "LTI Systems: Convolution integral/sum, impulse response, stability, causality",
+          "Fourier Analysis: Continuous-time Fourier Series (CTFS) and Fourier Transform (CTFT)",
+          "Laplace and Z-Transforms: Region of Convergence (ROC), properties, inverse transforms, system transfer function"
+        ],
+        tips: "Practice convolution integral/sum step-by-step. Laplace ROC properties and Fourier transform properties carry high marks."
+      },
       "cs-301": {
         name: "Design & Analysis of Algorithms",
         code: "CS-301",
