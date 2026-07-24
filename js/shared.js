@@ -823,6 +823,66 @@ const ProxyAI = {
         ],
         tips: "Be familiar with resume structures, IEEE citation formats, and the standard layouts of reports and proposals."
       },
+      "it-204": {
+        name: "Database Management Systems",
+        code: "IT-204",
+        sem: 4,
+        important: [
+          "Database Architecture, data independence, schemas, ER models",
+          "Relational algebra, SQL commands (DDL, DML, DQL), Joins, Subqueries",
+          "Relational Database Design: Functional dependencies, Normalization (1NF to BCNF)",
+          "Transaction & Concurrency: ACID properties, Serializability, locking & timestamping protocols"
+        ],
+        tips: "Practice SQL queries and normalization decomp. Concurrency schedules and serializability checks are highly important."
+      },
+      "it-206": {
+        name: "Fundamentals of Machine Learning",
+        code: "IT-206",
+        sem: 4,
+        important: [
+          "Introduction to Machine Learning: Supervised, Unsupervised, Reinforcement learning",
+          "Linear Regression, Logistic Regression, Gradient Descent, Overfitting/Underfitting",
+          "Classification: Decision Trees, Naive Bayes, Support Vector Machines (SVM), K-Nearest Neighbors (KNN)",
+          "Clustering & Dimensionality Reduction: K-Means clustering, Principal Component Analysis (PCA)"
+        ],
+        tips: "Understand the mathematical concepts behind linear regression, SVM, and decision boundaries. Learn bias-variance tradeoff."
+      },
+      "it-208": {
+        name: "Software Engineering",
+        code: "IT-208",
+        sem: 4,
+        important: [
+          "Software process models: Waterfall, Spiral, Agile models (Scrum)",
+          "Requirements engineering: SRS document, UML diagrams",
+          "Software architecture & Design patterns",
+          "Software testing: White-box, Black-box, metrics, maintenance"
+        ],
+        tips: "Learn the difference between verification vs validation, draw clean UML class/use-case diagrams, and master COCOMO metrics."
+      },
+      "it-210": {
+        name: "Computer Networks and Internet Protocols",
+        code: "IT-210",
+        sem: 4,
+        important: [
+          "OSI and TCP/IP stack layers, physical media, network topologies",
+          "Data Link Layer: Sliding window protocols, MAC sublayer framing, error control",
+          "Network Layer: IP addressing (IPv4, IPv6), subnetting, routing algorithms (OSPF, BGP), ICMP",
+          "Transport & App Layers: TCP vs UDP headers, three-way handshake, DNS, HTTP, SMTP"
+        ],
+        tips: "IP subnetting and TCP state transitions are crucial. Learn sliding window protocol efficiency calculations."
+      },
+      "hs-204": {
+        name: "Effective Technical Writing",
+        code: "HS-204",
+        sem: 4,
+        important: [
+          "Introduction to Technical Communication, characteristics, audience analysis",
+          "Technical writing genres: Reports, manuals, proposals, specs",
+          "Professional correspondence: Resumes, cover letters, emails, letters",
+          "Research papers formatting & citations (IEEE, APA), oral presentations"
+        ],
+        tips: "Be familiar with resume structures, IEEE citation formats, and the standard layouts of reports and proposals."
+      },
       "cs-301": {
         name: "Design & Analysis of Algorithms",
         code: "CS-301",

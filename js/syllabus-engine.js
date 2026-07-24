@@ -966,35 +966,11 @@ const syllabusData = {
       ]
     },
     4: {
-      desc: "Implement databases, network layers, communication channels, and systems systems.",
+      desc: "Implement databases, network layers, machine learning models, software processes, and technical correspondence.",
       subjects: [
         {
-          code: "IT-204",
-          icon: "📁",
-          title: "Database Management Systems",
-          shortDesc: "ER Diagrams, Relational Algebra, SQL, Normalization, and Transactions",
-          units: [
-            { num: "Unit I", topics: "DBMS Overview: Data independence, database languages, ER diagrams, relational model." },
-            { num: "Unit II", topics: "Relational Query Languages: Relational algebra, SQL queries, DDL, DML, DCL commands." },
-            { num: "Unit III", topics: "Normalization: Functional dependencies, 1NF, 2NF, 3NF, BCNF, multi-valued dependency." },
-            { num: "Unit IV", topics: "Transaction Management: ACID properties, concurrency control, locks, recovery systems." }
-          ]
-        },
-        {
-          code: "IT-206",
-          icon: "💻",
-          title: "Operating Systems",
-          shortDesc: "CPU Scheduling, Synchronization, Memory Management, and Disk Scheduling",
-          units: [
-            { num: "Unit I", topics: "OS overview, process state transitions, CPU scheduling algorithms." },
-            { num: "Unit II", topics: "Process synchronization: Semaphores, monitors, classical synchronization problems. Deadlocks." },
-            { num: "Unit III", topics: "Memory management: Paging, segmentation, virtual memory page replacement." },
-            { num: "Unit IV", topics: "File systems structure, disk scheduling algorithms, security and protection." }
-          ]
-        },
-        {
           code: "IT-208",
-          icon: "✍",
+          icon: "⚙",
           title: "Software Engineering",
           shortDesc: "SDLC Models, Requirements, UML Diagrams, Testing, and Maintenance",
           units: [
@@ -1007,8 +983,8 @@ const syllabusData = {
         {
           code: "IT-210",
           icon: "🌐",
-          title: "Computer Networks",
-          shortDesc: "OSI Reference Model, TCP/IP Suite, Routing Algorithms, and Security",
+          title: "Computer Networks and Internet Protocols",
+          shortDesc: "OSI Reference Model, TCP/IP Suite, Routing Algorithms, and Internet Protocols",
           units: [
             { num: "Unit I", topics: "Introduction to networks, physical layer encoding, transmission media, topologies." },
             { num: "Unit II", topics: "Data link layer: Framing, error control, sliding window protocols, MAC sublayer." },
@@ -1017,15 +993,39 @@ const syllabusData = {
           ]
         },
         {
-          code: "EC-212",
-          icon: "📡",
-          title: "Principles of Communication",
-          shortDesc: "Amplitude Modulation, Angle Modulation, Sampling, and Digital Modulation Basics",
+          code: "IT-206",
+          icon: "💻",
+          title: "Fundamentals of Machine Learning",
+          shortDesc: "Supervised and Unsupervised Learning, Regression, SVM, Decision Trees, and Clustering",
           units: [
-            { num: "Unit I", topics: "Analog Modulation: Amplitude Modulation (DSB-SC, SSB, VSB), frequency translation." },
-            { num: "Unit II", topics: "Angle Modulation: Frequency Modulation (FM), Phase Modulation (PM), noise analysis in communication." },
-            { num: "Unit III", topics: "Digital Transmission: Sampling theorem, pulse code modulation (PCM), delta modulation." },
-            { num: "Unit IV", topics: "Digital Modulation: ASK, FSK, PSK, QAM, multiplexing: TDM, FDM systems." }
+            { num: "Unit I", topics: "Introduction to Machine Learning: Supervised, Unsupervised, Reinforcement learning. Linear Regression, Gradient Descent." },
+            { num: "Unit II", topics: "Classification: Logistic Regression, Decision Trees, Naive Bayes, Support Vector Machines (SVM), K-Nearest Neighbors (KNN)." },
+            { num: "Unit III", topics: "Clustering & Unsupervised Learning: K-Means clustering, hierarchical clustering, Principal Component Analysis (PCA)." },
+            { num: "Unit IV", topics: "Model Evaluation: Bias-variance tradeoff, cross-validation, precision, recall, ROC curves, confusion matrix." }
+          ]
+        },
+        {
+          code: "HS-204",
+          icon: "✍",
+          title: "Effective Technical Writing",
+          shortDesc: "Technical Correspondence, Audience Analysis, Proposals, Reports, and Citations",
+          units: [
+            { num: "Unit I", topics: "Introduction to Technical Communication: Objectives, characteristics, audience analysis." },
+            { num: "Unit II", topics: "Technical Writing Genres: Reports, manuals, proposals, specs, instructions." },
+            { num: "Unit III", topics: "Professional Correspondence: Resumes, cover letters, business emails, letters." },
+            { num: "Unit IV", topics: "Research Papers & Presentations: Formatting, citations (IEEE, APA), oral presentation skills." }
+          ]
+        },
+        {
+          code: "IT-204",
+          icon: "📁",
+          title: "Database Management Systems",
+          shortDesc: "ER Diagrams, Relational Algebra, SQL, Normalization, and Transactions",
+          units: [
+            { num: "Unit I", topics: "DBMS Overview: Data independence, database languages, ER diagrams, relational model." },
+            { num: "Unit II", topics: "Relational Query Languages: Relational algebra, SQL queries, DDL, DML, DCL commands." },
+            { num: "Unit III", topics: "Normalization: Functional dependencies, 1NF, 2NF, 3NF, BCNF, multi-valued dependency." },
+            { num: "Unit IV", topics: "Transaction Management: ACID properties, concurrency control, locks, recovery systems." }
           ]
         }
       ]
