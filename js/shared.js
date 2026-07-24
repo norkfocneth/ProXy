@@ -684,10 +684,10 @@ const ProxyAI = {
         code: "CS-201",
         sem: 3,
         important: [
-          "Set theory, relations, partial orderings, functions",
-          "Propositional and predicate logic, inference rules, mathematical induction",
-          "Algebraic structures: Monoids, groups, rings, fields",
-          "Graph Theory: Paths, Eulerian & Hamiltonian paths, trees, graph coloring"
+          "Sets, logic, inference rules, quantifiers, proofs, inclusion-exclusion, pigeonhole, relations, equivalence classes, closures",
+          "Functions, growth, permutation functions, lattices, poset, Boolean algebra, minimization, recurrence relations, generating functions",
+          "Group theory: semigroups, monoids, groups, isomorphism, subgroups, cosets, Lagrange's theorem, permutation groups, normal subgroups",
+          "Graph theory: terminology, planar graphs, Euler's formula, Euler/Hamiltonian paths, chromatic number, color theorem, MST, DFS/BFS"
         ],
         tips: "Practice logic truth tables, group proofs (identity, inverse), and graph theory algorithms (Eulerian path conditions)."
       },
@@ -696,10 +696,10 @@ const ProxyAI = {
         code: "CS-203",
         sem: 3,
         important: [
-          "Complexity analysis, arrays, linked lists (single, double, circular)",
-          "Stacks, Queues, recursion implementation",
-          "Trees: Binary trees, traversals, AVL trees (rotations), B-trees, heaps",
-          "Graphs: Representation, BFS, DFS, searching & sorting, hashing"
+          "Overview of DS, ADT, arrays, pointer representation, lists, single/double/circular lists, stacks, queues, recursion",
+          "Sparse Matrix representation & arithmetic, polynomials, trees, traversals, binary search trees, AVL trees, heaps, priority queues, B/B*/B+ trees",
+          "Sorting: straight/heap selection, shell/insertion, bubble/quick exchange, merge (natural/balanced/polyphase), sequential/binary searching, hashing",
+          "Disjoint sets representation, union find algorithm, graphs, representations, traversals (BFS, DFS), minimum spanning trees, shortest path"
         ],
         tips: "Write step-by-step trace tables for sorting and AVL insertions. Understand recursive algorithms and time complexity."
       },
@@ -708,10 +708,10 @@ const ProxyAI = {
         code: "CS-205",
         sem: 3,
         important: [
-          "Register Transfer and Microoperations",
-          "Basic Computer Organization: instruction cycle, registers, interrupts",
-          "CPU Design: stack organization, addressing modes, RISC vs CISC",
-          "Memory & Pipeline: Cache mapping, virtual memory, pipelining"
+          "Boolean Algebra & Combinational Logic: number systems, boolean postulates, K-Map, Quine-McCluskey, adders, decoders, multiplexers, code converters",
+          "Sequential Circuits: general model, flip-flops, latches, triggering, state diagram, synchronous design, counters, shift registers, PLA/PAL, RAM",
+          "Basic Computer Organization: stored program, RTL, micro-operations, simple computer design, ALU, hardwired/microprogrammed control, CPU, RISC/CISC",
+          "Computer Arithmetic: addition/subtraction/multiplication/division algorithms, input-output organization, DMA, memory hierarchy, cache mapping, virtual memory"
         ],
         tips: "Focus on cache mapping (direct, associative, set-associative) numericals and CPU addressing modes."
       },
@@ -720,36 +720,24 @@ const ProxyAI = {
         code: "CS-207",
         sem: 3,
         important: [
-          "Java Basics: JVM, inheritance, polymorphism, interfaces, packages",
-          "Exceptions & I/O: try-catch, custom exceptions, byte/character streams",
-          "Multithreading: lifecycle, synchronization, inter-thread communication",
-          "Applets & Swing event handling, JDBC connectivity"
+          "OOP Paradigm: basic concepts, benefits, C++ programming basics, tokens, identifiers, operators, conversions, call/return by reference, overloading",
+          "Specifying a class, encapsulation, abstract types, static member functions, constructors & destructors, parameterized/copy/dynamic, operator overloading",
+          "Inheritance: hierarchy, derivation (public/private/protected), aggregation, composition, containership, polymorphism, templates, virtual functions",
+          "Standard C++ classes: multiple inheritance, persistent objects, streams and files, namespaces, exception handling, STL (containers, algorithms, iterators)"
         ],
-        tips: "Be clear on dynamic method dispatch, thread synchronization concepts, and write clean Java fragments for exams."
+        tips: "Master standard C++ virtual function concepts, operator overloading syntaxes, and standard template library (STL) containers."
       },
       "bs-203": {
         name: "Computational Methods (CSE)",
         code: "BS-203",
         sem: 3,
         important: [
-          "Error Analysis, Bisection, Regula-Falsi, Newton-Raphson",
-          "Gauss Elimination, Gauss-Jordan, Jacobi, Gauss-Seidel",
-          "Newton's Interpolation, Trapezoidal, Simpson's 1/3 and 3/8 rules",
-          "Taylor's Series, Euler's Method, Runge-Kutta 4th Order"
+          "Errors, Taylor series, Rolle's, mean value, roots (bisection, newton, secant), unconstrained minimization (Fibonacci, Golden Section), Nelder-Mead",
+          "Interpolation: assumptions, finite differences, Gregory-Newton, Lagrange, divided differences, integration (trapezoidal, Simpson's 1/3 and 3/8, Romberg)",
+          "Linear Systems: Gauss elimination, Gauss Jordan, pivoting, LU decomposition (Doolittle, Crout, Cholesky), power method, Spline approximation",
+          "Ordinary Differential Equations: Picard, Taylor, Euler, Runge-Kutta, predictor-corrector (Milne's), partial differential equations (parabolic/hyperbellic/elliptic)"
         ],
-        tips: "Practice numeric algorithms carefully. Duality and formula steps carry high marks."
-      },
-      "cs-203-cse": {
-        name: "DATA STRUCTURE CSE",
-        code: "CS-203-CSE",
-        sem: 3,
-        important: [
-          "Complexity analysis, arrays, linked lists (single, double, circular)",
-          "Stacks, Queues, recursion implementation",
-          "Trees: Binary trees, traversals, AVL trees (rotations), B-trees, heaps",
-          "Graphs: Representation, BFS, DFS, searching & sorting, hashing"
-        ],
-        tips: "Write step-by-step trace tables for sorting and AVL insertions. Understand recursive algorithms and time complexity."
+        tips: "Practice numeric algorithms carefully. Focus on Runge-Kutta, Newton-Raphson, and Cauer/Foster implementations if applicable."
       },
       "bs-204": {
         name: "Probability, Statistics and Linear Programming",
