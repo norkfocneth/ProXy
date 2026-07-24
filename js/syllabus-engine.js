@@ -276,66 +276,78 @@ const syllabusData = {
       ]
     },
     4: {
-      desc: "Understand operating systems, databases, software paradigms, and computation.",
+      desc: "Understand circuits, java programming, computational models, database systems, and technical correspondence.",
       subjects: [
         {
           code: "BS-204",
           icon: "📊",
-          title: "Applied Mathematics - IV",
-          shortDesc: "Probability, Statistics, Numerical Methods, and Linear Programming",
+          title: "Probability, Statistics and Linear Programming",
+          shortDesc: "Probability Distributions, Hypothesis Testing, Simplex Methods, and Duality",
           units: [
-            { num: "Unit I", topics: "Probability: Random variables, binomial, Poisson, and normal distributions." },
-            { num: "Unit II", topics: "Statistics: Sampling distribution, hypothesis testing, t-test, chi-square test, regression analysis." },
-            { num: "Unit III", topics: "Numerical Methods: Root finding (Bisection, Newton-Raphson), interpolation, numerical integration." },
-            { num: "Unit IV", topics: "Linear Programming: Simplex method, duality, formulation of real-world optimization problems." }
+            { num: "Unit I", topics: "Probability: Random variables, Probability distributions (Binomial, Poisson, Normal), Joint and marginal distributions." },
+            { num: "Unit II", topics: "Statistics: Sampling theory, Estimation, Hypothesis testing (t-test, F-test, Chi-square test), Regression & Correlation." },
+            { num: "Unit III", topics: "Linear Programming: Mathematical formulation of LPP, Graphical method, Simplex method, Artificial variable techniques (Big-M, Two-Phase)." },
+            { num: "Unit IV", topics: "Duality in LPP, Dual simplex method, Transportation and Assignment problems." }
           ]
         },
         {
           code: "CS-204",
           icon: "📁",
           title: "Database Management Systems",
-          shortDesc: "ER Diagrams, Relational Algebra, SQL, Normalization, and Transactions",
+          shortDesc: "ER Diagrams, Relational Algebra, SQL, Normalization, and Concurrency Control",
           units: [
-            { num: "Unit I", topics: "DBMS Overview: Data independence, database languages, ER diagrams, relational model." },
-            { num: "Unit II", topics: "Relational Query Languages: Relational algebra, SQL queries, DDL, DML, DCL commands." },
-            { num: "Unit III", topics: "Normalization: Functional dependencies, 1NF, 2NF, 3NF, BCNF, multi-valued dependency." },
-            { num: "Unit IV", topics: "Transaction Management: ACID properties, concurrency control, locks, recovery systems." }
+            { num: "Unit I", topics: "DBMS Overview: Database architecture, data models, ER diagrams, Relational model." },
+            { num: "Unit II", topics: "Relational Query Languages: Relational algebra, SQL (DDL, DML, DQL), Joins, Subqueries." },
+            { num: "Unit III", topics: "Relational Database Design: Functional dependencies, Normalization (1NF, 2NF, 3NF, BCNF)." },
+            { num: "Unit IV", topics: "Transaction & Concurrency: ACID properties, Serializability, Concurrency control protocols (Locking, Timestamping)." }
           ]
         },
         {
           code: "CS-206",
           icon: "💻",
-          title: "Operating Systems",
-          shortDesc: "CPU Scheduling, Synchronization, Memory Management, and Disk Scheduling",
+          title: "Theory of Computation",
+          shortDesc: "Finite Automata, Regular Expressions, CFGs, PDAs, and Turing Machines",
           units: [
-            { num: "Unit I", topics: "OS overview, process state transitions, CPU scheduling algorithms." },
-            { num: "Unit II", topics: "Process synchronization: Semaphores, monitors, classical synchronization problems. Deadlocks." },
-            { num: "Unit III", topics: "Memory management: Paging, segmentation, virtual memory page replacement." },
-            { num: "Unit IV", topics: "File systems structure, disk scheduling algorithms, security and protection." }
+            { num: "Unit I", topics: "Finite Automata: DFA, NFA, Regular Expressions, Pumping Lemma for regular languages." },
+            { num: "Unit II", topics: "Context-Free Grammars: CFGs, Chomsky Normal Form, Greibach Normal Form, Pumping Lemma for CFLs." },
+            { num: "Unit III", topics: "Pushdown Automata: PDA design, equivalence with CFGs, Deterministic PDAs." },
+            { num: "Unit IV", topics: "Turing Machines: TM design, Halting problem, Undecidability, P and NP complexity classes." }
           ]
         },
         {
           code: "CS-208",
-          icon: "✍",
-          title: "Software Engineering",
-          shortDesc: "SDLC Models, Requirements, UML Diagrams, Testing, and Maintenance",
+          icon: "🔌",
+          title: "Circuits and Systems",
+          shortDesc: "Continuous & Discrete Time Signals, Fourier & Z-Transforms, Network Theorems, and Filters",
           units: [
-            { num: "Unit I", topics: "Software Process Models: Waterfall, spiral, prototype, agile models (Scrum)." },
-            { num: "Unit II", topics: "Requirements Engineering: SRS document, software design principles, UML diagrams." },
-            { num: "Unit III", topics: "Coding and Testing: White-box testing, black-box testing, unit, integration, and system testing." },
-            { num: "Unit IV", topics: "Software Metrics: COCOMO model, function points, maintenance, configuration management." }
+            { num: "Unit I", topics: "Introduction to Signals & Systems, Continuous-time and Discrete-time signals, Laplace Transform." },
+            { num: "Unit II", topics: "Fourier Series and Fourier Transform, Z-Transform, analysis of LTI systems." },
+            { num: "Unit III", topics: "Network Theorems: Superposition, Thevenin's, Norton's, Maximum Power Transfer, Two-Port Network parameters (Z, Y, ABCD, h)." },
+            { num: "Unit IV", topics: "State Variable Analysis of Circuits, Filters (Butterworth, Chebyshev), Passive and Active network synthesis." }
           ]
         },
         {
           code: "CS-210",
-          icon: "⚙",
-          title: "Theory of Computation",
-          shortDesc: "Finite Automata, Regular Expressions, Context-Free Grammars, and Turing Machines",
+          icon: "☕",
+          title: "Programming in Java",
+          shortDesc: "OOP Constructs, Multi-threading, Collections Framework, GUI and JDBC",
           units: [
-            { num: "Unit I", topics: "Finite Automata: DFA, NFA conversion, regular expressions, pumping lemma for regular languages." },
-            { num: "Unit II", topics: "Context-Free Grammars: CFGs, parsing trees, ambiguity, Chomsky normal form, Greibach normal form." },
-            { num: "Unit III", topics: "Pushdown Automata: PDA design, equivalence with CFGs, deterministic PDAs." },
-            { num: "Unit IV", topics: "Turing Machines: TM design, variants of TMs, halting problem, undecidability." }
+            { num: "Unit I", topics: "Introduction to Java, JDK, JVM, Basic syntax, OOP concepts: Classes, Objects, Inheritance, Polymorphism." },
+            { num: "Unit II", topics: "Interfaces, Packages, Exception Handling, I/O Streams (File Handling)." },
+            { num: "Unit III", topics: "Multithreading: Thread creation, lifecycle, synchronization. Collections Framework: List, Set, Map." },
+            { num: "Unit IV", topics: "AWT & Swing for GUI, Event Handling, JDBC database connectivity." }
+          ]
+        },
+        {
+          code: "HS-202",
+          icon: "✍",
+          title: "Technical Writing",
+          shortDesc: "Technical Correspondence, Audience Analysis, Proposals, Reports, and Citations",
+          units: [
+            { num: "Unit I", topics: "Introduction to Technical Communication: Objectives, characteristics, audience analysis." },
+            { num: "Unit II", topics: "Technical Writing Genres: Reports, manuals, proposals, specs, instructions." },
+            { num: "Unit III", topics: "Professional Correspondence: Resumes, cover letters, business emails, letters." },
+            { num: "Unit IV", topics: "Research Papers & Presentations: Formatting, citations (IEEE, APA), oral presentation skills." }
           ]
         }
       ]

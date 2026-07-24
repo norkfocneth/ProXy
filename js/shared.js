@@ -728,64 +728,76 @@ const ProxyAI = {
         tips: "Write step-by-step trace tables for sorting and AVL insertions. Understand recursive algorithms and time complexity."
       },
       "bs-204": {
-        name: "Applied Mathematics - IV",
+        name: "Probability, Statistics and Linear Programming",
         code: "BS-204",
         sem: 4,
         important: [
-          "Probability distributions: Binomial, Poisson, Normal",
-          "Statistics: Sampling, hypothesis testing (t-test, chi-square, regression)",
-          "Numerical methods: Newton-Raphson, Bisection, integration (Trapezoidal, Simpson's)",
-          "Linear Programming: Simplex method, formulation"
+          "Probability distributions: Binomial, Poisson, Normal, Joint and marginal distributions",
+          "Statistics: Sampling theory, Estimation, Hypothesis testing (t-test, F-test, Chi-square)",
+          "Linear Programming: Graphical method, Simplex method, Big-M, Two-Phase methods",
+          "Duality in LPP, Dual simplex method, Transportation and Assignment problems"
         ],
-        tips: "Numerical method algorithms are straightforward—practice calculations carefully. Hypothesis testing and Simplex methods carry high marks."
+        tips: "Practice Simplex tables and big-M steps carefully. Joint distribution calculations and hypothesis testing are major marks."
       },
       "cs-204": {
         name: "Database Management Systems",
         code: "CS-204",
         sem: 4,
         important: [
-          "Entity-Relationship (ER) model and Relational algebra",
-          "SQL queries: Joins, subqueries, aggregations",
-          "Normalization: 1NF, 2NF, 3NF, BCNF",
-          "Transaction management: ACID properties, concurrency control, locks"
+          "Database Architecture, data independence, schemas, ER models",
+          "Relational algebra, SQL commands (DDL, DML, DQL), Joins, Subqueries",
+          "Relational Database Design: Functional dependencies, Normalization (1NF to BCNF)",
+          "Transaction & Concurrency: ACID properties, Serializability, locking & timestamping protocols"
         ],
-        tips: "Practice ER mapping to schemas. Master Joins, normalization decomposition steps, and lock-based concurrency control."
+        tips: "Practice SQL queries and normalization decomp. Concurrency schedules and serializability checks are highly important."
       },
       "cs-206": {
-        name: "Operating Systems",
+        name: "Theory of Computation",
         code: "CS-206",
         sem: 4,
         important: [
-          "Process scheduling (FCFS, SJF, RR, Priority)",
-          "Process synchronization: Semaphores, Mutex, Banker's Algorithm",
-          "Memory management: Paging, segmentation, page replacement",
-          "Disk scheduling, file systems, deadlock prevention/detection"
+          "Finite Automata: DFA, NFA conversion, regular expressions, pumping lemma",
+          "Context-Free Grammars: CFGs, parsing, Chomsky and Greibach Normal Forms",
+          "Pushdown Automata: PDA design, equivalence with CFGs",
+          "Turing Machines: TM design, Halting problem, Undecidability, P/NP complexity"
         ],
-        tips: "Practice scheduling Gantt charts, Banker's safe sequence checks, and LRU/FIFO page replacement numericals."
+        tips: "Ensure correct transitions for DFA/NFA and PDA designs. Master CFG normalizations and Turing Machine programming."
       },
       "cs-208": {
-        name: "Algorithm Design & Analysis",
+        name: "Circuits and Systems",
         code: "CS-208",
         sem: 4,
         important: [
-          "Asymptotic notations, recurrence relations (Master theorem)",
-          "Divide & Conquer (Merge/Quick sort), Greedy (Knapsack, MST, Prim's/Kruskal's)",
-          "Dynamic Programming (LCS, Matrix chain, 0/1 Knapsack) & Backtracking (N-Queens)",
-          "Complexity classes: P, NP, NP-Complete, NP-Hard"
+          "Signals & Systems: Continuous/discrete, LTI systems, Laplace transform",
+          "Fourier Series/Transform, Z-Transform, analysis of LTI systems",
+          "Network Theorems: Thevenin, Norton, Superposition, Maximum Power, Two-port parameters (Z, Y, ABCD, h)",
+          "State Variable Analysis of Circuits, filters (Butterworth, Chebyshev), passive/active synthesis"
         ],
-        tips: "Master Theorem and dynamic programming state transitions (especially LCS/Knapsack) are core. Understand NP-completeness reductions."
+        tips: "Make sure you master two-port parameter conversions and Laplace/Z-transform applications for system equations."
       },
       "cs-210": {
-        name: "Software Engineering",
+        name: "Programming in Java",
         code: "CS-210",
         sem: 4,
         important: [
-          "Software process models: Waterfall, Spiral, Agile",
-          "Requirements engineering: SRS, UML diagrams",
-          "Software architecture & Design patterns",
-          "Software testing: White-box, Black-box, metrics, maintenance"
+          "Java basics, JVM, JDK, Classes, Objects, Inheritance, Polymorphism",
+          "Interfaces, Packages, Exception handling, I/O streams file access",
+          "Multithreading: Lifecycle, synchronization. Collections Framework (List, Set, Map)",
+          "GUI programming with Swing/AWT, Event handling, JDBC database connection"
         ],
-        tips: "Learn the difference between verification vs validation, draw clean UML class/use-case diagrams, and master COCOMO metrics."
+        tips: "Write clean, compile-ready Java code snippets for collections, exception try-catch blocks, and thread synchronization."
+      },
+      "hs-202": {
+        name: "Technical Writing",
+        code: "HS-202",
+        sem: 4,
+        important: [
+          "Introduction to Technical Communication, characteristics, audience analysis",
+          "Technical writing genres: Reports, manuals, proposals, specs",
+          "Professional correspondence: Resumes, cover letters, emails, letters",
+          "Research papers formatting & citations (IEEE, APA), oral presentations"
+        ],
+        tips: "Be familiar with resume structures, IEEE citation formats, and the standard layouts of reports and proposals."
       },
       "cs-301": {
         name: "Design & Analysis of Algorithms",
