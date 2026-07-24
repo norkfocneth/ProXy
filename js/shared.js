@@ -476,20 +476,20 @@ document.addEventListener('DOMContentLoaded', () => {
 const ProxyAI = {
   knowledge: {
     subjects: {
-      "bs-111": {
-        name: "Applied Mathematics - I",
-        code: "BS-111",
+      "es-107": {
+        name: "Engineering Graphics",
+        code: "ES-107",
         sem: 1,
         important: [
-          "Matrices (Eigenvalues, Eigenvectors, Cayley-Hamilton Theorem, Diagonalization)",
-          "Differential Calculus (Leibnitz Theorem, Maclaurin's and Taylor's Series)",
-          "Partial Differentiation (Euler's Theorem, Jacobians, Maxima/Minima for 2 variables)",
-          "Integral Calculus (Double/Triple Integrals, Area & Volume calculation)"
+          "Projections of points and straight lines",
+          "Projections and section of solids",
+          "Development of surfaces of solids",
+          "Isometric projections and basic CAD commands"
         ],
-        tips: "Matrices & successive differentiation are scoring. Practice Leibnitz theorem proofs and double integration area calculations. Refer to Unit 1 Notes!"
+        tips: "Maintain sheet neatness. Master orthographic to isometric conversions. Practice layout drawings and projections."
       },
       "bs-112": {
-        name: "Applied Physics - I",
+        name: "Applied Physics-1",
         code: "BS-112",
         sem: 1,
         important: [
@@ -500,8 +500,56 @@ const ProxyAI = {
         ],
         tips: "Optics diagrams are extremely important. Memorize Einstein's coefficient derivations and practice Numerical Aperture formulas for optical fibers."
       },
+      "bs-111": {
+        name: "Applied Mathematics-1",
+        code: "BS-111",
+        sem: 1,
+        important: [
+          "Matrices (Eigenvalues, Eigenvectors, Cayley-Hamilton Theorem, Diagonalization)",
+          "Differential Calculus (Leibnitz Theorem, Maclaurin's and Taylor's Series)",
+          "Partial Differentiation (Euler's Theorem, Jacobians, Maxima/Minima for 2 variables)",
+          "Integral Calculus (Double/Triple Integrals, Area & Volume calculation)"
+        ],
+        tips: "Matrices & successive differentiation are scoring. Practice Leibnitz theorem proofs and double integration area calculations."
+      },
+      "es-109": {
+        name: "Manufacturing Processes",
+        code: "ES-109",
+        sem: 1,
+        important: [
+          "Casting processes & pattern making",
+          "Metal forming & shaping (forging, rolling, extrusion)",
+          "Joining processes (arc welding, gas welding, brazing)",
+          "Lathe machine & sheet metal operations"
+        ],
+        tips: "Focus on casting defect causes and neat diagrams of lathe operations and welding setups."
+      },
+      "hs-101": {
+        name: "Environmental Science",
+        code: "HS-101",
+        sem: 1,
+        important: [
+          "Ecosystem structure, food chains & energy flow",
+          "Natural resources conservation & management",
+          "Air, water, soil, and noise pollution control",
+          "Climate change, ozone depletion & environmental acts"
+        ],
+        tips: "Use bullet points and clear examples for environmental laws and pollution control methods."
+      },
+      "es-105": {
+        name: "Electrical Science",
+        code: "ES-105",
+        sem: 1,
+        important: [
+          "DC Circuits: Thevenin, Norton, Superposition, Max Power Transfer theorems",
+          "AC Circuits: Single phase RLC series/parallel, resonance",
+          "Transformers: Principle, EMF equation, efficiency & regulation",
+          "Electrical Machines: DC machines operating principles, single phase induction motors"
+        ],
+        tips: "Numericals on Network Theorems and RLC circuits are guaranteed. Draw neat phasor diagrams for AC circuit problems."
+      },
       "bs-113": {
-        name: "Applied Chemistry",
+        name: "Applied Chemistry-1",
         code: "BS-113",
         sem: 1,
         important: [
@@ -510,7 +558,19 @@ const ProxyAI = {
           "Polymers (Thermoplastics vs Thermosetting, composite materials)",
           "Corrosion & its Control (Electrochemical corrosion, cathodic protection)"
         ],
-        tips: "EDTA numericals and boiler troubles are very common. Focus on corrosion mechanisms (wet vs dry corrosion) and polymer structures."
+        tips: "EDTA numericals and boiler troubles are very common. Focus on corrosion mechanisms and polymer structures."
+      },
+      "hs-102": {
+        name: "Communication Skills",
+        code: "HS-102",
+        sem: 1,
+        important: [
+          "Communication process, barriers, verbal/non-verbal",
+          "Grammar: Active-passive, direct-indirect, common errors",
+          "Technical Writing: Letters, resumes, report writing, emails",
+          "Speaking Skills: GDs, presentations, interviews"
+        ],
+        tips: "Write structured emails and resumes. Focus on report layout styles and professional letter formats."
       },
       "cs-101": {
         name: "Programming in C",
@@ -523,30 +583,6 @@ const ProxyAI = {
           "Pointers: Pointer arithmetic, dynamic memory allocation (malloc, calloc), File handling"
         ],
         tips: "Draw dry-run tables for loops, write clear code with comments, and understand pointers and file I/O thoroughly."
-      },
-      "es-105": {
-        name: "Basic Electrical Engineering",
-        code: "ES-105",
-        sem: 1,
-        important: [
-          "DC Circuits: Thevenin, Norton, Superposition, Max Power Transfer theorems",
-          "AC Circuits: Single phase RLC series/parallel, resonance",
-          "Transformers: Principle, EMF equation, efficiency & regulation",
-          "Electrical Machines: DC machines operating principles, single phase induction motors"
-        ],
-        tips: "Numericals on Network Theorems and RLC circuits are guaranteed. Draw neat phasor diagrams for AC circuit problems."
-      },
-      "es-107": {
-        name: "Engineering Graphics",
-        code: "ES-107",
-        sem: 1,
-        important: [
-          "Projections of points and straight lines",
-          "Projections and section of solids",
-          "Development of surfaces of solids",
-          "Isometric projections and basic CAD commands"
-        ],
-        tips: "Maintain sheet neatness. Master orthographic to isometric conversions. Practice layout drawings and projections."
       },
       "bs-121": {
         name: "Applied Mathematics - II",

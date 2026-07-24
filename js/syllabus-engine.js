@@ -12,21 +12,21 @@ const syllabusData = {
       desc: "Build your foundation. Master the core concepts of engineering and programming.",
       subjects: [
         {
-          code: "BS-111",
-          icon: "√x",
-          title: "Applied Mathematics - I",
-          shortDesc: "Calculus, Matrices, and Differential Equations",
+          code: "ES-107",
+          icon: "📐",
+          title: "Engineering Graphics",
+          shortDesc: "Orthographic Projections, Solid Geometries, and CAD",
           units: [
-            { num: "Unit I", topics: "Matrices: Eigenvalues, Eigenvectors, Cayley-Hamilton Theorem, Diagonalization of matrices." },
-            { num: "Unit II", topics: "Differential Calculus: Successive differentiation, Leibnitz theorem, Taylor's and Maclaurin's series, Curvature." },
-            { num: "Unit III", topics: "Partial Differentiation: Euler's theorem, Jacobians, Taylor's series for two variables, Maxima and Minima." },
-            { num: "Unit IV", topics: "Integral Calculus: Double and triple integrals, Change of order, Area and volume calculation." }
+            { num: "Unit I", topics: "Introduction to Engineering Drawing, Sheet layouts, scales, lines and lettering." },
+            { num: "Unit II", topics: "Projections of Points and Straight Lines, orthographic projections, traces of lines." },
+            { num: "Unit III", topics: "Projections of Solids, section of solids, development of surfaces of solids." },
+            { num: "Unit IV", topics: "Isometric Projections, conversion of orthographic views into isometric views, CAD basics." }
           ]
         },
         {
           code: "BS-112",
           icon: "⚛",
-          title: "Applied Physics - I",
+          title: "Applied Physics-1",
           shortDesc: "Mechanics, Wave Theory, and Optical Systems",
           units: [
             { num: "Unit I", topics: "Interference: Coherent sources, Young's double slit, Newton's rings, Michelson interferometer." },
@@ -36,15 +36,75 @@ const syllabusData = {
           ]
         },
         {
+          code: "BS-111",
+          icon: "√x",
+          title: "Applied Mathematics-1",
+          shortDesc: "Calculus, Matrices, and Differential Equations",
+          units: [
+            { num: "Unit I", topics: "Matrices: Eigenvalues, Eigenvectors, Cayley-Hamilton Theorem, Diagonalization of matrices." },
+            { num: "Unit II", topics: "Differential Calculus: Successive differentiation, Leibnitz theorem, Taylor's and Maclaurin's series, Curvature." },
+            { num: "Unit III", topics: "Partial Differentiation: Euler's theorem, Jacobians, Taylor's series for two variables, Maxima and Minima." },
+            { num: "Unit IV", topics: "Integral Calculus: Double and triple integrals, Change of order, Area and volume calculation." }
+          ]
+        },
+        {
+          code: "ES-109",
+          icon: "⚙️",
+          title: "Manufacturing Processes",
+          shortDesc: "Casting, Welding, Machining, and Metal Forming",
+          units: [
+            { num: "Unit I", topics: "Casting Processes: Pattern making, sand casting, melting furnaces, casting defects and inspection." },
+            { num: "Unit II", topics: "Forming & Shaping: Hot and cold working of metals, forging, rolling, extrusion, wire drawing." },
+            { num: "Unit III", topics: "Joining Processes: Gas welding, arc welding, resistance welding, brazing and soldering." },
+            { num: "Unit IV", topics: "Machining & Sheet Metal: Lathe operations, drilling, shaping, milling, sheet metal operations and press tools." }
+          ]
+        },
+        {
+          code: "HS-101",
+          icon: "🌱",
+          title: "Environmental Science",
+          shortDesc: "Ecology, Ecosystems, Biodiversity & Pollution Control",
+          units: [
+            { num: "Unit I", topics: "Ecology & Ecosystems: Structure and function, energy flow, food chains, ecological pyramids." },
+            { num: "Unit II", topics: "Natural Resources: Forest, water, mineral, food, energy, and land resources, sustainable development." },
+            { num: "Unit III", topics: "Environmental Pollution: Air, water, soil, noise, thermal, and nuclear hazards, solid waste management." },
+            { num: "Unit IV", topics: "Social Issues & Environment: Climate change, global warming, acid rain, ozone layer depletion, environmental protection acts." }
+          ]
+        },
+        {
+          code: "ES-105",
+          icon: "🔌",
+          title: "Electrical Science",
+          shortDesc: "DC/AC Circuits, Network Theorems, Transformers & Motors",
+          units: [
+            { num: "Unit I", topics: "DC Circuits: Mesh and Node analysis, Network theorems: Thevenin, Norton, Superposition, Maximum Power Transfer." },
+            { num: "Unit II", topics: "AC Circuits: Single phase RLC series and parallel circuits, phasor diagrams, resonance." },
+            { num: "Unit III", topics: "Transformers: Principles of operation, EMF equation, equivalent circuit, efficiency and regulation." },
+            { num: "Unit IV", topics: "Electrical Machines: DC machines operating principles, single phase induction motors, three-phase systems." }
+          ]
+        },
+        {
           code: "BS-113",
           icon: "🔬",
-          title: "Applied Chemistry",
+          title: "Applied Chemistry-1",
           shortDesc: "Physical, Organic & Inorganic Engineering Chemistry",
           units: [
             { num: "Unit I", topics: "Water Technology: Hardness of water, estimation by EDTA, boiler troubles, water softening processes." },
             { num: "Unit II", topics: "Fuels & Combustion: Classification, Calorific value determination, coal analysis, petroleum cracking." },
             { num: "Unit III", topics: "Polymers & Composite Materials: Monomers, polymerization types, thermoplastics, thermosetting resins, biopolymers." },
             { num: "Unit IV", topics: "Corrosion & its Control: Chemical and electrochemical corrosion, protective coatings, cathodic protection." }
+          ]
+        },
+        {
+          code: "HS-102",
+          icon: "💬",
+          title: "Communication Skills",
+          shortDesc: "Verbal & Written Communication, Technical Writing, Soft Skills",
+          units: [
+            { num: "Unit I", topics: "Basics of Communication: Process, channels, barriers, formal vs informal communication." },
+            { num: "Unit II", topics: "Grammar & Vocabulary: Sentence structure, common errors, vocabulary enhancement, phonetics." },
+            { num: "Unit III", topics: "Technical Writing: Business letters, emails, technical reports, resume building, cover letters." },
+            { num: "Unit IV", topics: "Group Discussions & Interviews: Public speaking, body language, presentation skills, interview strategies." }
           ]
         },
         {
@@ -57,30 +117,6 @@ const syllabusData = {
             { num: "Unit II", topics: "Control Statements: Decision making, branching, looping structures, arrays and strings." },
             { num: "Unit III", topics: "Functions: Parameter passing, recursion. Structures and Unions, preprocessors." },
             { num: "Unit IV", topics: "Pointers: Pointer arithmetic, dynamic memory allocation. File handling in C." }
-          ]
-        },
-        {
-          code: "ES-105",
-          icon: "🔌",
-          title: "Basic Electrical Engineering",
-          shortDesc: "DC/AC Circuits, Transformers, and Electrical Machines",
-          units: [
-            { num: "Unit I", topics: "DC Circuits: Mesh and Node analysis, Network theorems: Thevenin, Norton, Superposition, Maximum Power Transfer." },
-            { num: "Unit II", topics: "AC Circuits: Single phase RLC series and parallel circuits, phasor diagrams, resonance." },
-            { num: "Unit III", topics: "Transformers: Principles of operation, EMF equation, equivalent circuit, efficiency and regulation." },
-            { num: "Unit IV", topics: "Electrical Machines: DC machines operating principles, single phase induction motors, three-phase systems." }
-          ]
-        },
-        {
-          code: "ES-107",
-          icon: "📐",
-          title: "Engineering Graphics",
-          shortDesc: "Orthographic Projections, Solid Geometries, and CAD",
-          units: [
-            { num: "Unit I", topics: "Introduction to Engineering Drawing, Sheet layouts, scales, lines and lettering." },
-            { num: "Unit II", topics: "Projections of Points and Straight Lines, orthographic projections, traces of lines." },
-            { num: "Unit III", topics: "Projections of Solids, section of solids, development of surfaces of solids." },
-            { num: "Unit IV", topics: "Isometric Projections, conversion of orthographic views into isometric views, CAD basics." }
           ]
         }
       ]
@@ -594,21 +630,21 @@ const syllabusData = {
       desc: "Build your foundation. Master the core concepts of engineering and programming.",
       subjects: [
         {
-          code: "BS-111",
-          icon: "√x",
-          title: "Applied Mathematics - I",
-          shortDesc: "Calculus, Matrices, and Differential Equations",
+          code: "ES-107",
+          icon: "📐",
+          title: "Engineering Graphics",
+          shortDesc: "Orthographic Projections, Solid Geometries, and CAD",
           units: [
-            { num: "Unit I", topics: "Matrices: Eigenvalues, Eigenvectors, Cayley-Hamilton Theorem, Diagonalization of matrices." },
-            { num: "Unit II", topics: "Differential Calculus: Successive differentiation, Leibnitz theorem, Taylor's and Maclaurin's series, Curvature." },
-            { num: "Unit III", topics: "Partial Differentiation: Euler's theorem, Jacobians, Taylor's series for two variables, Maxima and Minima." },
-            { num: "Unit IV", topics: "Integral Calculus: Double and triple integrals, Change of order, Area and volume calculation." }
+            { num: "Unit I", topics: "Introduction to Engineering Drawing, Sheet layouts, scales, lines and lettering." },
+            { num: "Unit II", topics: "Projections of Points and Straight Lines, orthographic projections, traces of lines." },
+            { num: "Unit III", topics: "Projections of Solids, section of solids, development of surfaces of solids." },
+            { num: "Unit IV", topics: "Isometric Projections, conversion of orthographic views into isometric views, CAD basics." }
           ]
         },
         {
           code: "BS-112",
           icon: "⚛",
-          title: "Applied Physics - I",
+          title: "Applied Physics-1",
           shortDesc: "Mechanics, Wave Theory, and Optical Systems",
           units: [
             { num: "Unit I", topics: "Interference: Coherent sources, Young's double slit, Newton's rings, Michelson interferometer." },
@@ -618,15 +654,75 @@ const syllabusData = {
           ]
         },
         {
+          code: "BS-111",
+          icon: "√x",
+          title: "Applied Mathematics-1",
+          shortDesc: "Calculus, Matrices, and Differential Equations",
+          units: [
+            { num: "Unit I", topics: "Matrices: Eigenvalues, Eigenvectors, Cayley-Hamilton Theorem, Diagonalization of matrices." },
+            { num: "Unit II", topics: "Differential Calculus: Successive differentiation, Leibnitz theorem, Taylor's and Maclaurin's series, Curvature." },
+            { num: "Unit III", topics: "Partial Differentiation: Euler's theorem, Jacobians, Taylor's series for two variables, Maxima and Minima." },
+            { num: "Unit IV", topics: "Integral Calculus: Double and triple integrals, Change of order, Area and volume calculation." }
+          ]
+        },
+        {
+          code: "ES-109",
+          icon: "⚙️",
+          title: "Manufacturing Processes",
+          shortDesc: "Casting, Welding, Machining, and Metal Forming",
+          units: [
+            { num: "Unit I", topics: "Casting Processes: Pattern making, sand casting, melting furnaces, casting defects and inspection." },
+            { num: "Unit II", topics: "Forming & Shaping: Hot and cold working of metals, forging, rolling, extrusion, wire drawing." },
+            { num: "Unit III", topics: "Joining Processes: Gas welding, arc welding, resistance welding, brazing and soldering." },
+            { num: "Unit IV", topics: "Machining & Sheet Metal: Lathe operations, drilling, shaping, milling, sheet metal operations and press tools." }
+          ]
+        },
+        {
+          code: "HS-101",
+          icon: "🌱",
+          title: "Environmental Science",
+          shortDesc: "Ecology, Ecosystems, Biodiversity & Pollution Control",
+          units: [
+            { num: "Unit I", topics: "Ecology & Ecosystems: Structure and function, energy flow, food chains, ecological pyramids." },
+            { num: "Unit II", topics: "Natural Resources: Forest, water, mineral, food, energy, and land resources, sustainable development." },
+            { num: "Unit III", topics: "Environmental Pollution: Air, water, soil, noise, thermal, and nuclear hazards, solid waste management." },
+            { num: "Unit IV", topics: "Social Issues & Environment: Climate change, global warming, acid rain, ozone layer depletion, environmental protection acts." }
+          ]
+        },
+        {
+          code: "ES-105",
+          icon: "🔌",
+          title: "Electrical Science",
+          shortDesc: "DC/AC Circuits, Network Theorems, Transformers & Motors",
+          units: [
+            { num: "Unit I", topics: "DC Circuits: Mesh and Node analysis, Network theorems: Thevenin, Norton, Superposition, Maximum Power Transfer." },
+            { num: "Unit II", topics: "AC Circuits: Single phase RLC series and parallel circuits, phasor diagrams, resonance." },
+            { num: "Unit III", topics: "Transformers: Principles of operation, EMF equation, equivalent circuit, efficiency and regulation." },
+            { num: "Unit IV", topics: "Electrical Machines: DC machines operating principles, single phase induction motors, three-phase systems." }
+          ]
+        },
+        {
           code: "BS-113",
           icon: "🔬",
-          title: "Applied Chemistry",
+          title: "Applied Chemistry-1",
           shortDesc: "Physical, Organic & Inorganic Engineering Chemistry",
           units: [
             { num: "Unit I", topics: "Water Technology: Hardness of water, estimation by EDTA, boiler troubles, water softening processes." },
             { num: "Unit II", topics: "Fuels & Combustion: Classification, Calorific value determination, coal analysis, petroleum cracking." },
             { num: "Unit III", topics: "Polymers & Composite Materials: Monomers, polymerization types, thermoplastics, thermosetting resins, biopolymers." },
             { num: "Unit IV", topics: "Corrosion & its Control: Chemical and electrochemical corrosion, protective coatings, cathodic protection." }
+          ]
+        },
+        {
+          code: "HS-102",
+          icon: "💬",
+          title: "Communication Skills",
+          shortDesc: "Verbal & Written Communication, Technical Writing, Soft Skills",
+          units: [
+            { num: "Unit I", topics: "Basics of Communication: Process, channels, barriers, formal vs informal communication." },
+            { num: "Unit II", topics: "Grammar & Vocabulary: Sentence structure, common errors, vocabulary enhancement, phonetics." },
+            { num: "Unit III", topics: "Technical Writing: Business letters, emails, technical reports, resume building, cover letters." },
+            { num: "Unit IV", topics: "Group Discussions & Interviews: Public speaking, body language, presentation skills, interview strategies." }
           ]
         },
         {
@@ -639,30 +735,6 @@ const syllabusData = {
             { num: "Unit II", topics: "Control Statements: Decision making, branching, looping structures, arrays and strings." },
             { num: "Unit III", topics: "Functions: Parameter passing, recursion. Structures and Unions, preprocessors." },
             { num: "Unit IV", topics: "Pointers: Pointer arithmetic, dynamic memory allocation. File handling in C." }
-          ]
-        },
-        {
-          code: "ES-105",
-          icon: "🔌",
-          title: "Basic Electrical Engineering",
-          shortDesc: "DC/AC Circuits, Transformers, and Electrical Machines",
-          units: [
-            { num: "Unit I", topics: "DC Circuits: Mesh and Node analysis, Network theorems: Thevenin, Norton, Superposition, Maximum Power Transfer." },
-            { num: "Unit II", topics: "AC Circuits: Single phase RLC series and parallel circuits, phasor diagrams, resonance." },
-            { num: "Unit III", topics: "Transformers: Principles of operation, EMF equation, equivalent circuit, efficiency and regulation." },
-            { num: "Unit IV", topics: "Electrical Machines: DC machines operating principles, single phase induction motors, three-phase systems." }
-          ]
-        },
-        {
-          code: "ES-107",
-          icon: "📐",
-          title: "Engineering Graphics",
-          shortDesc: "Orthographic Projections, Solid Geometries, and CAD",
-          units: [
-            { num: "Unit I", topics: "Introduction to Engineering Drawing, Sheet layouts, scales, lines and lettering." },
-            { num: "Unit II", topics: "Projections of Points and Straight Lines, orthographic projections, traces of lines." },
-            { num: "Unit III", topics: "Projections of Solids, section of solids, development of surfaces of solids." },
-            { num: "Unit IV", topics: "Isometric Projections, conversion of orthographic views into isometric views, CAD basics." }
           ]
         }
       ]
