@@ -1309,7 +1309,7 @@ const syllabusData = {
 const dynamicBranchSubjects = {
   ECE: {
     3: ["Analog Communication", "Data Structures", "Analog Electronics-1", "Computational Methods (CSE)", "Digital Logic and Computer Design", "Signals and Systems"],
-    4: ["Applied Mathematics - IV", "Analog Communications", "Computer Organization & Architecture", "Linear Integrated Circuits", "Electro-Magnetic Fields"],
+    4: ["Probability, Statistics and Linear Programming", "Network Analysis and Synthesis", "Technical Writing", "Microprocessors and Microcontrollers", "Digital Communications", "Analog Electronics-II", "Electromagnetic Field Theory"],
     5: ["Digital Communication", "Control Systems", "Microprocessors & Microcontrollers", "Digital Signal Processing", "Transmission Lines & Waveguides"],
     6: ["VLSI Design", "Information Theory & Coding", "Wireless Communication", "Antenna & Wave Propagation", "Embedded Systems"],
     7: ["Optical Communication", "Satellite Communication", "Digital Image Processing", "Machine Learning"],

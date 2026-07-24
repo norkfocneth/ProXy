@@ -919,6 +919,54 @@ const ProxyAI = {
         ],
         tips: "Practice convolution integral/sum step-by-step. Laplace ROC properties and Fourier transform properties carry high marks."
       },
+      "ec-204": {
+        name: "Network Analysis and Synthesis",
+        code: "EC-204",
+        sem: 4,
+        important: [
+          "Network Theorems in AC circuits: Superposition, Thevenin's, Norton's, Maximum Power Transfer",
+          "Transient Analysis: Behavior of R-L, R-C, R-L-C circuits under DC and AC excitation",
+          "Two-Port Networks: Z, Y, ABCD, h parameters and their interrelationships",
+          "Network Synthesis: Hurwitz polynomials, Positive Real Functions (PRF), Foster & Cauer forms"
+        ],
+        tips: "Solve transient equations using differential equations or Laplace transform. Foster and Cauer realization steps are highly structured and scoring."
+      },
+      "ec-206": {
+        name: "Analog Electronics-II",
+        code: "EC-206",
+        sem: 4,
+        important: [
+          "Feedback Amplifiers: Feedback topologies, effect on input/output impedance, stability",
+          "Operational Amplifiers: Ideal op-amp, inverting/non-inverting amplifiers, integrators, differentiators",
+          "Op-Amp Applications: Comparators, Schmitt triggers, instrumentation amplifiers, active filters",
+          "Power Amplifiers: Class A, Class B, Class AB, Class C push-pull amplifiers, efficiency calculations"
+        ],
+        tips: "Practice derivation of closed-loop gain for different feedback topologies. Op-amp circuit analysis is straightforward and scoring."
+      },
+      "ec-208": {
+        name: "Electromagnetic Field Theory",
+        code: "EC-208",
+        sem: 4,
+        important: [
+          "Vector Calculus & Electrostatics: Gauss's Law, Poisson's and Laplace's equations, boundary conditions",
+          "Magnetostatics: Biot-Savart Law, Ampere's Law, magnetic forces and torque",
+          "Maxwell's Equations: Faraday's Law, displacement current, Maxwell's equations in differential and integral forms",
+          "Electromagnetic Wave Propagation: Wave equations, Poynting vector, reflection and refraction of plane waves"
+        ],
+        tips: "Boundary condition numericals and Maxwell's equations derivations are extremely important. Poynting vector derivation is frequently asked."
+      },
+      "ec-210": {
+        name: "Digital Communications",
+        code: "EC-210",
+        sem: 4,
+        important: [
+          "Pulse Code Modulation (PCM): Sampling, quantization, differential PCM, delta modulation",
+          "Digital Modulation Techniques: ASK, FSK, PSK, QPSK, M-ary modulation schemes",
+          "Error Control Coding: Linear block codes, cyclic codes, convolution codes, syndrome decoding",
+          "Information Theory: Entropy, channel capacity, Shannon-Hartley theorem, source coding (Huffman, Shannon-Fano)"
+        ],
+        tips: "Syndrome calculation for linear block codes and Huffman coding steps are guaranteed scoring topics. Draw clear constellation diagrams."
+      },
       "cs-301": {
         name: "Design & Analysis of Algorithms",
         code: "CS-301",
