@@ -154,10 +154,10 @@ const syllabusData = {
           title: "Applied Physics 2",
           shortDesc: "Electromagnetism, Solid State Physics, and Quantum Mechanics",
           units: [
-            { num: "Unit I", topics: "Electromagnetic Theory: Gauss's law, Ampere's law, Faraday's law, Maxwell's equations." },
-            { num: "Unit II", topics: "Quantum Mechanics: de Broglie waves, Heisenberg uncertainty principle, Schrodinger wave equation." },
-            { num: "Unit III", topics: "Statistical Mechanics: Maxwell-Boltzmann, Bose-Einstein, and Fermi-Dirac statistics." },
-            { num: "Unit IV", topics: "Solid State Physics: Crystal structure, Bravais lattices, band theory of solids, superconductors." }
+            { num: "Unit I", topics: "Quantum Mechanics: Introduction: Wave particle duality, de Broglie waves, the experiment of Davisson and Germer, electron diffraction, physical interpretation of the wave function, properties, the wave packet, group and phase velocity, the uncertainty principle. The Schrödinger wave equation (1D), Eigen values and Eigen functions, expectation values, simple Eigen value problems – solutions of the Schrödinger's equations for the free particle, the infinite well, the finite well, tunneling effect, the scanning electron microscope, the quantum simple harmonic oscillator (qualitative), zero point energy." },
+            { num: "Unit II", topics: "Quantum Statistics: The need for statistics, statistical distributions: Maxwell Boltzmann, Bose-Einstein and Fermi-Dirac statistics, their comparisons, Fermions and Bosons, Applications of quantum statistics: 1. Molecular speed and energies in an ideal gas; 2. The Black body spectrum, the failure of classical statistics to give the correct explanations – Bose-Einstein statistics applied to the Black Body radiation spectrum; Fermi-Dirac distribution, free electron theory, electronic specific heats, Fermi energy and average energy; Dying stars." },
+            { num: "Unit III", topics: "Crystal Structure: Types of solids, Unit cell, Types of crystals, Translation vectors, Lattice planes, Miller indices, Simple crystal structures, Interplaner spacing, Crystal structure analysis: Bragg's law, Laue method, Point defects: Schottcky and Frankel defects." },
+            { num: "Unit IV", topics: "Band Theory of Solids: Origin of energy bands in solids, motion of electrons in a periodic potential – the Kronig–Penny model (Qualitative). Brillouin zones, effective mass, metals, semi-conductors and insulators and their energy band structures. Extrinsic and Intrinsic semiconductors, doping – Fermi energy for doped and undoped semiconductors, the p-n junction (energy band diagrams with Fermi energy), the unbiased diode, forward and reverse biased diodes – tunnel diodes, zener diode, photo diode its characteristics, LED" }
           ]
         },
         {
@@ -808,10 +808,10 @@ const syllabusData = {
           title: "Applied Physics 2",
           shortDesc: "Electromagnetism, Solid State Physics, and Quantum Mechanics",
           units: [
-            { num: "Unit I", topics: "Electromagnetic Theory: Gauss's law, Ampere's law, Faraday's law, Maxwell's equations." },
-            { num: "Unit II", topics: "Quantum Mechanics: de Broglie waves, Heisenberg uncertainty principle, Schrodinger wave equation." },
-            { num: "Unit III", topics: "Statistical Mechanics: Maxwell-Boltzmann, Bose-Einstein, and Fermi-Dirac statistics." },
-            { num: "Unit IV", topics: "Solid State Physics: Crystal structure, Bravais lattices, band theory of solids, superconductors." }
+            { num: "Unit I", topics: "Quantum Mechanics: Introduction: Wave particle duality, de Broglie waves, the experiment of Davisson and Germer, electron diffraction, physical interpretation of the wave function, properties, the wave packet, group and phase velocity, the uncertainty principle. The Schrödinger wave equation (1D), Eigen values and Eigen functions, expectation values, simple Eigen value problems – solutions of the Schrödinger's equations for the free particle, the infinite well, the finite well, tunneling effect, the scanning electron microscope, the quantum simple harmonic oscillator (qualitative), zero point energy." },
+            { num: "Unit II", topics: "Quantum Statistics: The need for statistics, statistical distributions: Maxwell Boltzmann, Bose-Einstein and Fermi-Dirac statistics, their comparisons, Fermions and Bosons, Applications of quantum statistics: 1. Molecular speed and energies in an ideal gas; 2. The Black body spectrum, the failure of classical statistics to give the correct explanations – Bose-Einstein statistics applied to the Black Body radiation spectrum; Fermi-Dirac distribution, free electron theory, electronic specific heats, Fermi energy and average energy; Dying stars." },
+            { num: "Unit III", topics: "Crystal Structure: Types of solids, Unit cell, Types of crystals, Translation vectors, Lattice planes, Miller indices, Simple crystal structures, Interplaner spacing, Crystal structure analysis: Bragg's law, Laue method, Point defects: Schottcky and Frankel defects." },
+            { num: "Unit IV", topics: "Band Theory of Solids: Origin of energy bands in solids, motion of electrons in a periodic potential – the Kronig–Penny model (Qualitative). Brillouin zones, effective mass, metals, semi-conductors and insulators and their energy band structures. Extrinsic and Intrinsic semiconductors, doping – Fermi energy for doped and undoped semiconductors, the p-n junction (energy band diagrams with Fermi energy), the unbiased diode, forward and reverse biased diodes – tunnel diodes, zener diode, photo diode its characteristics, LED" }
           ]
         },
         {
