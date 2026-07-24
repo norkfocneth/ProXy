@@ -53,10 +53,10 @@ const syllabusData = {
           title: "Manufacturing Processes",
           shortDesc: "Casting, Welding, Machining, and Metal Forming",
           units: [
-            { num: "Unit I", topics: "Casting Processes: Pattern making, sand casting, melting furnaces, casting defects and inspection." },
-            { num: "Unit II", topics: "Forming & Shaping: Hot and cold working of metals, forging, rolling, extrusion, wire drawing." },
-            { num: "Unit III", topics: "Joining Processes: Gas welding, arc welding, resistance welding, brazing and soldering." },
-            { num: "Unit IV", topics: "Machining & Sheet Metal: Lathe operations, drilling, shaping, milling, sheet metal operations and press tools." }
+            { num: "Unit I", topics: "Definition of manufacturing, Importance of manufacturing towards technological and social economic development, Classification of manufacturing processes, Properties of materials. Metal Casting Processes: Sand casting, Sand moulds, Type of patterns, Pattern materials, Pattern allowances, Types of Moulding sand and their Properties, Core making, Elements of gating system, Description and operation of cupola, Working principle of Special casting processes - Shell casting, Pressure die casting, Centrifugal casting, Casting defects." },
+            { num: "Unit II", topics: "Joining Processes: Welding principles, classification of welding processes, Fusion welding, Gas welding, Equipments used, Filler and Flux materials, Electric arc welding, Gas metal arc welding, Submerged arc welding, Electro slag welding, TIG and MIG welding process, resistance welding, welding defects" },
+            { num: "Unit III", topics: "Deformation Processes: Hot working and cold working of metals, Forging processes, Open and closed die forging process, Typical forging operations, Rolling of metals, Principle of rod and wire drawing, Tube drawing, Principle of Extrustion, Types of Extrustion, Hot and Cold extrusion, Sheet metal characteristics - Typical shearing operations, bending and drawing operations, Stretch forming operations, Metal spinning" },
+            { num: "Unit IV", topics: "Powder Metallurgy: Introduction of powder metallurgy process, powder production, blending, compaction, sintering, Manufacturing Of Plastic Components: Types of plastics, Characteristics of the forming and shaping processes, Moulding of Thermoplastics, Injection moulding, Blow moulding, Rotational moulding, Film blowing, Extrusion, Thermoforming, Moulding of thermosets- Compression moulding, Transfer moulding, Bonding of Thermoplastics." }
           ]
         },
         {
@@ -707,10 +707,10 @@ const syllabusData = {
           title: "Manufacturing Processes",
           shortDesc: "Casting, Welding, Machining, and Metal Forming",
           units: [
-            { num: "Unit I", topics: "Casting Processes: Pattern making, sand casting, melting furnaces, casting defects and inspection." },
-            { num: "Unit II", topics: "Forming & Shaping: Hot and cold working of metals, forging, rolling, extrusion, wire drawing." },
-            { num: "Unit III", topics: "Joining Processes: Gas welding, arc welding, resistance welding, brazing and soldering." },
-            { num: "Unit IV", topics: "Machining & Sheet Metal: Lathe operations, drilling, shaping, milling, sheet metal operations and press tools." }
+            { num: "Unit I", topics: "Definition of manufacturing, Importance of manufacturing towards technological and social economic development, Classification of manufacturing processes, Properties of materials. Metal Casting Processes: Sand casting, Sand moulds, Type of patterns, Pattern materials, Pattern allowances, Types of Moulding sand and their Properties, Core making, Elements of gating system, Description and operation of cupola, Working principle of Special casting processes - Shell casting, Pressure die casting, Centrifugal casting, Casting defects." },
+            { num: "Unit II", topics: "Joining Processes: Welding principles, classification of welding processes, Fusion welding, Gas welding, Equipments used, Filler and Flux materials, Electric arc welding, Gas metal arc welding, Submerged arc welding, Electro slag welding, TIG and MIG welding process, resistance welding, welding defects" },
+            { num: "Unit III", topics: "Deformation Processes: Hot working and cold working of metals, Forging processes, Open and closed die forging process, Typical forging operations, Rolling of metals, Principle of rod and wire drawing, Tube drawing, Principle of Extrustion, Types of Extrustion, Hot and Cold extrusion, Sheet metal characteristics - Typical shearing operations, bending and drawing operations, Stretch forming operations, Metal spinning" },
+            { num: "Unit IV", topics: "Powder Metallurgy: Introduction of powder metallurgy process, powder production, blending, compaction, sintering, Manufacturing Of Plastic Components: Types of plastics, Characteristics of the forming and shaping processes, Moulding of Thermoplastics, Injection moulding, Blow moulding, Rotational moulding, Film blowing, Extrusion, Thermoforming, Moulding of thermosets- Compression moulding, Transfer moulding, Bonding of Thermoplastics." }
           ]
         },
         {
