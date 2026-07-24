@@ -65,10 +65,10 @@ const syllabusData = {
           title: "Environmental Science",
           shortDesc: "Ecology, Ecosystems, Biodiversity & Pollution Control",
           units: [
-            { num: "Unit I", topics: "Ecology & Ecosystems: Structure and function, energy flow, food chains, ecological pyramids." },
-            { num: "Unit II", topics: "Natural Resources: Forest, water, mineral, food, energy, and land resources, sustainable development." },
-            { num: "Unit III", topics: "Environmental Pollution: Air, water, soil, noise, thermal, and nuclear hazards, solid waste management." },
-            { num: "Unit IV", topics: "Social Issues & Environment: Climate change, global warming, acid rain, ozone layer depletion, environmental protection acts." }
+            { num: "Unit I", topics: "Fundamentals: The Multidisciplinary nature of environmental studies: Definition, components, scope and importance, need for public awareness; Natural Resources. Ecosystems: Concept, Structure and function of an ecosystem, Types, Functional Components, Different ecosystems, biogeochemical cycles. Biodiversity: Introduction to biodiversity, biogeographical classification, India as a mega diversity nation, endangered and endemic species of India, threats to biodiversity and conservation of biodiversity. Bioprospecting and Biopiracy" },
+            { num: "Unit II", topics: "Environmental Pollution: (a) Air Pollution: Source, Types, effects on biosphere and Meterology, Air Quality, Control. (b) Water Pollution: Types and Sources. (c) Soil Pollution: Types and Control. (d) Noise Pollution: Effect, Control (e) Thermal Pollution. (f) Radiation Pollution (g) Solid waste Management, (h) Pollution Prevention, (i) Disaster Management" },
+            { num: "Unit III", topics: "Social Issues and Environment: Concept of Sustainable Development; Urban problem related to energy; Water Conservation; Wasteland reclamation; Resettlement and Rehabilitation; Climate Change; Nuclear Accidents; Consumerism and Waste Products; Laws related to Environment, Pollution, Forest and Wild life; Environmental Impact Assessment." },
+            { num: "Unit IV", topics: "Human Population and Environment: Population Growth, Human Rights, Family Welfare Programmes, Environment and Human Health, HIV/AIDS, Women and Child Welfare, Role of IT." }
           ]
         },
         {
@@ -202,10 +202,10 @@ const syllabusData = {
           title: "Environmental Science",
           shortDesc: "Ecology, Ecosystems, Biodiversity & Pollution Control",
           units: [
-            { num: "Unit I", topics: "Ecology & Ecosystems: Structure and function, energy flow, food chains, ecological pyramids." },
-            { num: "Unit II", topics: "Natural Resources: Forest, water, mineral, food, energy, and land resources, sustainable development." },
-            { num: "Unit III", topics: "Environmental Pollution: Air, water, soil, noise, thermal, and nuclear hazards, solid waste management." },
-            { num: "Unit IV", topics: "Social Issues & Environment: Climate change, global warming, acid rain, ozone layer depletion, environmental protection acts." }
+            { num: "Unit I", topics: "Fundamentals: The Multidisciplinary nature of environmental studies: Definition, components, scope and importance, need for public awareness; Natural Resources. Ecosystems: Concept, Structure and function of an ecosystem, Types, Functional Components, Different ecosystems, biogeochemical cycles. Biodiversity: Introduction to biodiversity, biogeographical classification, India as a mega diversity nation, endangered and endemic species of India, threats to biodiversity and conservation of biodiversity. Bioprospecting and Biopiracy" },
+            { num: "Unit II", topics: "Environmental Pollution: (a) Air Pollution: Source, Types, effects on biosphere and Meterology, Air Quality, Control. (b) Water Pollution: Types and Sources. (c) Soil Pollution: Types and Control. (d) Noise Pollution: Effect, Control (e) Thermal Pollution. (f) Radiation Pollution (g) Solid waste Management, (h) Pollution Prevention, (i) Disaster Management" },
+            { num: "Unit III", topics: "Social Issues and Environment: Concept of Sustainable Development; Urban problem related to energy; Water Conservation; Wasteland reclamation; Resettlement and Rehabilitation; Climate Change; Nuclear Accidents; Consumerism and Waste Products; Laws related to Environment, Pollution, Forest and Wild life; Environmental Impact Assessment." },
+            { num: "Unit IV", topics: "Human Population and Environment: Population Growth, Human Rights, Family Welfare Programmes, Environment and Human Health, HIV/AIDS, Women and Child Welfare, Role of IT." }
           ]
         },
         {
@@ -731,10 +731,10 @@ const syllabusData = {
           title: "Environmental Science",
           shortDesc: "Ecology, Ecosystems, Biodiversity & Pollution Control",
           units: [
-            { num: "Unit I", topics: "Ecology & Ecosystems: Structure and function, energy flow, food chains, ecological pyramids." },
-            { num: "Unit II", topics: "Natural Resources: Forest, water, mineral, food, energy, and land resources, sustainable development." },
-            { num: "Unit III", topics: "Environmental Pollution: Air, water, soil, noise, thermal, and nuclear hazards, solid waste management." },
-            { num: "Unit IV", topics: "Social Issues & Environment: Climate change, global warming, acid rain, ozone layer depletion, environmental protection acts." }
+            { num: "Unit I", topics: "Fundamentals: The Multidisciplinary nature of environmental studies: Definition, components, scope and importance, need for public awareness; Natural Resources. Ecosystems: Concept, Structure and function of an ecosystem, Types, Functional Components, Different ecosystems, biogeochemical cycles. Biodiversity: Introduction to biodiversity, biogeographical classification, India as a mega diversity nation, endangered and endemic species of India, threats to biodiversity and conservation of biodiversity. Bioprospecting and Biopiracy" },
+            { num: "Unit II", topics: "Environmental Pollution: (a) Air Pollution: Source, Types, effects on biosphere and Meterology, Air Quality, Control. (b) Water Pollution: Types and Sources. (c) Soil Pollution: Types and Control. (d) Noise Pollution: Effect, Control (e) Thermal Pollution. (f) Radiation Pollution (g) Solid waste Management, (h) Pollution Prevention, (i) Disaster Management" },
+            { num: "Unit III", topics: "Social Issues and Environment: Concept of Sustainable Development; Urban problem related to energy; Water Conservation; Wasteland reclamation; Resettlement and Rehabilitation; Climate Change; Nuclear Accidents; Consumerism and Waste Products; Laws related to Environment, Pollution, Forest and Wild life; Environmental Impact Assessment." },
+            { num: "Unit IV", topics: "Human Population and Environment: Population Growth, Human Rights, Family Welfare Programmes, Environment and Human Health, HIV/AIDS, Women and Child Welfare, Role of IT." }
           ]
         },
         {
@@ -868,10 +868,10 @@ const syllabusData = {
           title: "Environmental Science",
           shortDesc: "Ecology, Ecosystems, Biodiversity & Pollution Control",
           units: [
-            { num: "Unit I", topics: "Ecology & Ecosystems: Structure and function, energy flow, food chains, ecological pyramids." },
-            { num: "Unit II", topics: "Natural Resources: Forest, water, mineral, food, energy, and land resources, sustainable development." },
-            { num: "Unit III", topics: "Environmental Pollution: Air, water, soil, noise, thermal, and nuclear hazards, solid waste management." },
-            { num: "Unit IV", topics: "Social Issues & Environment: Climate change, global warming, acid rain, ozone layer depletion, environmental protection acts." }
+            { num: "Unit I", topics: "Fundamentals: The Multidisciplinary nature of environmental studies: Definition, components, scope and importance, need for public awareness; Natural Resources. Ecosystems: Concept, Structure and function of an ecosystem, Types, Functional Components, Different ecosystems, biogeochemical cycles. Biodiversity: Introduction to biodiversity, biogeographical classification, India as a mega diversity nation, endangered and endemic species of India, threats to biodiversity and conservation of biodiversity. Bioprospecting and Biopiracy" },
+            { num: "Unit II", topics: "Environmental Pollution: (a) Air Pollution: Source, Types, effects on biosphere and Meterology, Air Quality, Control. (b) Water Pollution: Types and Sources. (c) Soil Pollution: Types and Control. (d) Noise Pollution: Effect, Control (e) Thermal Pollution. (f) Radiation Pollution (g) Solid waste Management, (h) Pollution Prevention, (i) Disaster Management" },
+            { num: "Unit III", topics: "Social Issues and Environment: Concept of Sustainable Development; Urban problem related to energy; Water Conservation; Wasteland reclamation; Resettlement and Rehabilitation; Climate Change; Nuclear Accidents; Consumerism and Waste Products; Laws related to Environment, Pollution, Forest and Wild life; Environmental Impact Assessment." },
+            { num: "Unit IV", topics: "Human Population and Environment: Population Growth, Human Rights, Family Welfare Programmes, Environment and Human Health, HIV/AIDS, Women and Child Welfare, Role of IT." }
           ]
         },
         {
