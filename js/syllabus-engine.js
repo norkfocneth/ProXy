@@ -313,10 +313,10 @@ const syllabusData = {
           title: "Compiler Design",
           shortDesc: "Lexical Analysis, Parsers, Syntax-Directed Translation, and Code Generation",
           units: [
-            { num: "Unit I", topics: "Introduction to Compilers: Phases of compiler, lexical analyzer generation (LEX)." },
-            { num: "Unit II", topics: "Parsing Techniques: Top-down parsing (LL), bottom-up parsing (LR, LALR, SLR), parser generators (YACC)." },
-            { num: "Unit III", topics: "Syntax-Directed Translation: SDD, SDTS, intermediate code forms: three-address code." },
-            { num: "Unit IV", topics: "Code Optimization: Loop optimization, data flow analysis, code generator architectures." }
+            { num: "Unit I", topics: "Compilers and translators, need of translators, structure of compiler: its different phases, compiler construction tools, Lexical analysis: Role of lexical analyzer, Input Buffering, A simple approach to the design of Lexical Analyzers, Specification and recognition of tokens, Finite automata, From regular expressions to automata, and vice versa, minimizing number of states of DFA, A language for specifying Lexical Analyzers, Design and implementation of lexical analyzer." },
+            { num: "Unit II", topics: "The role of the parser, Context free grammars, Writing a grammar: Lexical versus Syntactic analysis, Eliminating ambiguity, Elimination of left recursion, Left factoring, Top Down Parsing: Recursive- Decent parsing, Non-recursive Predictive parsing, LL(1) grammars, Bottom Up Parsing: Shift Reduce Parsing, Operator precedence parsing, LR Parsing: SLR, LALR and Canonical LR parser, Parser Generators." },
+            { num: "Unit III", topics: "Syntax Directed Translation: Syntax directed definitions, Evaluation orders for SDD's, construction of syntax trees, syntax directed translation schemes, implementation of syntax directed translation, Intermediate Code Generation: Kinds of intermediate code: Postfix notation, Parse trees and syntax trees, Three-address code, quadruples and triples, Semantic Analysis: Types and Declarations, Translation of Expressions, Type checking." },
+            { num: "Unit IV", topics: "Symbol Table: Symbol tables, its contents, Data Structure for Symbol Table: lists, trees, linked lists, hash tables, Error Detection and Recovery: Errors, lexical phase errors, syntactic phase errors, semantic errors, Error seen by each phase. Code Optimization: The principal sources of optimizations, Loop optimization, Basic blocks and Flow Graphs, DAG representation of basic blocks, Code Generation: Issues in the design of code generation, A simple target machine mode, A Simple Code Generator, Peep-hole optimization, Register allocation and assignment." }
           ]
         },
         {
@@ -325,10 +325,10 @@ const syllabusData = {
           title: "Computer Networks",
           shortDesc: "OSI Stack, Ethernet, Routing Protocols, TCP/UDP, and App Protocols",
           units: [
-            { num: "Unit I", topics: "Introduction to networks, physical layer encoding, transmission media, topologies." },
-            { num: "Unit II", topics: "Data link layer: Framing, error control, sliding window protocols, MAC sublayer." },
-            { num: "Unit III", topics: "Network layer: IP addressing, routing algorithms (OSPF, BGP), congestion control." },
-            { num: "Unit IV", topics: "Transport & Application: TCP, UDP, HTTP, DNS, SMTP, network security basics." }
+            { num: "Unit I", topics: "Data Communications: Components, Networks, The Internet, Protocols and Standards, Network Models: The OSI Model, TCP/IP Protocol Suite , A Comparison of the OSI and TCP/IP Reference Models, Addressing, Physical Layer: Analog and Digital Signals, Transmission modes, Transmission Media: Guided Media, Unguided Media, Review of Error Detection and Correction codes. Switching: Circuit switching (space-division, time division and space-time division), packet switching (virtual circuit and Datagram approach), message switching." },
+            { num: "Unit II", topics: "Data Link Layer: Design issues, Data Link Control and Protocols: Flow and Error Control, Stop-and-wait ARQ. Sliding window protocol, Go-Back-N ARQ, Selective Repeat ARQ, HDLC, Point-to -Point Access: PPP Point -to-Point Protocol, PPP Stack, Medium Access Sub layer: Channel allocation problem, Controlled Access, Channelization, multiple access protocols, IEEE standard 802.3 & 802.11 for LANS and WLAN, high-speed LANs, Token ring, Token Bus, FDDI based LAN, Network Devices-repeaters, hubs, switches bridges." },
+            { num: "Unit III", topics: "Network Layer: Design issues, Routing algorithms, Congestion control algorithms, Host to Host Delivery: Internetworking, addressing and routing, IP addressing (class full & Classless), Subnet, Network Layer Protocols: ARP, IPV4, ICMP, IPV6 ad ICMPV6." },
+            { num: "Unit IV", topics: "Transport Layer: Process to Process Delivery: UDP; TCP, congestion control and Quality of service. Application Layer: Client Server Model, Socket Interface, Domain Name System (DNS): Electronic Mail (SMTP), file transfer (FTP), HTTP and WWW." }
           ]
         },
         {
@@ -337,10 +337,10 @@ const syllabusData = {
           title: "Economics for Engineers",
           shortDesc: "Engineering Economics, Microeconomics, Cost Analysis, and Financial Valuation",
           units: [
-            { num: "Unit I", topics: "Introduction to Economics: Demand & Supply analysis, elasticity, engineering economic decision making." },
-            { num: "Unit II", topics: "Cost Concepts & Production: Production functions, cost estimation, breakeven analysis." },
-            { num: "Unit III", topics: "Time Value of Money: Interest formulas, present worth, future worth, internal rate of return (IRR)." },
-            { num: "Unit IV", topics: "Market Structures & Project Evaluation: Perfect competition, monopoly, depreciation methods, inflation analysis." }
+            { num: "Unit I", topics: "Introduction: Economics Definition, Basic economic problems, Resource constraints and welfare maximization. Microand Macro economics. Production Possibility Curve.Circular flow of economic activities. Basics of Demand, Supply and Equilibrium: Demand side and supply side of the market. Factors affecting demand & supply. Elasticity of demand & supply – price, income and cross-price elasticity. Market equilibrium price." },
+            { num: "Unit II", topics: "Theory of Consumer Choice: Theory of Utility and consumer's equilibrium.Indifference Curve analysis, Budget Constraints, Consumer Equilibrium. Demand forecasting:Regression Technique, Time-series, Smoothing Techniques: Exponential, Moving AveragesMethod" },
+            { num: "Unit III", topics: "Cost Theory and Analysis:Nature and types of cost, Cost functions- short run and long run, Economies and diseconomies of scale Market Structure:Market structure and degree of competitionPerfect competition, Monopoly, Monopolistic competition, Oligopoly" },
+            { num: "Unit IV", topics: "National Income Accounting:Overview of Macroeconomics, Basic concepts of NationalIncome Accounting Macro Economics Issues: Introduction to Business Cycle, Inflation-causes,consequences and remedies: Monetary and Fiscal policy." }
           ]
         },
         {
@@ -349,10 +349,10 @@ const syllabusData = {
           title: "Software Engineering",
           shortDesc: "SDLC Models, Requirements Engineering, Testing, and Maintenance",
           units: [
-            { num: "Unit I", topics: "Software Process Models: Waterfall, spiral, prototype, agile models (Scrum)." },
-            { num: "Unit II", topics: "Requirements Engineering: SRS document, software design principles, UML diagrams." },
-            { num: "Unit III", topics: "Coding and Testing: White-box testing, black-box testing, unit, integration, and system testing." },
-            { num: "Unit IV", topics: "Software Metrics: COCOMO model, function points, maintenance, configuration management." }
+            { num: "Unit I", topics: "Introduction to Software- Nature of Software, Introduction to Software Engineering, Software Engineering Layers, Software Myths, The Software Processes, Project, Product, Process Models: A Generic Process Model, Waterfall Model, Incremental Process Models, Evolutionary Process Models, Spiral Model. COCOMO Model. UML diagrams and DFDs" },
+            { num: "Unit II", topics: "Requirements Engineering- Functional and Non-Functional Requirements, The Software Requirements Document, Requirements Specification, Requirements Engineering, Requirements Elicitation and Analysis, Requirement Validation, Requirement Management, DFD, Data Dictionary. Introduction to ER diagrams" },
+            { num: "Unit III", topics: "Software Design- Design concepts and principles - Abstraction - Refinement - Modularity Cohesion coupling, Architectural design, Detailed Design Transaction Transformation, Refactoring of designs, Object-oriented Design User-Interface Design. Software Testing: White-Box Testing, Black Box Testing. Stress Testing. Alpha, Beta, and Acceptance Testing. Debugging." },
+            { num: "Unit IV", topics: "Software Maintenance and Management- Software Maintenance, Types of Maintenance, Software Configuration Management, Overview of RE-engineering Reverse Engineering, Reliability: Failure and Faults, Reliability Models. Quality and Risk Management: Product Metrics, Software Measurements, Metrics for Software Quality, Risk Management: Software Risks, Risk Identification, Risk Projection, Risk Refinements, Risk Mitigation Monitoring and Management (RMMM). Overview Of Quality Management. CMM, ISO 9000, and Six Sigma." }
           ]
         },
         {
@@ -361,10 +361,10 @@ const syllabusData = {
           title: "Algorithm Design and Analysis",
           shortDesc: "Asymptotic Notation, Divide & Conquer, Greedy, Dynamic Programming, and NP-Completeness",
           units: [
-            { num: "Unit I", topics: "Algorithm Analysis: Asymptotic notations, recurrence relations, Master method." },
-            { num: "Unit II", topics: "Divide & Conquer, Greedy Algorithms: Merge sort, Quick sort, Knapsack, Huffman codes, Spanning trees." },
-            { num: "Unit III", topics: "Dynamic Programming, Backtracking: Matrix chain multiplication, LCS, 0/1 Knapsack, N-Queens." },
-            { num: "Unit IV", topics: "Complexity Classes: P, NP, NP-Hard, NP-Complete problems, approximation algorithms." }
+            { num: "Unit I", topics: "Asymptotic notations for time and space complexity, Big-Oh notation, Θ notation, Ω notation, the little-oh notation, the little-omega notation, Recurrence relations: iteration method, recursion tree method, substitution method, master method (with proof), subtract and conquer master method(with proof), Data Structures for Disjoint Sets, Medians and Order statistics. Complexity analysis, Insertion sort, Merge Sort, Quick sort. Strassen's algorithm for Matrix Multiplications." },
+            { num: "Unit II", topics: "Dynamic Programming: Ingredients of Dynamic Programming, emphasis on optimal substructure , overlapping substructures, memorization. Matrix Chain Multiplication, Longest common subsequence and optimal binary search trees problems, 0-1 knapsack problem, Binomial coefficient computation through dynamic programming. Floyd Warshall algorithm." },
+            { num: "Unit III", topics: "Greedy Algorithms: Elements of Greedy strategy, overview of local and global optima, matroid, Activity selection problem, Fractional Knapsack problem, Huffman Codes, A task scheduling problem. Minimum Spanning Trees: Kruskal's and Prim's Algorithm, Single source shortest path: Dijkstra's and Bellman Ford Algorithm(with proof of correctness of algorithms)." },
+            { num: "Unit IV", topics: "String matching: The naïve String Matching algorithm, The Rabin-Karp Algorithm, String Matching with finite automata, The Knuth-Morris Pratt algorithm. NP-Complete Problem: Polynomial-time verification, NP-Completeness and Reducibility, NP-Completeness Proof, NP –hard ,Case study of NP-Complete problems (vertex cover problem, clique problem)." }
           ]
         },
         {
@@ -373,10 +373,10 @@ const syllabusData = {
           title: "Operating System CSE",
           shortDesc: "CPU Scheduling, Synchronization, Memory Management, and Disk Scheduling",
           units: [
-            { num: "Unit I", topics: "OS overview, process state transitions, CPU scheduling algorithms." },
-            { num: "Unit II", topics: "Process synchronization: Semaphores, monitors, classical synchronization problems. Deadlocks." },
-            { num: "Unit III", topics: "Memory management: Paging, segmentation, virtual memory page replacement." },
-            { num: "Unit IV", topics: "File systems structure, disk scheduling algorithms, security and protection." }
+            { num: "Unit I", topics: "Introduction: What is an Operating System, Simple Batch Systems, Multi-programmed Batches systems, Time Sharing Systems, Personal-computer systems, Parallel systems, Distributed Systems, Real-Time Systems, OS – A Resource Manager. Processes: Introduction, Process states, process management, Interrupts, Interprocess Communication. Threads: Introduction, Thread states, Thread Operation, Threading Models. Processor Scheduling: Scheduling levels, preemptive vs no preemptive scheduling, priorities, scheduling objective, scheduling criteria, scheduling algorithms, demand scheduling, real time scheduling." },
+            { num: "Unit II", topics: "Process Synchronization: Mutual exclusion, software solution to Mutual exclusion problem, hardware solution to Mutual exclusion problem, semaphores, Critical section problems. Case study on Dining philosopher problem, Barber shop problem etc. Memory Organization & Management: Memory Organization, Memory Hierarchy, Memory Management Strategies, Contiguous versus non- Contiguous memory allocation, Partition Management Techniques, Logical versus Physical Address space, swapping, Paging, Segmentation, Segmentation with Paging Virtual Memory: Demand Paging, Page Replacement, Page-replacement Algorithms, Performance of Demand Paging, Thrashing, Demand Segmentation, and Overlay Concepts." },
+            { num: "Unit III", topics: "Deadlocks: examples of deadlock, resource concepts, necessary conditions for deadlock, deadlock solution, deadlock prevention, deadlock avoidance with Bankers algorithms, deadlock detection, deadlock recovery. Device Management: Disk Scheduling Strategies, Rotational Optimization, System Consideration, Caching and Buffering." },
+            { num: "Unit IV", topics: "File System: Introduction, File Organization, Logical File System, Physical File System, File Allocation strategy, Free Space Management, File Access Control, Data Access Techniques, Data Integrity Protection, Case study on file system viz FAT32, NTFS, Ext2/Ext3 etc." }
           ]
         }
       ]
@@ -390,10 +390,10 @@ const syllabusData = {
           title: "Universal Human Values",
           shortDesc: "Ethics, Value Education, Harmony in Self, Family, Society, and Nature",
           units: [
-            { num: "Unit I", topics: "Course Introduction: Need, basic guidelines, content and process for value education." },
-            { num: "Unit II", topics: "Understanding Harmony in the Human Being: Harmony in myself, self and body." },
-            { num: "Unit III", topics: "Understanding Harmony in the Family and Society: Harmony in human-human relationship." },
-            { num: "Unit IV", topics: "Understanding Harmony in Nature and Existence: Whole existence as coexistence." }
+            { num: "Unit I", topics: "Introduction-Basic Human Aspiration, its fulfillment through All-encompassing Resolution. The basic human aspirations and their fulfillment through Right understanding and Resolution, Right understanding and Resolution as the activities of the Self, Self being central to Human Existence; All-encompassing Resolution for a Human Being, its details and solution of problems in the light of Resolution." },
+            { num: "Unit II", topics: "Understanding Human Being. Understanding the human being comprehensively as the first step and the core theme of this course; human being as co-existence of the self and the body; the activities and potentialities of the self; Basis for harmony/contradiction in the self." },
+            { num: "Unit III", topics: "Understanding Nature and Existence. A comprehensive understanding (knowledge) about the existence, Nature being included; the need and process of inner evolution (through self-exploration, self-awareness and self-evaluation), particularly awakening to activities of the Self: Realization, Understanding and Contemplation in the Self (Realization of Co-Existence, Understanding of Harmony in Nature and Contemplation of Participation of Human in this harmony/order leading to comprehensive knowledge about the existence)." },
+            { num: "Unit IV", topics: "Understanding Human Conduct, All-encompassing Resolution & Holistic Way of Living. Understanding Human Conduct, different aspects of All-encompassing Resolution (understanding, wisdom, science etc.), Holistic way of living for Human Being with All-encompassing Resolution covering all four dimensions of human endeavor viz., realization, thought, behavior and work (participation in the larger order) leading to harmony at all levels from Self to Nature and entire Existence." }
           ]
         },
         {
@@ -402,10 +402,10 @@ const syllabusData = {
           title: "Web Technologies",
           shortDesc: "HTML5, CSS3, JavaScript, Client-Server Architectures, and Web APIs",
           units: [
-            { num: "Unit I", topics: "Web Basics: HTML5 semantic tags, CSS3 layouts, flexbox, grid, responsive web design." },
-            { num: "Unit II", topics: "JavaScript Programming: ES6 syntax, DOM manipulation, asynchronous JS, Promises, Fetch API." },
-            { num: "Unit III", topics: "Server-side Web Development: Node.js, Express framework, RESTful API design." },
-            { num: "Unit IV", topics: "Database Integration: MongoDB, Mongoose ORM, sessions, authentication (JWT)." }
+            { num: "Unit I", topics: "HTML: Basic Syntax, Standard HTML Document Structure, Basic Text Markup, Html styles, Elements, Attributes, Heading, Layouts, I frames Images, Hypertext Links, Lists, Tables, Forms, Dynamic HTML. CSS: Need for CSS, introduction to CSS, basic syntax and structure, using CSS, background images, colors, and properties, manipulating texts, using fonts, borders, boxes, margins, padding lists, positioning using CSS, CSS2, The Box Model, Working with XML: Document Type Definition (DTD), XML schemas, Document object model, Parsers -DOM, and SAX. Introduction to XHTML: XML, Meta tags, Character entities, frames, and frame sets." },
+            { num: "Unit II", topics: "JavaScript - Client-side scripting, Introduction to JavaScript, Objects, Primitives Operations and Expressions, Control Statements, Arrays, Functions, Constructors, JavaScript, and objects, JavaScript own objects, the DOM and web browser environments, forms and validations. Introduction to JSP: The Anatomy of a JSP Page, JSP Processing, Declarations, Directives, Expressions, Code Snippets, implicit objects, Using Beans in JSP Pages, Using Cookies and session for session tracking, connecting to database in JSP." },
+            { num: "Unit III", topics: "Introduction to Server-Side Development with PHP, what is Server-Side Development, A Web Server's Responsibilities, Quick Tour of PHP, Introduction and basic syntax of PHP, decision and looping with examples, PHP and HTML, Arrays, Functions, Browser control and detection, string, Form processing, Files, Advance Features: Cookies and Sessions." },
+            { num: "Unit IV", topics: "PHP and MySQL: Basic commands with PHP examples, Connection to the server, creating a database, selecting a database, listing database, listing table names, creating a table, inserting data, altering tables, queries, deleting the database, deleting data, and tables, PHP my admin and database bugs. Managing State, The Problem of State in Web Applications, Passing Information via Query Strings, Passing Information via the URL Path, Cookies, Serialization, Session State." }
           ]
         },
         {
@@ -414,10 +414,10 @@ const syllabusData = {
           title: "Programming in Python",
           shortDesc: "Python Fundamentals, Data Structures, OOP, Modules, and File I/O",
           units: [
-            { num: "Unit I", topics: "Python Syntax, Data Types, Control Structures, Loops, Functions, Lambda expressions." },
-            { num: "Unit II", topics: "Data Structures: Lists, Tuples, Dictionaries, Sets, List Comprehensions." },
-            { num: "Unit III", topics: "Object-Oriented Python: Classes, Objects, Inheritance, Polymorphism, Operator Overloading." },
-            { num: "Unit IV", topics: "Modules & File Handling: Standard libraries, NumPy/Pandas intro, exception handling, file I/O." }
+            { num: "Unit I", topics: "Introduction, Python Basics: Entering Expressions into the Interactive Shell, The Integer, Floating-Point, and String Data Types, String Concatenation and Replication, Storing Values in Variables, Your First Program, Dissecting Your Program. Flow control: Boolean Values, Comparison Operators, Boolean Operators, Mixing Boolean and Comparison Operators, Elements of Flow Control, Program Execution, Flow Control Statements, Importing Modules, Ending a Program Early with sys.exit()" },
+            { num: "Unit II", topics: "Functions: def Statements with Parameters, Return Values and return Statements, The None Value, Keyword Arguments and print(), Local and Global Scope, The global Statement, Exception Handling. Lists: The List Data Type, Working with Lists, Augmented Assignment Operators, Methods. Dictionaries and Structuring Data: The Dictionary Data Type, Pretty Printing, Using Data Structures to Model Real-World Things. Manipulating Strings - Working with Strings, Useful String Methods" },
+            { num: "Unit III", topics: "Reading and Writing Files: Files and File Paths, The os.path Module, The File Reading/Writing Process, Saving Variables with the shelve Module, Saving Variables with the pprint.pformat() Function. Organizing Files: The shutil Module, Walking a Directory Tree, Compressing Files with the zipfile Module" },
+            { num: "Unit IV", topics: "Web Scraping: Project: MAPIT.PY with the web browser Module, Downloading Files from the Web with the requests Module, Saving Downloaded Files to the Hard Drive, HTML" }
           ]
         },
         {
@@ -426,10 +426,10 @@ const syllabusData = {
           title: "Statistics, Statistical Modelling and Simulation",
           shortDesc: "Probability Distributions, Hypothesis Testing, Regression, and Simulation Models",
           units: [
-            { num: "Unit I", topics: "Probability & Random Variables: Joint distributions, expectation, variance, correlation." },
-            { num: "Unit II", topics: "Hypothesis Testing: Large and small sample tests, t-test, z-test, Chi-square test, ANOVA." },
-            { num: "Unit III", topics: "Statistical Modelling: Linear and multiple regression analysis, time series analysis." },
-            { num: "Unit IV", topics: "Simulation Techniques: Monte Carlo simulation, random number generation, queuing models." }
+            { num: "Unit I", topics: "Statistics: Introduction & Descriptive Statistics- mean, median, mode, variance, and standard deviation. Data Visualization, Introduction to Probability Distributions. Hypothesis testing, Linear Algebra and Population Statistics, Mathematical Methods and Probability Theory, Sampling Distributions and Statistical Inference, Quantitative analysis." },
+            { num: "Unit II", topics: "Statistical Modelling: Linear models, regression analysis, analysis of variance, applications in various fields. Gauss-Markov theorem; geometry of least squares, subspace formulation of linear models, orthogonal projections; regression models, factorial experiments, analysis of covariance and model formulae; regression diagnostics, residuals, influence diagnostics, transformations, Box-Cox models, model selection and model building strategies, logistic regression models; Poisson regression models." },
+            { num: "Unit III", topics: "Data Analytics: Describe classes of open and closed set. Apply the concept of compactness. Describe Metric space - Metric in Rn. Use the concept of Cauchy sequence, completeness, compactness and connectedness to solve the problems." },
+            { num: "Unit IV", topics: "Advanced concepts in Data Analytics: Describe vector space, subspaces, independence of vectors, basis and dimension. Describe Eigen values, Eigen vectors and related results." }
           ]
         },
         {
@@ -438,10 +438,10 @@ const syllabusData = {
           title: "Principles of Management for Engineers",
           shortDesc: "Management Functions, Organizational Behavior, Project Leadership, and Ethics",
           units: [
-            { num: "Unit I", topics: "Introduction to Management: Functions of management, planning, organizing, staffing, leading, controlling." },
-            { num: "Unit II", topics: "Organizational Behavior: Individual behavior, motivation theories, leadership styles, team dynamics." },
-            { num: "Unit III", topics: "Strategic Management: SWOT analysis, decision making models, organizational structure." },
-            { num: "Unit IV", topics: "Engineering Ethics & Business Law: Corporate governance, intellectual property, contracts, sustainability." }
+            { num: "Unit I", topics: "Introduction to Managers and Management: Management an Overview, Definition of Management, Role of Management, Functions of Managers, Levels of Management, Management Skills and Organizational Hierarchy, Social and Ethical Responsibilities of Management: Arguments for and against Social Responsibilities of Business, Social Stakeholders, Measuring Social Responsiveness and Managerial Ethics, Omnipotent and Symbolic View, Characteristics and importance of organizational culture, Relevance of political, legal, economic and Cultural environments to global business, Structures and techniques organizations use as they go international." },
+            { num: "Unit II", topics: "Planning: Nature & Purpose, Steps involved in Planning, Objectives, Setting Objectives, Process of Managing by Objectives, Strategies, Policies & Planning Premises, Competitor Intelligence, Benchmarking, Forecasting, Decision-Making, Directing: Scope, Human Factors, Creativity and Innovation, Harmonizing Objectives, Leadership, Types of Leadership, Directing, Managers as leaders, Early Leadership Theories...Trait Theories, Behavioral Theories, Managerial Grid, Contingency Theories of Leadership, Directing ...PathGoal Theory, contemporary views of Leadership, CrossCultural Leadership, Leadership Training, Substitutes of Leadership." },
+            { num: "Unit III", topics: "Organizing: Organizing, Benefits and Limitations-De-Centralization and Delegation of Authority, Authority versus Power, Mechanistic Versus Organic Organization, Common Organizational Designs, Contemporary Organizational Designs and Contingency Factors, The Learning Organization Nature and Purpose, Formal and Informal Organization, Organization Chart, Structure and Process, Departmentalization by difference strategies, Line and Staff authority- Benefits and Limitations-De-Centralization and Delegation of Authority Versus, Staffing, Human Resource Inventory, Job Analysis, Job Description, Recruitment and." },
+            { num: "Unit IV", topics: "Controlling: Controlling, Introduction to Controlling System and process of Controlling, Requirements for effective control, The planning Control link, The process of control, types of control The Budget as Control Technique, Information Technology in Controlling, Productivity, Problems and Management, Control of Overall Performance, Direct and Preventive Control, Financial Controls, Tools for measuring organizational Performance, Contemporary issues in control Workplace concerns, employee theft, employee violence." }
           ]
         },
         {
@@ -450,10 +450,10 @@ const syllabusData = {
           title: "Advanced Java Programming",
           shortDesc: "Java EE, Servlets, JSP, Hibernate, Spring Framework, and Microservices",
           units: [
-            { num: "Unit I", topics: "Java Database Connectivity (JDBC): Architecture, Statement, PreparedStatement, ResultSet, transactions." },
-            { num: "Unit II", topics: "Servlet Technology: Servlet lifecycle, HTTP GET/POST, session tracking, filters." },
-            { num: "Unit III", topics: "Java Server Pages (JSP): JSP tags, implicit objects, JavaBeans, Custom tags." },
-            { num: "Unit IV", topics: "Frameworks: Spring Boot basics, Dependency Injection, Hibernate ORM, REST microservices." }
+            { num: "Unit I", topics: "Introduction to Java, Inheritance, Exception Handling, Multithreading, Applet Programming, Connecting to a Server, Implementing Servers, Making URL Connections, Socket Programming" },
+            { num: "Unit II", topics: "Preparing a Class to be a Java Bean, Creating a Java Bean, Java Bean Properties, Types of beans, Stateful Session bean, Stateless Session bean, Entity bean, Servlet Overview and Architecture, Interface Servlet and the Servlet LifeCycle, Handling HTTP GET Requests, Handling HTTP POST Requests, Session Tracking, Cookies" },
+            { num: "Unit III", topics: "JSP: Introduction, Java Server Pages Overview, Implicit Objects, Scripting, Standard Actions, Directives, Custom Tag Libraries" },
+            { num: "Unit IV", topics: "The Roles of Client and Server, Remote Method Invocations, Setup for Remote Method Invocation, Parameter Passing in Remote Methods, Introduction of HB, HB Architecture" }
           ]
         },
         {
@@ -462,10 +462,10 @@ const syllabusData = {
           title: "Artificial Intelligence",
           shortDesc: "Heuristic Search, Knowledge Representation, Fuzzy Logic, and Expert Systems",
           units: [
-            { num: "Unit I", topics: "AI overview, state space search, heuristic search: A* algorithm, game playing." },
-            { num: "Unit II", topics: "Knowledge representation, predicate logic, resolution, semantic networks." },
-            { num: "Unit III", topics: "Reasoning under uncertainty, Bayesian networks, fuzzy logic basics." },
-            { num: "Unit IV", topics: "Planning, Machine learning introduction, Expert systems, NLP overview." }
+            { num: "Unit I", topics: "AI Definition, Problems, The Foundations of Artificial Intelligence, Techniques, Models, Defining Problem as a state space search, production system, Intelligent Agents: Agents and Environments, Characteristics, Search methods and issues in the design of search problems." },
+            { num: "Unit II", topics: "Knowledge representation issues, mapping, frame problem. Predicate logic, facts in logic, representing instance and Isa relationship, Resolution, procedural and declarative knowledge, matching, control knowledge. Symbolic reasoning under uncertainty, Non monotonic reasoning, statistical reasoning." },
+            { num: "Unit III", topics: "Game Playing, minimax search, Alfa beta cutoffs, Natural Language Processing, Learning, Explanation-based learning, discovery, analogy, Neural net learning and Genetic Learning." },
+            { num: "Unit IV", topics: "Fuzzy logic systems, Perception and action, Expert systems, Inference in BayesianNetworks, K-means Clustering Algorithm, Machine learning." }
           ]
         },
         {
@@ -474,10 +474,10 @@ const syllabusData = {
           title: "Machine Learning",
           shortDesc: "Supervised Learning, Neural Networks, Clustering, and Model Evaluation",
           units: [
-            { num: "Unit I", topics: "Supervised Learning: Linear regression, logistic regression, decision trees, Naive Bayes." },
-            { num: "Unit II", topics: "Support Vector Machines & Ensemble Learning: Random Forests, Boosting, Bagging." },
-            { num: "Unit III", topics: "Unsupervised Learning: K-means clustering, Hierarchical clustering, PCA, Dimensionality Reduction." },
-            { num: "Unit IV", topics: "Neural Networks & Deep Learning Intro: Perceptron, Backpropagation, Evaluation metrics (ROC, F1)." }
+            { num: "Unit I", topics: "Introduction: Machine learning, terminologies in machine learning, Perspectives and issues in machine learning, application of Machine learning, Types of machine learning: supervised, unsupervised, semi-supervised learning. Review of probability, Basic Linear Algebra in Machine Learning Techniques, Dataset and its types, Data preprocessing, Bias and Variance in Machine learning, Function approximation, Overfitting" },
+            { num: "Unit II", topics: "Regression Analysis in Machine Learning: Introduction to regression and its terminologies, Types of regression, Logistic Regression Simple Linear regression: Introduction to Simple Linear Regression and its assumption, Simple Linear Regression Model Building,Ordinary Least square estimation, Properties of the least-squares estimators and the fitted regression model, Interval estimation in simple linear regression, Residuals Multiple Linear Regression: Multiple linear regression model and its assumption, Interpret Multiple Linear Regression Output(R-Square, Standard error, F, Significance F, Cofficient P values), Access the fit of multiple linear regression model (R squared, Standard error) Feature Selection and Dimensionality Reduction: PCA, LDA, ICA" },
+            { num: "Unit III", topics: "Introduction to Classification and Classification Algorithms: What is Classification? General Approach to Classification, k-Nearest Neighbor Algorithm, Random Forests, Fuzzy Set Approaches Support Vector Machine: Introduction, Types of support vector kernel - (Linear kernel, polynomial kernel, and Gaussiankernel), Hyperplane - (Decision surface), Properties of SVM, and Issues in SVM. Decision Trees: Decision tree learning algorithm,ID-3algorithm, Inductive bias, Entropy and information theory, Information gain,Issues in Decision tree learning. Bayesian Learning - Bayes theorem, Concept learning, Bayes Optimal Classifier, Naïve Bayes classifier, Bayesian belief networks, EM algorithm Ensemble Methods: Bagging, Boosting and AdaBoost and XBoost, Classification Model Evaluation and Selection: Sensitivity, Specificity, Positive Predictive Value, Negative Predictive Value, Lift Curves and Gain Curves, ROC Curves, Misclassification Cost Adjustment to Reflect Real-World Concerns, Decision Cost/Benefit Analysis" },
+            { num: "Unit IV", topics: "Introduction to Cluster Analysis and Clustering Methods: The Clustering Task and the Requirements for Cluster Analysis , Overview of Some Basic Clustering Methods :- k-Means Clustering, k-Medoids Clustering, Density-Based Clustering: DBSCAN - Density-Based Clustering Based on Connected Regions with High Density, Gaussian Mixture Model algorithm , Balance Iterative Reducing and Clustering using Hierarchies (BIRCH) , Affinity Propagation clustering algorithm,Mean-Shift clustering algorithm, ordering Points to Identify the Clustering Structure (OPTICS) algorithm, Agglomerative Hierarchy clustering algorithm, Divisive Hierarchical, Measuring Clustering Goodness" }
           ]
         },
         {
@@ -486,10 +486,10 @@ const syllabusData = {
           title: "Operating System AIML",
           shortDesc: "OS Kernels, Resource Scheduling, Virtual Memory, and Parallel Execution for AI",
           units: [
-            { num: "Unit I", topics: "Operating System Fundamentals: Kernel architectures, system calls, process management." },
-            { num: "Unit II", topics: "Concurrency & GPU Scheduling: Threads, synchronization, deadlock handling, GPU resource allocation." },
-            { num: "Unit III", topics: "Memory & Storage Systems: Virtual memory management, page replacement algorithms, high-throughput I/O." },
-            { num: "Unit IV", topics: "AI Workload Execution: Distributed OS, containerized environments (Docker, K8s), parallel execution pipelines." }
+            { num: "Unit I", topics: "Introduction: Operating system and function, Evolution of operating system, Batch, Interactive, Time Sharing and Real Time System, System protection. Operating System Structure: System Components, System structure, Operating System Services. CPU Scheduling: Scheduling Concept, process scheduling strategies- First-Come, First-Served (FCFS) Scheduling, Shortest-Job-Next (SJN) Scheduling, Priority Scheduling, Shortest Remaining Time, Round Robin (RR) Scheduling, Multiple-Level Queues Scheduling, Performance Criteria of Scheduling Algorithm, Evolution, Multiprocessor Scheduling." },
+            { num: "Unit II", topics: "Concurrent Processes: Process concept, Principle of Concurrency, Producer Consumer Problem, Critical Section problem, Semaphores, Binary and counting semaphores, P() and V() operations, Classical problems in Concurrency, Inter Process Communication, Process Generation, Process Scheduling. Deadlocks: examples of deadlock, resource concepts, necessary conditions for deadlock, deadlock solution, deadlock prevention, deadlock avoidance with Bankers algorithms, deadlock detection, deadlock recovery." },
+            { num: "Unit III", topics: "Memory Organization & Management: Memory Organization, Memory Hierarchy, Memory Management Strategies, Contiguous versus non- Contiguous memory allocation, Partition Management Techniques, Logical versus Physical Address space, swapping, Paging, Segmentation, Segmentation with Paging Virtual Memory: Demand Paging, Page Replacement, Page-replacement Algorithms, Performance of Demand Paging, Thrashing, Demand Segmentation, and Overlay Concepts." },
+            { num: "Unit IV", topics: "I/O Device and the organization: I/O Device and the organization of the I/O function, I/O Buffering, Disk I/O, Disk Scheduling Algorithms, File system: File Concepts, attributes, operations, File organization and Access mechanism, disk space allocation methods, Directory structure, free disk space management, File sharing, Implementation issues. Case studies: Unix system, Windows XP." }
           ]
         }
       ]
