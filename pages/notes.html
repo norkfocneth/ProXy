@@ -231,6 +231,32 @@
         }
       }
 
+      function normalizeSubjectName(name) {
+        if (!name) return '';
+        let str = name.toLowerCase();
+        
+        str = str.replace(/\b1\b/g, 'i')
+                 .replace(/\b2\b/g, 'ii')
+                 .replace(/\b3\b/g, 'iii')
+                 .replace(/\b4\b/g, 'iv')
+                 .replace(/\bi\b/g, 'i')
+                 .replace(/\bii\b/g, 'ii')
+                 .replace(/\biii\b/g, 'iii')
+                 .replace(/\biv\b/g, 'iv');
+
+        str = str.replace(/[^a-z0-9]/g, '');
+
+        str = str.replace(/applied/g, '')
+                 .replace(/basic/g, '')
+                 .replace(/science/g, '')
+                 .replace(/engineering/g, '')
+                 .replace(/programming/g, '')
+                 .replace(/graphics/g, '')
+                 .replace(/process/g, '');
+                 
+        return str.trim();
+      }
+
       function renderShelf(subjects) {
         shelfContainer.innerHTML = '';
 
@@ -262,8 +288,8 @@
 
               // Match with Supabase note uploads
               const matchingNote = dbNotes.find(note => {
-                const noteSubject = (note.subject || '').toLowerCase().trim();
-                const currentSubject = sub.title.toLowerCase().trim();
+                const noteSubject = normalizeSubjectName(note.subject);
+                const currentSubject = normalizeSubjectName(sub.title);
                 if (noteSubject !== currentSubject) return false;
 
                 // Explicit unit check if specified
