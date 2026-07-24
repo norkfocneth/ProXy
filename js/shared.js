@@ -88,6 +88,7 @@ function injectNavbar(activePage = 'Home') {
   // Setup listeners
   setupSearchOverlay();
   setupMobileMenuToggle();
+  setupThemeToggle();
 }
 
 function setupMobileMenuToggle() {
@@ -109,6 +110,44 @@ function setupMobileMenuToggle() {
       }
     });
   }
+}
+
+function setupThemeToggle() {
+  const toggleBtn = document.getElementById('themeToggle');
+  if (!toggleBtn) return;
+
+  // Initialize theme from localStorage or default to dark
+  const currentTheme = localStorage.getItem('theme') || 'dark';
+  if (currentTheme === 'light') {
+    document.documentElement.classList.add('light-theme');
+    document.documentElement.classList.remove('dark-theme');
+    document.body.classList.add('light-mode');
+    document.body.classList.remove('dark-mode');
+  } else {
+    document.documentElement.classList.add('dark-theme');
+    document.documentElement.classList.remove('light-theme');
+    document.body.classList.add('dark-mode');
+    document.body.classList.remove('light-mode');
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    const isLight = document.documentElement.classList.contains('light-theme') || document.body.classList.contains('light-mode');
+    if (isLight) {
+      document.documentElement.classList.remove('light-theme');
+      document.documentElement.classList.add('dark-theme');
+      document.body.classList.remove('light-mode');
+      document.body.classList.add('dark-mode');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.add('light-theme');
+      document.documentElement.classList.remove('dark-theme');
+      document.body.classList.add('light-mode');
+      document.body.classList.remove('dark-mode');
+      localStorage.setItem('theme', 'light');
+    }
+    // Dispatch a global event so any specialized pages can sync automatically
+    window.dispatchEvent(new Event('themechange'));
+  });
 }
 
 // ── Search Overlay (Ctrl+K Spotlight) ──
@@ -424,6 +463,7 @@ window.ProxyUI = {
   injectBackgroundGlows,
   setupCarousel,
   injectCinematicIntro,
+  setupThemeToggle,
 };
 
 // Global smooth scroll interceptor for home section links

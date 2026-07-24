@@ -2,6 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script>
+    (function() {
+      const theme = localStorage.getItem('theme') || 'dark';
+      if (theme === 'dark') {
+        document.documentElement.className = 'dark-theme';
+        document.addEventListener('DOMContentLoaded', () => {
+          document.body.classList.remove('light-mode');
+          document.body.classList.add('dark-mode');
+        });
+      } else {
+        document.documentElement.className = 'light-theme';
+        document.addEventListener('DOMContentLoaded', () => {
+          document.body.classList.add('light-mode');
+          document.body.classList.remove('dark-mode');
+        });
+      }
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Founders — Proxy</title>
   <meta name="description" content="Meet the core hierarchy behind Proxy. Join our tree.">
@@ -18,31 +36,31 @@
 
     body, body.light-mode {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-      background: #f4f7f0 !important;
-      color: #1a2e1a !important;
+      background: #0c0c14 !important;
+      color: #e8e8ed !important;
       overflow-x: hidden !important;
       min-height: 100vh !important;
       -webkit-font-smoothing: antialiased;
     }
 
     :root {
-      --g50: #f0fdf4;
-      --g100: #dcfce7;
-      --g200: #bbf7d0;
-      --g300: #86efac;
-      --g400: #4ade80;
+      --g50: #0f1a12;
+      --g100: #162418;
+      --g200: #1e3420;
+      --g300: #28542e;
+      --g400: #34804a;
       --g500: #22c55e;
-      --g600: #16a34a;
-      --g700: #15803d;
-      --g800: #166534;
-      --txt: #1a2e1a;
-      --txt2: #3d5c3d;
+      --g600: #4ade80;
+      --g700: #86efac;
+      --g800: #bbf7d0;
+      --txt: #e8e8ed;
+      --txt2: #9aaa9a;
       --txt3: #6b8f6b;
-      --card: rgba(255, 255, 255, 0.78);
-      --card-b: rgba(21, 128, 61, 0.07);
-      --sh-s: 0 4px 12px rgba(20, 83, 45, 0.04);
-      --sh-m: 0 12px 30px rgba(20, 83, 45, 0.06);
-      --sh-l: 0 20px 50px rgba(20, 83, 45, 0.08);
+      --card: rgba(18, 22, 28, 0.82);
+      --card-b: rgba(34, 197, 94, 0.08);
+      --sh-s: 0 4px 12px rgba(0, 0, 0, 0.2);
+      --sh-m: 0 12px 30px rgba(0, 0, 0, 0.25);
+      --sh-l: 0 20px 50px rgba(0, 0, 0, 0.3);
       --ease: cubic-bezier(0.16, 1, 0.3, 1);
       --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
     }
@@ -53,7 +71,7 @@
       inset: 0;
       z-index: 0;
       pointer-events: none;
-      background: linear-gradient(165deg, #f4f7f0 0%, #eaf2e2 50%, #f0f6ea 100%);
+      background: linear-gradient(165deg, #0c0c14 0%, #0e1210 50%, #0c0f0c 100%);
     }
     .bg-glows::before {
       content: '';
@@ -62,7 +80,7 @@
       left: 10%;
       width: 50%;
       height: 50%;
-      background: radial-gradient(circle, rgba(134, 239, 172, 0.15) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(34, 197, 94, 0.08) 0%, transparent 70%);
       filter: blur(80px);
     }
 
