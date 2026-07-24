@@ -585,7 +585,7 @@ const ProxyAI = {
         tips: "Draw dry-run tables for loops, write clear code with comments, and understand pointers and file I/O thoroughly."
       },
       "bs-121": {
-        name: "Applied Mathematics - II",
+        name: "Applied Mathematics 2",
         code: "BS-121",
         sem: 2,
         important: [
@@ -596,7 +596,7 @@ const ProxyAI = {
         tips: "Laplace convolution and Vector integral theorems (Gauss divergence/Stokes) are very important. Practice steps carefully."
       },
       "bs-122": {
-        name: "Applied Physics - II",
+        name: "Applied Physics 2",
         code: "BS-122",
         sem: 2,
         important: [
@@ -606,6 +606,30 @@ const ProxyAI = {
           "Solid State Physics (Crystal structures, Bravais lattice, superconductivity)"
         ],
         tips: "Derivation of Maxwell's equations and Schrodinger's time-dependent/independent equations are core. Practice crystal structure definitions."
+      },
+      "es-110": {
+        name: "Workshop",
+        code: "ES-110",
+        sem: 2,
+        important: [
+          "Fitting shop tools, filing, sawing, and tapping operations",
+          "Carpentry shop joints & timber classification",
+          "Welding & foundry shop joint preparations",
+          "Machine shop lathe operations & safety practices"
+        ],
+        tips: "Focus on neat sketches of joints (dovetail, mortise & tenon) and lathe tool terminology."
+      },
+      "es-108": {
+        name: "Engineering Mechanics",
+        code: "ES-108",
+        sem: 2,
+        important: [
+          "Force Systems: Coplanar concurrent forces, resultant, Lami's theorem",
+          "Equilibrium of Rigid Bodies: Free body diagrams, trusses (Method of Joints)",
+          "Centroid and Moment of Inertia (Parallel axis theorem)",
+          "Friction: Laws, wedge friction, belt friction"
+        ],
+        tips: "Always draw a Free Body Diagram (FBD) first. Equilibrium equations sum(Fx)=0, sum(Fy)=0, sum(M)=0 solve most problems."
       },
       "cs-122": {
         name: "Programming in C++",

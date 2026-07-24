@@ -125,9 +125,21 @@ const syllabusData = {
       desc: "Strengthen core engineering constructs and object-oriented paradigms.",
       subjects: [
         {
+          code: "CS-101",
+          icon: "</>",
+          title: "Programming in C",
+          shortDesc: "Algorithms, Syntax, Control structures, and Files",
+          units: [
+            { num: "Unit I", topics: "Basics of Computers, Algorithms, Flowcharts, C fundamentals: Data types, operators, expressions." },
+            { num: "Unit II", topics: "Control Statements: Decision making, branching, looping structures, arrays and strings." },
+            { num: "Unit III", topics: "Functions: Parameter passing, recursion. Structures and Unions, preprocessors." },
+            { num: "Unit IV", topics: "Pointers: Pointer arithmetic, dynamic memory allocation. File handling in C." }
+          ]
+        },
+        {
           code: "BS-121",
           icon: "∫",
-          title: "Applied Mathematics - II",
+          title: "Applied Mathematics 2",
           shortDesc: "Vector Calculus, Laplace Transforms, and Ordinary Differential Equations",
           units: [
             { num: "Unit I", topics: "Ordinary Differential Equations: First order exact equations, linear differential equations of higher order." },
@@ -139,37 +151,13 @@ const syllabusData = {
         {
           code: "BS-122",
           icon: "⚛",
-          title: "Applied Physics - II",
+          title: "Applied Physics 2",
           shortDesc: "Electromagnetism, Solid State Physics, and Quantum Mechanics",
           units: [
             { num: "Unit I", topics: "Electromagnetic Theory: Gauss's law, Ampere's law, Faraday's law, Maxwell's equations." },
             { num: "Unit II", topics: "Quantum Mechanics: de Broglie waves, Heisenberg uncertainty principle, Schrodinger wave equation." },
             { num: "Unit III", topics: "Statistical Mechanics: Maxwell-Boltzmann, Bose-Einstein, and Fermi-Dirac statistics." },
             { num: "Unit IV", topics: "Solid State Physics: Crystal structure, Bravais lattices, band theory of solids, superconductors." }
-          ]
-        },
-        {
-          code: "CS-122",
-          icon: "++",
-          title: "Programming in C++",
-          shortDesc: "Object-Oriented Programming, Classes, Templates, and STL",
-          units: [
-            { num: "Unit I", topics: "OOP basics, C++ vs C, Classes, Objects, constructors and destructors." },
-            { num: "Unit II", topics: "Operator overloading, function overloading, friend functions." },
-            { num: "Unit III", topics: "Inheritance: Single, multiple, hierarchical, virtual base classes. Polymorphism." },
-            { num: "Unit IV", topics: "Templates, exception handling, standard template library (STL)." }
-          ]
-        },
-        {
-          code: "ES-106",
-          icon: "📟",
-          title: "Basic Electronics Engineering",
-          shortDesc: "Semiconductors, Diodes, Transistors, and Digital Logic Basics",
-          units: [
-            { num: "Unit I", topics: "Semiconductor Diodes: P-N junction, Zener diode, Rectifiers, Clippers and Clampers." },
-            { num: "Unit II", topics: "Bipolar Junction Transistors: CE, CB, CC configurations, biasing circuits, load line analysis." },
-            { num: "Unit III", topics: "Field Effect Transistors: JFET, MOSFET characteristics, operational amplifiers." },
-            { num: "Unit IV", topics: "Digital Electronics: Number systems, Boolean algebra, Logic gates, Combinational logic circuit basics." }
           ]
         },
         {
@@ -185,8 +173,20 @@ const syllabusData = {
           ]
         },
         {
+          code: "ES-105",
+          icon: "🔌",
+          title: "Electrical Science",
+          shortDesc: "DC/AC Circuits, Network Theorems, Transformers & Motors",
+          units: [
+            { num: "Unit I", topics: "DC Circuits: Mesh and Node analysis, Network theorems: Thevenin, Norton, Superposition, Maximum Power Transfer." },
+            { num: "Unit II", topics: "AC Circuits: Single phase RLC series and parallel circuits, phasor diagrams, resonance." },
+            { num: "Unit III", topics: "Transformers: Principles of operation, EMF equation, equivalent circuit, efficiency and regulation." },
+            { num: "Unit IV", topics: "Electrical Machines: DC machines operating principles, single phase induction motors, three-phase systems." }
+          ]
+        },
+        {
           code: "HS-102",
-          icon: "🗣",
+          icon: "💬",
           title: "Communication Skills",
           shortDesc: "Grammar, Technical Writing, and Group Discussions",
           units: [
@@ -194,6 +194,42 @@ const syllabusData = {
             { num: "Unit II", topics: "Grammar & Vocabulary: Common errors, active-passive voice, direct-indirect speech, idioms." },
             { num: "Unit III", topics: "Technical Writing: Letter writing, resumes, report writing, emails, proposals." },
             { num: "Unit IV", topics: "Speaking Skills: Group discussions, presentations, interviews, public speaking." }
+          ]
+        },
+        {
+          code: "HS-101",
+          icon: "🌱",
+          title: "Environmental Science",
+          shortDesc: "Ecology, Ecosystems, Biodiversity & Pollution Control",
+          units: [
+            { num: "Unit I", topics: "Ecology & Ecosystems: Structure and function, energy flow, food chains, ecological pyramids." },
+            { num: "Unit II", topics: "Natural Resources: Forest, water, mineral, food, energy, and land resources, sustainable development." },
+            { num: "Unit III", topics: "Environmental Pollution: Air, water, soil, noise, thermal, and nuclear hazards, solid waste management." },
+            { num: "Unit IV", topics: "Social Issues & Environment: Climate change, global warming, acid rain, ozone layer depletion, environmental protection acts." }
+          ]
+        },
+        {
+          code: "BS-113",
+          icon: "🔬",
+          title: "Applied Chemistry-1",
+          shortDesc: "Physical, Organic & Inorganic Engineering Chemistry",
+          units: [
+            { num: "Unit I", topics: "Water Technology: Hardness of water, estimation by EDTA, boiler troubles, water softening processes." },
+            { num: "Unit II", topics: "Fuels & Combustion: Classification, Calorific value determination, coal analysis, petroleum cracking." },
+            { num: "Unit III", topics: "Polymers & Composite Materials: Monomers, polymerization types, thermoplastics, thermosetting resins, biopolymers." },
+            { num: "Unit IV", topics: "Corrosion & its Control: Chemical and electrochemical corrosion, protective coatings, cathodic protection." }
+          ]
+        },
+        {
+          code: "ES-110",
+          icon: "🛠",
+          title: "Workshop",
+          shortDesc: "Fitting, Carpentry, Foundry, Welding, and Machine Shop Practice",
+          units: [
+            { num: "Unit I", topics: "Fitting Shop: Fitting tools, layout marking, measuring tools, sawing, filing, tapping and dieing operations." },
+            { num: "Unit II", topics: "Carpentry Shop: Timber classification, seasoning, carpentry tools, joints (halving, mortise & tenon, dovetail)." },
+            { num: "Unit III", topics: "Foundry & Welding Shop: Molding sands, cores, pattern types, arc & gas welding joint preparations." },
+            { num: "Unit IV", topics: "Sheet Metal & Machine Shop: Sheet metal tools, joints, seams, lathe machine operations, safety practices." }
           ]
         }
       ]
@@ -755,9 +791,21 @@ const syllabusData = {
       desc: "Strengthen core engineering constructs and object-oriented paradigms.",
       subjects: [
         {
+          code: "CS-101",
+          icon: "</>",
+          title: "Programming in C",
+          shortDesc: "Algorithms, Syntax, Control structures, and Files",
+          units: [
+            { num: "Unit I", topics: "Basics of Computers, Algorithms, Flowcharts, C fundamentals: Data types, operators, expressions." },
+            { num: "Unit II", topics: "Control Statements: Decision making, branching, looping structures, arrays and strings." },
+            { num: "Unit III", topics: "Functions: Parameter passing, recursion. Structures and Unions, preprocessors." },
+            { num: "Unit IV", topics: "Pointers: Pointer arithmetic, dynamic memory allocation. File handling in C." }
+          ]
+        },
+        {
           code: "BS-121",
           icon: "∫",
-          title: "Applied Mathematics - II",
+          title: "Applied Mathematics 2",
           shortDesc: "Vector Calculus, Laplace Transforms, and Ordinary Differential Equations",
           units: [
             { num: "Unit I", topics: "Ordinary Differential Equations: First order exact equations, linear differential equations of higher order." },
@@ -769,37 +817,13 @@ const syllabusData = {
         {
           code: "BS-122",
           icon: "⚛",
-          title: "Applied Physics - II",
+          title: "Applied Physics 2",
           shortDesc: "Electromagnetism, Solid State Physics, and Quantum Mechanics",
           units: [
             { num: "Unit I", topics: "Electromagnetic Theory: Gauss's law, Ampere's law, Faraday's law, Maxwell's equations." },
             { num: "Unit II", topics: "Quantum Mechanics: de Broglie waves, Heisenberg uncertainty principle, Schrodinger wave equation." },
             { num: "Unit III", topics: "Statistical Mechanics: Maxwell-Boltzmann, Bose-Einstein, and Fermi-Dirac statistics." },
             { num: "Unit IV", topics: "Solid State Physics: Crystal structure, Bravais lattices, band theory of solids, superconductors." }
-          ]
-        },
-        {
-          code: "CS-122",
-          icon: "++",
-          title: "Programming in C++",
-          shortDesc: "Object-Oriented Programming, Classes, Templates, and STL",
-          units: [
-            { num: "Unit I", topics: "OOP basics, C++ vs C, Classes, Objects, constructors and destructors." },
-            { num: "Unit II", topics: "Operator overloading, function overloading, friend functions." },
-            { num: "Unit III", topics: "Inheritance: Single, multiple, hierarchical, virtual base classes. Polymorphism." },
-            { num: "Unit IV", topics: "Templates, exception handling, standard template library (STL)." }
-          ]
-        },
-        {
-          code: "ES-106",
-          icon: "📟",
-          title: "Basic Electronics Engineering",
-          shortDesc: "Semiconductors, Diodes, Transistors, and Digital Logic Basics",
-          units: [
-            { num: "Unit I", topics: "Semiconductor Diodes: P-N junction, Zener diode, Rectifiers, Clippers and Clampers." },
-            { num: "Unit II", topics: "Bipolar Junction Transistors: CE, CB, CC configurations, biasing circuits, load line analysis." },
-            { num: "Unit III", topics: "Field Effect Transistors: JFET, MOSFET characteristics, operational amplifiers." },
-            { num: "Unit IV", topics: "Digital Electronics: Number systems, Boolean algebra, Logic gates, Combinational logic circuit basics." }
           ]
         },
         {
@@ -815,8 +839,20 @@ const syllabusData = {
           ]
         },
         {
+          code: "ES-105",
+          icon: "🔌",
+          title: "Electrical Science",
+          shortDesc: "DC/AC Circuits, Network Theorems, Transformers & Motors",
+          units: [
+            { num: "Unit I", topics: "DC Circuits: Mesh and Node analysis, Network theorems: Thevenin, Norton, Superposition, Maximum Power Transfer." },
+            { num: "Unit II", topics: "AC Circuits: Single phase RLC series and parallel circuits, phasor diagrams, resonance." },
+            { num: "Unit III", topics: "Transformers: Principles of operation, EMF equation, equivalent circuit, efficiency and regulation." },
+            { num: "Unit IV", topics: "Electrical Machines: DC machines operating principles, single phase induction motors, three-phase systems." }
+          ]
+        },
+        {
           code: "HS-102",
-          icon: "🗣",
+          icon: "💬",
           title: "Communication Skills",
           shortDesc: "Grammar, Technical Writing, and Group Discussions",
           units: [
@@ -824,6 +860,42 @@ const syllabusData = {
             { num: "Unit II", topics: "Grammar & Vocabulary: Common errors, active-passive voice, direct-indirect speech, idioms." },
             { num: "Unit III", topics: "Technical Writing: Letter writing, resumes, report writing, emails, proposals." },
             { num: "Unit IV", topics: "Speaking Skills: Group discussions, presentations, interviews, public speaking." }
+          ]
+        },
+        {
+          code: "HS-101",
+          icon: "🌱",
+          title: "Environmental Science",
+          shortDesc: "Ecology, Ecosystems, Biodiversity & Pollution Control",
+          units: [
+            { num: "Unit I", topics: "Ecology & Ecosystems: Structure and function, energy flow, food chains, ecological pyramids." },
+            { num: "Unit II", topics: "Natural Resources: Forest, water, mineral, food, energy, and land resources, sustainable development." },
+            { num: "Unit III", topics: "Environmental Pollution: Air, water, soil, noise, thermal, and nuclear hazards, solid waste management." },
+            { num: "Unit IV", topics: "Social Issues & Environment: Climate change, global warming, acid rain, ozone layer depletion, environmental protection acts." }
+          ]
+        },
+        {
+          code: "BS-113",
+          icon: "🔬",
+          title: "Applied Chemistry-1",
+          shortDesc: "Physical, Organic & Inorganic Engineering Chemistry",
+          units: [
+            { num: "Unit I", topics: "Water Technology: Hardness of water, estimation by EDTA, boiler troubles, water softening processes." },
+            { num: "Unit II", topics: "Fuels & Combustion: Classification, Calorific value determination, coal analysis, petroleum cracking." },
+            { num: "Unit III", topics: "Polymers & Composite Materials: Monomers, polymerization types, thermoplastics, thermosetting resins, biopolymers." },
+            { num: "Unit IV", topics: "Corrosion & its Control: Chemical and electrochemical corrosion, protective coatings, cathodic protection." }
+          ]
+        },
+        {
+          code: "ES-110",
+          icon: "🛠",
+          title: "Workshop",
+          shortDesc: "Fitting, Carpentry, Foundry, Welding, and Machine Shop Practice",
+          units: [
+            { num: "Unit I", topics: "Fitting Shop: Fitting tools, layout marking, measuring tools, sawing, filing, tapping and dieing operations." },
+            { num: "Unit II", topics: "Carpentry Shop: Timber classification, seasoning, carpentry tools, joints (halving, mortise & tenon, dovetail)." },
+            { num: "Unit III", topics: "Foundry & Welding Shop: Molding sands, cores, pattern types, arc & gas welding joint preparations." },
+            { num: "Unit IV", topics: "Sheet Metal & Machine Shop: Sheet metal tools, joints, seams, lathe machine operations, safety practices." }
           ]
         }
       ]
