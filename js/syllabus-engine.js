@@ -101,10 +101,10 @@ const syllabusData = {
           title: "Communication Skills",
           shortDesc: "Verbal & Written Communication, Technical Writing, Soft Skills",
           units: [
-            { num: "Unit I", topics: "Basics of Communication: Process, channels, barriers, formal vs informal communication." },
-            { num: "Unit II", topics: "Grammar & Vocabulary: Sentence structure, common errors, vocabulary enhancement, phonetics." },
-            { num: "Unit III", topics: "Technical Writing: Business letters, emails, technical reports, resume building, cover letters." },
-            { num: "Unit IV", topics: "Group Discussions & Interviews: Public speaking, body language, presentation skills, interview strategies." }
+            { num: "Unit I", topics: "Role and Importance of Communications, Attributes of Communications, Verbal and Non-Verbal Communications, Verbal Communications Skills, Non-verbal Communication Methods, Body Language, Barriers to Communications, Socio-psychological barriers, Inter-Cultural barriers, Overcoming barriers, Communication Mediums: Characterization and Choice of medium, Effective Communication: Correctness, Clarity, Conciseness, Courtesy, Group Communication: Meetings (types, purpose), Group Discussions, Conduct of Meeting, Participant Role, Making Presentations." },
+            { num: "Unit II", topics: "Spoken and Written English: Attributes of spoken and written communication, Formal & Informal Communication, Variation in between Indian, British and American English. Etiquette and Manners: Personal Behaviour, Greetings, Introductions, Telephone Etiquette. Vocabulary Development: Dictionaries and Thesaurus, Words often confused, generally used one word substitutions, Comprehension." },
+            { num: "Unit III", topics: "Letter writing: Planning the message, Planning Content, Structure, Language use, Layout, enquires and replies, asking for or giving quotations, Bargaining letters, Seller's reply, etc.; Complaints and Replies; Memos, Circulars and notices; Paragraph Writing, Writing Scientific and Technical Reports: Types, Structure, Drafting and Delivering a Speech: Understanding the Environment, Understanding the Audience, Text preparing, Composition, Practicing, Commemorative Speeches, Welcome and Introduction, Farewell and Send-offs, Condolence" },
+            { num: "Unit IV", topics: "Articles: Indefinite, Definite; Tenses: Present, Past, Future, Perfect (Present, Past and Future), Tenses in conditional sentences; Active and Passive Voice: Formation, conversion; Direct and Indirect Speech, Degrees of Comparison, Common errors, Concepts of Learning and Listening" }
           ]
         },
         {
@@ -190,10 +190,10 @@ const syllabusData = {
           title: "Communication Skills",
           shortDesc: "Grammar, Technical Writing, and Group Discussions",
           units: [
-            { num: "Unit I", topics: "Communication Basics: Process, barriers, non-verbal communication, listening skills." },
-            { num: "Unit II", topics: "Grammar & Vocabulary: Common errors, active-passive voice, direct-indirect speech, idioms." },
-            { num: "Unit III", topics: "Technical Writing: Letter writing, resumes, report writing, emails, proposals." },
-            { num: "Unit IV", topics: "Speaking Skills: Group discussions, presentations, interviews, public speaking." }
+            { num: "Unit I", topics: "Role and Importance of Communications, Attributes of Communications, Verbal and Non-Verbal Communications, Verbal Communications Skills, Non-verbal Communication Methods, Body Language, Barriers to Communications, Socio-psychological barriers, Inter-Cultural barriers, Overcoming barriers, Communication Mediums: Characterization and Choice of medium, Effective Communication: Correctness, Clarity, Conciseness, Courtesy, Group Communication: Meetings (types, purpose), Group Discussions, Conduct of Meeting, Participant Role, Making Presentations." },
+            { num: "Unit II", topics: "Spoken and Written English: Attributes of spoken and written communication, Formal & Informal Communication, Variation in between Indian, British and American English. Etiquette and Manners: Personal Behaviour, Greetings, Introductions, Telephone Etiquette. Vocabulary Development: Dictionaries and Thesaurus, Words often confused, generally used one word substitutions, Comprehension." },
+            { num: "Unit III", topics: "Letter writing: Planning the message, Planning Content, Structure, Language use, Layout, enquires and replies, asking for or giving quotations, Bargaining letters, Seller's reply, etc.; Complaints and Replies; Memos, Circulars and notices; Paragraph Writing, Writing Scientific and Technical Reports: Types, Structure, Drafting and Delivering a Speech: Understanding the Environment, Understanding the Audience, Text preparing, Composition, Practicing, Commemorative Speeches, Welcome and Introduction, Farewell and Send-offs, Condolence" },
+            { num: "Unit IV", topics: "Articles: Indefinite, Definite; Tenses: Present, Past, Future, Perfect (Present, Past and Future), Tenses in conditional sentences; Active and Passive Voice: Formation, conversion; Direct and Indirect Speech, Degrees of Comparison, Common errors, Concepts of Learning and Listening" }
           ]
         },
         {
@@ -755,10 +755,10 @@ const syllabusData = {
           title: "Communication Skills",
           shortDesc: "Verbal & Written Communication, Technical Writing, Soft Skills",
           units: [
-            { num: "Unit I", topics: "Basics of Communication: Process, channels, barriers, formal vs informal communication." },
-            { num: "Unit II", topics: "Grammar & Vocabulary: Sentence structure, common errors, vocabulary enhancement, phonetics." },
-            { num: "Unit III", topics: "Technical Writing: Business letters, emails, technical reports, resume building, cover letters." },
-            { num: "Unit IV", topics: "Group Discussions & Interviews: Public speaking, body language, presentation skills, interview strategies." }
+            { num: "Unit I", topics: "Role and Importance of Communications, Attributes of Communications, Verbal and Non-Verbal Communications, Verbal Communications Skills, Non-verbal Communication Methods, Body Language, Barriers to Communications, Socio-psychological barriers, Inter-Cultural barriers, Overcoming barriers, Communication Mediums: Characterization and Choice of medium, Effective Communication: Correctness, Clarity, Conciseness, Courtesy, Group Communication: Meetings (types, purpose), Group Discussions, Conduct of Meeting, Participant Role, Making Presentations." },
+            { num: "Unit II", topics: "Spoken and Written English: Attributes of spoken and written communication, Formal & Informal Communication, Variation in between Indian, British and American English. Etiquette and Manners: Personal Behaviour, Greetings, Introductions, Telephone Etiquette. Vocabulary Development: Dictionaries and Thesaurus, Words often confused, generally used one word substitutions, Comprehension." },
+            { num: "Unit III", topics: "Letter writing: Planning the message, Planning Content, Structure, Language use, Layout, enquires and replies, asking for or giving quotations, Bargaining letters, Seller's reply, etc.; Complaints and Replies; Memos, Circulars and notices; Paragraph Writing, Writing Scientific and Technical Reports: Types, Structure, Drafting and Delivering a Speech: Understanding the Environment, Understanding the Audience, Text preparing, Composition, Practicing, Commemorative Speeches, Welcome and Introduction, Farewell and Send-offs, Condolence" },
+            { num: "Unit IV", topics: "Articles: Indefinite, Definite; Tenses: Present, Past, Future, Perfect (Present, Past and Future), Tenses in conditional sentences; Active and Passive Voice: Formation, conversion; Direct and Indirect Speech, Degrees of Comparison, Common errors, Concepts of Learning and Listening" }
           ]
         },
         {
@@ -844,10 +844,10 @@ const syllabusData = {
           title: "Communication Skills",
           shortDesc: "Grammar, Technical Writing, and Group Discussions",
           units: [
-            { num: "Unit I", topics: "Communication Basics: Process, barriers, non-verbal communication, listening skills." },
-            { num: "Unit II", topics: "Grammar & Vocabulary: Common errors, active-passive voice, direct-indirect speech, idioms." },
-            { num: "Unit III", topics: "Technical Writing: Letter writing, resumes, report writing, emails, proposals." },
-            { num: "Unit IV", topics: "Speaking Skills: Group discussions, presentations, interviews, public speaking." }
+            { num: "Unit I", topics: "Role and Importance of Communications, Attributes of Communications, Verbal and Non-Verbal Communications, Verbal Communications Skills, Non-verbal Communication Methods, Body Language, Barriers to Communications, Socio-psychological barriers, Inter-Cultural barriers, Overcoming barriers, Communication Mediums: Characterization and Choice of medium, Effective Communication: Correctness, Clarity, Conciseness, Courtesy, Group Communication: Meetings (types, purpose), Group Discussions, Conduct of Meeting, Participant Role, Making Presentations." },
+            { num: "Unit II", topics: "Spoken and Written English: Attributes of spoken and written communication, Formal & Informal Communication, Variation in between Indian, British and American English. Etiquette and Manners: Personal Behaviour, Greetings, Introductions, Telephone Etiquette. Vocabulary Development: Dictionaries and Thesaurus, Words often confused, generally used one word substitutions, Comprehension." },
+            { num: "Unit III", topics: "Letter writing: Planning the message, Planning Content, Structure, Language use, Layout, enquires and replies, asking for or giving quotations, Bargaining letters, Seller's reply, etc.; Complaints and Replies; Memos, Circulars and notices; Paragraph Writing, Writing Scientific and Technical Reports: Types, Structure, Drafting and Delivering a Speech: Understanding the Environment, Understanding the Audience, Text preparing, Composition, Practicing, Commemorative Speeches, Welcome and Introduction, Farewell and Send-offs, Condolence" },
+            { num: "Unit IV", topics: "Articles: Indefinite, Definite; Tenses: Present, Past, Future, Perfect (Present, Past and Future), Tenses in conditional sentences; Active and Passive Voice: Formation, conversion; Direct and Indirect Speech, Degrees of Comparison, Common errors, Concepts of Learning and Listening" }
           ]
         },
         {
