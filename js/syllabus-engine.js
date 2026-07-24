@@ -41,10 +41,10 @@ const syllabusData = {
           title: "Applied Mathematics-1",
           shortDesc: "Calculus, Matrices, and Differential Equations",
           units: [
-            { num: "Unit I", topics: "Matrices: Eigenvalues, Eigenvectors, Cayley-Hamilton Theorem, Diagonalization of matrices." },
-            { num: "Unit II", topics: "Differential Calculus: Successive differentiation, Leibnitz theorem, Taylor's and Maclaurin's series, Curvature." },
-            { num: "Unit III", topics: "Partial Differentiation: Euler's theorem, Jacobians, Taylor's series for two variables, Maxima and Minima." },
-            { num: "Unit IV", topics: "Integral Calculus: Double and triple integrals, Change of order, Area and volume calculation." }
+            { num: "Unit I", topics: "Partial derivatives, Chain rule, Differentiation of Implicit functions, Exact differentials, Maxima, Minima and saddle points, Method of Lagrange multipliers, Differentiation under Integral sign, Jacobians and transformations of coordinates." },
+            { num: "Unit II", topics: "Ordinary Differential Equations (ODEs): Basic Concepts, Geometric Meaning of y'= f(x, y), Direction Fields, Euler's Method, Separable ODEs, Exact ODEs, Integrating Factors, Linear ODEs, Bernoulli Equation, Population Dynamics, Orthogonal Trajectories, Homogeneous Linear ODEs with Constant Coefficients, Differential Operators, Modeling of Free Oscillations of a Mass-Spring System, Euler-Cauchy Equations, Wronskian, Nonhomogeneous ODEs, Solution by Variation of Parameters, Power Series Method for solution of ODEs, Legendre's Equation, Legendre Polynomials, Bessel's Equation, Bessels's functions Jn(x) and Yn(x), Gamma Function" },
+            { num: "Unit III", topics: "Linear Algebra: Matrices and Determinants, Gauss Elimination, Linear Independence, Rank of a Matrix, Vector Space, Solutions of Linear Systems and concept of Existence, Uniqueness, Determinants, Cramer's Rule, Gauss-Jordan Elimination, The Matrix Eigenvalue Problem, Determining Eigenvalues and Eigenvectors, Symmetric, Skew-Symmetric, and Orthogonal Matrices, Eigenbases, Diagonalization, Quadratic Forms, Cayley - Hamilton Theorem (without proof)" },
+            { num: "Unit IV", topics: "Vector Calculus: Vector and Scalar Functions and Their Fields, Derivatives, Curves, Arc Length, Curvature, Torsion, Gradient of a Scalar Field, Directional Derivative, Divergence of a Vector Field, Curl of a Vector Field, Line Integrals, Path Independence of Line Integrals, Double Integrals, Green's Theorem in the Plane, Surfaces for Surface Integrals, Surface Integrals, Triple Integrals, Stokes Theorem, Divergence Theorem of Gauss" }
           ]
         },
         {
@@ -695,10 +695,10 @@ const syllabusData = {
           title: "Applied Mathematics-1",
           shortDesc: "Calculus, Matrices, and Differential Equations",
           units: [
-            { num: "Unit I", topics: "Matrices: Eigenvalues, Eigenvectors, Cayley-Hamilton Theorem, Diagonalization of matrices." },
-            { num: "Unit II", topics: "Differential Calculus: Successive differentiation, Leibnitz theorem, Taylor's and Maclaurin's series, Curvature." },
-            { num: "Unit III", topics: "Partial Differentiation: Euler's theorem, Jacobians, Taylor's series for two variables, Maxima and Minima." },
-            { num: "Unit IV", topics: "Integral Calculus: Double and triple integrals, Change of order, Area and volume calculation." }
+            { num: "Unit I", topics: "Partial derivatives, Chain rule, Differentiation of Implicit functions, Exact differentials, Maxima, Minima and saddle points, Method of Lagrange multipliers, Differentiation under Integral sign, Jacobians and transformations of coordinates." },
+            { num: "Unit II", topics: "Ordinary Differential Equations (ODEs): Basic Concepts, Geometric Meaning of y'= f(x, y), Direction Fields, Euler's Method, Separable ODEs, Exact ODEs, Integrating Factors, Linear ODEs, Bernoulli Equation, Population Dynamics, Orthogonal Trajectories, Homogeneous Linear ODEs with Constant Coefficients, Differential Operators, Modeling of Free Oscillations of a Mass-Spring System, Euler-Cauchy Equations, Wronskian, Nonhomogeneous ODEs, Solution by Variation of Parameters, Power Series Method for solution of ODEs, Legendre's Equation, Legendre Polynomials, Bessel's Equation, Bessels's functions Jn(x) and Yn(x), Gamma Function" },
+            { num: "Unit III", topics: "Linear Algebra: Matrices and Determinants, Gauss Elimination, Linear Independence, Rank of a Matrix, Vector Space, Solutions of Linear Systems and concept of Existence, Uniqueness, Determinants, Cramer's Rule, Gauss-Jordan Elimination, The Matrix Eigenvalue Problem, Determining Eigenvalues and Eigenvectors, Symmetric, Skew-Symmetric, and Orthogonal Matrices, Eigenbases, Diagonalization, Quadratic Forms, Cayley - Hamilton Theorem (without proof)" },
+            { num: "Unit IV", topics: "Vector Calculus: Vector and Scalar Functions and Their Fields, Derivatives, Curves, Arc Length, Curvature, Torsion, Gradient of a Scalar Field, Directional Derivative, Divergence of a Vector Field, Curl of a Vector Field, Line Integrals, Path Independence of Line Integrals, Double Integrals, Green's Theorem in the Plane, Surfaces for Surface Integrals, Surface Integrals, Triple Integrals, Stokes Theorem, Divergence Theorem of Gauss" }
           ]
         },
         {
