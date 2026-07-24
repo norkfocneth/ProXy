@@ -516,20 +516,20 @@ document.addEventListener('DOMContentLoaded', () => {
 const ProxyAI = {
   knowledge: {
     subjects: {
-      "bs-111": {
-        name: "Applied Mathematics - I",
-        code: "BS-111",
+      "es-107": {
+        name: "Engineering Graphics",
+        code: "ES-107",
         sem: 1,
         important: [
-          "Matrices (Eigenvalues, Eigenvectors, Cayley-Hamilton Theorem, Diagonalization)",
-          "Differential Calculus (Leibnitz Theorem, Maclaurin's and Taylor's Series)",
-          "Partial Differentiation (Euler's Theorem, Jacobians, Maxima/Minima for 2 variables)",
-          "Integral Calculus (Double/Triple Integrals, Area & Volume calculation)"
+          "Projections of points and straight lines",
+          "Projections and section of solids",
+          "Development of surfaces of solids",
+          "Isometric projections and basic CAD commands"
         ],
-        tips: "Matrices & successive differentiation are scoring. Practice Leibnitz theorem proofs and double integration area calculations. Refer to Unit 1 Notes!"
+        tips: "Maintain sheet neatness. Master orthographic to isometric conversions. Practice layout drawings and projections."
       },
       "bs-112": {
-        name: "Applied Physics - I",
+        name: "Applied Physics-1",
         code: "BS-112",
         sem: 1,
         important: [
@@ -540,8 +540,56 @@ const ProxyAI = {
         ],
         tips: "Optics diagrams are extremely important. Memorize Einstein's coefficient derivations and practice Numerical Aperture formulas for optical fibers."
       },
+      "bs-111": {
+        name: "Applied Mathematics-1",
+        code: "BS-111",
+        sem: 1,
+        important: [
+          "Matrices (Eigenvalues, Eigenvectors, Cayley-Hamilton Theorem, Diagonalization)",
+          "Differential Calculus (Leibnitz Theorem, Maclaurin's and Taylor's Series)",
+          "Partial Differentiation (Euler's Theorem, Jacobians, Maxima/Minima for 2 variables)",
+          "Integral Calculus (Double/Triple Integrals, Area & Volume calculation)"
+        ],
+        tips: "Matrices & successive differentiation are scoring. Practice Leibnitz theorem proofs and double integration area calculations."
+      },
+      "es-109": {
+        name: "Manufacturing Processes",
+        code: "ES-109",
+        sem: 1,
+        important: [
+          "Casting processes & pattern making",
+          "Metal forming & shaping (forging, rolling, extrusion)",
+          "Joining processes (arc welding, gas welding, brazing)",
+          "Lathe machine & sheet metal operations"
+        ],
+        tips: "Focus on casting defect causes and neat diagrams of lathe operations and welding setups."
+      },
+      "hs-101": {
+        name: "Environmental Science",
+        code: "HS-101",
+        sem: 1,
+        important: [
+          "Ecosystem structure, food chains & energy flow",
+          "Natural resources conservation & management",
+          "Air, water, soil, and noise pollution control",
+          "Climate change, ozone depletion & environmental acts"
+        ],
+        tips: "Use bullet points and clear examples for environmental laws and pollution control methods."
+      },
+      "es-105": {
+        name: "Electrical Science",
+        code: "ES-105",
+        sem: 1,
+        important: [
+          "DC Circuits: Thevenin, Norton, Superposition, Max Power Transfer theorems",
+          "AC Circuits: Single phase RLC series/parallel, resonance",
+          "Transformers: Principle, EMF equation, efficiency & regulation",
+          "Electrical Machines: DC machines operating principles, single phase induction motors"
+        ],
+        tips: "Numericals on Network Theorems and RLC circuits are guaranteed. Draw neat phasor diagrams for AC circuit problems."
+      },
       "bs-113": {
-        name: "Applied Chemistry",
+        name: "Applied Chemistry-1",
         code: "BS-113",
         sem: 1,
         important: [
@@ -550,7 +598,19 @@ const ProxyAI = {
           "Polymers (Thermoplastics vs Thermosetting, composite materials)",
           "Corrosion & its Control (Electrochemical corrosion, cathodic protection)"
         ],
-        tips: "EDTA numericals and boiler troubles are very common. Focus on corrosion mechanisms (wet vs dry corrosion) and polymer structures."
+        tips: "EDTA numericals and boiler troubles are very common. Focus on corrosion mechanisms and polymer structures."
+      },
+      "hs-102": {
+        name: "Communication Skills",
+        code: "HS-102",
+        sem: 1,
+        important: [
+          "Communication process, barriers, verbal/non-verbal",
+          "Grammar: Active-passive, direct-indirect, common errors",
+          "Technical Writing: Letters, resumes, report writing, emails",
+          "Speaking Skills: GDs, presentations, interviews"
+        ],
+        tips: "Write structured emails and resumes. Focus on report layout styles and professional letter formats."
       },
       "cs-101": {
         name: "Programming in C",
@@ -564,32 +624,8 @@ const ProxyAI = {
         ],
         tips: "Draw dry-run tables for loops, write clear code with comments, and understand pointers and file I/O thoroughly."
       },
-      "es-105": {
-        name: "Basic Electrical Engineering",
-        code: "ES-105",
-        sem: 1,
-        important: [
-          "DC Circuits: Thevenin, Norton, Superposition, Max Power Transfer theorems",
-          "AC Circuits: Single phase RLC series/parallel, resonance",
-          "Transformers: Principle, EMF equation, efficiency & regulation",
-          "Electrical Machines: DC machines operating principles, single phase induction motors"
-        ],
-        tips: "Numericals on Network Theorems and RLC circuits are guaranteed. Draw neat phasor diagrams for AC circuit problems."
-      },
-      "es-107": {
-        name: "Engineering Graphics",
-        code: "ES-107",
-        sem: 1,
-        important: [
-          "Projections of points and straight lines",
-          "Projections and section of solids",
-          "Development of surfaces of solids",
-          "Isometric projections and basic CAD commands"
-        ],
-        tips: "Maintain sheet neatness. Master orthographic to isometric conversions. Practice layout drawings and projections."
-      },
       "bs-121": {
-        name: "Applied Mathematics - II",
+        name: "Applied Mathematics 2",
         code: "BS-121",
         sem: 2,
         important: [
@@ -600,7 +636,7 @@ const ProxyAI = {
         tips: "Laplace convolution and Vector integral theorems (Gauss divergence/Stokes) are very important. Practice steps carefully."
       },
       "bs-122": {
-        name: "Applied Physics - II",
+        name: "Applied Physics 2",
         code: "BS-122",
         sem: 2,
         important: [
@@ -610,6 +646,30 @@ const ProxyAI = {
           "Solid State Physics (Crystal structures, Bravais lattice, superconductivity)"
         ],
         tips: "Derivation of Maxwell's equations and Schrodinger's time-dependent/independent equations are core. Practice crystal structure definitions."
+      },
+      "es-110": {
+        name: "Workshop",
+        code: "ES-110",
+        sem: 2,
+        important: [
+          "Fitting shop tools, filing, sawing, and tapping operations",
+          "Carpentry shop joints & timber classification",
+          "Welding & foundry shop joint preparations",
+          "Machine shop lathe operations & safety practices"
+        ],
+        tips: "Focus on neat sketches of joints (dovetail, mortise & tenon) and lathe tool terminology."
+      },
+      "es-108": {
+        name: "Engineering Mechanics",
+        code: "ES-108",
+        sem: 2,
+        important: [
+          "Force Systems: Coplanar concurrent forces, resultant, Lami's theorem",
+          "Equilibrium of Rigid Bodies: Free body diagrams, trusses (Method of Joints)",
+          "Centroid and Moment of Inertia (Parallel axis theorem)",
+          "Friction: Laws, wedge friction, belt friction"
+        ],
+        tips: "Always draw a Free Body Diagram (FBD) first. Equilibrium equations sum(Fx)=0, sum(Fy)=0, sum(M)=0 solve most problems."
       },
       "cs-122": {
         name: "Programming in C++",
@@ -660,14 +720,14 @@ const ProxyAI = {
         tips: "Write structured emails and resumes. Focus on report layout styles and professional letter formats."
       },
       "cs-201": {
-        name: "Discrete Structure",
+        name: "Discrete Mathematics",
         code: "CS-201",
         sem: 3,
         important: [
-          "Set theory, relations, partial orderings, functions",
-          "Propositional and predicate logic, inference rules, mathematical induction",
-          "Algebraic structures: Monoids, groups, rings, fields",
-          "Graph Theory: Paths, Eulerian & Hamiltonian paths, trees, graph coloring"
+          "Sets, logic, inference rules, quantifiers, proofs, inclusion-exclusion, pigeonhole, relations, equivalence classes, closures",
+          "Functions, growth, permutation functions, lattices, poset, Boolean algebra, minimization, recurrence relations, generating functions",
+          "Group theory: semigroups, monoids, groups, isomorphism, subgroups, cosets, Lagrange's theorem, permutation groups, normal subgroups",
+          "Graph theory: terminology, planar graphs, Euler's formula, Euler/Hamiltonian paths, chromatic number, color theorem, MST, DFS/BFS"
         ],
         tips: "Practice logic truth tables, group proofs (identity, inverse), and graph theory algorithms (Eulerian path conditions)."
       },
@@ -676,22 +736,22 @@ const ProxyAI = {
         code: "CS-203",
         sem: 3,
         important: [
-          "Complexity analysis, arrays, linked lists (single, double, circular)",
-          "Stacks, Queues, recursion implementation",
-          "Trees: Binary trees, traversals, AVL trees (rotations), B-trees, heaps",
-          "Graphs: Representation, BFS, DFS, searching & sorting, hashing"
+          "Overview of DS, ADT, arrays, pointer representation, lists, single/double/circular lists, stacks, queues, recursion",
+          "Sparse Matrix representation & arithmetic, polynomials, trees, traversals, binary search trees, AVL trees, heaps, priority queues, B/B*/B+ trees",
+          "Sorting: straight/heap selection, shell/insertion, bubble/quick exchange, merge (natural/balanced/polyphase), sequential/binary searching, hashing",
+          "Disjoint sets representation, union find algorithm, graphs, representations, traversals (BFS, DFS), minimum spanning trees, shortest path"
         ],
         tips: "Write step-by-step trace tables for sorting and AVL insertions. Understand recursive algorithms and time complexity."
       },
       "cs-205": {
-        name: "Computer Organization & Architecture",
+        name: "Digital Logic and Computer Design",
         code: "CS-205",
         sem: 3,
         important: [
-          "Register Transfer and Microoperations",
-          "Basic Computer Organization: instruction cycle, registers, interrupts",
-          "CPU Design: stack organization, addressing modes, RISC vs CISC",
-          "Memory & Pipeline: Cache mapping, virtual memory, pipelining"
+          "Boolean Algebra & Combinational Logic: number systems, boolean postulates, K-Map, Quine-McCluskey, adders, decoders, multiplexers, code converters",
+          "Sequential Circuits: general model, flip-flops, latches, triggering, state diagram, synchronous design, counters, shift registers, PLA/PAL, RAM",
+          "Basic Computer Organization: stored program, RTL, micro-operations, simple computer design, ALU, hardwired/microprogrammed control, CPU, RISC/CISC",
+          "Computer Arithmetic: addition/subtraction/multiplication/division algorithms, input-output organization, DMA, memory hierarchy, cache mapping, virtual memory"
         ],
         tips: "Focus on cache mapping (direct, associative, set-associative) numericals and CPU addressing modes."
       },
@@ -700,84 +760,240 @@ const ProxyAI = {
         code: "CS-207",
         sem: 3,
         important: [
-          "Java Basics: JVM, inheritance, polymorphism, interfaces, packages",
-          "Exceptions & I/O: try-catch, custom exceptions, byte/character streams",
-          "Multithreading: lifecycle, synchronization, inter-thread communication",
-          "Applets & Swing event handling, JDBC connectivity"
+          "OOP Paradigm: basic concepts, benefits, C++ programming basics, tokens, identifiers, operators, conversions, call/return by reference, overloading",
+          "Specifying a class, encapsulation, abstract types, static member functions, constructors & destructors, parameterized/copy/dynamic, operator overloading",
+          "Inheritance: hierarchy, derivation (public/private/protected), aggregation, composition, containership, polymorphism, templates, virtual functions",
+          "Standard C++ classes: multiple inheritance, persistent objects, streams and files, namespaces, exception handling, STL (containers, algorithms, iterators)"
         ],
-        tips: "Be clear on dynamic method dispatch, thread synchronization concepts, and write clean Java fragments for exams."
+        tips: "Master standard C++ virtual function concepts, operator overloading syntaxes, and standard template library (STL) containers."
       },
-      "ec-209": {
-        name: "Digital Electronics",
-        code: "EC-209",
+      "bs-203": {
+        name: "Computational Methods (CSE)",
+        code: "BS-203",
         sem: 3,
         important: [
-          "Boolean algebra, K-maps, combinational circuits (adders, MUX)",
-          "Sequential circuits: SR, JK, D, T flip-flops, conversion, counters",
-          "Registers, asynchronous/synchronous counters",
-          "Semiconductor memories: ROM, PLA, PAL, logic families"
+          "Errors, Taylor series, Rolle's, mean value, roots (bisection, newton, secant), unconstrained minimization (Fibonacci, Golden Section), Nelder-Mead",
+          "Interpolation: assumptions, finite differences, Gregory-Newton, Lagrange, divided differences, integration (trapezoidal, Simpson's 1/3 and 3/8, Romberg)",
+          "Linear Systems: Gauss elimination, Gauss Jordan, pivoting, LU decomposition (Doolittle, Crout, Cholesky), power method, Spline approximation",
+          "Ordinary Differential Equations: Picard, Taylor, Euler, Runge-Kutta, predictor-corrector (Milne's), partial differential equations (parabolic/hyperbellic/elliptic)"
         ],
-        tips: "Simplifying Boolean expressions using K-maps and design of synchronous counters are major topics. Learn flip-flop conversion steps."
+        tips: "Practice numeric algorithms carefully. Focus on Runge-Kutta, Newton-Raphson, and Cauer/Foster implementations if applicable."
       },
       "bs-204": {
-        name: "Applied Mathematics - IV",
+        name: "Probability, Statistics and Linear Programming",
         code: "BS-204",
         sem: 4,
         important: [
-          "Probability distributions: Binomial, Poisson, Normal",
-          "Statistics: Sampling, hypothesis testing (t-test, chi-square, regression)",
-          "Numerical methods: Newton-Raphson, Bisection, integration (Trapezoidal, Simpson's)",
-          "Linear Programming: Simplex method, formulation"
+          "Probability distributions: Binomial, Poisson, Normal, Joint and marginal distributions",
+          "Statistics: Sampling theory, Estimation, Hypothesis testing (t-test, F-test, Chi-square)",
+          "Linear Programming: Graphical method, Simplex method, Big-M, Two-Phase methods",
+          "Duality in LPP, Dual simplex method, Transportation and Assignment problems"
         ],
-        tips: "Numerical method algorithms are straightforward—practice calculations carefully. Hypothesis testing and Simplex methods carry high marks."
+        tips: "Practice Simplex tables and big-M steps carefully. Joint distribution calculations and hypothesis testing are major marks."
       },
       "cs-204": {
         name: "Database Management Systems",
         code: "CS-204",
         sem: 4,
         important: [
-          "Entity-Relationship (ER) model and Relational algebra",
-          "SQL queries: Joins, subqueries, aggregations",
-          "Normalization: 1NF, 2NF, 3NF, BCNF",
-          "Transaction management: ACID properties, concurrency control, locks"
+          "Database Architecture, data independence, schemas, ER models",
+          "Relational algebra, SQL commands (DDL, DML, DQL), Joins, Subqueries",
+          "Relational Database Design: Functional dependencies, Normalization (1NF to BCNF)",
+          "Transaction & Concurrency: ACID properties, Serializability, locking & timestamping protocols"
         ],
-        tips: "Practice ER mapping to schemas. Master Joins, normalization decomposition steps, and lock-based concurrency control."
+        tips: "Practice SQL queries and normalization decomp. Concurrency schedules and serializability checks are highly important."
       },
       "cs-206": {
-        name: "Operating Systems",
+        name: "Theory of Computation",
         code: "CS-206",
         sem: 4,
         important: [
-          "Process scheduling (FCFS, SJF, RR, Priority)",
-          "Process synchronization: Semaphores, Mutex, Banker's Algorithm",
-          "Memory management: Paging, segmentation, page replacement",
-          "Disk scheduling, file systems, deadlock prevention/detection"
+          "Finite Automata: DFA, NFA conversion, regular expressions, pumping lemma",
+          "Context-Free Grammars: CFGs, parsing, Chomsky and Greibach Normal Forms",
+          "Pushdown Automata: PDA design, equivalence with CFGs",
+          "Turing Machines: TM design, Halting problem, Undecidability, P/NP complexity"
         ],
-        tips: "Practice scheduling Gantt charts, Banker's safe sequence checks, and LRU/FIFO page replacement numericals."
+        tips: "Ensure correct transitions for DFA/NFA and PDA designs. Master CFG normalizations and Turing Machine programming."
       },
       "cs-208": {
-        name: "Algorithm Design & Analysis",
+        name: "Circuits and Systems",
         code: "CS-208",
         sem: 4,
         important: [
-          "Asymptotic notations, recurrence relations (Master theorem)",
-          "Divide & Conquer (Merge/Quick sort), Greedy (Knapsack, MST, Prim's/Kruskal's)",
-          "Dynamic Programming (LCS, Matrix chain, 0/1 Knapsack) & Backtracking (N-Queens)",
-          "Complexity classes: P, NP, NP-Complete, NP-Hard"
+          "Signals & Systems: Continuous/discrete, LTI systems, Laplace transform",
+          "Fourier Series/Transform, Z-Transform, analysis of LTI systems",
+          "Network Theorems: Thevenin, Norton, Superposition, Maximum Power, Two-port parameters (Z, Y, ABCD, h)",
+          "State Variable Analysis of Circuits, filters (Butterworth, Chebyshev), passive/active synthesis"
         ],
-        tips: "Master Theorem and dynamic programming state transitions (especially LCS/Knapsack) are core. Understand NP-completeness reductions."
+        tips: "Make sure you master two-port parameter conversions and Laplace/Z-transform applications for system equations."
       },
       "cs-210": {
-        name: "Software Engineering",
+        name: "Programming in Java",
         code: "CS-210",
         sem: 4,
         important: [
-          "Software process models: Waterfall, Spiral, Agile",
-          "Requirements engineering: SRS, UML diagrams",
+          "Java basics, JVM, JDK, Classes, Objects, Inheritance, Polymorphism",
+          "Interfaces, Packages, Exception handling, I/O streams file access",
+          "Multithreading: Lifecycle, synchronization. Collections Framework (List, Set, Map)",
+          "GUI programming with Swing/AWT, Event handling, JDBC database connection"
+        ],
+        tips: "Write clean, compile-ready Java code snippets for collections, exception try-catch blocks, and thread synchronization."
+      },
+      "hs-202": {
+        name: "Technical Writing",
+        code: "HS-202",
+        sem: 4,
+        important: [
+          "Introduction to Technical Communication, characteristics, audience analysis",
+          "Technical writing genres: Reports, manuals, proposals, specs",
+          "Professional correspondence: Resumes, cover letters, emails, letters",
+          "Research papers formatting & citations (IEEE, APA), oral presentations"
+        ],
+        tips: "Be familiar with resume structures, IEEE citation formats, and the standard layouts of reports and proposals."
+      },
+      "it-204": {
+        name: "Database Management Systems",
+        code: "IT-204",
+        sem: 4,
+        important: [
+          "Database Architecture, data independence, schemas, ER models",
+          "Relational algebra, SQL commands (DDL, DML, DQL), Joins, Subqueries",
+          "Relational Database Design: Functional dependencies, Normalization (1NF to BCNF)",
+          "Transaction & Concurrency: ACID properties, Serializability, locking & timestamping protocols"
+        ],
+        tips: "Practice SQL queries and normalization decomp. Concurrency schedules and serializability checks are highly important."
+      },
+      "it-206": {
+        name: "Fundamentals of Machine Learning",
+        code: "IT-206",
+        sem: 4,
+        important: [
+          "Introduction to Machine Learning: Supervised, Unsupervised, Reinforcement learning",
+          "Linear Regression, Logistic Regression, Gradient Descent, Overfitting/Underfitting",
+          "Classification: Decision Trees, Naive Bayes, Support Vector Machines (SVM), K-Nearest Neighbors (KNN)",
+          "Clustering & Dimensionality Reduction: K-Means clustering, Principal Component Analysis (PCA)"
+        ],
+        tips: "Understand the mathematical concepts behind linear regression, SVM, and decision boundaries. Learn bias-variance tradeoff."
+      },
+      "it-208": {
+        name: "Software Engineering",
+        code: "IT-208",
+        sem: 4,
+        important: [
+          "Software process models: Waterfall, Spiral, Agile models (Scrum)",
+          "Requirements engineering: SRS document, UML diagrams",
           "Software architecture & Design patterns",
           "Software testing: White-box, Black-box, metrics, maintenance"
         ],
         tips: "Learn the difference between verification vs validation, draw clean UML class/use-case diagrams, and master COCOMO metrics."
+      },
+      "it-210": {
+        name: "Computer Networks and Internet Protocols",
+        code: "IT-210",
+        sem: 4,
+        important: [
+          "OSI and TCP/IP stack layers, physical media, network topologies",
+          "Data Link Layer: Sliding window protocols, MAC sublayer framing, error control",
+          "Network Layer: IP addressing (IPv4, IPv6), subnetting, routing algorithms (OSPF, BGP), ICMP",
+          "Transport & App Layers: TCP vs UDP headers, three-way handshake, DNS, HTTP, SMTP"
+        ],
+        tips: "IP subnetting and TCP state transitions are crucial. Learn sliding window protocol efficiency calculations."
+      },
+      "hs-204": {
+        name: "Effective Technical Writing",
+        code: "HS-204",
+        sem: 4,
+        important: [
+          "Introduction to Technical Communication, characteristics, audience analysis",
+          "Technical writing genres: Reports, manuals, proposals, specs",
+          "Professional correspondence: Resumes, cover letters, emails, letters",
+          "Research papers formatting & citations (IEEE, APA), oral presentations"
+        ],
+        tips: "Be familiar with resume structures, IEEE citation formats, and the standard layouts of reports and proposals."
+      },
+      "ec-203": {
+        name: "Analog Communication",
+        code: "EC-203",
+        sem: 3,
+        important: [
+          "Amplitude Modulation: AM, DSB-SC, SSB-SC, VSB modulation and demodulation",
+          "Angle Modulation: Frequency Modulation (FM), Phase Modulation (PM), transmission bandwidth",
+          "Noise in Communication Systems: Noise figure, noise temperature, performance of AM/FM in noise",
+          "Transmitters & Receivers: Superheterodyne receiver, AGC, AM/FM transmitters"
+        ],
+        tips: "Master frequency translation, modulation index derivations, and block diagrams of receivers."
+      },
+      "ec-205": {
+        name: "Analog Electronics-1",
+        code: "EC-205",
+        sem: 3,
+        important: [
+          "Semiconductor Diodes: PN junction, Zener diode, Clippers, Clampers, Rectifiers",
+          "Bipolar Junction Transistors (BJT): Biasing, stability factor, h-parameter model",
+          "Field Effect Transistors (FET) & MOSFETs: Biasing, small-signal model, CS/CD amplifiers",
+          "Feedback Amplifiers & Oscillators: Negative feedback, Barkhausen criterion, RC/LC oscillators"
+        ],
+        tips: "Stability factor derivations and h-parameter equivalent circuits numericals are very common. Focus on oscillator derivations."
+      },
+      "ec-207": {
+        name: "Signals and Systems",
+        code: "EC-207",
+        sem: 3,
+        important: [
+          "Signal Classification: Continuous/discrete, periodic/aperiodic, even/odd, energy/power signals",
+          "LTI Systems: Convolution integral/sum, impulse response, stability, causality",
+          "Fourier Analysis: Continuous-time Fourier Series (CTFS) and Fourier Transform (CTFT)",
+          "Laplace and Z-Transforms: Region of Convergence (ROC), properties, inverse transforms, system transfer function"
+        ],
+        tips: "Practice convolution integral/sum step-by-step. Laplace ROC properties and Fourier transform properties carry high marks."
+      },
+      "ec-204": {
+        name: "Network Analysis and Synthesis",
+        code: "EC-204",
+        sem: 4,
+        important: [
+          "Network Theorems in AC circuits: Superposition, Thevenin's, Norton's, Maximum Power Transfer",
+          "Transient Analysis: Behavior of R-L, R-C, R-L-C circuits under DC and AC excitation",
+          "Two-Port Networks: Z, Y, ABCD, h parameters and their interrelationships",
+          "Network Synthesis: Hurwitz polynomials, Positive Real Functions (PRF), Foster & Cauer forms"
+        ],
+        tips: "Solve transient equations using differential equations or Laplace transform. Foster and Cauer realization steps are highly structured and scoring."
+      },
+      "ec-206": {
+        name: "Analog Electronics-II",
+        code: "EC-206",
+        sem: 4,
+        important: [
+          "Feedback Amplifiers: Feedback topologies, effect on input/output impedance, stability",
+          "Operational Amplifiers: Ideal op-amp, inverting/non-inverting amplifiers, integrators, differentiators",
+          "Op-Amp Applications: Comparators, Schmitt triggers, instrumentation amplifiers, active filters",
+          "Power Amplifiers: Class A, Class B, Class AB, Class C push-pull amplifiers, efficiency calculations"
+        ],
+        tips: "Practice derivation of closed-loop gain for different feedback topologies. Op-amp circuit analysis is straightforward and scoring."
+      },
+      "ec-208": {
+        name: "Electromagnetic Field Theory",
+        code: "EC-208",
+        sem: 4,
+        important: [
+          "Vector Calculus & Electrostatics: Gauss's Law, Poisson's and Laplace's equations, boundary conditions",
+          "Magnetostatics: Biot-Savart Law, Ampere's Law, magnetic forces and torque",
+          "Maxwell's Equations: Faraday's Law, displacement current, Maxwell's equations in differential and integral forms",
+          "Electromagnetic Wave Propagation: Wave equations, Poynting vector, reflection and refraction of plane waves"
+        ],
+        tips: "Boundary condition numericals and Maxwell's equations derivations are extremely important. Poynting vector derivation is frequently asked."
+      },
+      "ec-210": {
+        name: "Digital Communications",
+        code: "EC-210",
+        sem: 4,
+        important: [
+          "Pulse Code Modulation (PCM): Sampling, quantization, differential PCM, delta modulation",
+          "Digital Modulation Techniques: ASK, FSK, PSK, QPSK, M-ary modulation schemes",
+          "Error Control Coding: Linear block codes, cyclic codes, convolution codes, syndrome decoding",
+          "Information Theory: Entropy, channel capacity, Shannon-Hartley theorem, source coding (Huffman, Shannon-Fano)"
+        ],
+        tips: "Syndrome calculation for linear block codes and Huffman coding steps are guaranteed scoring topics. Draw clear constellation diagrams."
       },
       "cs-301": {
         name: "Design & Analysis of Algorithms",

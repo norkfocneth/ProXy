@@ -12,66 +12,6 @@ const syllabusData = {
       desc: "Build your foundation. Master the core concepts of engineering and programming.",
       subjects: [
         {
-          code: "BS-111",
-          icon: "√x",
-          title: "Applied Mathematics - I",
-          shortDesc: "Calculus, Matrices, and Differential Equations",
-          units: [
-            { num: "Unit I", topics: "Matrices: Eigenvalues, Eigenvectors, Cayley-Hamilton Theorem, Diagonalization of matrices." },
-            { num: "Unit II", topics: "Differential Calculus: Successive differentiation, Leibnitz theorem, Taylor's and Maclaurin's series, Curvature." },
-            { num: "Unit III", topics: "Partial Differentiation: Euler's theorem, Jacobians, Taylor's series for two variables, Maxima and Minima." },
-            { num: "Unit IV", topics: "Integral Calculus: Double and triple integrals, Change of order, Area and volume calculation." }
-          ]
-        },
-        {
-          code: "BS-112",
-          icon: "⚛",
-          title: "Applied Physics - I",
-          shortDesc: "Mechanics, Wave Theory, and Optical Systems",
-          units: [
-            { num: "Unit I", topics: "Interference: Coherent sources, Young's double slit, Newton's rings, Michelson interferometer." },
-            { num: "Unit II", topics: "Diffraction: Fraunhofer diffraction, Single slit, Double slit, Diffraction grating, Resolving power." },
-            { num: "Unit III", topics: "Polarization: Double refraction, Nicol prism, Production and detection of polarized light, Polarimeters." },
-            { num: "Unit IV", topics: "Lasers & Fiber Optics: Einstein's coefficients, Ruby laser, He-Ne laser, Optical fibers, Numerical aperture." }
-          ]
-        },
-        {
-          code: "BS-113",
-          icon: "🔬",
-          title: "Applied Chemistry",
-          shortDesc: "Physical, Organic & Inorganic Engineering Chemistry",
-          units: [
-            { num: "Unit I", topics: "Water Technology: Hardness of water, estimation by EDTA, boiler troubles, water softening processes." },
-            { num: "Unit II", topics: "Fuels & Combustion: Classification, Calorific value determination, coal analysis, petroleum cracking." },
-            { num: "Unit III", topics: "Polymers & Composite Materials: Monomers, polymerization types, thermoplastics, thermosetting resins, biopolymers." },
-            { num: "Unit IV", topics: "Corrosion & its Control: Chemical and electrochemical corrosion, protective coatings, cathodic protection." }
-          ]
-        },
-        {
-          code: "CS-101",
-          icon: "</>",
-          title: "Programming in C",
-          shortDesc: "Algorithms, Syntax, Control structures, and Files",
-          units: [
-            { num: "Unit I", topics: "Basics of Computers, Algorithms, Flowcharts, C fundamentals: Data types, operators, expressions." },
-            { num: "Unit II", topics: "Control Statements: Decision making, branching, looping structures, arrays and strings." },
-            { num: "Unit III", topics: "Functions: Parameter passing, recursion. Structures and Unions, preprocessors." },
-            { num: "Unit IV", topics: "Pointers: Pointer arithmetic, dynamic memory allocation. File handling in C." }
-          ]
-        },
-        {
-          code: "ES-105",
-          icon: "🔌",
-          title: "Basic Electrical Engineering",
-          shortDesc: "DC/AC Circuits, Transformers, and Electrical Machines",
-          units: [
-            { num: "Unit I", topics: "DC Circuits: Mesh and Node analysis, Network theorems: Thevenin, Norton, Superposition, Maximum Power Transfer." },
-            { num: "Unit II", topics: "AC Circuits: Single phase RLC series and parallel circuits, phasor diagrams, resonance." },
-            { num: "Unit III", topics: "Transformers: Principles of operation, EMF equation, equivalent circuit, efficiency and regulation." },
-            { num: "Unit IV", topics: "Electrical Machines: DC machines operating principles, single phase induction motors, three-phase systems." }
-          ]
-        },
-        {
           code: "ES-107",
           icon: "📐",
           title: "Engineering Graphics",
@@ -82,6 +22,102 @@ const syllabusData = {
             { num: "Unit III", topics: "Projections of Solids, section of solids, development of surfaces of solids." },
             { num: "Unit IV", topics: "Isometric Projections, conversion of orthographic views into isometric views, CAD basics." }
           ]
+        },
+        {
+          code: "BS-112",
+          icon: "⚛",
+          title: "Applied Physics-1",
+          shortDesc: "Mechanics, Wave Theory, and Optical Systems",
+          units: [
+            { num: "Unit I", topics: "Introduction to Thermodynamics: Fundamental Ideas of Thermodynamics, The Continuum Model, The Concept of a \"System\", \"State\", \"Equilibrium\", \"Process\". Equations of state, Heat, Zeroth Law of Thermodynamics, Work, first and second laws of thermodynamics, entropy" },
+            { num: "Unit II", topics: "Waves and Oscillations: Wave motion, simple harmonic motion, wave equation, superposition principle. Introduction to Electromagnetic Theory: Maxwell's equations. work done by the electromagnetic field, Poynting's theorem, Momentum, Angular momentum in electromagnetic fields, Electromagnetic waves: the wave equation, plane electromagnetic waves, energy carried by electromagnetic waves" },
+            { num: "Unit III", topics: "Interference: Interference by division of wave front (Young's double slit experiment, Fresnel's biprism), interference by division of amplitude (thin films, Newton's rings, Michelson's interferometer), Coherence and coherent sources, Diffraction: Fraunhofer and Fresnel diffraction; Fraunhofer diffraction for Single slit, double slit, and N-slit (diffraction grating), Fraunhofer diffraction from a circular aperture, resolving power and dispersive power of a grating, Rayleigh criterion, resolving power of optical instruments, Polarization: Introduction to polarization, Brewster's law, Malu's law, Nicol prism, double refraction, quarter-wave and half-wave plates, optical activity, specific rotation, Laurent half shade polarimeter." },
+            { num: "Unit IV", topics: "Theory of relativity: The Michelson-Morley Experiment and the speed of light; Absolute and Inertial frames of reference, Galilean transformations, the postulates of the special theory of relativity, Lorentz transformations, time dilation, length contraction, velocity addition, mass energy equivalence. Invariance of Maxwell's equations under Lorentz Transformation. Introduction to Laser Physics: Introduction, coherence, Einstein A and B coefficients, population inversion, basic principle and operation of a laser, the He-Ne laser and the Ruby laser" }
+          ]
+        },
+        {
+          code: "BS-111",
+          icon: "√x",
+          title: "Applied Mathematics-1",
+          shortDesc: "Calculus, Matrices, and Differential Equations",
+          units: [
+            { num: "Unit I", topics: "Partial derivatives, Chain rule, Differentiation of Implicit functions, Exact differentials, Maxima, Minima and saddle points, Method of Lagrange multipliers, Differentiation under Integral sign, Jacobians and transformations of coordinates." },
+            { num: "Unit II", topics: "Ordinary Differential Equations (ODEs): Basic Concepts, Geometric Meaning of y'= f(x, y), Direction Fields, Euler's Method, Separable ODEs, Exact ODEs, Integrating Factors, Linear ODEs, Bernoulli Equation, Population Dynamics, Orthogonal Trajectories, Homogeneous Linear ODEs with Constant Coefficients, Differential Operators, Modeling of Free Oscillations of a Mass-Spring System, Euler-Cauchy Equations, Wronskian, Nonhomogeneous ODEs, Solution by Variation of Parameters, Power Series Method for solution of ODEs, Legendre's Equation, Legendre Polynomials, Bessel's Equation, Bessels's functions Jn(x) and Yn(x), Gamma Function" },
+            { num: "Unit III", topics: "Linear Algebra: Matrices and Determinants, Gauss Elimination, Linear Independence, Rank of a Matrix, Vector Space, Solutions of Linear Systems and concept of Existence, Uniqueness, Determinants, Cramer's Rule, Gauss-Jordan Elimination, The Matrix Eigenvalue Problem, Determining Eigenvalues and Eigenvectors, Symmetric, Skew-Symmetric, and Orthogonal Matrices, Eigenbases, Diagonalization, Quadratic Forms, Cayley - Hamilton Theorem (without proof)" },
+            { num: "Unit IV", topics: "Vector Calculus: Vector and Scalar Functions and Their Fields, Derivatives, Curves, Arc Length, Curvature, Torsion, Gradient of a Scalar Field, Directional Derivative, Divergence of a Vector Field, Curl of a Vector Field, Line Integrals, Path Independence of Line Integrals, Double Integrals, Green's Theorem in the Plane, Surfaces for Surface Integrals, Surface Integrals, Triple Integrals, Stokes Theorem, Divergence Theorem of Gauss" }
+          ]
+        },
+        {
+          code: "ES-109",
+          icon: "⚙️",
+          title: "Manufacturing Processes",
+          shortDesc: "Casting, Welding, Machining, and Metal Forming",
+          units: [
+            { num: "Unit I", topics: "Definition of manufacturing, Importance of manufacturing towards technological and social economic development, Classification of manufacturing processes, Properties of materials. Metal Casting Processes: Sand casting, Sand moulds, Type of patterns, Pattern materials, Pattern allowances, Types of Moulding sand and their Properties, Core making, Elements of gating system, Description and operation of cupola, Working principle of Special casting processes - Shell casting, Pressure die casting, Centrifugal casting, Casting defects." },
+            { num: "Unit II", topics: "Joining Processes: Welding principles, classification of welding processes, Fusion welding, Gas welding, Equipments used, Filler and Flux materials, Electric arc welding, Gas metal arc welding, Submerged arc welding, Electro slag welding, TIG and MIG welding process, resistance welding, welding defects" },
+            { num: "Unit III", topics: "Deformation Processes: Hot working and cold working of metals, Forging processes, Open and closed die forging process, Typical forging operations, Rolling of metals, Principle of rod and wire drawing, Tube drawing, Principle of Extrustion, Types of Extrustion, Hot and Cold extrusion, Sheet metal characteristics - Typical shearing operations, bending and drawing operations, Stretch forming operations, Metal spinning" },
+            { num: "Unit IV", topics: "Powder Metallurgy: Introduction of powder metallurgy process, powder production, blending, compaction, sintering, Manufacturing Of Plastic Components: Types of plastics, Characteristics of the forming and shaping processes, Moulding of Thermoplastics, Injection moulding, Blow moulding, Rotational moulding, Film blowing, Extrusion, Thermoforming, Moulding of thermosets- Compression moulding, Transfer moulding, Bonding of Thermoplastics." }
+          ]
+        },
+        {
+          code: "HS-101",
+          icon: "🌱",
+          title: "Environmental Science",
+          shortDesc: "Ecology, Ecosystems, Biodiversity & Pollution Control",
+          units: [
+            { num: "Unit I", topics: "Fundamentals: The Multidisciplinary nature of environmental studies: Definition, components, scope and importance, need for public awareness; Natural Resources. Ecosystems: Concept, Structure and function of an ecosystem, Types, Functional Components, Different ecosystems, biogeochemical cycles. Biodiversity: Introduction to biodiversity, biogeographical classification, India as a mega diversity nation, endangered and endemic species of India, threats to biodiversity and conservation of biodiversity. Bioprospecting and Biopiracy" },
+            { num: "Unit II", topics: "Environmental Pollution: (a) Air Pollution: Source, Types, effects on biosphere and Meterology, Air Quality, Control. (b) Water Pollution: Types and Sources. (c) Soil Pollution: Types and Control. (d) Noise Pollution: Effect, Control (e) Thermal Pollution. (f) Radiation Pollution (g) Solid waste Management, (h) Pollution Prevention, (i) Disaster Management" },
+            { num: "Unit III", topics: "Social Issues and Environment: Concept of Sustainable Development; Urban problem related to energy; Water Conservation; Wasteland reclamation; Resettlement and Rehabilitation; Climate Change; Nuclear Accidents; Consumerism and Waste Products; Laws related to Environment, Pollution, Forest and Wild life; Environmental Impact Assessment." },
+            { num: "Unit IV", topics: "Human Population and Environment: Population Growth, Human Rights, Family Welfare Programmes, Environment and Human Health, HIV/AIDS, Women and Child Welfare, Role of IT." }
+          ]
+        },
+        {
+          code: "ES-105",
+          icon: "🔌",
+          title: "Electrical Science",
+          shortDesc: "DC/AC Circuits, Network Theorems, Transformers & Motors",
+          units: [
+            { num: "Unit I", topics: "DC Circuits: Passive circuit components, Basic laws of Electrical Engineering, Temperature Resistance Coefficients, voltage and current sources, Series and parallel circuits, power and energy, Kirchhoff's Laws, Nodal & Mesh Analysis, delta-star transformation, superposition theorem, Thevenin's theorem, Norton's theorem, maximum power transfer theorem, Time domain analysis of first Order RC & LC circuits." },
+            { num: "Unit II", topics: "AC Circuits: Representation of sinusoidal waveforms, peak and rms values, phasor representation, real power, reactive power, apparent power, power factor, Analysis of single-phase ac circuits consisting of R, L, C, RL, RC, RLC combinations (series and parallel), resonance, Three phase balanced circuits, voltage and current relations in star and delta connections." },
+            { num: "Unit III", topics: "D. C. Generators & Motors: Principle of operation of Generators & Motors, Speed Control of shunt motors, Flux control, Rheostatic control, voltage control, Speed control of series motors, A. C. Generators & Motors: Principle of operation, Revolving Magnetic field, Squirrel cage and phase wound rotor, Starting of Induction motors, Direct on line and Star Delta starters, Synchronous machines." },
+            { num: "Unit IV", topics: "Transformers: Construction and principle of operation, equivalent circuit, losses in transformers, regulation and efficiency, Auto-transformer and three-phase transformer connections. Measuring Instruments: Electromagnetism, Different Torques in Indicating instruments, Moving Iron Instruments: Construction & Principle, Attraction and Repulsion type, Moving Coil instruments: Permanent Magnet type, Dynamometer type Instruments." }
+          ]
+        },
+        {
+          code: "BS-113",
+          icon: "🔬",
+          title: "Applied Chemistry-1",
+          shortDesc: "Physical, Organic & Inorganic Engineering Chemistry",
+          units: [
+            { num: "Unit I", topics: "Fuels: Classification and Characteristics of fuels, Calorific values, Comparison between solid, liquid and gaseous fuels, calorific values of fuels, determination of calorific values using Bomb calorimeter, Boy's calorimeter, theoretical calculation of calorific value using Dulong formula and numericals of Calorific values. Types of fuels: - Solid: Coal, proximate and ultimate analysis of coal and numericals, carbonisation of coal in Otto-Hoffman oven with recovery of by-products, metallurgical coke; Liquid: Petroleum products --- refining, cracking-thermal and catalytic, knocking characteristics, Octane and Cetane rating; Gaseous: Natural Gas (NG), CNG, LPG, Coal gas, Oil gas, Producer gas, Water gas; Combustion of fuels numericals." },
+            { num: "Unit II", topics: "Phase rule: Terms used in Gibb's Phase rule, phase diagram and its applications for study of one-component systems: Water and Sulphur and two-component systems: Lead-Silver and Zinc-Magnesium. Polymers: Classification, functionality and their types; Plastics: Synthesis (reactions) and properties of Polyethylene Plastics (Addition polymers) --- low-density polyethene (LDPE), high-density polyethylene(HDPE), linear low density polyethylene(LLDPE) and ultra-high molecular weight polyethylene (UHMWPE); Vinyl Plastics (Condensation polymers) - Nylons, Phenol-formaldehyde resins(Bakelite) and Glyptal; Speciality Polymers: Engineering thermoplastics, Conducting polymers, Electroluminescent polymers, liquid crystalline polymers and biodegradable polymers." },
+            { num: "Unit III", topics: "Water: Introduction, water quality standards, physical, chemical and biological characteristics; hardness of water, disadvantages of hardness, determination of hardness (EDTA method) and related numerical questions. Alkalinity and its determination; Boiler problems with hard water and their prevention: Scale and sludge formation, boiler corrosion, caustic embrittlement, priming and foaming, boiler water treatment - internal or in-situ: carbonate and phosphate conditioning, colloidal and Calgon conditioning; external treatment: (a) Lime soda process and related numericals (b) Zeolite process and numericals, (c) Ion-exchange process. Municipal water supply - its treatment and disinfection using break -point chlorination. Desalination, Reverse Osmosis, Electrodialysis and defluoridation of water." },
+            { num: "Unit IV", topics: "Corrosion and its Control: Definition, effects, theory (mechanisms): dry/chemical, wet/electrochemical corrosion, Pilling-Bedworth ratio; Types of corrosion: Galvanic corrosion, Soil corrosion, Pitting corrosion, Concentration cell or Differential Aeration corrosion, Stress corrosion; Mechanism of rusting of iron, Passivity. Factors influencing corrosion; protective measures: galvanization, tinning, cathodic protection, sacrificial anodic protection; electroplating and prevention of corrosion through material selection and design. Green Technology and Green Chemistry Twelve Principles of Green Chemistry, Zero Waste Technology, Atom economy, Use of alternative feedstock, innocuous reagents, alternative solvents, designing alternative reaction methodology, minimising energy consumption. Nano Chemistry: Nanomaterials: Properties, synthesis and surface characterization techniques BET and TEM and applications." }
+          ]
+        },
+        {
+          code: "HS-102",
+          icon: "💬",
+          title: "Communication Skills",
+          shortDesc: "Verbal & Written Communication, Technical Writing, Soft Skills",
+          units: [
+            { num: "Unit I", topics: "Role and Importance of Communications, Attributes of Communications, Verbal and Non-Verbal Communications, Verbal Communications Skills, Non-verbal Communication Methods, Body Language, Barriers to Communications, Socio-psychological barriers, Inter-Cultural barriers, Overcoming barriers, Communication Mediums: Characterization and Choice of medium, Effective Communication: Correctness, Clarity, Conciseness, Courtesy, Group Communication: Meetings (types, purpose), Group Discussions, Conduct of Meeting, Participant Role, Making Presentations." },
+            { num: "Unit II", topics: "Spoken and Written English: Attributes of spoken and written communication, Formal & Informal Communication, Variation in between Indian, British and American English. Etiquette and Manners: Personal Behaviour, Greetings, Introductions, Telephone Etiquette. Vocabulary Development: Dictionaries and Thesaurus, Words often confused, generally used one word substitutions, Comprehension." },
+            { num: "Unit III", topics: "Letter writing: Planning the message, Planning Content, Structure, Language use, Layout, enquires and replies, asking for or giving quotations, Bargaining letters, Seller's reply, etc.; Complaints and Replies; Memos, Circulars and notices; Paragraph Writing, Writing Scientific and Technical Reports: Types, Structure, Drafting and Delivering a Speech: Understanding the Environment, Understanding the Audience, Text preparing, Composition, Practicing, Commemorative Speeches, Welcome and Introduction, Farewell and Send-offs, Condolence" },
+            { num: "Unit IV", topics: "Articles: Indefinite, Definite; Tenses: Present, Past, Future, Perfect (Present, Past and Future), Tenses in conditional sentences; Active and Passive Voice: Formation, conversion; Direct and Indirect Speech, Degrees of Comparison, Common errors, Concepts of Learning and Listening" }
+          ]
+        },
+        {
+          code: "CS-101",
+          icon: "</>",
+          title: "Programming in C",
+          shortDesc: "Algorithms, Syntax, Control structures, and Files",
+          units: [
+            { num: "Unit I", topics: "Introduction to Programming: Computer system, components of a computer system, computing environments, computer languages, creating and running programs, Preprocessor, Compilation process, role of linker, idea of invocation and execution of a programme. Algorithms: Representation using flowcharts, pseudocode. Introduction to C language: History of C, basic structure of C programs, process of compiling and running a C program, C tokens, keywords, identifiers, constants, strings, special symbols, variables, data types, I/O statements. Interconversion of variables. Operators and expressions: Operators, arithmetic, relational and logical, assignment operators, increment and decrement operators, bitwise and conditional operators, special operators, operator precedence and associativity, evaluation of expressions, type conversions in expressions." },
+            { num: "Unit II", topics: "Control structures: Decision statements; if and switch statement; Loop control statements: while, for and do while loops, jump statements, break, continue, goto statements. Arrays: Concepts, One dimensional array, declaration and initialization of one dimensional arrays, two dimensional arrays, initialization and accessing, multi dimensional arrays. Functions: User defined and built-in Functions, storage classes, Parameter passing in functions, call by value, Passing arrays to functions: idea of call by reference, Recursion. Strings: Arrays of characters, variable length character strings, inputting character strings, character library functions, string handling functions." },
+            { num: "Unit III", topics: "Pointers: Pointer basics, pointer arithmetic, pointers to pointers, generic pointers, array of pointers, functions returning pointers, Dynamic memory allocation. Pointers to functions. Pointers and Strings Structures and unions: Structure definition, initialization, accessing structures, nested structures, arrays of structures, structures and functions, self referential structures, unions, typedef, enumerations. File handling: command line arguments, File modes, basic file operations read, write and append. Scope and life of variables, multi-file programming." },
+            { num: "Unit IV", topics: "C99 extensions. 'C' Standard Libraries: stdio.h, stdlib.h, assert.h, math.h, time.h, ctype.h, setjmp.h, string.h, stdarg.h, unistd.h. Basic Algorithms: Finding Factorial, Fibonacci series, Linear and Binary Searching, Basic Sorting Algorithms- Bubble sort, Insertion sort and Selection sort. Find the square root of a number, array order reversal, reversal of a string." }
+          ]
         }
       ]
     },
@@ -89,51 +125,39 @@ const syllabusData = {
       desc: "Strengthen core engineering constructs and object-oriented paradigms.",
       subjects: [
         {
+          code: "CS-101",
+          icon: "</>",
+          title: "Programming in C",
+          shortDesc: "Algorithms, Syntax, Control structures, and Files",
+          units: [
+            { num: "Unit I", topics: "Introduction to Programming: Computer system, components of a computer system, computing environments, computer languages, creating and running programs, Preprocessor, Compilation process, role of linker, idea of invocation and execution of a programme. Algorithms: Representation using flowcharts, pseudocode. Introduction to C language: History of C, basic structure of C programs, process of compiling and running a C program, C tokens, keywords, identifiers, constants, strings, special symbols, variables, data types, I/O statements. Interconversion of variables. Operators and expressions: Operators, arithmetic, relational and logical, assignment operators, increment and decrement operators, bitwise and conditional operators, special operators, operator precedence and associativity, evaluation of expressions, type conversions in expressions." },
+            { num: "Unit II", topics: "Control structures: Decision statements; if and switch statement; Loop control statements: while, for and do while loops, jump statements, break, continue, goto statements. Arrays: Concepts, One dimensional array, declaration and initialization of one dimensional arrays, two dimensional arrays, initialization and accessing, multi dimensional arrays. Functions: User defined and built-in Functions, storage classes, Parameter passing in functions, call by value, Passing arrays to functions: idea of call by reference, Recursion. Strings: Arrays of characters, variable length character strings, inputting character strings, character library functions, string handling functions." },
+            { num: "Unit III", topics: "Pointers: Pointer basics, pointer arithmetic, pointers to pointers, generic pointers, array of pointers, functions returning pointers, Dynamic memory allocation. Pointers to functions. Pointers and Strings Structures and unions: Structure definition, initialization, accessing structures, nested structures, arrays of structures, structures and functions, self referential structures, unions, typedef, enumerations. File handling: command line arguments, File modes, basic file operations read, write and append. Scope and life of variables, multi-file programming." },
+            { num: "Unit IV", topics: "C99 extensions. 'C' Standard Libraries: stdio.h, stdlib.h, assert.h, math.h, time.h, ctype.h, setjmp.h, string.h, stdarg.h, unistd.h. Basic Algorithms: Finding Factorial, Fibonacci series, Linear and Binary Searching, Basic Sorting Algorithms- Bubble sort, Insertion sort and Selection sort. Find the square root of a number, array order reversal, reversal of a string." }
+          ]
+        },
+        {
           code: "BS-121",
           icon: "∫",
-          title: "Applied Mathematics - II",
+          title: "Applied Mathematics 2",
           shortDesc: "Vector Calculus, Laplace Transforms, and Ordinary Differential Equations",
           units: [
-            { num: "Unit I", topics: "Ordinary Differential Equations: First order exact equations, linear differential equations of higher order." },
-            { num: "Unit II", topics: "Orthogonal Trajectories, Cauchy-Euler equations, method of variation of parameters." },
-            { num: "Unit III", topics: "Vector Calculus: Gradient, divergence, curl, line integrals, Green's, Gauss's, and Stokes' theorems." },
-            { num: "Unit IV", topics: "Laplace Transforms: Transforms of elementary functions, inverse Laplace transforms, convolution theorem." }
+            { num: "Unit I", topics: "Complex Analysis – I : Complex Numbers and Their Geometric Representation, Polar Form of Complex Numbers. Powers and Roots, Derivative. Analytic Function, Cauchy–Riemann Equations. Laplace's Equation, Exponential Function, Trigonometric and Hyperbolic Functions. Euler's Formula, de'Moivre's theorem (without proof), Logarithm. General Power. Principal Value. Singularities and Zeros. Infinity" },
+            { num: "Unit II", topics: "Complex Analysis – II: Laurent Series, Residue Integration Method. Residue Integration of Real Integrals, Geometry of Analytic Functions: Conformal Mapping, Linear Fractional Transformations (Möbius Transformations), Special Linear Fractional Transformations, Conformal Mapping by Other Functions, Applications: Electrostatic Fields, Use of Conformal Mapping. Modeling, Heat Problems, Fluid Flow. Poisson's Integral Formula for Potentials" },
+            { num: "Unit III", topics: "Laplace Transforms: Definitions and existence (without proof), properties, First Shifting Theorem (s-Shifting), Transform of Derivatives and Integrals and ODEs, Unit Step Function (Heaviside Function). Second Shifting Theorem (t-Shifting), Short Impulses. Dirac's Delta Function. Partial Fractions, Convolution. Integral Equations, Differentiation and Integration of Transforms. Solution of ODEs with Variable Coefficients, Solution of Systems of ODEs. Inverse Laplace transform and its properties. Fourier Analysis: Fourier Series, Arbitrary Period. Even and Odd Functions. Half-Range Expansions, Sturm–Liouville Problems. Fourier Integral, Fourier Cosine and Sine Transforms, Fourier Transform. Usage of fourier analysis for solution of ODEs. Inverse Fourier transform and its properties." },
+            { num: "Unit IV", topics: "Partial Differential Equations (PDEs): Basic Concepts of PDEs. Modeling: Vibrating String, Wave Equation. Solution by Separating Variables. Use of Fourier Series. D'Alembert's Solution of the Wave Equation. Characteristics. Modeling: Heat Flow from a Body in Space. Heat Equation: Solution by Fourier Series. Steady Two-Dimensional Heat Problems. Dirichlet Problem. Heat Equation: Modeling Very Long Bars. Solution by Fourier Integrals and Transforms. Modeling: Membrane, Two-Dimensional Wave Equation. Rectangular Membrane. Laplacian in Polar Coordinates. Circular Membrane. Laplace's Equation in Cylindrical and Spherical Coordinates. Potential. Solution of PDEs by Laplace Transforms." }
           ]
         },
         {
           code: "BS-122",
           icon: "⚛",
-          title: "Applied Physics - II",
+          title: "Applied Physics 2",
           shortDesc: "Electromagnetism, Solid State Physics, and Quantum Mechanics",
           units: [
-            { num: "Unit I", topics: "Electromagnetic Theory: Gauss's law, Ampere's law, Faraday's law, Maxwell's equations." },
-            { num: "Unit II", topics: "Quantum Mechanics: de Broglie waves, Heisenberg uncertainty principle, Schrodinger wave equation." },
-            { num: "Unit III", topics: "Statistical Mechanics: Maxwell-Boltzmann, Bose-Einstein, and Fermi-Dirac statistics." },
-            { num: "Unit IV", topics: "Solid State Physics: Crystal structure, Bravais lattices, band theory of solids, superconductors." }
-          ]
-        },
-        {
-          code: "CS-122",
-          icon: "++",
-          title: "Programming in C++",
-          shortDesc: "Object-Oriented Programming, Classes, Templates, and STL",
-          units: [
-            { num: "Unit I", topics: "OOP basics, C++ vs C, Classes, Objects, constructors and destructors." },
-            { num: "Unit II", topics: "Operator overloading, function overloading, friend functions." },
-            { num: "Unit III", topics: "Inheritance: Single, multiple, hierarchical, virtual base classes. Polymorphism." },
-            { num: "Unit IV", topics: "Templates, exception handling, standard template library (STL)." }
-          ]
-        },
-        {
-          code: "ES-106",
-          icon: "📟",
-          title: "Basic Electronics Engineering",
-          shortDesc: "Semiconductors, Diodes, Transistors, and Digital Logic Basics",
-          units: [
-            { num: "Unit I", topics: "Semiconductor Diodes: P-N junction, Zener diode, Rectifiers, Clippers and Clampers." },
-            { num: "Unit II", topics: "Bipolar Junction Transistors: CE, CB, CC configurations, biasing circuits, load line analysis." },
-            { num: "Unit III", topics: "Field Effect Transistors: JFET, MOSFET characteristics, operational amplifiers." },
-            { num: "Unit IV", topics: "Digital Electronics: Number systems, Boolean algebra, Logic gates, Combinational logic circuit basics." }
+            { num: "Unit I", topics: "Quantum Mechanics: Introduction: Wave particle duality, de Broglie waves, the experiment of Davisson and Germer, electron diffraction, physical interpretation of the wave function, properties, the wave packet, group and phase velocity, the uncertainty principle. The Schrödinger wave equation (1D), Eigen values and Eigen functions, expectation values, simple Eigen value problems – solutions of the Schrödinger's equations for the free particle, the infinite well, the finite well, tunneling effect, the scanning electron microscope, the quantum simple harmonic oscillator (qualitative), zero point energy." },
+            { num: "Unit II", topics: "Quantum Statistics: The need for statistics, statistical distributions: Maxwell Boltzmann, Bose-Einstein and Fermi-Dirac statistics, their comparisons, Fermions and Bosons, Applications of quantum statistics: 1. Molecular speed and energies in an ideal gas; 2. The Black body spectrum, the failure of classical statistics to give the correct explanations – Bose-Einstein statistics applied to the Black Body radiation spectrum; Fermi-Dirac distribution, free electron theory, electronic specific heats, Fermi energy and average energy; Dying stars." },
+            { num: "Unit III", topics: "Crystal Structure: Types of solids, Unit cell, Types of crystals, Translation vectors, Lattice planes, Miller indices, Simple crystal structures, Interplaner spacing, Crystal structure analysis: Bragg's law, Laue method, Point defects: Schottcky and Frankel defects." },
+            { num: "Unit IV", topics: "Band Theory of Solids: Origin of energy bands in solids, motion of electrons in a periodic potential – the Kronig–Penny model (Qualitative). Brillouin zones, effective mass, metals, semi-conductors and insulators and their energy band structures. Extrinsic and Intrinsic semiconductors, doping – Fermi energy for doped and undoped semiconductors, the p-n junction (energy band diagrams with Fermi energy), the unbiased diode, forward and reverse biased diodes – tunnel diodes, zener diode, photo diode its characteristics, LED" }
           ]
         },
         {
@@ -142,169 +166,229 @@ const syllabusData = {
           title: "Engineering Mechanics",
           shortDesc: "Statics, Force Systems, Friction, and Structural Mechanics",
           units: [
-            { num: "Unit I", topics: "Force Systems: Coplanar concurrent forces, resultant, Lami's theorem, moments and couples." },
-            { num: "Unit II", topics: "Equilibrium of Rigid Bodies: Free body diagrams, reactions, support reactions, trusses, method of joints." },
-            { num: "Unit III", topics: "Centroid and Moment of Inertia: Parallel axis theorem, polar moment of inertia, mass moment of inertia." },
-            { num: "Unit IV", topics: "Friction: Laws of friction, wedge friction, belt friction, kinematics of particles." }
+            { num: "Unit I", topics: "Force System: Introduction, force, principle of transmissibility of force, resultant of a force system, resolution of a force, moment of force about a line, Varigon's theorem, couple, resolution of force into force and a couple, properties of couple and their application to engineering problems. Equilibrium: Force body diagram, equations of equilibrium and their applications to engineering problems, equilibrium of two force and three force members. Distributed Forces: Determination of center of gravity, center of mass and centroid by direct integration and by the method of composite bodies, mass moment of inertia and area moment of inertia by direct integration and composite bodies method, radius of gyration, parallel axis theorem, polar moment of inertial." },
+            { num: "Unit II", topics: "Structure: Plane truss, perfect and imperfect truss, assumption in the truss analysis, analysis of perfect plane trusses by the method of joints, method of section and graphical method. Friction: Static and Kinetic friction, laws of dry friction, co-efficient of friction, angle of friction, angle of repose, cone of friction, frictional lock, friction in flat pivot and collar bearing, friction in flat belts." },
+            { num: "Unit III", topics: "Kinematics of Particles: Rectilinear motion, plane curvilinear motion, rectangular coordinates, normal and tangential coordinates. Kinetics of Particles: Equation of motion, rectilinear motion and curvilinear motion, work-energy equation, conservation of energy, concept of impulse and momentum, conservation of momentum, impact of bodies, co-efficient of restitution, loss of energy during impact." },
+            { num: "Unit IV", topics: "Kinematics of Rigid Bodies: Concept of rigid body, types of rigid body motion, absolute motion, introduction to relative velocity, relative acceleration (Corioli's component excluded) and instantaneous center of zero velocity, Velocity and acceleration. Kinetics of Rigid Bodies: Equation of motion, translatory motion and fixed axis rotation, application of work energy principles to rigid bodies conservation of energy. Beam: Introduction, types of loading, methods for the reactions of a beam, space diagram, types of end supports, beams subjected to couple." }
+          ]
+        },
+        {
+          code: "ES-105",
+          icon: "🔌",
+          title: "Electrical Science",
+          shortDesc: "DC/AC Circuits, Network Theorems, Transformers & Motors",
+          units: [
+            { num: "Unit I", topics: "DC Circuits: Passive circuit components, Basic laws of Electrical Engineering, Temperature Resistance Coefficients, voltage and current sources, Series and parallel circuits, power and energy, Kirchhoff's Laws, Nodal & Mesh Analysis, delta-star transformation, superposition theorem, Thevenin's theorem, Norton's theorem, maximum power transfer theorem, Time domain analysis of first Order RC & LC circuits." },
+            { num: "Unit II", topics: "AC Circuits: Representation of sinusoidal waveforms, peak and rms values, phasor representation, real power, reactive power, apparent power, power factor, Analysis of single-phase ac circuits consisting of R, L, C, RL, RC, RLC combinations (series and parallel), resonance, Three phase balanced circuits, voltage and current relations in star and delta connections." },
+            { num: "Unit III", topics: "D. C. Generators & Motors: Principle of operation of Generators & Motors, Speed Control of shunt motors, Flux control, Rheostatic control, voltage control, Speed control of series motors, A. C. Generators & Motors: Principle of operation, Revolving Magnetic field, Squirrel cage and phase wound rotor, Starting of Induction motors, Direct on line and Star Delta starters, Synchronous machines." },
+            { num: "Unit IV", topics: "Transformers: Construction and principle of operation, equivalent circuit, losses in transformers, regulation and efficiency, Auto-transformer and three-phase transformer connections. Measuring Instruments: Electromagnetism, Different Torques in Indicating instruments, Moving Iron Instruments: Construction & Principle, Attraction and Repulsion type, Moving Coil instruments: Permanent Magnet type, Dynamometer type Instruments." }
           ]
         },
         {
           code: "HS-102",
-          icon: "🗣",
+          icon: "💬",
           title: "Communication Skills",
           shortDesc: "Grammar, Technical Writing, and Group Discussions",
           units: [
-            { num: "Unit I", topics: "Communication Basics: Process, barriers, non-verbal communication, listening skills." },
-            { num: "Unit II", topics: "Grammar & Vocabulary: Common errors, active-passive voice, direct-indirect speech, idioms." },
-            { num: "Unit III", topics: "Technical Writing: Letter writing, resumes, report writing, emails, proposals." },
-            { num: "Unit IV", topics: "Speaking Skills: Group discussions, presentations, interviews, public speaking." }
+            { num: "Unit I", topics: "Role and Importance of Communications, Attributes of Communications, Verbal and Non-Verbal Communications, Verbal Communications Skills, Non-verbal Communication Methods, Body Language, Barriers to Communications, Socio-psychological barriers, Inter-Cultural barriers, Overcoming barriers, Communication Mediums: Characterization and Choice of medium, Effective Communication: Correctness, Clarity, Conciseness, Courtesy, Group Communication: Meetings (types, purpose), Group Discussions, Conduct of Meeting, Participant Role, Making Presentations." },
+            { num: "Unit II", topics: "Spoken and Written English: Attributes of spoken and written communication, Formal & Informal Communication, Variation in between Indian, British and American English. Etiquette and Manners: Personal Behaviour, Greetings, Introductions, Telephone Etiquette. Vocabulary Development: Dictionaries and Thesaurus, Words often confused, generally used one word substitutions, Comprehension." },
+            { num: "Unit III", topics: "Letter writing: Planning the message, Planning Content, Structure, Language use, Layout, enquires and replies, asking for or giving quotations, Bargaining letters, Seller's reply, etc.; Complaints and Replies; Memos, Circulars and notices; Paragraph Writing, Writing Scientific and Technical Reports: Types, Structure, Drafting and Delivering a Speech: Understanding the Environment, Understanding the Audience, Text preparing, Composition, Practicing, Commemorative Speeches, Welcome and Introduction, Farewell and Send-offs, Condolence" },
+            { num: "Unit IV", topics: "Articles: Indefinite, Definite; Tenses: Present, Past, Future, Perfect (Present, Past and Future), Tenses in conditional sentences; Active and Passive Voice: Formation, conversion; Direct and Indirect Speech, Degrees of Comparison, Common errors, Concepts of Learning and Listening" }
+          ]
+        },
+        {
+          code: "HS-101",
+          icon: "🌱",
+          title: "Environmental Science",
+          shortDesc: "Ecology, Ecosystems, Biodiversity & Pollution Control",
+          units: [
+            { num: "Unit I", topics: "Fundamentals: The Multidisciplinary nature of environmental studies: Definition, components, scope and importance, need for public awareness; Natural Resources. Ecosystems: Concept, Structure and function of an ecosystem, Types, Functional Components, Different ecosystems, biogeochemical cycles. Biodiversity: Introduction to biodiversity, biogeographical classification, India as a mega diversity nation, endangered and endemic species of India, threats to biodiversity and conservation of biodiversity. Bioprospecting and Biopiracy" },
+            { num: "Unit II", topics: "Environmental Pollution: (a) Air Pollution: Source, Types, effects on biosphere and Meterology, Air Quality, Control. (b) Water Pollution: Types and Sources. (c) Soil Pollution: Types and Control. (d) Noise Pollution: Effect, Control (e) Thermal Pollution. (f) Radiation Pollution (g) Solid waste Management, (h) Pollution Prevention, (i) Disaster Management" },
+            { num: "Unit III", topics: "Social Issues and Environment: Concept of Sustainable Development; Urban problem related to energy; Water Conservation; Wasteland reclamation; Resettlement and Rehabilitation; Climate Change; Nuclear Accidents; Consumerism and Waste Products; Laws related to Environment, Pollution, Forest and Wild life; Environmental Impact Assessment." },
+            { num: "Unit IV", topics: "Human Population and Environment: Population Growth, Human Rights, Family Welfare Programmes, Environment and Human Health, HIV/AIDS, Women and Child Welfare, Role of IT." }
+          ]
+        },
+        {
+          code: "BS-113",
+          icon: "🔬",
+          title: "Applied Chemistry-1",
+          shortDesc: "Physical, Organic & Inorganic Engineering Chemistry",
+          units: [
+            { num: "Unit I", topics: "Fuels: Classification and Characteristics of fuels, Calorific values, Comparison between solid, liquid and gaseous fuels, calorific values of fuels, determination of calorific values using Bomb calorimeter, Boy's calorimeter, theoretical calculation of calorific value using Dulong formula and numericals of Calorific values. Types of fuels: - Solid: Coal, proximate and ultimate analysis of coal and numericals, carbonisation of coal in Otto-Hoffman oven with recovery of by-products, metallurgical coke; Liquid: Petroleum products --- refining, cracking-thermal and catalytic, knocking characteristics, Octane and Cetane rating; Gaseous: Natural Gas (NG), CNG, LPG, Coal gas, Oil gas, Producer gas, Water gas; Combustion of fuels numericals." },
+            { num: "Unit II", topics: "Phase rule: Terms used in Gibb's Phase rule, phase diagram and its applications for study of one-component systems: Water and Sulphur and two-component systems: Lead-Silver and Zinc-Magnesium. Polymers: Classification, functionality and their types; Plastics: Synthesis (reactions) and properties of Polyethylene Plastics (Addition polymers) --- low-density polyethene (LDPE), high-density polyethylene(HDPE), linear low density polyethylene(LLDPE) and ultra-high molecular weight polyethylene (UHMWPE); Vinyl Plastics (Condensation polymers) - Nylons, Phenol-formaldehyde resins(Bakelite) and Glyptal; Speciality Polymers: Engineering thermoplastics, Conducting polymers, Electroluminescent polymers, liquid crystalline polymers and biodegradable polymers." },
+            { num: "Unit III", topics: "Water: Introduction, water quality standards, physical, chemical and biological characteristics; hardness of water, disadvantages of hardness, determination of hardness (EDTA method) and related numerical questions. Alkalinity and its determination; Boiler problems with hard water and their prevention: Scale and sludge formation, boiler corrosion, caustic embrittlement, priming and foaming, boiler water treatment - internal or in-situ: carbonate and phosphate conditioning, colloidal and Calgon conditioning; external treatment: (a) Lime soda process and related numericals (b) Zeolite process and numericals, (c) Ion-exchange process. Municipal water supply - its treatment and disinfection using break -point chlorination. Desalination, Reverse Osmosis, Electrodialysis and defluoridation of water." },
+            { num: "Unit IV", topics: "Corrosion and its Control: Definition, effects, theory (mechanisms): dry/chemical, wet/electrochemical corrosion, Pilling-Bedworth ratio; Types of corrosion: Galvanic corrosion, Soil corrosion, Pitting corrosion, Concentration cell or Differential Aeration corrosion, Stress corrosion; Mechanism of rusting of iron, Passivity. Factors influencing corrosion; protective measures: galvanization, tinning, cathodic protection, sacrificial anodic protection; electroplating and prevention of corrosion through material selection and design. Green Technology and Green Chemistry Twelve Principles of Green Chemistry, Zero Waste Technology, Atom economy, Use of alternative feedstock, innocuous reagents, alternative solvents, designing alternative reaction methodology, minimising energy consumption. Nano Chemistry: Nanomaterials: Properties, synthesis and surface characterization techniques BET and TEM and applications." }
+          ]
+        },
+        {
+          code: "ES-110",
+          icon: "🛠",
+          title: "Workshop",
+          shortDesc: "Fitting, Carpentry, Foundry, Welding, and Machine Shop Practice",
+          units: [
+            { num: "Unit I", topics: "Fitting Shop: Fitting tools, layout marking, measuring tools, sawing, filing, tapping and dieing operations." },
+            { num: "Unit II", topics: "Carpentry Shop: Timber classification, seasoning, carpentry tools, joints (halving, mortise & tenon, dovetail)." },
+            { num: "Unit III", topics: "Foundry & Welding Shop: Molding sands, cores, pattern types, arc & gas welding joint preparations." },
+            { num: "Unit IV", topics: "Sheet Metal & Machine Shop: Sheet metal tools, joints, seams, lathe machine operations, safety practices." }
           ]
         }
       ]
     },
     3: {
-      desc: "Explore core algorithms, discrete structures, and digital representations.",
+      desc: "Explore core algorithms, discrete structures, digital design, object oriented paradigms, and computational methods.",
       subjects: [
+        {
+          code: "BS-203",
+          icon: "∫",
+          title: "Computational Methods (CSE)",
+          shortDesc: "Root Finding, Interpolation, Numerical Integration, and Differential Equations",
+          units: [
+            { num: "Unit I", topics: "Review of Taylor Series, Rolle's Theorem and Mean Value Theorem, Approximations and Errors in numerical computations, Data representation and computer arithmetic, Loss of significance in computation, Location of roots of equation: Bisection method (convergence analysis and implementation), Newton Method (convergence analysis and implementation), Secant Method (convergence analysis and implementation), Unconstrained one variable function minimization by Fibonacci search, Golden Section Search and Newton's method, Multivariate function minimization by the method of steepest descent, Nelder-Mead Algorithm." },
+            { num: "Unit II", topics: "Interpolation: Assumptions for interpolation, errors in polynomial interpolation, Finite differences, Gregory-Newton's Forward Interpolation, Gregory-Newton's backward Interpolation, Lagrange's Interpolation, Newton's divided difference interpolation, Numerical Integration: Definite Integral, Newton-Cote's Quadrature formula, Trapezoidal Rule, Simpson's one-third rule, Simpson's three-eight rule, Errors in quadrature formulae, Romberg's Algorithm, Gaussian Quadrature formula." },
+            { num: "Unit III", topics: "System of Linear Algebraic Equations: Existence of solution, Gauss elimination method and its computational effort, concept of Pivoting, Gauss Jordan method and its computational effort, Triangular Matrix factorization methods: Dolittle algorithm, Crout's Algorithm, Cholesky method, Eigen value problem: Power method, Approximation by Spline Function: First-Degree and second degree Splines, Natural Cubic Splines, B Splines, Interpolation and Approximation" },
+            { num: "Unit IV", topics: "Numerical solution of ordinary Differential Equations: Picard's method, Taylor series method, Euler's and Runge-Kutta's methods, Predictor-corrector methods: Euler's Predictor-Corrector method, Adams-Bashforth method, Milne's method, Numerical Solution of Partial Differential equations: Parabolic, Hyperbolic, and elliptic equations, Implementation to be done in C/C++" }
+          ]
+        },
         {
           code: "CS-201",
           icon: "∑",
-          title: "Discrete Structure",
-          shortDesc: "Sets, Relations, Logic, Algebraic Structures, and Graph Theory",
+          title: "Discrete Mathematics",
+          shortDesc: "Sets, Logic, Relations, Functions, Group Theory, and Graph Theory",
           units: [
-            { num: "Unit I", topics: "Set Theory, relations, equivalence relations, partial orderings, functions." },
-            { num: "Unit II", topics: "Propositional logic, predicate logic, inference rules, mathematical induction." },
-            { num: "Unit III", topics: "Algebraic structures: Semigroups, monoids, groups, rings, fields." },
-            { num: "Unit IV", topics: "Graph Theory: Paths, cycles, Eulerian & Hamiltonian paths, trees, graph coloring." }
+            { num: "Unit I", topics: "Sets, Logic, and Relation: Sets, Subsets, powerset, operations on sets, Propositional Logic, Rules of inferences in propositional logic, Quantifiers, Predicates and validity, Predicate Logic, normal forms, Proof Techniques- Direct Proof, Proof by Contraposition, and proof by contradiction, Principle of inclusion and exclusion, pigeonhole principle, permutation and combination, Principle of Well Ordering, principle of mathematical induction, principle of complete induction, Relation, properties of binary relation, equivalence relation and class, closures (symmetric, reflexive, and transitive)." },
+            { num: "Unit II", topics: "Functions, Order relations and Boolean Algebra: Functions, Growth of functions, Permutation functions, Partially ordered sets, lattices, Boolean algebra, Minimization of Boolean Expressions, GCD, LCM, prime numbers, Recurrence relations, solution methods for linear, first-order recurrence relations with constant coefficients, generating functions, Analysis of Algorithms involving recurrence relations, solution method for a divide-and-conquer recurrence relation, Masters theorem (with proof)." },
+            { num: "Unit III", topics: "Group theory: Semi-group, Monoid, Groups, Group identity and uniqueness, inverse and its uniqueness, isomorphism and homomorphism, subgroups, Cosets and Lagrange’s theorem, Permutation group and Cayley’s theorem (without proof), Normal subgroup and quotient groups, Groups and Coding." },
+            { num: "Unit IV", topics: "Graph theory: Graph Terminology, Planar graphs, Euler's formula (proof), Euler and Hamiltonian path/circuit, Chromatic number of a graph, five color theorem (proof), Shortest path and minimal spanning trees and algorithms, Depth-first and breadth first search, trees associated with DFS & BFS, Connected components, Complexity Analysis of graph MST." }
           ]
         },
         {
           code: "CS-203",
           icon: "🏗",
           title: "Data Structures",
-          shortDesc: "Linear & Non-linear data representation, trees, graphs, and search algorithms",
+          shortDesc: "Arrays, Stacks, Queues, Sparse Matrices, Trees, Graphs, Sorting and Hashing",
           units: [
-            { num: "Unit I", topics: "Complexity analysis, arrays, linked lists (single, double, circular)." },
-            { num: "Unit II", topics: "Stacks, Queues, recursion, implementation using arrays & linked lists." },
-            { num: "Unit III", topics: "Trees: Binary trees, traversals, AVL trees, B-trees, heaps." },
-            { num: "Unit IV", topics: "Graphs: Representation, BFS, DFS. Searching & Sorting algorithms, hashing." }
+            { num: "Unit I", topics: "Overview of data structure, Basics of Algorithm Analysis including Running Time Calculations, Abstract Data Types, Arrays, Arrays and Pointers, Multidimensional Array, String processing, General Lists and List ADT, List manipulations, Single, double and circular lists, Stacks and Stack ADT, Stack Manipulation, Prefix, infix and postfix expressions, recursion, Queues and Queue ADT, Queue manipulation." },
+            { num: "Unit II", topics: "Sparse Matrix Representation (Array and Link List representation) and arithmetic (addition, subtraction and multiplication), polynomials and polynomial arithmetic, Trees, Properties of Trees, Binary trees, Binary Tree traversal, Tree manipulation algorithms, Expression trees and their usage, binary search trees, AVL Trees, Heaps and their implementation, Priority Queues, B-Trees, B* Tree, B+ Tree" },
+            { num: "Unit III", topics: "Sorting concept, order, stability, Selection sorts (straight, heap), insertion sort (Straight Insertion, Shell sort), Exchange Sort (Bubble, quicksort), Merge sort (External Sorting) (Natural merge, balanced merge and polyphase merge), Searching – List search, sequential search, binary search, hashing methods, collision resolution in hashing" },
+            { num: "Unit IV", topics: "Disjoint sets representation, union find algorithm, Graphs, Graph representation, Graph Traversals and their implementations (BFS and DFS), Minimum Spanning Tree algorithms, Shortest Path Algorithms" }
           ]
         },
         {
           code: "CS-205",
           icon: "🖥",
-          title: "Computer Organization & Architecture",
-          shortDesc: "Register Transfer, CPU Design, Microprogramming, and Memory Hierarchies",
+          title: "Digital Logic and Computer Design",
+          shortDesc: "Boolean Algebra, Combinational and Sequential Circuits, Computer Organization and Arithmetic",
           units: [
-            { num: "Unit I", topics: "Register Transfer and Microoperations: Bus transfer, arithmetic, logic, and shift microoperations." },
-            { num: "Unit II", topics: "Basic Computer Organization: Instruction codes, computer registers, instruction cycle, input-output interrupts." },
-            { num: "Unit III", topics: "Central Processing Unit: Stack organization, instruction formats, addressing modes, RISC vs CISC." },
-            { num: "Unit IV", topics: "Memory & Pipeline: Cache memory, virtual memory, pipelining, vector processing." }
+            { num: "Unit I", topics: "Boolean Algebra and Combinational Logic: Review of number systems, signed, unsigned, fixed point, floating point numbers, Binary Codes, Boolean algebra – basic postulates, theorems, Simplification of Boolean function using Karnaugh map and Quine-McCluskey method – Implementations of combinational logic functions using gates, Adders, Subtractors, Magnitude comparator, encoder and decoders, multiplexers, code converters, parity generator/checker, implementation of combinational circuits using multiplexers." },
+            { num: "Unit II", topics: "Sequential Circuits: General model of sequential circuits, Flip-flops, latches, level triggering, edge triggering, master slave configuration, concept of state diagram, state table, state reduction procedures, Design of synchronous sequential circuits, up/down and modulus counters, shift registers, Ring counter, Johnson counter, timing diagram, serial adder, sequence detector, Programmable Logic Array (PLA), Programmable Array Logic (PAL), Memory Unit, Random Access Memory." },
+            { num: "Unit III", topics: "Basic Computer organization: Stored Program Organization, Computer registers, bus system, instruction set completeness, instruction cycle, Register Transfer Language, Arithmetic, Logic and Shift Micro-operations, Instruction Codes, Design of a simple computer, Design of Arithmetic Logic unit, shifter, Design of a simple hardwired control unit, Programming the basic computer, Machine language instructions, assembly language, Microprogrammed control, Horizontal and Vertical Microprogramming, Central Processing Unit, instruction sets and formats, addressing modes, data paths, RISC and CISC characteristics." },
+            { num: "Unit IV", topics: "Computer Arithmetic, addition, subtraction, multiplication and division algorithms, Input-Output Organization, Modes of data transfer, Interrupt cycle, direct memory access, Input-Output processor, Memory Organization, Memory Hierarchy, Associative Memory, Cache Memory, Internal and external Memory, Virtual Memory." }
           ]
         },
         {
           code: "CS-207",
           icon: "⚙",
           title: "Object Oriented Programming",
-          shortDesc: "Java Fundamentals, Exception Handling, Multi-threading, and GUI",
+          shortDesc: "OOP Concepts, Classes, Inheritance, Polymorphism, Streams, Exception Handling, and STL",
           units: [
-            { num: "Unit I", topics: "Java Basics: JVM, classes, objects, inheritance, polymorphism, interfaces, packages." },
-            { num: "Unit II", topics: "Exceptions & I/O: Try-catch blocks, custom exceptions, byte streams, character streams." },
-            { num: "Unit III", topics: "Multithreading: Thread life cycle, synchronization, inter-thread communication, thread pools." },
-            { num: "Unit IV", topics: "Applets & AWT: Event handling, layout managers, Swing components, database connectivity (JDBC)." }
-          ]
-        },
-        {
-          code: "EC-209",
-          icon: "🚥",
-          title: "Digital Electronics",
-          shortDesc: "Logic Gates, K-Maps, Combinational & Sequential Logic Design",
-          units: [
-            { num: "Unit I", topics: "Number Systems and Codes: Binary, octal, hexadecimal, BCD, Gray code, logic gates." },
-            { num: "Unit II", topics: "Boolean Algebra: K-maps, Quine-McCluskey method, combinational circuits: adders, multiplexers." },
-            { num: "Unit III", topics: "Sequential Circuits: Latches, flip-flops (SR, JK, D, T), registers, counters." },
-            { num: "Unit IV", topics: "Semiconductor Memories: ROM, PLA, PAL, TTL & CMOS logic families." }
+            { num: "Unit I", topics: "Object Oriented Programming Paradigm, Basic Concepts of Object Oriented Programming, Benefits of Object Oriented Programming, Object Oriented Languages, Applications of Object Oriented Programming, C++ Programming Language, Tokens, Keywords, Identifiers and Constants, Data Types, Type Compatibility, Variables, Operators in C++, Implicit Type Conversions, Operator Precedence, The Main Function, Function Prototyping, Call by Reference, Return by Reference, Inline Functions, Function Overloading, Friend Functions, default parameter value." },
+            { num: "Unit II", topics: "Specifying a class, Member Functions, Encapsulation, information hiding, abstract data types, objects & classes, Static Member Functions, Arrays of Objects, Constructors & Destructors, Parameterized Constructors, Copy Constructors, Dynamic Constructors, Destructors, identity and behaviour of an object, C++ garbage collection, dynamic memory allocation, Explicit Type Conversions, Operator Overloading." },
+            { num: "Unit III", topics: "Inheritance, inheritance methods, Class hierarchy, derivation – public, private & protected, aggregation, Inheritance Constructors, composition vs. classification hierarchies, Containership, Initialization List, Polymorphism, categorization of polymorphic techniques, polymorphism by parameter, parametric polymorphism, generic function – template function, function overriding, run time polymorphism, virtual functions." },
+            { num: "Unit IV", topics: "Standard C++ classes, using multiple inheritance, persistent objects, streams and files, namespaces, exception handling, generic classes, standard template library, organization and containers, standard containers, algorithm and Function objects, iterators and allocators, strings, streams, manipulators, user defined manipulators, vectors." }
           ]
         }
       ]
     },
     4: {
-      desc: "Understand operating systems, databases, software paradigms, and computation.",
+      desc: "Understand circuits, java programming, computational models, database systems, and technical correspondence.",
       subjects: [
         {
           code: "BS-204",
           icon: "📊",
-          title: "Applied Mathematics - IV",
-          shortDesc: "Probability, Statistics, Numerical Methods, and Linear Programming",
+          title: "Probability, Statistics and Linear Programming",
+          shortDesc: "Probability Distributions, Hypothesis Testing, Simplex Methods, and Duality",
           units: [
-            { num: "Unit I", topics: "Probability: Random variables, binomial, Poisson, and normal distributions." },
-            { num: "Unit II", topics: "Statistics: Sampling distribution, hypothesis testing, t-test, chi-square test, regression analysis." },
-            { num: "Unit III", topics: "Numerical Methods: Root finding (Bisection, Newton-Raphson), interpolation, numerical integration." },
-            { num: "Unit IV", topics: "Linear Programming: Simplex method, duality, formulation of real-world optimization problems." }
+            { num: "Unit I", topics: "Probability: Random variables, Probability distributions (Binomial, Poisson, Normal), Joint and marginal distributions." },
+            { num: "Unit II", topics: "Statistics: Sampling theory, Estimation, Hypothesis testing (t-test, F-test, Chi-square test), Regression & Correlation." },
+            { num: "Unit III", topics: "Linear Programming: Mathematical formulation of LPP, Graphical method, Simplex method, Artificial variable techniques (Big-M, Two-Phase)." },
+            { num: "Unit IV", topics: "Duality in LPP, Dual simplex method, Transportation and Assignment problems." }
           ]
         },
         {
           code: "CS-204",
           icon: "📁",
           title: "Database Management Systems",
-          shortDesc: "ER Diagrams, Relational Algebra, SQL, Normalization, and Transactions",
+          shortDesc: "ER Diagrams, Relational Algebra, SQL, Normalization, and Concurrency Control",
           units: [
-            { num: "Unit I", topics: "DBMS Overview: Data independence, database languages, ER diagrams, relational model." },
-            { num: "Unit II", topics: "Relational Query Languages: Relational algebra, SQL queries, DDL, DML, DCL commands." },
-            { num: "Unit III", topics: "Normalization: Functional dependencies, 1NF, 2NF, 3NF, BCNF, multi-valued dependency." },
-            { num: "Unit IV", topics: "Transaction Management: ACID properties, concurrency control, locks, recovery systems." }
+            { num: "Unit I", topics: "DBMS Overview: Database architecture, data models, ER diagrams, Relational model." },
+            { num: "Unit II", topics: "Relational Query Languages: Relational algebra, SQL (DDL, DML, DQL), Joins, Subqueries." },
+            { num: "Unit III", topics: "Relational Database Design: Functional dependencies, Normalization (1NF, 2NF, 3NF, BCNF)." },
+            { num: "Unit IV", topics: "Transaction & Concurrency: ACID properties, Serializability, Concurrency control protocols (Locking, Timestamping)." }
           ]
         },
         {
           code: "CS-206",
           icon: "💻",
-          title: "Operating Systems",
-          shortDesc: "CPU Scheduling, Synchronization, Memory Management, and Disk Scheduling",
+          title: "Theory of Computation",
+          shortDesc: "Finite Automata, Regular Expressions, CFGs, PDAs, and Turing Machines",
           units: [
-            { num: "Unit I", topics: "OS overview, process state transitions, CPU scheduling algorithms." },
-            { num: "Unit II", topics: "Process synchronization: Semaphores, monitors, classical synchronization problems. Deadlocks." },
-            { num: "Unit III", topics: "Memory management: Paging, segmentation, virtual memory page replacement." },
-            { num: "Unit IV", topics: "File systems structure, disk scheduling algorithms, security and protection." }
+            { num: "Unit I", topics: "Finite Automata: DFA, NFA, Regular Expressions, Pumping Lemma for regular languages." },
+            { num: "Unit II", topics: "Context-Free Grammars: CFGs, Chomsky Normal Form, Greibach Normal Form, Pumping Lemma for CFLs." },
+            { num: "Unit III", topics: "Pushdown Automata: PDA design, equivalence with CFGs, Deterministic PDAs." },
+            { num: "Unit IV", topics: "Turing Machines: TM design, Halting problem, Undecidability, P and NP complexity classes." }
           ]
         },
         {
           code: "CS-208",
-          icon: "✍",
-          title: "Software Engineering",
-          shortDesc: "SDLC Models, Requirements, UML Diagrams, Testing, and Maintenance",
+          icon: "🔌",
+          title: "Circuits and Systems",
+          shortDesc: "Continuous & Discrete Time Signals, Fourier & Z-Transforms, Network Theorems, and Filters",
           units: [
-            { num: "Unit I", topics: "Software Process Models: Waterfall, spiral, prototype, agile models (Scrum)." },
-            { num: "Unit II", topics: "Requirements Engineering: SRS document, software design principles, UML diagrams." },
-            { num: "Unit III", topics: "Coding and Testing: White-box testing, black-box testing, unit, integration, and system testing." },
-            { num: "Unit IV", topics: "Software Metrics: COCOMO model, function points, maintenance, configuration management." }
+            { num: "Unit I", topics: "Introduction to Signals & Systems, Continuous-time and Discrete-time signals, Laplace Transform." },
+            { num: "Unit II", topics: "Fourier Series and Fourier Transform, Z-Transform, analysis of LTI systems." },
+            { num: "Unit III", topics: "Network Theorems: Superposition, Thevenin's, Norton's, Maximum Power Transfer, Two-Port Network parameters (Z, Y, ABCD, h)." },
+            { num: "Unit IV", topics: "State Variable Analysis of Circuits, Filters (Butterworth, Chebyshev), Passive and Active network synthesis." }
           ]
         },
         {
           code: "CS-210",
-          icon: "⚙",
-          title: "Theory of Computation",
-          shortDesc: "Finite Automata, Regular Expressions, Context-Free Grammars, and Turing Machines",
+          icon: "☕",
+          title: "Programming in Java",
+          shortDesc: "OOP Constructs, Multi-threading, Collections Framework, GUI and JDBC",
           units: [
-            { num: "Unit I", topics: "Finite Automata: DFA, NFA conversion, regular expressions, pumping lemma for regular languages." },
-            { num: "Unit II", topics: "Context-Free Grammars: CFGs, parsing trees, ambiguity, Chomsky normal form, Greibach normal form." },
-            { num: "Unit III", topics: "Pushdown Automata: PDA design, equivalence with CFGs, deterministic PDAs." },
-            { num: "Unit IV", topics: "Turing Machines: TM design, variants of TMs, halting problem, undecidability." }
+            { num: "Unit I", topics: "Introduction to Java, JDK, JVM, Basic syntax, OOP concepts: Classes, Objects, Inheritance, Polymorphism." },
+            { num: "Unit II", topics: "Interfaces, Packages, Exception Handling, I/O Streams (File Handling)." },
+            { num: "Unit III", topics: "Multithreading: Thread creation, lifecycle, synchronization. Collections Framework: List, Set, Map." },
+            { num: "Unit IV", topics: "AWT & Swing for GUI, Event Handling, JDBC database connectivity." }
+          ]
+        },
+        {
+          code: "HS-202",
+          icon: "✍",
+          title: "Technical Writing",
+          shortDesc: "Technical Correspondence, Audience Analysis, Proposals, Reports, and Citations",
+          units: [
+            { num: "Unit I", topics: "Introduction to Technical Communication: Objectives, characteristics, audience analysis." },
+            { num: "Unit II", topics: "Technical Writing Genres: Reports, manuals, proposals, specs, instructions." },
+            { num: "Unit III", topics: "Professional Correspondence: Resumes, cover letters, business emails, letters." },
+            { num: "Unit IV", topics: "Research Papers & Presentations: Formatting, citations (IEEE, APA), oral presentation skills." }
           ]
         }
       ]
     },
     5: {
-      desc: "Implement algorithms, network suites, web systems, and compiler foundations.",
+      desc: "Master algorithm design, networking protocols, compiler foundations, and systems engineering.",
       subjects: [
         {
           code: "CS-301",
-          icon: "📐",
-          title: "Design & Analysis of Algorithms",
-          shortDesc: "Asymptotic Notation, Divide & Conquer, Greedy, Dynamic Programming, and NP-Completeness",
+          icon: "⚙",
+          title: "Compiler Design",
+          shortDesc: "Lexical Analysis, Parsers, Syntax-Directed Translation, and Code Generation",
           units: [
-            { num: "Unit I", topics: "Algorithm Analysis: Asymptotic notations, recurrence relations, Master method." },
-            { num: "Unit II", topics: "Divide & Conquer, Greedy Algorithms: Merge sort, Quick sort, Knapsack, Huffman codes, Spanning trees." },
-            { num: "Unit III", topics: "Dynamic Programming, Backtracking: Matrix chain multiplication, LCS, 0/1 Knapsack, N-Queens." },
-            { num: "Unit IV", topics: "Complexity Classes: P, NP, NP-Hard, NP-Complete problems, approximation algorithms." }
+            { num: "Unit I", topics: "Compilers and translators, need of translators, structure of compiler: its different phases, compiler construction tools, Lexical analysis: Role of lexical analyzer, Input Buffering, A simple approach to the design of Lexical Analyzers, Specification and recognition of tokens, Finite automata, From regular expressions to automata, and vice versa, minimizing number of states of DFA, A language for specifying Lexical Analyzers, Design and implementation of lexical analyzer." },
+            { num: "Unit II", topics: "The role of the parser, Context free grammars, Writing a grammar: Lexical versus Syntactic analysis, Eliminating ambiguity, Elimination of left recursion, Left factoring, Top Down Parsing: Recursive- Decent parsing, Non-recursive Predictive parsing, LL(1) grammars, Bottom Up Parsing: Shift Reduce Parsing, Operator precedence parsing, LR Parsing: SLR, LALR and Canonical LR parser, Parser Generators." },
+            { num: "Unit III", topics: "Syntax Directed Translation: Syntax directed definitions, Evaluation orders for SDD's, construction of syntax trees, syntax directed translation schemes, implementation of syntax directed translation, Intermediate Code Generation: Kinds of intermediate code: Postfix notation, Parse trees and syntax trees, Three-address code, quadruples and triples, Semantic Analysis: Types and Declarations, Translation of Expressions, Type checking." },
+            { num: "Unit IV", topics: "Symbol Table: Symbol tables, its contents, Data Structure for Symbol Table: lists, trees, linked lists, hash tables, Error Detection and Recovery: Errors, lexical phase errors, syntactic phase errors, semantic errors, Error seen by each phase. Code Optimization: The principal sources of optimizations, Loop optimization, Basic blocks and Flow Graphs, DAG representation of basic blocks, Code Generation: Issues in the design of code generation, A simple target machine mode, A Simple Code Generator, Peep-hole optimization, Register allocation and assignment." }
           ]
         },
         {
@@ -313,111 +397,171 @@ const syllabusData = {
           title: "Computer Networks",
           shortDesc: "OSI Stack, Ethernet, Routing Protocols, TCP/UDP, and App Protocols",
           units: [
-            { num: "Unit I", topics: "Introduction to networks, physical layer encoding, transmission media, topologies." },
-            { num: "Unit II", topics: "Data link layer: Framing, error control, sliding window protocols, MAC sublayer." },
-            { num: "Unit III", topics: "Network layer: IP addressing, routing algorithms (OSPF, BGP), congestion control." },
-            { num: "Unit IV", topics: "Transport & Application: TCP, UDP, HTTP, DNS, SMTP, network security basics." }
+            { num: "Unit I", topics: "Data Communications: Components, Networks, The Internet, Protocols and Standards, Network Models: The OSI Model, TCP/IP Protocol Suite , A Comparison of the OSI and TCP/IP Reference Models, Addressing, Physical Layer: Analog and Digital Signals, Transmission modes, Transmission Media: Guided Media, Unguided Media, Review of Error Detection and Correction codes. Switching: Circuit switching (space-division, time division and space-time division), packet switching (virtual circuit and Datagram approach), message switching." },
+            { num: "Unit II", topics: "Data Link Layer: Design issues, Data Link Control and Protocols: Flow and Error Control, Stop-and-wait ARQ. Sliding window protocol, Go-Back-N ARQ, Selective Repeat ARQ, HDLC, Point-to -Point Access: PPP Point -to-Point Protocol, PPP Stack, Medium Access Sub layer: Channel allocation problem, Controlled Access, Channelization, multiple access protocols, IEEE standard 802.3 & 802.11 for LANS and WLAN, high-speed LANs, Token ring, Token Bus, FDDI based LAN, Network Devices-repeaters, hubs, switches bridges." },
+            { num: "Unit III", topics: "Network Layer: Design issues, Routing algorithms, Congestion control algorithms, Host to Host Delivery: Internetworking, addressing and routing, IP addressing (class full & Classless), Subnet, Network Layer Protocols: ARP, IPV4, ICMP, IPV6 ad ICMPV6." },
+            { num: "Unit IV", topics: "Transport Layer: Process to Process Delivery: UDP; TCP, congestion control and Quality of service. Application Layer: Client Server Model, Socket Interface, Domain Name System (DNS): Electronic Mail (SMTP), file transfer (FTP), HTTP and WWW." }
           ]
         },
         {
-          code: "CS-305",
-          icon: "☕",
-          title: "Java Programming",
-          shortDesc: "Advanced Java Concepts, Collections Framework, Networking, and Servlet Architectures",
+          code: "HS-305",
+          icon: "📈",
+          title: "Economics for Engineers",
+          shortDesc: "Engineering Economics, Microeconomics, Cost Analysis, and Financial Valuation",
           units: [
-            { num: "Unit I", topics: "OOP Implementation: Interfaces, packages, inner classes, Exception handling." },
-            { num: "Unit II", topics: "Java Collections: List, Set, Map interfaces, generics, file streams, serialization." },
-            { num: "Unit III", topics: "Java Networking: Socket programming, URL connection, RMI, multi-threaded servers." },
-            { num: "Unit IV", topics: "Enterprise Java: Servlets, JSP lifecycle, JDBC database queries, MVC implementation." }
+            { num: "Unit I", topics: "Introduction: Economics Definition, Basic economic problems, Resource constraints and welfare maximization. Microand Macro economics. Production Possibility Curve.Circular flow of economic activities. Basics of Demand, Supply and Equilibrium: Demand side and supply side of the market. Factors affecting demand & supply. Elasticity of demand & supply – price, income and cross-price elasticity. Market equilibrium price." },
+            { num: "Unit II", topics: "Theory of Consumer Choice: Theory of Utility and consumer's equilibrium.Indifference Curve analysis, Budget Constraints, Consumer Equilibrium. Demand forecasting:Regression Technique, Time-series, Smoothing Techniques: Exponential, Moving AveragesMethod" },
+            { num: "Unit III", topics: "Cost Theory and Analysis:Nature and types of cost, Cost functions- short run and long run, Economies and diseconomies of scale Market Structure:Market structure and degree of competitionPerfect competition, Monopoly, Monopolistic competition, Oligopoly" },
+            { num: "Unit IV", topics: "National Income Accounting:Overview of Macroeconomics, Basic concepts of NationalIncome Accounting Macro Economics Issues: Introduction to Business Cycle, Inflation-causes,consequences and remedies: Monetary and Fiscal policy." }
           ]
         },
         {
           code: "CS-307",
-          icon: "🧪",
-          title: "Software Testing",
-          shortDesc: "Verification/Validation, Test Case Design, Automation, and Defect Metrics",
+          icon: "✍",
+          title: "Software Engineering",
+          shortDesc: "SDLC Models, Requirements Engineering, Testing, and Maintenance",
           units: [
-            { num: "Unit I", topics: "Testing Concepts: Verification, validation, test suites, test case metrics." },
-            { num: "Unit II", topics: "Functional & Structural Testing: Boundary value analysis, equivalence partitioning, path testing, data flow." },
-            { num: "Unit III", topics: "Specialized Testing: Integration, system, regression, acceptance testing, performance testing." },
-            { num: "Unit IV", topics: "Test Automation & Tools: JUnit, Selenium, test reports, bug tracking tools." }
+            { num: "Unit I", topics: "Introduction to Software- Nature of Software, Introduction to Software Engineering, Software Engineering Layers, Software Myths, The Software Processes, Project, Product, Process Models: A Generic Process Model, Waterfall Model, Incremental Process Models, Evolutionary Process Models, Spiral Model. COCOMO Model. UML diagrams and DFDs" },
+            { num: "Unit II", topics: "Requirements Engineering- Functional and Non-Functional Requirements, The Software Requirements Document, Requirements Specification, Requirements Engineering, Requirements Elicitation and Analysis, Requirement Validation, Requirement Management, DFD, Data Dictionary. Introduction to ER diagrams" },
+            { num: "Unit III", topics: "Software Design- Design concepts and principles - Abstraction - Refinement - Modularity Cohesion coupling, Architectural design, Detailed Design Transaction Transformation, Refactoring of designs, Object-oriented Design User-Interface Design. Software Testing: White-Box Testing, Black Box Testing. Stress Testing. Alpha, Beta, and Acceptance Testing. Debugging." },
+            { num: "Unit IV", topics: "Software Maintenance and Management- Software Maintenance, Types of Maintenance, Software Configuration Management, Overview of RE-engineering Reverse Engineering, Reliability: Failure and Faults, Reliability Models. Quality and Risk Management: Product Metrics, Software Measurements, Metrics for Software Quality, Risk Management: Software Risks, Risk Identification, Risk Projection, Risk Refinements, Risk Mitigation Monitoring and Management (RMMM). Overview Of Quality Management. CMM, ISO 9000, and Six Sigma." }
           ]
         },
         {
           code: "CS-309",
-          icon: "⚙",
-          title: "Compiler Design",
-          shortDesc: "Lexical Analysis, Parsers, Syntax-Directed Translation, and Code Generation",
+          icon: "📐",
+          title: "Algorithm Design and Analysis",
+          shortDesc: "Asymptotic Notation, Divide & Conquer, Greedy, Dynamic Programming, and NP-Completeness",
           units: [
-            { num: "Unit I", topics: "Introduction to Compilers: Phases of compiler, lexical analyzer generation (LEX)." },
-            { num: "Unit II", topics: "Parsing Techniques: Top-down parsing (LL), bottom-up parsing (LR, LALR, SLR), parser generators (YACC)." },
-            { num: "Unit III", topics: "Syntax-Directed Translation: SDD, SDTS, intermediate code forms: three-address code." },
-            { num: "Unit IV", topics: "Code Optimization: Loop optimization, data flow analysis, code generator architectures." }
+            { num: "Unit I", topics: "Asymptotic notations for time and space complexity, Big-Oh notation, Θ notation, Ω notation, the little-oh notation, the little-omega notation, Recurrence relations: iteration method, recursion tree method, substitution method, master method (with proof), subtract and conquer master method(with proof), Data Structures for Disjoint Sets, Medians and Order statistics. Complexity analysis, Insertion sort, Merge Sort, Quick sort. Strassen's algorithm for Matrix Multiplications." },
+            { num: "Unit II", topics: "Dynamic Programming: Ingredients of Dynamic Programming, emphasis on optimal substructure , overlapping substructures, memorization. Matrix Chain Multiplication, Longest common subsequence and optimal binary search trees problems, 0-1 knapsack problem, Binomial coefficient computation through dynamic programming. Floyd Warshall algorithm." },
+            { num: "Unit III", topics: "Greedy Algorithms: Elements of Greedy strategy, overview of local and global optima, matroid, Activity selection problem, Fractional Knapsack problem, Huffman Codes, A task scheduling problem. Minimum Spanning Trees: Kruskal's and Prim's Algorithm, Single source shortest path: Dijkstra's and Bellman Ford Algorithm(with proof of correctness of algorithms)." },
+            { num: "Unit IV", topics: "String matching: The naïve String Matching algorithm, The Rabin-Karp Algorithm, String Matching with finite automata, The Knuth-Morris Pratt algorithm. NP-Complete Problem: Polynomial-time verification, NP-Completeness and Reducibility, NP-Completeness Proof, NP –hard ,Case study of NP-Complete problems (vertex cover problem, clique problem)." }
+          ]
+        },
+        {
+          code: "CS-311",
+          icon: "💻",
+          title: "Operating System CSE",
+          shortDesc: "CPU Scheduling, Synchronization, Memory Management, and Disk Scheduling",
+          units: [
+            { num: "Unit I", topics: "Introduction: What is an Operating System, Simple Batch Systems, Multi-programmed Batches systems, Time Sharing Systems, Personal-computer systems, Parallel systems, Distributed Systems, Real-Time Systems, OS – A Resource Manager. Processes: Introduction, Process states, process management, Interrupts, Interprocess Communication. Threads: Introduction, Thread states, Thread Operation, Threading Models. Processor Scheduling: Scheduling levels, preemptive vs no preemptive scheduling, priorities, scheduling objective, scheduling criteria, scheduling algorithms, demand scheduling, real time scheduling." },
+            { num: "Unit II", topics: "Process Synchronization: Mutual exclusion, software solution to Mutual exclusion problem, hardware solution to Mutual exclusion problem, semaphores, Critical section problems. Case study on Dining philosopher problem, Barber shop problem etc. Memory Organization & Management: Memory Organization, Memory Hierarchy, Memory Management Strategies, Contiguous versus non- Contiguous memory allocation, Partition Management Techniques, Logical versus Physical Address space, swapping, Paging, Segmentation, Segmentation with Paging Virtual Memory: Demand Paging, Page Replacement, Page-replacement Algorithms, Performance of Demand Paging, Thrashing, Demand Segmentation, and Overlay Concepts." },
+            { num: "Unit III", topics: "Deadlocks: examples of deadlock, resource concepts, necessary conditions for deadlock, deadlock solution, deadlock prevention, deadlock avoidance with Bankers algorithms, deadlock detection, deadlock recovery. Device Management: Disk Scheduling Strategies, Rotational Optimization, System Consideration, Caching and Buffering." },
+            { num: "Unit IV", topics: "File System: Introduction, File Organization, Logical File System, Physical File System, File Allocation strategy, Free Space Management, File Access Control, Data Access Techniques, Data Integrity Protection, Case study on file system viz FAT32, NTFS, Ext2/Ext3 etc." }
           ]
         }
       ]
     },
     6: {
-      desc: "Implement intelligent models, security systems, and microprocessor hardware.",
+      desc: "Explore intelligent systems, modern web platforms, advanced software frameworks, and statistical modelling.",
       subjects: [
         {
-          code: "CS-302",
-          icon: "🤖",
-          title: "Artificial Intelligence",
-          shortDesc: "Heuristic Searching, Knowledge Representation, and Machine Learning Systems",
+          code: "HS-302",
+          icon: "🕊",
+          title: "Universal Human Values",
+          shortDesc: "Ethics, Value Education, Harmony in Self, Family, Society, and Nature",
           units: [
-            { num: "Unit I", topics: "AI overview, state space search, heuristic search: A* algorithm, game playing." },
-            { num: "Unit II", topics: "Knowledge representation, predicate logic, resolution, semantic networks." },
-            { num: "Unit III", topics: "Reasoning under uncertainty, Bayesian networks, fuzzy logic basics." },
-            { num: "Unit IV", topics: "Planning, Machine learning introduction, Expert systems, NLP overview." }
+            { num: "Unit I", topics: "Introduction-Basic Human Aspiration, its fulfillment through All-encompassing Resolution. The basic human aspirations and their fulfillment through Right understanding and Resolution, Right understanding and Resolution as the activities of the Self, Self being central to Human Existence; All-encompassing Resolution for a Human Being, its details and solution of problems in the light of Resolution." },
+            { num: "Unit II", topics: "Understanding Human Being. Understanding the human being comprehensively as the first step and the core theme of this course; human being as co-existence of the self and the body; the activities and potentialities of the self; Basis for harmony/contradiction in the self." },
+            { num: "Unit III", topics: "Understanding Nature and Existence. A comprehensive understanding (knowledge) about the existence, Nature being included; the need and process of inner evolution (through self-exploration, self-awareness and self-evaluation), particularly awakening to activities of the Self: Realization, Understanding and Contemplation in the Self (Realization of Co-Existence, Understanding of Harmony in Nature and Contemplation of Participation of Human in this harmony/order leading to comprehensive knowledge about the existence)." },
+            { num: "Unit IV", topics: "Understanding Human Conduct, All-encompassing Resolution & Holistic Way of Living. Understanding Human Conduct, different aspects of All-encompassing Resolution (understanding, wisdom, science etc.), Holistic way of living for Human Being with All-encompassing Resolution covering all four dimensions of human endeavor viz., realization, thought, behavior and work (participation in the larger order) leading to harmony at all levels from Self to Nature and entire Existence." }
           ]
         },
         {
           code: "CS-304",
-          icon: "🎨",
-          title: "Computer Graphics",
-          shortDesc: "Scan Conversion, 2D/3D Transformations, Viewing, and Hidden Surface Elimination",
+          icon: "🌐",
+          title: "Web Technologies",
+          shortDesc: "HTML5, CSS3, JavaScript, Client-Server Architectures, and Web APIs",
           units: [
-            { num: "Unit I", topics: "Graphics Basics: Video display devices, scan conversion: DDA, Bresenham line & circle algorithms." },
-            { num: "Unit II", topics: "2D Transformations: Translation, scaling, rotation, reflection, shearing, clipping: Cohen-Sutherland." },
-            { num: "Unit III", topics: "3D Graphics: 3D transformations, projections (parallel and perspective), curves: Bezier, B-Splines." },
-            { num: "Unit IV", topics: "Rendering: Hidden surface elimination (Z-buffer), illumination models, shading: Gouraud, Phong." }
+            { num: "Unit I", topics: "HTML: Basic Syntax, Standard HTML Document Structure, Basic Text Markup, Html styles, Elements, Attributes, Heading, Layouts, I frames Images, Hypertext Links, Lists, Tables, Forms, Dynamic HTML. CSS: Need for CSS, introduction to CSS, basic syntax and structure, using CSS, background images, colors, and properties, manipulating texts, using fonts, borders, boxes, margins, padding lists, positioning using CSS, CSS2, The Box Model, Working with XML: Document Type Definition (DTD), XML schemas, Document object model, Parsers -DOM, and SAX. Introduction to XHTML: XML, Meta tags, Character entities, frames, and frame sets." },
+            { num: "Unit II", topics: "JavaScript - Client-side scripting, Introduction to JavaScript, Objects, Primitives Operations and Expressions, Control Statements, Arrays, Functions, Constructors, JavaScript, and objects, JavaScript own objects, the DOM and web browser environments, forms and validations. Introduction to JSP: The Anatomy of a JSP Page, JSP Processing, Declarations, Directives, Expressions, Code Snippets, implicit objects, Using Beans in JSP Pages, Using Cookies and session for session tracking, connecting to database in JSP." },
+            { num: "Unit III", topics: "Introduction to Server-Side Development with PHP, what is Server-Side Development, A Web Server's Responsibilities, Quick Tour of PHP, Introduction and basic syntax of PHP, decision and looping with examples, PHP and HTML, Arrays, Functions, Browser control and detection, string, Form processing, Files, Advance Features: Cookies and Sessions." },
+            { num: "Unit IV", topics: "PHP and MySQL: Basic commands with PHP examples, Connection to the server, creating a database, selecting a database, listing database, listing table names, creating a table, inserting data, altering tables, queries, deleting the database, deleting data, and tables, PHP my admin and database bugs. Managing State, The Problem of State in Web Applications, Passing Information via Query Strings, Passing Information via the URL Path, Cookies, Serialization, Session State." }
           ]
         },
         {
           code: "CS-306",
-          icon: "📂",
-          title: "Data Warehousing & Data Mining",
-          shortDesc: "OLAP, ETL, Association Rules, Classification, and Clustering Algorithms",
+          icon: "🐍",
+          title: "Programming in Python",
+          shortDesc: "Python Fundamentals, Data Structures, OOP, Modules, and File I/O",
           units: [
-            { num: "Unit I", topics: "Data Warehouse: Architecture, multidimensional schemas (Star, Snowflake), OLAP operations." },
-            { num: "Unit II", topics: "Data Preprocessing: Data cleaning, integration, reduction, transformation." },
-            { num: "Unit III", topics: "Mining Association Rules: Apriori algorithm, FP-Growth, classification: decision trees, Naive Bayes." },
-            { num: "Unit IV", topics: "Clustering & Trends: Partitioning methods (K-means), hierarchical clustering, outlier detection." }
+            { num: "Unit I", topics: "Introduction, Python Basics: Entering Expressions into the Interactive Shell, The Integer, Floating-Point, and String Data Types, String Concatenation and Replication, Storing Values in Variables, Your First Program, Dissecting Your Program. Flow control: Boolean Values, Comparison Operators, Boolean Operators, Mixing Boolean and Comparison Operators, Elements of Flow Control, Program Execution, Flow Control Statements, Importing Modules, Ending a Program Early with sys.exit()" },
+            { num: "Unit II", topics: "Functions: def Statements with Parameters, Return Values and return Statements, The None Value, Keyword Arguments and print(), Local and Global Scope, The global Statement, Exception Handling. Lists: The List Data Type, Working with Lists, Augmented Assignment Operators, Methods. Dictionaries and Structuring Data: The Dictionary Data Type, Pretty Printing, Using Data Structures to Model Real-World Things. Manipulating Strings - Working with Strings, Useful String Methods" },
+            { num: "Unit III", topics: "Reading and Writing Files: Files and File Paths, The os.path Module, The File Reading/Writing Process, Saving Variables with the shelve Module, Saving Variables with the pprint.pformat() Function. Organizing Files: The shutil Module, Walking a Directory Tree, Compressing Files with the zipfile Module" },
+            { num: "Unit IV", topics: "Web Scraping: Project: MAPIT.PY with the web browser Module, Downloading Files from the Web with the requests Module, Saving Downloaded Files to the Hard Drive, HTML" }
           ]
         },
         {
-          code: "CS-308",
-          icon: "🔑",
-          title: "Cryptography & Network Security",
-          shortDesc: "Symmetric Encryption, Public Key Cryptography, Hashes, and Network Protocols",
+          code: "BS-308",
+          icon: "📊",
+          title: "Statistics, Statistical Modelling and Simulation",
+          shortDesc: "Probability Distributions, Hypothesis Testing, Regression, and Simulation Models",
           units: [
-            { num: "Unit I", topics: "Security Concepts: Attacks, services, classical encryption techniques, block ciphers: DES, AES." },
-            { num: "Unit II", topics: "Public Key Cryptography: RSA, Diffie-Hellman key exchange, elliptic curve cryptography." },
-            { num: "Unit III", topics: "Hash Functions: MD5, SHA-512, digital signatures, message authentication codes." },
-            { num: "Unit IV", topics: "Network Security: IPsec, SSL/TLS, firewalls, intrusion detection systems, malware ciphers." }
+            { num: "Unit I", topics: "Statistics: Introduction & Descriptive Statistics- mean, median, mode, variance, and standard deviation. Data Visualization, Introduction to Probability Distributions. Hypothesis testing, Linear Algebra and Population Statistics, Mathematical Methods and Probability Theory, Sampling Distributions and Statistical Inference, Quantitative analysis." },
+            { num: "Unit II", topics: "Statistical Modelling: Linear models, regression analysis, analysis of variance, applications in various fields. Gauss-Markov theorem; geometry of least squares, subspace formulation of linear models, orthogonal projections; regression models, factorial experiments, analysis of covariance and model formulae; regression diagnostics, residuals, influence diagnostics, transformations, Box-Cox models, model selection and model building strategies, logistic regression models; Poisson regression models." },
+            { num: "Unit III", topics: "Data Analytics: Describe classes of open and closed set. Apply the concept of compactness. Describe Metric space - Metric in Rn. Use the concept of Cauchy sequence, completeness, compactness and connectedness to solve the problems." },
+            { num: "Unit IV", topics: "Advanced concepts in Data Analytics: Describe vector space, subspaces, independence of vectors, basis and dimension. Describe Eigen values, Eigen vectors and related results." }
           ]
         },
         {
-          code: "ES-312",
-          icon: "🎛",
-          title: "Microprocessors & Microcontrollers",
-          shortDesc: "8085/8086 Architectures, Assembler Directives, Interfacing, and 8051 Micros",
+          code: "HS-310",
+          icon: "🏢",
+          title: "Principles of Management for Engineers",
+          shortDesc: "Management Functions, Organizational Behavior, Project Leadership, and Ethics",
           units: [
-            { num: "Unit I", topics: "8085 Architecture: Pin details, register organization, instruction set, timing diagrams." },
-            { num: "Unit II", topics: "8086 Microprocessor: Internal architecture, memory segmentation, addressing modes, assembly programming." },
-            { num: "Unit III", topics: "Peripheral Interfacing: PPI 8255, PIT 8253, PIC 8259, DMA controller 8257, ADC/DAC interface." },
-            { num: "Unit IV", topics: "8051 Microcontroller: Architecture, memory layout, SFRs, timers, interrupts, serial communication." }
+            { num: "Unit I", topics: "Introduction to Managers and Management: Management an Overview, Definition of Management, Role of Management, Functions of Managers, Levels of Management, Management Skills and Organizational Hierarchy, Social and Ethical Responsibilities of Management: Arguments for and against Social Responsibilities of Business, Social Stakeholders, Measuring Social Responsiveness and Managerial Ethics, Omnipotent and Symbolic View, Characteristics and importance of organizational culture, Relevance of political, legal, economic and Cultural environments to global business, Structures and techniques organizations use as they go international." },
+            { num: "Unit II", topics: "Planning: Nature & Purpose, Steps involved in Planning, Objectives, Setting Objectives, Process of Managing by Objectives, Strategies, Policies & Planning Premises, Competitor Intelligence, Benchmarking, Forecasting, Decision-Making, Directing: Scope, Human Factors, Creativity and Innovation, Harmonizing Objectives, Leadership, Types of Leadership, Directing, Managers as leaders, Early Leadership Theories...Trait Theories, Behavioral Theories, Managerial Grid, Contingency Theories of Leadership, Directing ...PathGoal Theory, contemporary views of Leadership, CrossCultural Leadership, Leadership Training, Substitutes of Leadership." },
+            { num: "Unit III", topics: "Organizing: Organizing, Benefits and Limitations-De-Centralization and Delegation of Authority, Authority versus Power, Mechanistic Versus Organic Organization, Common Organizational Designs, Contemporary Organizational Designs and Contingency Factors, The Learning Organization Nature and Purpose, Formal and Informal Organization, Organization Chart, Structure and Process, Departmentalization by difference strategies, Line and Staff authority- Benefits and Limitations-De-Centralization and Delegation of Authority Versus, Staffing, Human Resource Inventory, Job Analysis, Job Description, Recruitment and." },
+            { num: "Unit IV", topics: "Controlling: Controlling, Introduction to Controlling System and process of Controlling, Requirements for effective control, The planning Control link, The process of control, types of control The Budget as Control Technique, Information Technology in Controlling, Productivity, Problems and Management, Control of Overall Performance, Direct and Preventive Control, Financial Controls, Tools for measuring organizational Performance, Contemporary issues in control Workplace concerns, employee theft, employee violence." }
+          ]
+        },
+        {
+          code: "CS-312",
+          icon: "☕",
+          title: "Advanced Java Programming",
+          shortDesc: "Java EE, Servlets, JSP, Hibernate, Spring Framework, and Microservices",
+          units: [
+            { num: "Unit I", topics: "Introduction to Java, Inheritance, Exception Handling, Multithreading, Applet Programming, Connecting to a Server, Implementing Servers, Making URL Connections, Socket Programming" },
+            { num: "Unit II", topics: "Preparing a Class to be a Java Bean, Creating a Java Bean, Java Bean Properties, Types of beans, Stateful Session bean, Stateless Session bean, Entity bean, Servlet Overview and Architecture, Interface Servlet and the Servlet LifeCycle, Handling HTTP GET Requests, Handling HTTP POST Requests, Session Tracking, Cookies" },
+            { num: "Unit III", topics: "JSP: Introduction, Java Server Pages Overview, Implicit Objects, Scripting, Standard Actions, Directives, Custom Tag Libraries" },
+            { num: "Unit IV", topics: "The Roles of Client and Server, Remote Method Invocations, Setup for Remote Method Invocation, Parameter Passing in Remote Methods, Introduction of HB, HB Architecture" }
+          ]
+        },
+        {
+          code: "CS-302",
+          icon: "🤖",
+          title: "Artificial Intelligence",
+          shortDesc: "Heuristic Search, Knowledge Representation, Fuzzy Logic, and Expert Systems",
+          units: [
+            { num: "Unit I", topics: "AI Definition, Problems, The Foundations of Artificial Intelligence, Techniques, Models, Defining Problem as a state space search, production system, Intelligent Agents: Agents and Environments, Characteristics, Search methods and issues in the design of search problems." },
+            { num: "Unit II", topics: "Knowledge representation issues, mapping, frame problem. Predicate logic, facts in logic, representing instance and Isa relationship, Resolution, procedural and declarative knowledge, matching, control knowledge. Symbolic reasoning under uncertainty, Non monotonic reasoning, statistical reasoning." },
+            { num: "Unit III", topics: "Game Playing, minimax search, Alfa beta cutoffs, Natural Language Processing, Learning, Explanation-based learning, discovery, analogy, Neural net learning and Genetic Learning." },
+            { num: "Unit IV", topics: "Fuzzy logic systems, Perception and action, Expert systems, Inference in BayesianNetworks, K-means Clustering Algorithm, Machine learning." }
+          ]
+        },
+        {
+          code: "CS-314",
+          icon: "🧠",
+          title: "Machine Learning",
+          shortDesc: "Supervised Learning, Neural Networks, Clustering, and Model Evaluation",
+          units: [
+            { num: "Unit I", topics: "Introduction: Machine learning, terminologies in machine learning, Perspectives and issues in machine learning, application of Machine learning, Types of machine learning: supervised, unsupervised, semi-supervised learning. Review of probability, Basic Linear Algebra in Machine Learning Techniques, Dataset and its types, Data preprocessing, Bias and Variance in Machine learning, Function approximation, Overfitting" },
+            { num: "Unit II", topics: "Regression Analysis in Machine Learning: Introduction to regression and its terminologies, Types of regression, Logistic Regression Simple Linear regression: Introduction to Simple Linear Regression and its assumption, Simple Linear Regression Model Building,Ordinary Least square estimation, Properties of the least-squares estimators and the fitted regression model, Interval estimation in simple linear regression, Residuals Multiple Linear Regression: Multiple linear regression model and its assumption, Interpret Multiple Linear Regression Output(R-Square, Standard error, F, Significance F, Cofficient P values), Access the fit of multiple linear regression model (R squared, Standard error) Feature Selection and Dimensionality Reduction: PCA, LDA, ICA" },
+            { num: "Unit III", topics: "Introduction to Classification and Classification Algorithms: What is Classification? General Approach to Classification, k-Nearest Neighbor Algorithm, Random Forests, Fuzzy Set Approaches Support Vector Machine: Introduction, Types of support vector kernel - (Linear kernel, polynomial kernel, and Gaussiankernel), Hyperplane - (Decision surface), Properties of SVM, and Issues in SVM. Decision Trees: Decision tree learning algorithm,ID-3algorithm, Inductive bias, Entropy and information theory, Information gain,Issues in Decision tree learning. Bayesian Learning - Bayes theorem, Concept learning, Bayes Optimal Classifier, Naïve Bayes classifier, Bayesian belief networks, EM algorithm Ensemble Methods: Bagging, Boosting and AdaBoost and XBoost, Classification Model Evaluation and Selection: Sensitivity, Specificity, Positive Predictive Value, Negative Predictive Value, Lift Curves and Gain Curves, ROC Curves, Misclassification Cost Adjustment to Reflect Real-World Concerns, Decision Cost/Benefit Analysis" },
+            { num: "Unit IV", topics: "Introduction to Cluster Analysis and Clustering Methods: The Clustering Task and the Requirements for Cluster Analysis , Overview of Some Basic Clustering Methods :- k-Means Clustering, k-Medoids Clustering, Density-Based Clustering: DBSCAN - Density-Based Clustering Based on Connected Regions with High Density, Gaussian Mixture Model algorithm , Balance Iterative Reducing and Clustering using Hierarchies (BIRCH) , Affinity Propagation clustering algorithm,Mean-Shift clustering algorithm, ordering Points to Identify the Clustering Structure (OPTICS) algorithm, Agglomerative Hierarchy clustering algorithm, Divisive Hierarchical, Measuring Clustering Goodness" }
+          ]
+        },
+        {
+          code: "CS-316",
+          icon: "⚡",
+          title: "Operating System AIML",
+          shortDesc: "OS Kernels, Resource Scheduling, Virtual Memory, and Parallel Execution for AI",
+          units: [
+            { num: "Unit I", topics: "Introduction: Operating system and function, Evolution of operating system, Batch, Interactive, Time Sharing and Real Time System, System protection. Operating System Structure: System Components, System structure, Operating System Services. CPU Scheduling: Scheduling Concept, process scheduling strategies- First-Come, First-Served (FCFS) Scheduling, Shortest-Job-Next (SJN) Scheduling, Priority Scheduling, Shortest Remaining Time, Round Robin (RR) Scheduling, Multiple-Level Queues Scheduling, Performance Criteria of Scheduling Algorithm, Evolution, Multiprocessor Scheduling." },
+            { num: "Unit II", topics: "Concurrent Processes: Process concept, Principle of Concurrency, Producer Consumer Problem, Critical Section problem, Semaphores, Binary and counting semaphores, P() and V() operations, Classical problems in Concurrency, Inter Process Communication, Process Generation, Process Scheduling. Deadlocks: examples of deadlock, resource concepts, necessary conditions for deadlock, deadlock solution, deadlock prevention, deadlock avoidance with Bankers algorithms, deadlock detection, deadlock recovery." },
+            { num: "Unit III", topics: "Memory Organization & Management: Memory Organization, Memory Hierarchy, Memory Management Strategies, Contiguous versus non- Contiguous memory allocation, Partition Management Techniques, Logical versus Physical Address space, swapping, Paging, Segmentation, Segmentation with Paging Virtual Memory: Demand Paging, Page Replacement, Page-replacement Algorithms, Performance of Demand Paging, Thrashing, Demand Segmentation, and Overlay Concepts." },
+            { num: "Unit IV", topics: "I/O Device and the organization: I/O Device and the organization of the I/O function, I/O Buffering, Disk I/O, Disk Scheduling Algorithms, File system: File Concepts, attributes, operations, File organization and Access mechanism, disk space allocation methods, Directory structure, free disk space management, File sharing, Implementation issues. Case studies: Unix system, Windows XP." }
           ]
         }
       ]
@@ -522,66 +666,6 @@ const syllabusData = {
       desc: "Build your foundation. Master the core concepts of engineering and programming.",
       subjects: [
         {
-          code: "BS-111",
-          icon: "√x",
-          title: "Applied Mathematics - I",
-          shortDesc: "Calculus, Matrices, and Differential Equations",
-          units: [
-            { num: "Unit I", topics: "Matrices: Eigenvalues, Eigenvectors, Cayley-Hamilton Theorem, Diagonalization of matrices." },
-            { num: "Unit II", topics: "Differential Calculus: Successive differentiation, Leibnitz theorem, Taylor's and Maclaurin's series, Curvature." },
-            { num: "Unit III", topics: "Partial Differentiation: Euler's theorem, Jacobians, Taylor's series for two variables, Maxima and Minima." },
-            { num: "Unit IV", topics: "Integral Calculus: Double and triple integrals, Change of order, Area and volume calculation." }
-          ]
-        },
-        {
-          code: "BS-112",
-          icon: "⚛",
-          title: "Applied Physics - I",
-          shortDesc: "Mechanics, Wave Theory, and Optical Systems",
-          units: [
-            { num: "Unit I", topics: "Interference: Coherent sources, Young's double slit, Newton's rings, Michelson interferometer." },
-            { num: "Unit II", topics: "Diffraction: Fraunhofer diffraction, Single slit, Double slit, Diffraction grating, Resolving power." },
-            { num: "Unit III", topics: "Polarization: Double refraction, Nicol prism, Production and detection of polarized light, Polarimeters." },
-            { num: "Unit IV", topics: "Lasers & Fiber Optics: Einstein's coefficients, Ruby laser, He-Ne laser, Optical fibers, Numerical aperture." }
-          ]
-        },
-        {
-          code: "BS-113",
-          icon: "🔬",
-          title: "Applied Chemistry",
-          shortDesc: "Physical, Organic & Inorganic Engineering Chemistry",
-          units: [
-            { num: "Unit I", topics: "Water Technology: Hardness of water, estimation by EDTA, boiler troubles, water softening processes." },
-            { num: "Unit II", topics: "Fuels & Combustion: Classification, Calorific value determination, coal analysis, petroleum cracking." },
-            { num: "Unit III", topics: "Polymers & Composite Materials: Monomers, polymerization types, thermoplastics, thermosetting resins, biopolymers." },
-            { num: "Unit IV", topics: "Corrosion & its Control: Chemical and electrochemical corrosion, protective coatings, cathodic protection." }
-          ]
-        },
-        {
-          code: "CS-101",
-          icon: "</>",
-          title: "Programming in C",
-          shortDesc: "Algorithms, Syntax, Control structures, and Files",
-          units: [
-            { num: "Unit I", topics: "Basics of Computers, Algorithms, Flowcharts, C fundamentals: Data types, operators, expressions." },
-            { num: "Unit II", topics: "Control Statements: Decision making, branching, looping structures, arrays and strings." },
-            { num: "Unit III", topics: "Functions: Parameter passing, recursion. Structures and Unions, preprocessors." },
-            { num: "Unit IV", topics: "Pointers: Pointer arithmetic, dynamic memory allocation. File handling in C." }
-          ]
-        },
-        {
-          code: "ES-105",
-          icon: "🔌",
-          title: "Basic Electrical Engineering",
-          shortDesc: "DC/AC Circuits, Transformers, and Electrical Machines",
-          units: [
-            { num: "Unit I", topics: "DC Circuits: Mesh and Node analysis, Network theorems: Thevenin, Norton, Superposition, Maximum Power Transfer." },
-            { num: "Unit II", topics: "AC Circuits: Single phase RLC series and parallel circuits, phasor diagrams, resonance." },
-            { num: "Unit III", topics: "Transformers: Principles of operation, EMF equation, equivalent circuit, efficiency and regulation." },
-            { num: "Unit IV", topics: "Electrical Machines: DC machines operating principles, single phase induction motors, three-phase systems." }
-          ]
-        },
-        {
           code: "ES-107",
           icon: "📐",
           title: "Engineering Graphics",
@@ -592,6 +676,102 @@ const syllabusData = {
             { num: "Unit III", topics: "Projections of Solids, section of solids, development of surfaces of solids." },
             { num: "Unit IV", topics: "Isometric Projections, conversion of orthographic views into isometric views, CAD basics." }
           ]
+        },
+        {
+          code: "BS-112",
+          icon: "⚛",
+          title: "Applied Physics-1",
+          shortDesc: "Mechanics, Wave Theory, and Optical Systems",
+          units: [
+            { num: "Unit I", topics: "Introduction to Thermodynamics: Fundamental Ideas of Thermodynamics, The Continuum Model, The Concept of a \"System\", \"State\", \"Equilibrium\", \"Process\". Equations of state, Heat, Zeroth Law of Thermodynamics, Work, first and second laws of thermodynamics, entropy" },
+            { num: "Unit II", topics: "Waves and Oscillations: Wave motion, simple harmonic motion, wave equation, superposition principle. Introduction to Electromagnetic Theory: Maxwell's equations. work done by the electromagnetic field, Poynting's theorem, Momentum, Angular momentum in electromagnetic fields, Electromagnetic waves: the wave equation, plane electromagnetic waves, energy carried by electromagnetic waves" },
+            { num: "Unit III", topics: "Interference: Interference by division of wave front (Young's double slit experiment, Fresnel's biprism), interference by division of amplitude (thin films, Newton's rings, Michelson's interferometer), Coherence and coherent sources, Diffraction: Fraunhofer and Fresnel diffraction; Fraunhofer diffraction for Single slit, double slit, and N-slit (diffraction grating), Fraunhofer diffraction from a circular aperture, resolving power and dispersive power of a grating, Rayleigh criterion, resolving power of optical instruments, Polarization: Introduction to polarization, Brewster's law, Malu's law, Nicol prism, double refraction, quarter-wave and half-wave plates, optical activity, specific rotation, Laurent half shade polarimeter." },
+            { num: "Unit IV", topics: "Theory of relativity: The Michelson-Morley Experiment and the speed of light; Absolute and Inertial frames of reference, Galilean transformations, the postulates of the special theory of relativity, Lorentz transformations, time dilation, length contraction, velocity addition, mass energy equivalence. Invariance of Maxwell's equations under Lorentz Transformation. Introduction to Laser Physics: Introduction, coherence, Einstein A and B coefficients, population inversion, basic principle and operation of a laser, the He-Ne laser and the Ruby laser" }
+          ]
+        },
+        {
+          code: "BS-111",
+          icon: "√x",
+          title: "Applied Mathematics-1",
+          shortDesc: "Calculus, Matrices, and Differential Equations",
+          units: [
+            { num: "Unit I", topics: "Partial derivatives, Chain rule, Differentiation of Implicit functions, Exact differentials, Maxima, Minima and saddle points, Method of Lagrange multipliers, Differentiation under Integral sign, Jacobians and transformations of coordinates." },
+            { num: "Unit II", topics: "Ordinary Differential Equations (ODEs): Basic Concepts, Geometric Meaning of y'= f(x, y), Direction Fields, Euler's Method, Separable ODEs, Exact ODEs, Integrating Factors, Linear ODEs, Bernoulli Equation, Population Dynamics, Orthogonal Trajectories, Homogeneous Linear ODEs with Constant Coefficients, Differential Operators, Modeling of Free Oscillations of a Mass-Spring System, Euler-Cauchy Equations, Wronskian, Nonhomogeneous ODEs, Solution by Variation of Parameters, Power Series Method for solution of ODEs, Legendre's Equation, Legendre Polynomials, Bessel's Equation, Bessels's functions Jn(x) and Yn(x), Gamma Function" },
+            { num: "Unit III", topics: "Linear Algebra: Matrices and Determinants, Gauss Elimination, Linear Independence, Rank of a Matrix, Vector Space, Solutions of Linear Systems and concept of Existence, Uniqueness, Determinants, Cramer's Rule, Gauss-Jordan Elimination, The Matrix Eigenvalue Problem, Determining Eigenvalues and Eigenvectors, Symmetric, Skew-Symmetric, and Orthogonal Matrices, Eigenbases, Diagonalization, Quadratic Forms, Cayley - Hamilton Theorem (without proof)" },
+            { num: "Unit IV", topics: "Vector Calculus: Vector and Scalar Functions and Their Fields, Derivatives, Curves, Arc Length, Curvature, Torsion, Gradient of a Scalar Field, Directional Derivative, Divergence of a Vector Field, Curl of a Vector Field, Line Integrals, Path Independence of Line Integrals, Double Integrals, Green's Theorem in the Plane, Surfaces for Surface Integrals, Surface Integrals, Triple Integrals, Stokes Theorem, Divergence Theorem of Gauss" }
+          ]
+        },
+        {
+          code: "ES-109",
+          icon: "⚙️",
+          title: "Manufacturing Processes",
+          shortDesc: "Casting, Welding, Machining, and Metal Forming",
+          units: [
+            { num: "Unit I", topics: "Definition of manufacturing, Importance of manufacturing towards technological and social economic development, Classification of manufacturing processes, Properties of materials. Metal Casting Processes: Sand casting, Sand moulds, Type of patterns, Pattern materials, Pattern allowances, Types of Moulding sand and their Properties, Core making, Elements of gating system, Description and operation of cupola, Working principle of Special casting processes - Shell casting, Pressure die casting, Centrifugal casting, Casting defects." },
+            { num: "Unit II", topics: "Joining Processes: Welding principles, classification of welding processes, Fusion welding, Gas welding, Equipments used, Filler and Flux materials, Electric arc welding, Gas metal arc welding, Submerged arc welding, Electro slag welding, TIG and MIG welding process, resistance welding, welding defects" },
+            { num: "Unit III", topics: "Deformation Processes: Hot working and cold working of metals, Forging processes, Open and closed die forging process, Typical forging operations, Rolling of metals, Principle of rod and wire drawing, Tube drawing, Principle of Extrustion, Types of Extrustion, Hot and Cold extrusion, Sheet metal characteristics - Typical shearing operations, bending and drawing operations, Stretch forming operations, Metal spinning" },
+            { num: "Unit IV", topics: "Powder Metallurgy: Introduction of powder metallurgy process, powder production, blending, compaction, sintering, Manufacturing Of Plastic Components: Types of plastics, Characteristics of the forming and shaping processes, Moulding of Thermoplastics, Injection moulding, Blow moulding, Rotational moulding, Film blowing, Extrusion, Thermoforming, Moulding of thermosets- Compression moulding, Transfer moulding, Bonding of Thermoplastics." }
+          ]
+        },
+        {
+          code: "HS-101",
+          icon: "🌱",
+          title: "Environmental Science",
+          shortDesc: "Ecology, Ecosystems, Biodiversity & Pollution Control",
+          units: [
+            { num: "Unit I", topics: "Fundamentals: The Multidisciplinary nature of environmental studies: Definition, components, scope and importance, need for public awareness; Natural Resources. Ecosystems: Concept, Structure and function of an ecosystem, Types, Functional Components, Different ecosystems, biogeochemical cycles. Biodiversity: Introduction to biodiversity, biogeographical classification, India as a mega diversity nation, endangered and endemic species of India, threats to biodiversity and conservation of biodiversity. Bioprospecting and Biopiracy" },
+            { num: "Unit II", topics: "Environmental Pollution: (a) Air Pollution: Source, Types, effects on biosphere and Meterology, Air Quality, Control. (b) Water Pollution: Types and Sources. (c) Soil Pollution: Types and Control. (d) Noise Pollution: Effect, Control (e) Thermal Pollution. (f) Radiation Pollution (g) Solid waste Management, (h) Pollution Prevention, (i) Disaster Management" },
+            { num: "Unit III", topics: "Social Issues and Environment: Concept of Sustainable Development; Urban problem related to energy; Water Conservation; Wasteland reclamation; Resettlement and Rehabilitation; Climate Change; Nuclear Accidents; Consumerism and Waste Products; Laws related to Environment, Pollution, Forest and Wild life; Environmental Impact Assessment." },
+            { num: "Unit IV", topics: "Human Population and Environment: Population Growth, Human Rights, Family Welfare Programmes, Environment and Human Health, HIV/AIDS, Women and Child Welfare, Role of IT." }
+          ]
+        },
+        {
+          code: "ES-105",
+          icon: "🔌",
+          title: "Electrical Science",
+          shortDesc: "DC/AC Circuits, Network Theorems, Transformers & Motors",
+          units: [
+            { num: "Unit I", topics: "DC Circuits: Passive circuit components, Basic laws of Electrical Engineering, Temperature Resistance Coefficients, voltage and current sources, Series and parallel circuits, power and energy, Kirchhoff's Laws, Nodal & Mesh Analysis, delta-star transformation, superposition theorem, Thevenin's theorem, Norton's theorem, maximum power transfer theorem, Time domain analysis of first Order RC & LC circuits." },
+            { num: "Unit II", topics: "AC Circuits: Representation of sinusoidal waveforms, peak and rms values, phasor representation, real power, reactive power, apparent power, power factor, Analysis of single-phase ac circuits consisting of R, L, C, RL, RC, RLC combinations (series and parallel), resonance, Three phase balanced circuits, voltage and current relations in star and delta connections." },
+            { num: "Unit III", topics: "D. C. Generators & Motors: Principle of operation of Generators & Motors, Speed Control of shunt motors, Flux control, Rheostatic control, voltage control, Speed control of series motors, A. C. Generators & Motors: Principle of operation, Revolving Magnetic field, Squirrel cage and phase wound rotor, Starting of Induction motors, Direct on line and Star Delta starters, Synchronous machines." },
+            { num: "Unit IV", topics: "Transformers: Construction and principle of operation, equivalent circuit, losses in transformers, regulation and efficiency, Auto-transformer and three-phase transformer connections. Measuring Instruments: Electromagnetism, Different Torques in Indicating instruments, Moving Iron Instruments: Construction & Principle, Attraction and Repulsion type, Moving Coil instruments: Permanent Magnet type, Dynamometer type Instruments." }
+          ]
+        },
+        {
+          code: "BS-113",
+          icon: "🔬",
+          title: "Applied Chemistry-1",
+          shortDesc: "Physical, Organic & Inorganic Engineering Chemistry",
+          units: [
+            { num: "Unit I", topics: "Fuels: Classification and Characteristics of fuels, Calorific values, Comparison between solid, liquid and gaseous fuels, calorific values of fuels, determination of calorific values using Bomb calorimeter, Boy's calorimeter, theoretical calculation of calorific value using Dulong formula and numericals of Calorific values. Types of fuels: - Solid: Coal, proximate and ultimate analysis of coal and numericals, carbonisation of coal in Otto-Hoffman oven with recovery of by-products, metallurgical coke; Liquid: Petroleum products --- refining, cracking-thermal and catalytic, knocking characteristics, Octane and Cetane rating; Gaseous: Natural Gas (NG), CNG, LPG, Coal gas, Oil gas, Producer gas, Water gas; Combustion of fuels numericals." },
+            { num: "Unit II", topics: "Phase rule: Terms used in Gibb's Phase rule, phase diagram and its applications for study of one-component systems: Water and Sulphur and two-component systems: Lead-Silver and Zinc-Magnesium. Polymers: Classification, functionality and their types; Plastics: Synthesis (reactions) and properties of Polyethylene Plastics (Addition polymers) --- low-density polyethene (LDPE), high-density polyethylene(HDPE), linear low density polyethylene(LLDPE) and ultra-high molecular weight polyethylene (UHMWPE); Vinyl Plastics (Condensation polymers) - Nylons, Phenol-formaldehyde resins(Bakelite) and Glyptal; Speciality Polymers: Engineering thermoplastics, Conducting polymers, Electroluminescent polymers, liquid crystalline polymers and biodegradable polymers." },
+            { num: "Unit III", topics: "Water: Introduction, water quality standards, physical, chemical and biological characteristics; hardness of water, disadvantages of hardness, determination of hardness (EDTA method) and related numerical questions. Alkalinity and its determination; Boiler problems with hard water and their prevention: Scale and sludge formation, boiler corrosion, caustic embrittlement, priming and foaming, boiler water treatment - internal or in-situ: carbonate and phosphate conditioning, colloidal and Calgon conditioning; external treatment: (a) Lime soda process and related numericals (b) Zeolite process and numericals, (c) Ion-exchange process. Municipal water supply - its treatment and disinfection using break -point chlorination. Desalination, Reverse Osmosis, Electrodialysis and defluoridation of water." },
+            { num: "Unit IV", topics: "Corrosion and its Control: Definition, effects, theory (mechanisms): dry/chemical, wet/electrochemical corrosion, Pilling-Bedworth ratio; Types of corrosion: Galvanic corrosion, Soil corrosion, Pitting corrosion, Concentration cell or Differential Aeration corrosion, Stress corrosion; Mechanism of rusting of iron, Passivity. Factors influencing corrosion; protective measures: galvanization, tinning, cathodic protection, sacrificial anodic protection; electroplating and prevention of corrosion through material selection and design. Green Technology and Green Chemistry Twelve Principles of Green Chemistry, Zero Waste Technology, Atom economy, Use of alternative feedstock, innocuous reagents, alternative solvents, designing alternative reaction methodology, minimising energy consumption. Nano Chemistry: Nanomaterials: Properties, synthesis and surface characterization techniques BET and TEM and applications." }
+          ]
+        },
+        {
+          code: "HS-102",
+          icon: "💬",
+          title: "Communication Skills",
+          shortDesc: "Verbal & Written Communication, Technical Writing, Soft Skills",
+          units: [
+            { num: "Unit I", topics: "Role and Importance of Communications, Attributes of Communications, Verbal and Non-Verbal Communications, Verbal Communications Skills, Non-verbal Communication Methods, Body Language, Barriers to Communications, Socio-psychological barriers, Inter-Cultural barriers, Overcoming barriers, Communication Mediums: Characterization and Choice of medium, Effective Communication: Correctness, Clarity, Conciseness, Courtesy, Group Communication: Meetings (types, purpose), Group Discussions, Conduct of Meeting, Participant Role, Making Presentations." },
+            { num: "Unit II", topics: "Spoken and Written English: Attributes of spoken and written communication, Formal & Informal Communication, Variation in between Indian, British and American English. Etiquette and Manners: Personal Behaviour, Greetings, Introductions, Telephone Etiquette. Vocabulary Development: Dictionaries and Thesaurus, Words often confused, generally used one word substitutions, Comprehension." },
+            { num: "Unit III", topics: "Letter writing: Planning the message, Planning Content, Structure, Language use, Layout, enquires and replies, asking for or giving quotations, Bargaining letters, Seller's reply, etc.; Complaints and Replies; Memos, Circulars and notices; Paragraph Writing, Writing Scientific and Technical Reports: Types, Structure, Drafting and Delivering a Speech: Understanding the Environment, Understanding the Audience, Text preparing, Composition, Practicing, Commemorative Speeches, Welcome and Introduction, Farewell and Send-offs, Condolence" },
+            { num: "Unit IV", topics: "Articles: Indefinite, Definite; Tenses: Present, Past, Future, Perfect (Present, Past and Future), Tenses in conditional sentences; Active and Passive Voice: Formation, conversion; Direct and Indirect Speech, Degrees of Comparison, Common errors, Concepts of Learning and Listening" }
+          ]
+        },
+        {
+          code: "CS-101",
+          icon: "</>",
+          title: "Programming in C",
+          shortDesc: "Algorithms, Syntax, Control structures, and Files",
+          units: [
+            { num: "Unit I", topics: "Introduction to Programming: Computer system, components of a computer system, computing environments, computer languages, creating and running programs, Preprocessor, Compilation process, role of linker, idea of invocation and execution of a programme. Algorithms: Representation using flowcharts, pseudocode. Introduction to C language: History of C, basic structure of C programs, process of compiling and running a C program, C tokens, keywords, identifiers, constants, strings, special symbols, variables, data types, I/O statements. Interconversion of variables. Operators and expressions: Operators, arithmetic, relational and logical, assignment operators, increment and decrement operators, bitwise and conditional operators, special operators, operator precedence and associativity, evaluation of expressions, type conversions in expressions." },
+            { num: "Unit II", topics: "Control structures: Decision statements; if and switch statement; Loop control statements: while, for and do while loops, jump statements, break, continue, goto statements. Arrays: Concepts, One dimensional array, declaration and initialization of one dimensional arrays, two dimensional arrays, initialization and accessing, multi dimensional arrays. Functions: User defined and built-in Functions, storage classes, Parameter passing in functions, call by value, Passing arrays to functions: idea of call by reference, Recursion. Strings: Arrays of characters, variable length character strings, inputting character strings, character library functions, string handling functions." },
+            { num: "Unit III", topics: "Pointers: Pointer basics, pointer arithmetic, pointers to pointers, generic pointers, array of pointers, functions returning pointers, Dynamic memory allocation. Pointers to functions. Pointers and Strings Structures and unions: Structure definition, initialization, accessing structures, nested structures, arrays of structures, structures and functions, self referential structures, unions, typedef, enumerations. File handling: command line arguments, File modes, basic file operations read, write and append. Scope and life of variables, multi-file programming." },
+            { num: "Unit IV", topics: "C99 extensions. 'C' Standard Libraries: stdio.h, stdlib.h, assert.h, math.h, time.h, ctype.h, setjmp.h, string.h, stdarg.h, unistd.h. Basic Algorithms: Finding Factorial, Fibonacci series, Linear and Binary Searching, Basic Sorting Algorithms- Bubble sort, Insertion sort and Selection sort. Find the square root of a number, array order reversal, reversal of a string." }
+          ]
         }
       ]
     },
@@ -599,51 +779,39 @@ const syllabusData = {
       desc: "Strengthen core engineering constructs and object-oriented paradigms.",
       subjects: [
         {
+          code: "CS-101",
+          icon: "</>",
+          title: "Programming in C",
+          shortDesc: "Algorithms, Syntax, Control structures, and Files",
+          units: [
+            { num: "Unit I", topics: "Introduction to Programming: Computer system, components of a computer system, computing environments, computer languages, creating and running programs, Preprocessor, Compilation process, role of linker, idea of invocation and execution of a programme. Algorithms: Representation using flowcharts, pseudocode. Introduction to C language: History of C, basic structure of C programs, process of compiling and running a C program, C tokens, keywords, identifiers, constants, strings, special symbols, variables, data types, I/O statements. Interconversion of variables. Operators and expressions: Operators, arithmetic, relational and logical, assignment operators, increment and decrement operators, bitwise and conditional operators, special operators, operator precedence and associativity, evaluation of expressions, type conversions in expressions." },
+            { num: "Unit II", topics: "Control structures: Decision statements; if and switch statement; Loop control statements: while, for and do while loops, jump statements, break, continue, goto statements. Arrays: Concepts, One dimensional array, declaration and initialization of one dimensional arrays, two dimensional arrays, initialization and accessing, multi dimensional arrays. Functions: User defined and built-in Functions, storage classes, Parameter passing in functions, call by value, Passing arrays to functions: idea of call by reference, Recursion. Strings: Arrays of characters, variable length character strings, inputting character strings, character library functions, string handling functions." },
+            { num: "Unit III", topics: "Pointers: Pointer basics, pointer arithmetic, pointers to pointers, generic pointers, array of pointers, functions returning pointers, Dynamic memory allocation. Pointers to functions. Pointers and Strings Structures and unions: Structure definition, initialization, accessing structures, nested structures, arrays of structures, structures and functions, self referential structures, unions, typedef, enumerations. File handling: command line arguments, File modes, basic file operations read, write and append. Scope and life of variables, multi-file programming." },
+            { num: "Unit IV", topics: "C99 extensions. 'C' Standard Libraries: stdio.h, stdlib.h, assert.h, math.h, time.h, ctype.h, setjmp.h, string.h, stdarg.h, unistd.h. Basic Algorithms: Finding Factorial, Fibonacci series, Linear and Binary Searching, Basic Sorting Algorithms- Bubble sort, Insertion sort and Selection sort. Find the square root of a number, array order reversal, reversal of a string." }
+          ]
+        },
+        {
           code: "BS-121",
           icon: "∫",
-          title: "Applied Mathematics - II",
+          title: "Applied Mathematics 2",
           shortDesc: "Vector Calculus, Laplace Transforms, and Ordinary Differential Equations",
           units: [
-            { num: "Unit I", topics: "Ordinary Differential Equations: First order exact equations, linear differential equations of higher order." },
-            { num: "Unit II", topics: "Orthogonal Trajectories, Cauchy-Euler equations, method of variation of parameters." },
-            { num: "Unit III", topics: "Vector Calculus: Gradient, divergence, curl, line integrals, Green's, Gauss's, and Stokes' theorems." },
-            { num: "Unit IV", topics: "Laplace Transforms: Transforms of elementary functions, inverse Laplace transforms, convolution theorem." }
+            { num: "Unit I", topics: "Complex Analysis – I : Complex Numbers and Their Geometric Representation, Polar Form of Complex Numbers. Powers and Roots, Derivative. Analytic Function, Cauchy–Riemann Equations. Laplace's Equation, Exponential Function, Trigonometric and Hyperbolic Functions. Euler's Formula, de'Moivre's theorem (without proof), Logarithm. General Power. Principal Value. Singularities and Zeros. Infinity" },
+            { num: "Unit II", topics: "Complex Analysis – II: Laurent Series, Residue Integration Method. Residue Integration of Real Integrals, Geometry of Analytic Functions: Conformal Mapping, Linear Fractional Transformations (Möbius Transformations), Special Linear Fractional Transformations, Conformal Mapping by Other Functions, Applications: Electrostatic Fields, Use of Conformal Mapping. Modeling, Heat Problems, Fluid Flow. Poisson's Integral Formula for Potentials" },
+            { num: "Unit III", topics: "Laplace Transforms: Definitions and existence (without proof), properties, First Shifting Theorem (s-Shifting), Transform of Derivatives and Integrals and ODEs, Unit Step Function (Heaviside Function). Second Shifting Theorem (t-Shifting), Short Impulses. Dirac's Delta Function. Partial Fractions, Convolution. Integral Equations, Differentiation and Integration of Transforms. Solution of ODEs with Variable Coefficients, Solution of Systems of ODEs. Inverse Laplace transform and its properties. Fourier Analysis: Fourier Series, Arbitrary Period. Even and Odd Functions. Half-Range Expansions, Sturm–Liouville Problems. Fourier Integral, Fourier Cosine and Sine Transforms, Fourier Transform. Usage of fourier analysis for solution of ODEs. Inverse Fourier transform and its properties." },
+            { num: "Unit IV", topics: "Partial Differential Equations (PDEs): Basic Concepts of PDEs. Modeling: Vibrating String, Wave Equation. Solution by Separating Variables. Use of Fourier Series. D'Alembert's Solution of the Wave Equation. Characteristics. Modeling: Heat Flow from a Body in Space. Heat Equation: Solution by Fourier Series. Steady Two-Dimensional Heat Problems. Dirichlet Problem. Heat Equation: Modeling Very Long Bars. Solution by Fourier Integrals and Transforms. Modeling: Membrane, Two-Dimensional Wave Equation. Rectangular Membrane. Laplacian in Polar Coordinates. Circular Membrane. Laplace's Equation in Cylindrical and Spherical Coordinates. Potential. Solution of PDEs by Laplace Transforms." }
           ]
         },
         {
           code: "BS-122",
           icon: "⚛",
-          title: "Applied Physics - II",
+          title: "Applied Physics 2",
           shortDesc: "Electromagnetism, Solid State Physics, and Quantum Mechanics",
           units: [
-            { num: "Unit I", topics: "Electromagnetic Theory: Gauss's law, Ampere's law, Faraday's law, Maxwell's equations." },
-            { num: "Unit II", topics: "Quantum Mechanics: de Broglie waves, Heisenberg uncertainty principle, Schrodinger wave equation." },
-            { num: "Unit III", topics: "Statistical Mechanics: Maxwell-Boltzmann, Bose-Einstein, and Fermi-Dirac statistics." },
-            { num: "Unit IV", topics: "Solid State Physics: Crystal structure, Bravais lattices, band theory of solids, superconductors." }
-          ]
-        },
-        {
-          code: "CS-122",
-          icon: "++",
-          title: "Programming in C++",
-          shortDesc: "Object-Oriented Programming, Classes, Templates, and STL",
-          units: [
-            { num: "Unit I", topics: "OOP basics, C++ vs C, Classes, Objects, constructors and destructors." },
-            { num: "Unit II", topics: "Operator overloading, function overloading, friend functions." },
-            { num: "Unit III", topics: "Inheritance: Single, multiple, hierarchical, virtual base classes. Polymorphism." },
-            { num: "Unit IV", topics: "Templates, exception handling, standard template library (STL)." }
-          ]
-        },
-        {
-          code: "ES-106",
-          icon: "📟",
-          title: "Basic Electronics Engineering",
-          shortDesc: "Semiconductors, Diodes, Transistors, and Digital Logic Basics",
-          units: [
-            { num: "Unit I", topics: "Semiconductor Diodes: P-N junction, Zener diode, Rectifiers, Clippers and Clampers." },
-            { num: "Unit II", topics: "Bipolar Junction Transistors: CE, CB, CC configurations, biasing circuits, load line analysis." },
-            { num: "Unit III", topics: "Field Effect Transistors: JFET, MOSFET characteristics, operational amplifiers." },
-            { num: "Unit IV", topics: "Digital Electronics: Number systems, Boolean algebra, Logic gates, Combinational logic circuit basics." }
+            { num: "Unit I", topics: "Quantum Mechanics: Introduction: Wave particle duality, de Broglie waves, the experiment of Davisson and Germer, electron diffraction, physical interpretation of the wave function, properties, the wave packet, group and phase velocity, the uncertainty principle. The Schrödinger wave equation (1D), Eigen values and Eigen functions, expectation values, simple Eigen value problems – solutions of the Schrödinger's equations for the free particle, the infinite well, the finite well, tunneling effect, the scanning electron microscope, the quantum simple harmonic oscillator (qualitative), zero point energy." },
+            { num: "Unit II", topics: "Quantum Statistics: The need for statistics, statistical distributions: Maxwell Boltzmann, Bose-Einstein and Fermi-Dirac statistics, their comparisons, Fermions and Bosons, Applications of quantum statistics: 1. Molecular speed and energies in an ideal gas; 2. The Black body spectrum, the failure of classical statistics to give the correct explanations – Bose-Einstein statistics applied to the Black Body radiation spectrum; Fermi-Dirac distribution, free electron theory, electronic specific heats, Fermi energy and average energy; Dying stars." },
+            { num: "Unit III", topics: "Crystal Structure: Types of solids, Unit cell, Types of crystals, Translation vectors, Lattice planes, Miller indices, Simple crystal structures, Interplaner spacing, Crystal structure analysis: Bragg's law, Laue method, Point defects: Schottcky and Frankel defects." },
+            { num: "Unit IV", topics: "Band Theory of Solids: Origin of energy bands in solids, motion of electrons in a periodic potential – the Kronig–Penny model (Qualitative). Brillouin zones, effective mass, metals, semi-conductors and insulators and their energy band structures. Extrinsic and Intrinsic semiconductors, doping – Fermi energy for doped and undoped semiconductors, the p-n junction (energy band diagrams with Fermi energy), the unbiased diode, forward and reverse biased diodes – tunnel diodes, zener diode, photo diode its characteristics, LED" }
           ]
         },
         {
@@ -652,22 +820,70 @@ const syllabusData = {
           title: "Engineering Mechanics",
           shortDesc: "Statics, Force Systems, Friction, and Structural Mechanics",
           units: [
-            { num: "Unit I", topics: "Force Systems: Coplanar concurrent forces, resultant, Lami's theorem, moments and couples." },
-            { num: "Unit II", topics: "Equilibrium of Rigid Bodies: Free body diagrams, reactions, support reactions, trusses, method of joints." },
-            { num: "Unit III", topics: "Centroid and Moment of Inertia: Parallel axis theorem, polar moment of inertia, mass moment of inertia." },
-            { num: "Unit IV", topics: "Friction: Laws of friction, wedge friction, belt friction, kinematics of particles." }
+            { num: "Unit I", topics: "Force System: Introduction, force, principle of transmissibility of force, resultant of a force system, resolution of a force, moment of force about a line, Varigon's theorem, couple, resolution of force into force and a couple, properties of couple and their application to engineering problems. Equilibrium: Force body diagram, equations of equilibrium and their applications to engineering problems, equilibrium of two force and three force members. Distributed Forces: Determination of center of gravity, center of mass and centroid by direct integration and by the method of composite bodies, mass moment of inertia and area moment of inertia by direct integration and composite bodies method, radius of gyration, parallel axis theorem, polar moment of inertial." },
+            { num: "Unit II", topics: "Structure: Plane truss, perfect and imperfect truss, assumption in the truss analysis, analysis of perfect plane trusses by the method of joints, method of section and graphical method. Friction: Static and Kinetic friction, laws of dry friction, co-efficient of friction, angle of friction, angle of repose, cone of friction, frictional lock, friction in flat pivot and collar bearing, friction in flat belts." },
+            { num: "Unit III", topics: "Kinematics of Particles: Rectilinear motion, plane curvilinear motion, rectangular coordinates, normal and tangential coordinates. Kinetics of Particles: Equation of motion, rectilinear motion and curvilinear motion, work-energy equation, conservation of energy, concept of impulse and momentum, conservation of momentum, impact of bodies, co-efficient of restitution, loss of energy during impact." },
+            { num: "Unit IV", topics: "Kinematics of Rigid Bodies: Concept of rigid body, types of rigid body motion, absolute motion, introduction to relative velocity, relative acceleration (Corioli's component excluded) and instantaneous center of zero velocity, Velocity and acceleration. Kinetics of Rigid Bodies: Equation of motion, translatory motion and fixed axis rotation, application of work energy principles to rigid bodies conservation of energy. Beam: Introduction, types of loading, methods for the reactions of a beam, space diagram, types of end supports, beams subjected to couple." }
+          ]
+        },
+        {
+          code: "ES-105",
+          icon: "🔌",
+          title: "Electrical Science",
+          shortDesc: "DC/AC Circuits, Network Theorems, Transformers & Motors",
+          units: [
+            { num: "Unit I", topics: "DC Circuits: Passive circuit components, Basic laws of Electrical Engineering, Temperature Resistance Coefficients, voltage and current sources, Series and parallel circuits, power and energy, Kirchhoff's Laws, Nodal & Mesh Analysis, delta-star transformation, superposition theorem, Thevenin's theorem, Norton's theorem, maximum power transfer theorem, Time domain analysis of first Order RC & LC circuits." },
+            { num: "Unit II", topics: "AC Circuits: Representation of sinusoidal waveforms, peak and rms values, phasor representation, real power, reactive power, apparent power, power factor, Analysis of single-phase ac circuits consisting of R, L, C, RL, RC, RLC combinations (series and parallel), resonance, Three phase balanced circuits, voltage and current relations in star and delta connections." },
+            { num: "Unit III", topics: "D. C. Generators & Motors: Principle of operation of Generators & Motors, Speed Control of shunt motors, Flux control, Rheostatic control, voltage control, Speed control of series motors, A. C. Generators & Motors: Principle of operation, Revolving Magnetic field, Squirrel cage and phase wound rotor, Starting of Induction motors, Direct on line and Star Delta starters, Synchronous machines." },
+            { num: "Unit IV", topics: "Transformers: Construction and principle of operation, equivalent circuit, losses in transformers, regulation and efficiency, Auto-transformer and three-phase transformer connections. Measuring Instruments: Electromagnetism, Different Torques in Indicating instruments, Moving Iron Instruments: Construction & Principle, Attraction and Repulsion type, Moving Coil instruments: Permanent Magnet type, Dynamometer type Instruments." }
           ]
         },
         {
           code: "HS-102",
-          icon: "🗣",
+          icon: "💬",
           title: "Communication Skills",
           shortDesc: "Grammar, Technical Writing, and Group Discussions",
           units: [
-            { num: "Unit I", topics: "Communication Basics: Process, barriers, non-verbal communication, listening skills." },
-            { num: "Unit II", topics: "Grammar & Vocabulary: Common errors, active-passive voice, direct-indirect speech, idioms." },
-            { num: "Unit III", topics: "Technical Writing: Letter writing, resumes, report writing, emails, proposals." },
-            { num: "Unit IV", topics: "Speaking Skills: Group discussions, presentations, interviews, public speaking." }
+            { num: "Unit I", topics: "Role and Importance of Communications, Attributes of Communications, Verbal and Non-Verbal Communications, Verbal Communications Skills, Non-verbal Communication Methods, Body Language, Barriers to Communications, Socio-psychological barriers, Inter-Cultural barriers, Overcoming barriers, Communication Mediums: Characterization and Choice of medium, Effective Communication: Correctness, Clarity, Conciseness, Courtesy, Group Communication: Meetings (types, purpose), Group Discussions, Conduct of Meeting, Participant Role, Making Presentations." },
+            { num: "Unit II", topics: "Spoken and Written English: Attributes of spoken and written communication, Formal & Informal Communication, Variation in between Indian, British and American English. Etiquette and Manners: Personal Behaviour, Greetings, Introductions, Telephone Etiquette. Vocabulary Development: Dictionaries and Thesaurus, Words often confused, generally used one word substitutions, Comprehension." },
+            { num: "Unit III", topics: "Letter writing: Planning the message, Planning Content, Structure, Language use, Layout, enquires and replies, asking for or giving quotations, Bargaining letters, Seller's reply, etc.; Complaints and Replies; Memos, Circulars and notices; Paragraph Writing, Writing Scientific and Technical Reports: Types, Structure, Drafting and Delivering a Speech: Understanding the Environment, Understanding the Audience, Text preparing, Composition, Practicing, Commemorative Speeches, Welcome and Introduction, Farewell and Send-offs, Condolence" },
+            { num: "Unit IV", topics: "Articles: Indefinite, Definite; Tenses: Present, Past, Future, Perfect (Present, Past and Future), Tenses in conditional sentences; Active and Passive Voice: Formation, conversion; Direct and Indirect Speech, Degrees of Comparison, Common errors, Concepts of Learning and Listening" }
+          ]
+        },
+        {
+          code: "HS-101",
+          icon: "🌱",
+          title: "Environmental Science",
+          shortDesc: "Ecology, Ecosystems, Biodiversity & Pollution Control",
+          units: [
+            { num: "Unit I", topics: "Fundamentals: The Multidisciplinary nature of environmental studies: Definition, components, scope and importance, need for public awareness; Natural Resources. Ecosystems: Concept, Structure and function of an ecosystem, Types, Functional Components, Different ecosystems, biogeochemical cycles. Biodiversity: Introduction to biodiversity, biogeographical classification, India as a mega diversity nation, endangered and endemic species of India, threats to biodiversity and conservation of biodiversity. Bioprospecting and Biopiracy" },
+            { num: "Unit II", topics: "Environmental Pollution: (a) Air Pollution: Source, Types, effects on biosphere and Meterology, Air Quality, Control. (b) Water Pollution: Types and Sources. (c) Soil Pollution: Types and Control. (d) Noise Pollution: Effect, Control (e) Thermal Pollution. (f) Radiation Pollution (g) Solid waste Management, (h) Pollution Prevention, (i) Disaster Management" },
+            { num: "Unit III", topics: "Social Issues and Environment: Concept of Sustainable Development; Urban problem related to energy; Water Conservation; Wasteland reclamation; Resettlement and Rehabilitation; Climate Change; Nuclear Accidents; Consumerism and Waste Products; Laws related to Environment, Pollution, Forest and Wild life; Environmental Impact Assessment." },
+            { num: "Unit IV", topics: "Human Population and Environment: Population Growth, Human Rights, Family Welfare Programmes, Environment and Human Health, HIV/AIDS, Women and Child Welfare, Role of IT." }
+          ]
+        },
+        {
+          code: "BS-113",
+          icon: "🔬",
+          title: "Applied Chemistry-1",
+          shortDesc: "Physical, Organic & Inorganic Engineering Chemistry",
+          units: [
+            { num: "Unit I", topics: "Fuels: Classification and Characteristics of fuels, Calorific values, Comparison between solid, liquid and gaseous fuels, calorific values of fuels, determination of calorific values using Bomb calorimeter, Boy's calorimeter, theoretical calculation of calorific value using Dulong formula and numericals of Calorific values. Types of fuels: - Solid: Coal, proximate and ultimate analysis of coal and numericals, carbonisation of coal in Otto-Hoffman oven with recovery of by-products, metallurgical coke; Liquid: Petroleum products --- refining, cracking-thermal and catalytic, knocking characteristics, Octane and Cetane rating; Gaseous: Natural Gas (NG), CNG, LPG, Coal gas, Oil gas, Producer gas, Water gas; Combustion of fuels numericals." },
+            { num: "Unit II", topics: "Phase rule: Terms used in Gibb's Phase rule, phase diagram and its applications for study of one-component systems: Water and Sulphur and two-component systems: Lead-Silver and Zinc-Magnesium. Polymers: Classification, functionality and their types; Plastics: Synthesis (reactions) and properties of Polyethylene Plastics (Addition polymers) --- low-density polyethene (LDPE), high-density polyethylene(HDPE), linear low density polyethylene(LLDPE) and ultra-high molecular weight polyethylene (UHMWPE); Vinyl Plastics (Condensation polymers) - Nylons, Phenol-formaldehyde resins(Bakelite) and Glyptal; Speciality Polymers: Engineering thermoplastics, Conducting polymers, Electroluminescent polymers, liquid crystalline polymers and biodegradable polymers." },
+            { num: "Unit III", topics: "Water: Introduction, water quality standards, physical, chemical and biological characteristics; hardness of water, disadvantages of hardness, determination of hardness (EDTA method) and related numerical questions. Alkalinity and its determination; Boiler problems with hard water and their prevention: Scale and sludge formation, boiler corrosion, caustic embrittlement, priming and foaming, boiler water treatment - internal or in-situ: carbonate and phosphate conditioning, colloidal and Calgon conditioning; external treatment: (a) Lime soda process and related numericals (b) Zeolite process and numericals, (c) Ion-exchange process. Municipal water supply - its treatment and disinfection using break -point chlorination. Desalination, Reverse Osmosis, Electrodialysis and defluoridation of water." },
+            { num: "Unit IV", topics: "Corrosion and its Control: Definition, effects, theory (mechanisms): dry/chemical, wet/electrochemical corrosion, Pilling-Bedworth ratio; Types of corrosion: Galvanic corrosion, Soil corrosion, Pitting corrosion, Concentration cell or Differential Aeration corrosion, Stress corrosion; Mechanism of rusting of iron, Passivity. Factors influencing corrosion; protective measures: galvanization, tinning, cathodic protection, sacrificial anodic protection; electroplating and prevention of corrosion through material selection and design. Green Technology and Green Chemistry Twelve Principles of Green Chemistry, Zero Waste Technology, Atom economy, Use of alternative feedstock, innocuous reagents, alternative solvents, designing alternative reaction methodology, minimising energy consumption. Nano Chemistry: Nanomaterials: Properties, synthesis and surface characterization techniques BET and TEM and applications." }
+          ]
+        },
+        {
+          code: "ES-110",
+          icon: "🛠",
+          title: "Workshop",
+          shortDesc: "Fitting, Carpentry, Foundry, Welding, and Machine Shop Practice",
+          units: [
+            { num: "Unit I", topics: "Fitting Shop: Fitting tools, layout marking, measuring tools, sawing, filing, tapping and dieing operations." },
+            { num: "Unit II", topics: "Carpentry Shop: Timber classification, seasoning, carpentry tools, joints (halving, mortise & tenon, dovetail)." },
+            { num: "Unit III", topics: "Foundry & Welding Shop: Molding sands, cores, pattern types, arc & gas welding joint preparations." },
+            { num: "Unit IV", topics: "Sheet Metal & Machine Shop: Sheet metal tools, joints, seams, lathe machine operations, safety practices." }
           ]
         }
       ]
@@ -738,35 +954,11 @@ const syllabusData = {
       ]
     },
     4: {
-      desc: "Implement databases, network layers, communication channels, and systems systems.",
+      desc: "Implement databases, network layers, machine learning models, software processes, and technical correspondence.",
       subjects: [
         {
-          code: "IT-204",
-          icon: "📁",
-          title: "Database Management Systems",
-          shortDesc: "ER Diagrams, Relational Algebra, SQL, Normalization, and Transactions",
-          units: [
-            { num: "Unit I", topics: "DBMS Overview: Data independence, database languages, ER diagrams, relational model." },
-            { num: "Unit II", topics: "Relational Query Languages: Relational algebra, SQL queries, DDL, DML, DCL commands." },
-            { num: "Unit III", topics: "Normalization: Functional dependencies, 1NF, 2NF, 3NF, BCNF, multi-valued dependency." },
-            { num: "Unit IV", topics: "Transaction Management: ACID properties, concurrency control, locks, recovery systems." }
-          ]
-        },
-        {
-          code: "IT-206",
-          icon: "💻",
-          title: "Operating Systems",
-          shortDesc: "CPU Scheduling, Synchronization, Memory Management, and Disk Scheduling",
-          units: [
-            { num: "Unit I", topics: "OS overview, process state transitions, CPU scheduling algorithms." },
-            { num: "Unit II", topics: "Process synchronization: Semaphores, monitors, classical synchronization problems. Deadlocks." },
-            { num: "Unit III", topics: "Memory management: Paging, segmentation, virtual memory page replacement." },
-            { num: "Unit IV", topics: "File systems structure, disk scheduling algorithms, security and protection." }
-          ]
-        },
-        {
           code: "IT-208",
-          icon: "✍",
+          icon: "⚙",
           title: "Software Engineering",
           shortDesc: "SDLC Models, Requirements, UML Diagrams, Testing, and Maintenance",
           units: [
@@ -779,8 +971,8 @@ const syllabusData = {
         {
           code: "IT-210",
           icon: "🌐",
-          title: "Computer Networks",
-          shortDesc: "OSI Reference Model, TCP/IP Suite, Routing Algorithms, and Security",
+          title: "Computer Networks and Internet Protocols",
+          shortDesc: "OSI Reference Model, TCP/IP Suite, Routing Algorithms, and Internet Protocols",
           units: [
             { num: "Unit I", topics: "Introduction to networks, physical layer encoding, transmission media, topologies." },
             { num: "Unit II", topics: "Data link layer: Framing, error control, sliding window protocols, MAC sublayer." },
@@ -789,145 +981,217 @@ const syllabusData = {
           ]
         },
         {
-          code: "EC-212",
-          icon: "📡",
-          title: "Principles of Communication",
-          shortDesc: "Amplitude Modulation, Angle Modulation, Sampling, and Digital Modulation Basics",
+          code: "IT-206",
+          icon: "💻",
+          title: "Fundamentals of Machine Learning",
+          shortDesc: "Supervised and Unsupervised Learning, Regression, SVM, Decision Trees, and Clustering",
           units: [
-            { num: "Unit I", topics: "Analog Modulation: Amplitude Modulation (DSB-SC, SSB, VSB), frequency translation." },
-            { num: "Unit II", topics: "Angle Modulation: Frequency Modulation (FM), Phase Modulation (PM), noise analysis in communication." },
-            { num: "Unit III", topics: "Digital Transmission: Sampling theorem, pulse code modulation (PCM), delta modulation." },
-            { num: "Unit IV", topics: "Digital Modulation: ASK, FSK, PSK, QAM, multiplexing: TDM, FDM systems." }
+            { num: "Unit I", topics: "Introduction to Machine Learning: Supervised, Unsupervised, Reinforcement learning. Linear Regression, Gradient Descent." },
+            { num: "Unit II", topics: "Classification: Logistic Regression, Decision Trees, Naive Bayes, Support Vector Machines (SVM), K-Nearest Neighbors (KNN)." },
+            { num: "Unit III", topics: "Clustering & Unsupervised Learning: K-Means clustering, hierarchical clustering, Principal Component Analysis (PCA)." },
+            { num: "Unit IV", topics: "Model Evaluation: Bias-variance tradeoff, cross-validation, precision, recall, ROC curves, confusion matrix." }
+          ]
+        },
+        {
+          code: "HS-204",
+          icon: "✍",
+          title: "Effective Technical Writing",
+          shortDesc: "Technical Correspondence, Audience Analysis, Proposals, Reports, and Citations",
+          units: [
+            { num: "Unit I", topics: "Introduction to Technical Communication: Objectives, characteristics, audience analysis." },
+            { num: "Unit II", topics: "Technical Writing Genres: Reports, manuals, proposals, specs, instructions." },
+            { num: "Unit III", topics: "Professional Correspondence: Resumes, cover letters, business emails, letters." },
+            { num: "Unit IV", topics: "Research Papers & Presentations: Formatting, citations (IEEE, APA), oral presentation skills." }
+          ]
+        },
+        {
+          code: "IT-204",
+          icon: "📁",
+          title: "Database Management Systems",
+          shortDesc: "ER Diagrams, Relational Algebra, SQL, Normalization, and Transactions",
+          units: [
+            { num: "Unit I", topics: "DBMS Overview: Data independence, database languages, ER diagrams, relational model." },
+            { num: "Unit II", topics: "Relational Query Languages: Relational algebra, SQL queries, DDL, DML, DCL commands." },
+            { num: "Unit III", topics: "Normalization: Functional dependencies, 1NF, 2NF, 3NF, BCNF, multi-valued dependency." },
+            { num: "Unit IV", topics: "Transaction Management: ACID properties, concurrency control, locks, recovery systems." }
           ]
         }
       ]
     },
     5: {
-      desc: "Optimize data algorithms, modern web engines, digital channels, and design models.",
+      desc: "Apply advanced computer organization, algorithm analysis, IoT frameworks, and deep learning architectures.",
       subjects: [
         {
           code: "IT-301",
-          icon: "📐",
-          title: "Design & Analysis of Algorithms",
-          shortDesc: "Asymptotic Notation, Divide & Conquer, Greedy, Dynamic Programming, and NP-Completeness",
+          icon: "🖥",
+          title: "Computer Organisation and Architecture",
+          shortDesc: "Register Transfer, CPU Design, Microprogramming, and Memory Hierarchies",
           units: [
-            { num: "Unit I", topics: "Algorithm Analysis: Asymptotic notations, recurrence relations, Master method." },
-            { num: "Unit II", topics: "Divide & Conquer, Greedy Algorithms: Merge sort, Quick sort, Knapsack, Huffman codes, Spanning trees." },
-            { num: "Unit III", topics: "Dynamic Programming, Backtracking: Matrix chain multiplication, LCS, 0/1 Knapsack, N-Queens." },
-            { num: "Unit IV", topics: "Complexity Classes: P, NP, NP-Hard, NP-Complete problems, approximation algorithms." }
+            { num: "Unit I", topics: "Register Transfer Language: Register transfer language, bus and memory transfer, bus architecture using multiplexer and tri-state buffer, micro-operation: arithmetic, logical, shift micro-operation with hardware implementation, arithmetic logic shift unit. Computer Organization and Design: Instruction codes, general computer registers with common bus system, computer instructions: memory reference, register reference, input-output instructions, timing and control, instruction cycle, input-output configuration, and interrupt cycle. Levels of programming languages: Machine language, Assembly language, High level language." },
+            { num: "Unit II", topics: "Central processing Unit: Introduction, general register organization, stack organization, instruction format, addressing modes. Overview of GPU, CPU vs GPU computing difference. Memory Hierarchy: Introduction, basics of cache, measuring and improving of cache performance, cache memory: associative mapping, direct mapping, set-associative mapping, cache writing and initialization, virtual memory, common framework for memory hierarchies. Case study of PIV and AMD opteron memory hierarchies." },
+            { num: "Unit III", topics: "Parallel Computer Models: The state of computing, classification of parallel computers, multiprocessors and multicomputers, multivector and SIMD computers. Program and Network Properties: conditions of parallelism, data and resource dependences, hardware and software parallelism, program partitioning and scheduling, grain size and latency, program flow mechanisms, control flow versus data flow, data flow Architecture, demand driven mechanisms, comparisons of flow mechanisms." },
+            { num: "Unit IV", topics: "Pipelining: Introduction to Flynn's classification, arithmetic pipeline, instruction pipeline, pipeline conflict and hazards, RISC pipeline, vector processing. Arithmetic for Computers: Unsigned, signed 1's, 2's compliment notations, addition, subtraction, multiplication and division (hardware implementation), CPU performance and its factors, evaluating performance of CPU." }
           ]
         },
         {
-          code: "IT-303",
-          icon: "🌐",
-          title: "Web Technology",
-          shortDesc: "HTML5/CSS3, JavaScript DOM, XML/JSON, and Node/Express architectures",
+          code: "HS-303",
+          icon: "💡",
+          title: "Principles of Entrepreneurship",
+          shortDesc: "Entrepreneurship Mindset, Business Plan, Opportunity Identification, and Venture Capital",
           units: [
-            { num: "Unit I", topics: "Web Architecture: HTTP protocols, HTML5 elements, CSS3 styling, responsive layouts." },
-            { num: "Unit II", topics: "Client-side Scripting: JavaScript fundamentals, DOM manipulation, event handling, AJAX." },
-            { num: "Unit III", topics: "XML and Web Services: XML schema, parsing, JSON syntax, Web Services description (SOAP, REST)." },
-            { num: "Unit IV", topics: "Server-side Engineering: Node.js basics, Express routes, database access, session tracking." }
+            { num: "Unit I", topics: "Entrepreneurial perspective: Foundation, Nature and development of entrepreneurship, importance of entrepreneurs, Entrepreneurial Mind, Individual entrepreneur, Types of entrepreneurs, Entrepreneurship in India." },
+            { num: "Unit II", topics: "Beginning Considerations: Creativity and developing business ideas; Creating and starting the venture; Building a competitive advantage; Opportunity recognition, Opportunity assessment; Legal issues." },
+            { num: "Unit III", topics: "Developing Financial Plans: Sources of Funds, Managing Cash Flow, Creating a successful Financial Plan, Developing a business plan." },
+            { num: "Unit IV", topics: "Developing Marketing Plans: Developing a powerful Marketing Plan, E-commerce, Integrated Marketing Communications. Leading Considerations: Developing Team, Inviting candidates to join team, Leadership model." }
           ]
         },
         {
           code: "IT-305",
-          icon: "☕",
-          title: "Java Programming",
-          shortDesc: "Advanced Java Concepts, Collections Framework, Networking, and Servlet Architectures",
+          icon: "📐",
+          title: "Design and Analysis of Algorithms",
+          shortDesc: "Asymptotic Notation, Divide & Conquer, Greedy, Dynamic Programming, and NP-Completeness",
           units: [
-            { num: "Unit I", topics: "OOP Implementation: Interfaces, packages, inner classes, Exception handling." },
-            { num: "Unit II", topics: "Java Collections: List, Set, Map interfaces, generics, file streams, serialization." },
-            { num: "Unit III", topics: "Java Networking: Socket programming, URL connection, RMI, multi-threaded servers." },
-            { num: "Unit IV", topics: "Enterprise Java: Servlets, JSP lifecycle, JDBC database queries, MVC implementation." }
+            { num: "Unit I", topics: "Introduction to Algorithms: Time Complexity and Space Complexity, Asymptotic analysis, Growth rates, some common bounds (constant, logarithmic, linear, polynomial, exponential), Complexity Analysis techniques: Master theorem, Substitution Method, Iteration Method, Time complexity of Recursive algorithms. art of problem-solving and decision making, role of data structure in algorithm design, Basic algorithmic structures of problem-solving and optimization algorithms, constraints, solution space, and feasible reasons, and representation of solution space. Sorting and searching algorithms: Selection sort, bubble sort, insertion sort, Sorting in linear time, count sort, Linear search." },
+            { num: "Unit II", topics: "Divide and Conquer Algorithms: Overview of Divide and Conquer algorithms, Quick sort, Merge sort, Heap sort, Binary search, Matrix Multiplication, Convex hull and Searching, Closest Pair of Points. Greedy Algorithms: Greedy methods with examples, Huffman Coding, Knapsack, Minimum cost Spanning trees - Prim's and Kruskal's algorithms, Single source shortest paths - Dijkstra's and Bellman Ford algorithms." },
+            { num: "Unit III", topics: "Dynamic programming: Dynamic programming with examples such as Knapsack, shortest path in graph All pair shortest paths -Warshal's and Floyd's algorithms, Resource allocation problem. Backtracking, Branch and Bound with examples such as Traveling Salesman Problem, longest common sequence, n-Queen Problem." },
+            { num: "Unit IV", topics: "Graph Algorithms: Graphs and their Representations, Graph Traversal Techniques: Breadth First Search (BFS) and Depth First Search (DFS), Applications of BFS and DFS, Bipartite graphs. Graph Coloring, Hamiltonian Cycles and Sum of subsets. Computational complexity: Problem classes: P, NP, NP-complete, NP-hard. Reduction. The satisfiability problem, vertex cover, independent set and clique problems Cook's theorem.Examples of NP-complete problems." }
           ]
         },
         {
-          code: "EC-311",
-          icon: "📡",
-          title: "Digital Communication",
-          shortDesc: "Line Coding, Information Theory, Error Correction Codes, and Spread Spectrum",
+          code: "IT-307",
+          icon: "⚡",
+          title: "Operating System AIML",
+          shortDesc: "OS Kernels, Resource Scheduling, Virtual Memory, and Parallel Execution for AI",
           units: [
-            { num: "Unit I", topics: "Baseband Transmission: Line coding formats (NRZ, RZ, Manchester), ISI, Nyquist criterion, eye patterns." },
-            { num: "Unit II", topics: "Information Theory: Entropy, channel capacity, Shannon-Hartley theorem, source coding." },
-            { num: "Unit III", topics: "Error Control Coding: Linear block codes, cyclic codes, convolutional codes." },
-            { num: "Unit IV", topics: "Spread Spectrum: Direct sequence spread spectrum, frequency hopping, CDMA basics." }
+            { num: "Unit I", topics: "Introduction: Operating system and function, Evolution of operating system, Batch, Interactive, Time Sharing and Real Time System, System protection. Operating System Structure: System Components, System structure, Operating System Services. CPU Scheduling: Scheduling Concept, process scheduling strategies- First-Come, First-Served (FCFS) Scheduling, Shortest-Job-Next (SJN) Scheduling, Priority Scheduling, Shortest Remaining Time, Round Robin (RR) Scheduling, Multiple-Level Queues Scheduling, Performance Criteria of Scheduling Algorithm, Evolution, Multiprocessor Scheduling." },
+            { num: "Unit II", topics: "Concurrent Processes: Process concept, Principle of Concurrency, Producer Consumer Problem, Critical Section problem, Semaphores, Binary and counting semaphores, P() and V() operations, Classical problems in Concurrency, Inter Process Communication, Process Generation, Process Scheduling. Deadlocks: examples of deadlock, resource concepts, necessary conditions for deadlock, deadlock solution, deadlock prevention, deadlock avoidance with Bankers algorithms, deadlock detection, deadlock recovery." },
+            { num: "Unit III", topics: "Memory Organization & Management: Memory Organization, Memory Hierarchy, Memory Management Strategies, Contiguous versus non- Contiguous memory allocation, Partition Management Techniques, Logical versus Physical Address space, swapping, Paging, Segmentation, Segmentation with Paging Virtual Memory: Demand Paging, Page Replacement, Page-replacement Algorithms, Performance of Demand Paging, Thrashing, Demand Segmentation, and Overlay Concepts." },
+            { num: "Unit IV", topics: "I/O Device and the organization: I/O Device and the organization of the I/O function, I/O Buffering, Disk I/O, Disk Scheduling Algorithms, File system: File Concepts, attributes, operations, File organization and Access mechanism, disk space allocation methods, Directory structure, free disk space management, File sharing, Implementation issues. Case studies: Unix system, Windows XP." }
           ]
         },
         {
           code: "IT-309",
-          icon: "🏢",
-          title: "Software Engineering",
-          shortDesc: "Process models, SRS documentation, testing practices, and project metrics",
+          icon: "🌐",
+          title: "Introduction to Internet of Things",
+          shortDesc: "IoT Protocols, Sensor Networks, Embedded Hardware (Arduino/Raspberry Pi), and Cloud Analytics",
           units: [
-            { num: "Unit I", topics: "Software Process Models: Waterfall, spiral, prototype, agile models (Scrum)." },
-            { num: "Unit II", topics: "Requirements Engineering: SRS document, software design principles, UML diagrams." },
-            { num: "Unit III", topics: "Coding and Testing: White-box testing, black-box testing, unit, integration, and system testing." },
-            { num: "Unit IV", topics: "Software Metrics: COCOMO model, function points, maintenance, configuration management." }
+            { num: "Unit I", topics: "Connected Devices, internet principles: internet communications-An overview, Physical Design of IoT, Logical Design of IoT, IoT standards, IoT generic architecture and IoT protocols. IoT future trends, Understand IoT Applications and Examples. Understand various IoT architectures based on applications. Understand different classes of sensors and actuators. Sensors: sensor terminology,sensor dynamics and specifications. Understand the basics of hardware design needed to build useful circuits using basic sensors and actuators." },
+            { num: "Unit II", topics: "Communication protocols and Arduino Programming: Understand various network protocols used in IoT, Understand various communication protocols (SPI, I2C, UART). Design and develop Arduino code needed to communicate the microcontroller with sensors and actuators, build circuits using IoT supported Hardware platforms such as Arduino, ESP8266 etc., Use of software libraries with an Arduino sketch that allows a programmer to use complicated hardware without dealing with complexity, Learning IoT application programming and build solutions for real life problems and test them in Arduino and Node MCU environments. Understand various wireless Technologies for IoT and its range, frequency and applications." },
+            { num: "Unit III", topics: "Fundamentals of IEEE 802.15.4, Zigbee and 6LOWPAN: Importance of IEEE 802.15.4 MAC and IEEE 802.15.4 PHY layer in constrained networks and their header format, Importance of Zigbee technology and its applications, use of IPv6 in IoT Environments, Understanding importance of IPv6 and how constrained nodes deal with bigger headers (IPv6). Understand IPv6 over LowPower WPAN (6LoWPAN) and role of 6LoWPAN in wireless sensor network. Various routing techniques in constrained network. Understanding IoT Application Layer Protocols: HTTP, CoAP Message Queuing Telemetry Transport (MeTT)." },
+            { num: "Unit IV", topics: "Application areas and Real-time Case Studies: Role of big data, cloud computing and data analytics in a typical IoT system. Analyze various case studies implementing IoT in real world environment and find out the solutions of various deployment issues. Smart parking system, Smart irrigation system-block diagram, sensors, modules on Arduino and Node MCU." }
+          ]
+        },
+        {
+          code: "IT-311",
+          icon: "🧠",
+          title: "Fundamentals of Deep Learning",
+          shortDesc: "Neural Networks, Backpropagation, CNNs, RNNs, LSTMs, and Transformers",
+          units: [
+            { num: "Unit I", topics: "Introduction to Deep Learning: Introduction to Deep Learning, Bayesian Learning, Overview of Shallow Machine Learning, Difference between Deep Learning and Shallow Learning, Linear Classifiers ,Loss Function and Optimization Techniques -Gradient Descent and batch optimization." },
+            { num: "Unit II", topics: "Introduction to Neural Network: Introduction to Neural Network, Biological Neuron, Idea of computational units, McCulloch–Pitts unit and Thresholding logic Artificial Neural Networks: Single Layer Neural Network, Multilayer Perceptron, Back Propagation through time. Architectural Design Issues." },
+            { num: "Unit III", topics: "Training deep neural networks: Difficulty of training deep neural networks, Activation Function, Evaluating, Improving and Tuning the ANN. Hyper parameters Vs Parameters, Greedy layer wise training, Recurrent Neural Networks, Long Short-Term Memory, Gated Recurrent Units, Bidirectional LSTMs, Bidirectional RNNs." },
+            { num: "Unit IV", topics: "Convolutional Neural Networks: Convolutional Neural Networks, Building blocks of CNN, Transfer Learning , Pooling Layers , Convolutional Neural Network Architectures.Well known case studies: LeNet, AlexNet, VGG-16, ResNet, Inception Net.Applications in Vision, Speech, and Audio-Video." }
+          ]
+        },
+        {
+          code: "IT-313",
+          icon: "📐",
+          title: "Algorithm Design and Analysis",
+          shortDesc: "Asymptotic Notation, Divide & Conquer, Greedy, Dynamic Programming, and NP-Completeness",
+          units: [
+            { num: "Unit I", topics: "Asymptotic notations for time and space complexity, Big-Oh notation, Θ notation, Ω notation, the little-oh notation, the little-omega notation, Recurrence relations: iteration method, recursion tree method, substitution method, master method (with proof), subtract and conquer master method(with proof), Data Structures for Disjoint Sets, Medians and Order statistics. Complexity analysis, Insertion sort, Merge Sort, Quick sort. Strassen's algorithm for Matrix Multiplications." },
+            { num: "Unit II", topics: "Dynamic Programming: Ingredients of Dynamic Programming, emphasis on optimal substructure , overlapping substructures, memorization. Matrix Chain Multiplication, Longest common subsequence and optimal binary search trees problems, 0-1 knapsack problem, Binomial coefficient computation through dynamic programming. Floyd Warshall algorithm." },
+            { num: "Unit III", topics: "Greedy Algorithms: Elements of Greedy strategy, overview of local and global optima, matroid, Activity selection problem, Fractional Knapsack problem, Huffman Codes, A task scheduling problem. Minimum Spanning Trees: Kruskal’s and Prim’s Algorithm, Single source shortest path: Dijkstra’s and Bellman Ford Algorithm(with proof of correctness of algorithms)." },
+            { num: "Unit IV", topics: "String matching: The naïve String Matching algorithm, The Rabin-Karp Algorithm, String Matching with finite automata, The Knuth-Morris Pratt algorithm. NP-Complete Problem: Polynomial-time verification, NP-Completeness and Reducibility, NP-Completeness Proof, NP –hard ,Case study of NP-Complete problems (vertex cover problem, clique problem)." }
+          ]
+        },
+        {
+          code: "IT-315",
+          icon: "💻",
+          title: "Operating System CSE",
+          shortDesc: "CPU Scheduling, Synchronization, Memory Management, and Disk Scheduling",
+          units: [
+            { num: "Unit I", topics: "Introduction: What is an Operating System, Simple Batch Systems, Multi-programmed Batches systems, Time Sharing Systems, Personal-computer systems, Parallel systems, Distributed Systems, Real-Time Systems, OS – A Resource Manager. Processes: Introduction, Process states, process management, Interrupts, Interprocess Communication. Threads: Introduction, Thread states, Thread Operation, Threading Models. Processor Scheduling: Scheduling levels, preemptive vs no preemptive scheduling, priorities, scheduling objective, scheduling criteria, scheduling algorithms, demand scheduling, real time scheduling." },
+            { num: "Unit II", topics: "Process Synchronization: Mutual exclusion, software solution to Mutual exclusion problem, hardware solution to Mutual exclusion problem, semaphores, Critical section problems. Case study on Dining philosopher problem, Barber shop problem etc. Memory Organization & Management: Memory Organization, Memory Hierarchy, Memory Management Strategies, Contiguous versus non- Contiguous memory allocation, Partition Management Techniques, Logical versus Physical Address space, swapping, Paging, Segmentation, Segmentation with Paging Virtual Memory: Demand Paging, Page Replacement, Page-replacement Algorithms, Performance of Demand Paging, Thrashing, Demand Segmentation, and Overlay Concepts." },
+            { num: "Unit III", topics: "Deadlocks: examples of deadlock, resource concepts, necessary conditions for deadlock, deadlock solution, deadlock prevention, deadlock avoidance with Bankers algorithms, deadlock detection, deadlock recovery. Device Management: Disk Scheduling Strategies, Rotational Optimization, System Consideration, Caching and Buffering." },
+            { num: "Unit IV", topics: "File System: Introduction, File Organization, Logical File System, Physical File System, File Allocation strategy, Free Space Management, File Access Control, Data Access Techniques, Data Integrity Protection, Case study on file system viz FAT32, NTFS, Ext2/Ext3 etc." }
           ]
         }
       ]
     },
     6: {
-      desc: "Develop advanced mobile platforms, security structures, web systems, and AI modules.",
+      desc: "Optimize web engines, machine learning models, programming paradigms, and AI modules.",
       subjects: [
         {
           code: "IT-302",
-          icon: "💻",
-          title: "Web Development",
-          shortDesc: "Frontend Frameworks (React), Backend REST APIs, and Cloud Deployments",
+          icon: "🌐",
+          title: "Web Technologies",
+          shortDesc: "HTML5, CSS3, JavaScript, Client-Server Architectures, and Web APIs",
           units: [
-            { num: "Unit I", topics: "Modern Frontend: Single page applications, React.js: state, props, lifecycle hooks, routing." },
-            { num: "Unit II", topics: "Backend Engineering: REST API design, Express middleware, MongoDB integration, Mongoose schemas." },
-            { num: "Unit III", topics: "State Management: Redux/Context API, authentication methods (JWT, OAuth)." },
-            { num: "Unit IV", topics: "Cloud Deployment: Containerization (Docker), deployment on Heroku/AWS, CI/CD pipeline basics." }
+            { num: "Unit I", topics: "HTML: Basic Syntax, Standard HTML Document Structure, Basic Text Markup, Html styles, Elements, Attributes, Heading, Layouts, I frames Images, Hypertext Links, Lists, Tables, Forms, Dynamic HTML. CSS: Need for CSS, introduction to CSS, basic syntax and structure, using CSS, background images, colors, and properties, manipulating texts, using fonts, borders, boxes, margins, padding lists, positioning using CSS, CSS2, The Box Model, Working with XML: Document Type Definition (DTD), XML schemas, Document object model, Parsers -DOM, and SAX. Introduction to XHTML: XML, Meta tags, Character entities, frames, and frame sets." },
+            { num: "Unit II", topics: "JavaScript - Client-side scripting, Introduction to JavaScript, Objects, Primitives Operations and Expressions, Control Statements, Arrays, Functions, Constructors, JavaScript, and objects, JavaScript own objects, the DOM and web browser environments, forms and validations. Introduction to JSP: The Anatomy of a JSP Page, JSP Processing, Declarations, Directives, Expressions, Code Snippets, implicit objects, Using Beans in JSP Pages, Using Cookies and session for session tracking, connecting to database in JSP." },
+            { num: "Unit III", topics: "Introduction to Server-Side Development with PHP, what is Server-Side Development, A Web Server's Responsibilities, Quick Tour of PHP, Introduction and basic syntax of PHP, decision and looping with examples, PHP and HTML, Arrays, Functions, Browser control and detection, string, Form processing, Files, Advance Features: Cookies and Sessions." },
+            { num: "Unit IV", topics: "PHP and MySQL: Basic commands with PHP examples, Connection to the server, creating a database, selecting a database, listing database, listing table names, creating a table, inserting data, altering tables, queries, deleting the database, deleting data, and tables, PHP my admin and database bugs. Managing State, The Problem of State in Web Applications, Passing Information via Query Strings, Passing Information via the URL Path, Cookies, Serialization, Session State." }
           ]
         },
         {
           code: "IT-304",
-          icon: "📱",
-          title: "Mobile Computing",
-          shortDesc: "Mobile network infrastructures, Mobile IP, routing, and mobile platforms",
+          icon: "🐍",
+          title: "Programming in Python",
+          shortDesc: "Python Fundamentals, Data Structures, OOP, Modules, and File I/O",
           units: [
-            { num: "Unit I", topics: "Mobile computing architecture, cellular networks, GSM systems, GPRS." },
-            { num: "Unit II", topics: "Wireless LAN, IEEE 802.11 architecture, MAC layer, Bluetooth." },
-            { num: "Unit III", topics: "Mobile network layer: Mobile IP, DHCP. Mobile transport layer: TCP optimization." },
-            { num: "Unit IV", topics: "Mobile application platforms: Android, iOS, mobile ad-hoc networks (MANET)." }
+            { num: "Unit I", topics: "Introduction, Python Basics: Entering Expressions into the Interactive Shell, The Integer, Floating-Point, and String Data Types, String Concatenation and Replication, Storing Values in Variables, Your First Program, Dissecting Your Program. Flow control: Boolean Values, Comparison Operators, Boolean Operators, Mixing Boolean and Comparison Operators, Elements of Flow Control, Program Execution, Flow Control Statements, Importing Modules, Ending a Program Early with sys.exit()" },
+            { num: "Unit II", topics: "Functions: def Statements with Parameters, Return Values and return Statements, The None Value, Keyword Arguments and print(), Local and Global Scope, The global Statement, Exception Handling. Lists: The List Data Type, Working with Lists, Augmented Assignment Operators, Methods. Dictionaries and Structuring Data: The Dictionary Data Type, Pretty Printing, Using Data Structures to Model Real-World Things. Manipulating Strings - Working with Strings, Useful String Methods" },
+            { num: "Unit III", topics: "Reading and Writing Files: Files and File Paths, The os.path Module, The File Reading/Writing Process, Saving Variables with the shelve Module, Saving Variables with the pprint.pformat() Function. Organizing Files: The shutil Module, Walking a Directory Tree, Compressing Files with the zipfile Module" },
+            { num: "Unit IV", topics: "Web Scraping: Project: MAPIT.PY with the web browser Module, Downloading Files from the Web with the requests Module, Saving Downloaded Files to the Hard Drive, HTML" }
           ]
         },
         {
           code: "IT-306",
-          icon: "🎨",
-          title: "Multimedia Applications",
-          shortDesc: "Audio/Video compression, Image standards, MIDI, and multimedia auth engines",
+          icon: "☕",
+          title: "Advanced Java Programming",
+          shortDesc: "Java EE, Servlets, JSP, Hibernate, Spring Framework, and Microservices",
           units: [
-            { num: "Unit I", topics: "Multimedia Systems: Text, graphics, image representation, file formats (BMP, JPG, PNG)." },
-            { num: "Unit II", topics: "Audio & Video: Digital audio, MIDI, sound cards, digital video formats, MPEG standards." },
-            { num: "Unit III", topics: "Compression Algorithms: Lossless (Huffman, LZW), Lossy (DCT, Wavelet), JPEG compression." },
-            { num: "Unit IV", topics: "Multimedia Networking: Streaming protocols, Quality of Service (QoS), authoring tools." }
+            { num: "Unit I", topics: "Introduction to Java, Inheritance, Exception Handling, Multithreading, Applet Programming, Connecting to a Server, Implementing Servers, Making URL Connections, Socket Programming" },
+            { num: "Unit II", topics: "Preparing a Class to be a Java Bean, Creating a Java Bean, Java Bean Properties, Types of beans, Stateful Session bean, Stateless Session bean, Entity bean, Servlet Overview and Architecture, Interface Servlet and the Servlet LifeCycle, Handling HTTP GET Requests, Handling HTTP POST Requests, Session Tracking, Cookies" },
+            { num: "Unit III", topics: "JSP: Introduction, Java Server Pages Overview, Implicit Objects, Scripting, Standard Actions, Directives, Custom Tag Libraries" },
+            { num: "Unit IV", topics: "The Roles of Client and Server, Remote Method Invocations, Setup for Remote Method Invocation, Parameter Passing in Remote Methods, Introduction of HB, HB Architecture" }
           ]
         },
         {
           code: "IT-308",
-          icon: "🔑",
-          title: "Information Security",
-          shortDesc: "Security policies, Symmetric ciphers, Public Key structures, and Cyber Laws",
+          icon: "🤖",
+          title: "Artificial Intelligence",
+          shortDesc: "Heuristic Search, Knowledge Representation, Fuzzy Logic, and Expert Systems",
           units: [
-            { num: "Unit I", topics: "Security Concepts: Attacks, services, classical encryption techniques, block ciphers: DES, AES." },
-            { num: "Unit II", topics: "Public Key Cryptography: RSA, Diffie-Hellman key exchange, elliptic curve cryptography." },
-            { num: "Unit III", topics: "Hash Functions: MD5, SHA-512, digital signatures, message authentication codes." },
-            { num: "Unit IV", topics: "Network Security: IPsec, SSL/TLS, firewalls, intrusion detection systems, malware ciphers." }
+            { num: "Unit I", topics: "AI Definition, Problems, The Foundations of Artificial Intelligence, Techniques, Models, Defining Problem as a state space search, production system, Intelligent Agents: Agents and Environments, Characteristics, Search methods and issues in the design of search problems." },
+            { num: "Unit II", topics: "Knowledge representation issues, mapping, frame problem. Predicate logic, facts in logic, representing instance and Isa relationship, Resolution, procedural and declarative knowledge, matching, control knowledge. Symbolic reasoning under uncertainty, Non monotonic reasoning, statistical reasoning." },
+            { num: "Unit III", topics: "Game Playing, minimax search, Alfa beta cutoffs, Natural Language Processing, Learning, Explanation-based learning, discovery, analogy, Neural net learning and Genetic Learning." },
+            { num: "Unit IV", topics: "Fuzzy logic systems, Perception and action, Expert systems, Inference in BayesianNetworks, K-means Clustering Algorithm, Machine learning." }
           ]
         },
         {
           code: "IT-310",
-          icon: "🤖",
-          title: "Artificial Intelligence",
-          shortDesc: "Heuristic Searching, Knowledge Representation, and Machine Learning Systems",
+          icon: "🧠",
+          title: "Machine Learning",
+          shortDesc: "Supervised Learning, Neural Networks, Clustering, and Model Evaluation",
           units: [
-            { num: "Unit I", topics: "AI overview, state space search, heuristic search: A* algorithm, game playing." },
-            { num: "Unit II", topics: "Knowledge representation, predicate logic, resolution, semantic networks." },
-            { num: "Unit III", topics: "Reasoning under uncertainty, Bayesian networks, fuzzy logic basics." },
-            { num: "Unit IV", topics: "Planning, Machine learning introduction, Expert systems, NLP overview." }
+            { num: "Unit I", topics: "Introduction: Machine learning, terminologies in machine learning, Perspectives and issues in machine learning, application of Machine learning, Types of machine learning: supervised, unsupervised, semi-supervised learning. Review of probability, Basic Linear Algebra in Machine Learning Techniques, Dataset and its types, Data preprocessing, Bias and Variance in Machine learning, Function approximation, Overfitting" },
+            { num: "Unit II", topics: "Regression Analysis in Machine Learning: Introduction to regression and its terminologies, Types of regression, Logistic Regression Simple Linear regression: Introduction to Simple Linear Regression and its assumption, Simple Linear Regression Model Building,Ordinary Least square estimation, Properties of the least-squares estimators and the fitted regression model, Interval estimation in simple linear regression, Residuals Multiple Linear Regression: Multiple linear regression model and its assumption, Interpret Multiple Linear Regression Output(R-Square, Standard error, F, Significance F, Cofficient P values), Access the fit of multiple linear regression model (R squared, Standard error) Feature Selection and Dimensionality Reduction: PCA, LDA, ICA" },
+            { num: "Unit III", topics: "Introduction to Classification and Classification Algorithms: What is Classification? General Approach to Classification, k-Nearest Neighbor Algorithm, Random Forests, Fuzzy Set Approaches Support Vector Machine: Introduction, Types of support vector kernel - (Linear kernel, polynomial kernel, and Gaussiankernel), Hyperplane - (Decision surface), Properties of SVM, and Issues in SVM. Decision Trees: Decision tree learning algorithm,ID-3algorithm, Inductive bias, Entropy and information theory, Information gain,Issues in Decision tree learning. Bayesian Learning - Bayes theorem, Concept learning, Bayes Optimal Classifier, Naïve Bayes classifier, Bayesian belief networks, EM algorithm Ensemble Methods: Bagging, Boosting and AdaBoost and XBoost, Classification Model Evaluation and Selection: Sensitivity, Specificity, Positive Predictive Value, Negative Predictive Value, Lift Curves and Gain Curves, ROC Curves, Misclassification Cost Adjustment to Reflect Real-World Concerns, Decision Cost/Benefit Analysis" },
+            { num: "Unit IV", topics: "Introduction to Cluster Analysis and Clustering Methods: The Clustering Task and the Requirements for Cluster Analysis , Overview of Some Basic Clustering Methods :- k-Means Clustering, k-Medoids Clustering, Density-Based Clustering: DBSCAN - Density-Based Clustering Based on Connected Regions with High Density, Gaussian Mixture Model algorithm , Balance Iterative Reducing and Clustering using Hierarchies (BIRCH) , Affinity Propagation clustering algorithm,Mean-Shift clustering algorithm, ordering Points to Identify the Clustering Structure (OPTICS) algorithm, Agglomerative Hierarchy clustering algorithm, Divisive Hierarchical, Measuring Clustering Goodness" }
+          ]
+        },
+        {
+          code: "IT-312",
+          icon: "⚡",
+          title: "Operating System AIML",
+          shortDesc: "OS Kernels, Resource Scheduling, Virtual Memory, and Parallel Execution for AI",
+          units: [
+            { num: "Unit I", topics: "Introduction: Operating system and function, Evolution of operating system, Batch, Interactive, Time Sharing and Real Time System, System protection. Operating System Structure: System Components, System structure, Operating System Services. CPU Scheduling: Scheduling Concept, process scheduling strategies- First-Come, First-Served (FCFS) Scheduling, Shortest-Job-Next (SJN) Scheduling, Priority Scheduling, Shortest Remaining Time, Round Robin (RR) Scheduling, Multiple-Level Queues Scheduling, Performance Criteria of Scheduling Algorithm, Evolution, Multiprocessor Scheduling." },
+            { num: "Unit II", topics: "Concurrent Processes: Process concept, Principle of Concurrency, Producer Consumer Problem, Critical Section problem, Semaphores, Binary and counting semaphores, P() and V() operations, Classical problems in Concurrency, Inter Process Communication, Process Generation, Process Scheduling. Deadlocks: examples of deadlock, resource concepts, necessary conditions for deadlock, deadlock solution, deadlock prevention, deadlock avoidance with Bankers algorithms, deadlock detection, deadlock recovery." },
+            { num: "Unit III", topics: "Memory Organization & Management: Memory Organization, Memory Hierarchy, Memory Management Strategies, Contiguous versus non- Contiguous memory allocation, Partition Management Techniques, Logical versus Physical Address space, swapping, Paging, Segmentation, Segmentation with Paging Virtual Memory: Demand Paging, Page Replacement, Page-replacement Algorithms, Performance of Demand Paging, Thrashing, Demand Segmentation, and Overlay Concepts." },
+            { num: "Unit IV", topics: "I/O Device and the organization: I/O Device and the organization of the I/O function, I/O Buffering, Disk I/O, Disk Scheduling Algorithms, File system: File Concepts, attributes, operations, File organization and Access mechanism, disk space allocation methods, Directory structure, free disk space management, File sharing, Implementation issues. Case studies: Unix system, Windows XP." }
           ]
         }
       ]
@@ -1032,8 +1296,8 @@ const syllabusData = {
 // Dynamic Subject Mapping for All Other Branches (ECE, EEE, EE, MAE, ME, CE, AIDS, AIML)
 const dynamicBranchSubjects = {
   ECE: {
-    3: ["Discrete Structure", "Data Structures", "Signals and Systems", "Network Analysis & Synthesis", "Switching Theory & Logic Design"],
-    4: ["Applied Mathematics - IV", "Analog Communications", "Computer Organization & Architecture", "Linear Integrated Circuits", "Electro-Magnetic Fields"],
+    3: ["Analog Communication", "Data Structures", "Analog Electronics-1", "Computational Methods (CSE)", "Digital Logic and Computer Design", "Signals and Systems"],
+    4: ["Probability, Statistics and Linear Programming", "Network Analysis and Synthesis", "Technical Writing", "Microprocessors and Microcontrollers", "Digital Communications", "Analog Electronics-II", "Electromagnetic Field Theory"],
     5: ["Digital Communication", "Control Systems", "Microprocessors & Microcontrollers", "Digital Signal Processing", "Transmission Lines & Waveguides"],
     6: ["VLSI Design", "Information Theory & Coding", "Wireless Communication", "Antenna & Wave Propagation", "Embedded Systems"],
     7: ["Optical Communication", "Satellite Communication", "Digital Image Processing", "Machine Learning"],
