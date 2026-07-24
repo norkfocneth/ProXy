@@ -293,18 +293,18 @@ const syllabusData = {
       ]
     },
     5: {
-      desc: "Implement algorithms, network suites, web systems, and compiler foundations.",
+      desc: "Master algorithm design, networking protocols, compiler foundations, and systems engineering.",
       subjects: [
         {
           code: "CS-301",
-          icon: "📐",
-          title: "Design & Analysis of Algorithms",
-          shortDesc: "Asymptotic Notation, Divide & Conquer, Greedy, Dynamic Programming, and NP-Completeness",
+          icon: "⚙",
+          title: "Compiler Design",
+          shortDesc: "Lexical Analysis, Parsers, Syntax-Directed Translation, and Code Generation",
           units: [
-            { num: "Unit I", topics: "Algorithm Analysis: Asymptotic notations, recurrence relations, Master method." },
-            { num: "Unit II", topics: "Divide & Conquer, Greedy Algorithms: Merge sort, Quick sort, Knapsack, Huffman codes, Spanning trees." },
-            { num: "Unit III", topics: "Dynamic Programming, Backtracking: Matrix chain multiplication, LCS, 0/1 Knapsack, N-Queens." },
-            { num: "Unit IV", topics: "Complexity Classes: P, NP, NP-Hard, NP-Complete problems, approximation algorithms." }
+            { num: "Unit I", topics: "Introduction to Compilers: Phases of compiler, lexical analyzer generation (LEX)." },
+            { num: "Unit II", topics: "Parsing Techniques: Top-down parsing (LL), bottom-up parsing (LR, LALR, SLR), parser generators (YACC)." },
+            { num: "Unit III", topics: "Syntax-Directed Translation: SDD, SDTS, intermediate code forms: three-address code." },
+            { num: "Unit IV", topics: "Code Optimization: Loop optimization, data flow analysis, code generator architectures." }
           ]
         },
         {
@@ -320,51 +320,135 @@ const syllabusData = {
           ]
         },
         {
-          code: "CS-305",
-          icon: "☕",
-          title: "Java Programming",
-          shortDesc: "Advanced Java Concepts, Collections Framework, Networking, and Servlet Architectures",
+          code: "HS-305",
+          icon: "📈",
+          title: "Economics for Engineers",
+          shortDesc: "Engineering Economics, Microeconomics, Cost Analysis, and Financial Valuation",
           units: [
-            { num: "Unit I", topics: "OOP Implementation: Interfaces, packages, inner classes, Exception handling." },
-            { num: "Unit II", topics: "Java Collections: List, Set, Map interfaces, generics, file streams, serialization." },
-            { num: "Unit III", topics: "Java Networking: Socket programming, URL connection, RMI, multi-threaded servers." },
-            { num: "Unit IV", topics: "Enterprise Java: Servlets, JSP lifecycle, JDBC database queries, MVC implementation." }
+            { num: "Unit I", topics: "Introduction to Economics: Demand & Supply analysis, elasticity, engineering economic decision making." },
+            { num: "Unit II", topics: "Cost Concepts & Production: Production functions, cost estimation, breakeven analysis." },
+            { num: "Unit III", topics: "Time Value of Money: Interest formulas, present worth, future worth, internal rate of return (IRR)." },
+            { num: "Unit IV", topics: "Market Structures & Project Evaluation: Perfect competition, monopoly, depreciation methods, inflation analysis." }
           ]
         },
         {
           code: "CS-307",
-          icon: "🧪",
-          title: "Software Testing",
-          shortDesc: "Verification/Validation, Test Case Design, Automation, and Defect Metrics",
+          icon: "✍",
+          title: "Software Engineering",
+          shortDesc: "SDLC Models, Requirements Engineering, Testing, and Maintenance",
           units: [
-            { num: "Unit I", topics: "Testing Concepts: Verification, validation, test suites, test case metrics." },
-            { num: "Unit II", topics: "Functional & Structural Testing: Boundary value analysis, equivalence partitioning, path testing, data flow." },
-            { num: "Unit III", topics: "Specialized Testing: Integration, system, regression, acceptance testing, performance testing." },
-            { num: "Unit IV", topics: "Test Automation & Tools: JUnit, Selenium, test reports, bug tracking tools." }
+            { num: "Unit I", topics: "Software Process Models: Waterfall, spiral, prototype, agile models (Scrum)." },
+            { num: "Unit II", topics: "Requirements Engineering: SRS document, software design principles, UML diagrams." },
+            { num: "Unit III", topics: "Coding and Testing: White-box testing, black-box testing, unit, integration, and system testing." },
+            { num: "Unit IV", topics: "Software Metrics: COCOMO model, function points, maintenance, configuration management." }
           ]
         },
         {
           code: "CS-309",
-          icon: "⚙",
-          title: "Compiler Design",
-          shortDesc: "Lexical Analysis, Parsers, Syntax-Directed Translation, and Code Generation",
+          icon: "📐",
+          title: "Algorithm Design and Analysis",
+          shortDesc: "Asymptotic Notation, Divide & Conquer, Greedy, Dynamic Programming, and NP-Completeness",
           units: [
-            { num: "Unit I", topics: "Introduction to Compilers: Phases of compiler, lexical analyzer generation (LEX)." },
-            { num: "Unit II", topics: "Parsing Techniques: Top-down parsing (LL), bottom-up parsing (LR, LALR, SLR), parser generators (YACC)." },
-            { num: "Unit III", topics: "Syntax-Directed Translation: SDD, SDTS, intermediate code forms: three-address code." },
-            { num: "Unit IV", topics: "Code Optimization: Loop optimization, data flow analysis, code generator architectures." }
+            { num: "Unit I", topics: "Algorithm Analysis: Asymptotic notations, recurrence relations, Master method." },
+            { num: "Unit II", topics: "Divide & Conquer, Greedy Algorithms: Merge sort, Quick sort, Knapsack, Huffman codes, Spanning trees." },
+            { num: "Unit III", topics: "Dynamic Programming, Backtracking: Matrix chain multiplication, LCS, 0/1 Knapsack, N-Queens." },
+            { num: "Unit IV", topics: "Complexity Classes: P, NP, NP-Hard, NP-Complete problems, approximation algorithms." }
+          ]
+        },
+        {
+          code: "CS-311",
+          icon: "💻",
+          title: "Operating System CSE",
+          shortDesc: "CPU Scheduling, Synchronization, Memory Management, and Disk Scheduling",
+          units: [
+            { num: "Unit I", topics: "OS overview, process state transitions, CPU scheduling algorithms." },
+            { num: "Unit II", topics: "Process synchronization: Semaphores, monitors, classical synchronization problems. Deadlocks." },
+            { num: "Unit III", topics: "Memory management: Paging, segmentation, virtual memory page replacement." },
+            { num: "Unit IV", topics: "File systems structure, disk scheduling algorithms, security and protection." }
           ]
         }
       ]
     },
     6: {
-      desc: "Implement intelligent models, security systems, and microprocessor hardware.",
+      desc: "Explore intelligent systems, modern web platforms, advanced software frameworks, and statistical modelling.",
       subjects: [
+        {
+          code: "HS-302",
+          icon: "🕊",
+          title: "Universal Human Values",
+          shortDesc: "Ethics, Value Education, Harmony in Self, Family, Society, and Nature",
+          units: [
+            { num: "Unit I", topics: "Course Introduction: Need, basic guidelines, content and process for value education." },
+            { num: "Unit II", topics: "Understanding Harmony in the Human Being: Harmony in myself, self and body." },
+            { num: "Unit III", topics: "Understanding Harmony in the Family and Society: Harmony in human-human relationship." },
+            { num: "Unit IV", topics: "Understanding Harmony in Nature and Existence: Whole existence as coexistence." }
+          ]
+        },
+        {
+          code: "CS-304",
+          icon: "🌐",
+          title: "Web Technologies",
+          shortDesc: "HTML5, CSS3, JavaScript, Client-Server Architectures, and Web APIs",
+          units: [
+            { num: "Unit I", topics: "Web Basics: HTML5 semantic tags, CSS3 layouts, flexbox, grid, responsive web design." },
+            { num: "Unit II", topics: "JavaScript Programming: ES6 syntax, DOM manipulation, asynchronous JS, Promises, Fetch API." },
+            { num: "Unit III", topics: "Server-side Web Development: Node.js, Express framework, RESTful API design." },
+            { num: "Unit IV", topics: "Database Integration: MongoDB, Mongoose ORM, sessions, authentication (JWT)." }
+          ]
+        },
+        {
+          code: "CS-306",
+          icon: "🐍",
+          title: "Programming in Python",
+          shortDesc: "Python Fundamentals, Data Structures, OOP, Modules, and File I/O",
+          units: [
+            { num: "Unit I", topics: "Python Syntax, Data Types, Control Structures, Loops, Functions, Lambda expressions." },
+            { num: "Unit II", topics: "Data Structures: Lists, Tuples, Dictionaries, Sets, List Comprehensions." },
+            { num: "Unit III", topics: "Object-Oriented Python: Classes, Objects, Inheritance, Polymorphism, Operator Overloading." },
+            { num: "Unit IV", topics: "Modules & File Handling: Standard libraries, NumPy/Pandas intro, exception handling, file I/O." }
+          ]
+        },
+        {
+          code: "BS-308",
+          icon: "📊",
+          title: "Statistics, Statistical Modelling and Simulation",
+          shortDesc: "Probability Distributions, Hypothesis Testing, Regression, and Simulation Models",
+          units: [
+            { num: "Unit I", topics: "Probability & Random Variables: Joint distributions, expectation, variance, correlation." },
+            { num: "Unit II", topics: "Hypothesis Testing: Large and small sample tests, t-test, z-test, Chi-square test, ANOVA." },
+            { num: "Unit III", topics: "Statistical Modelling: Linear and multiple regression analysis, time series analysis." },
+            { num: "Unit IV", topics: "Simulation Techniques: Monte Carlo simulation, random number generation, queuing models." }
+          ]
+        },
+        {
+          code: "HS-310",
+          icon: "🏢",
+          title: "Principles of Management for Engineers",
+          shortDesc: "Management Functions, Organizational Behavior, Project Leadership, and Ethics",
+          units: [
+            { num: "Unit I", topics: "Introduction to Management: Functions of management, planning, organizing, staffing, leading, controlling." },
+            { num: "Unit II", topics: "Organizational Behavior: Individual behavior, motivation theories, leadership styles, team dynamics." },
+            { num: "Unit III", topics: "Strategic Management: SWOT analysis, decision making models, organizational structure." },
+            { num: "Unit IV", topics: "Engineering Ethics & Business Law: Corporate governance, intellectual property, contracts, sustainability." }
+          ]
+        },
+        {
+          code: "CS-312",
+          icon: "☕",
+          title: "Advanced Java Programming",
+          shortDesc: "Java EE, Servlets, JSP, Hibernate, Spring Framework, and Microservices",
+          units: [
+            { num: "Unit I", topics: "Java Database Connectivity (JDBC): Architecture, Statement, PreparedStatement, ResultSet, transactions." },
+            { num: "Unit II", topics: "Servlet Technology: Servlet lifecycle, HTTP GET/POST, session tracking, filters." },
+            { num: "Unit III", topics: "Java Server Pages (JSP): JSP tags, implicit objects, JavaBeans, Custom tags." },
+            { num: "Unit IV", topics: "Frameworks: Spring Boot basics, Dependency Injection, Hibernate ORM, REST microservices." }
+          ]
+        },
         {
           code: "CS-302",
           icon: "🤖",
           title: "Artificial Intelligence",
-          shortDesc: "Heuristic Searching, Knowledge Representation, and Machine Learning Systems",
+          shortDesc: "Heuristic Search, Knowledge Representation, Fuzzy Logic, and Expert Systems",
           units: [
             { num: "Unit I", topics: "AI overview, state space search, heuristic search: A* algorithm, game playing." },
             { num: "Unit II", topics: "Knowledge representation, predicate logic, resolution, semantic networks." },
@@ -373,51 +457,27 @@ const syllabusData = {
           ]
         },
         {
-          code: "CS-304",
-          icon: "🎨",
-          title: "Computer Graphics",
-          shortDesc: "Scan Conversion, 2D/3D Transformations, Viewing, and Hidden Surface Elimination",
+          code: "CS-314",
+          icon: "🧠",
+          title: "Machine Learning",
+          shortDesc: "Supervised Learning, Neural Networks, Clustering, and Model Evaluation",
           units: [
-            { num: "Unit I", topics: "Graphics Basics: Video display devices, scan conversion: DDA, Bresenham line & circle algorithms." },
-            { num: "Unit II", topics: "2D Transformations: Translation, scaling, rotation, reflection, shearing, clipping: Cohen-Sutherland." },
-            { num: "Unit III", topics: "3D Graphics: 3D transformations, projections (parallel and perspective), curves: Bezier, B-Splines." },
-            { num: "Unit IV", topics: "Rendering: Hidden surface elimination (Z-buffer), illumination models, shading: Gouraud, Phong." }
+            { num: "Unit I", topics: "Supervised Learning: Linear regression, logistic regression, decision trees, Naive Bayes." },
+            { num: "Unit II", topics: "Support Vector Machines & Ensemble Learning: Random Forests, Boosting, Bagging." },
+            { num: "Unit III", topics: "Unsupervised Learning: K-means clustering, Hierarchical clustering, PCA, Dimensionality Reduction." },
+            { num: "Unit IV", topics: "Neural Networks & Deep Learning Intro: Perceptron, Backpropagation, Evaluation metrics (ROC, F1)." }
           ]
         },
         {
-          code: "CS-306",
-          icon: "📂",
-          title: "Data Warehousing & Data Mining",
-          shortDesc: "OLAP, ETL, Association Rules, Classification, and Clustering Algorithms",
+          code: "CS-316",
+          icon: "⚡",
+          title: "Operating System AIML",
+          shortDesc: "OS Kernels, Resource Scheduling, Virtual Memory, and Parallel Execution for AI",
           units: [
-            { num: "Unit I", topics: "Data Warehouse: Architecture, multidimensional schemas (Star, Snowflake), OLAP operations." },
-            { num: "Unit II", topics: "Data Preprocessing: Data cleaning, integration, reduction, transformation." },
-            { num: "Unit III", topics: "Mining Association Rules: Apriori algorithm, FP-Growth, classification: decision trees, Naive Bayes." },
-            { num: "Unit IV", topics: "Clustering & Trends: Partitioning methods (K-means), hierarchical clustering, outlier detection." }
-          ]
-        },
-        {
-          code: "CS-308",
-          icon: "🔑",
-          title: "Cryptography & Network Security",
-          shortDesc: "Symmetric Encryption, Public Key Cryptography, Hashes, and Network Protocols",
-          units: [
-            { num: "Unit I", topics: "Security Concepts: Attacks, services, classical encryption techniques, block ciphers: DES, AES." },
-            { num: "Unit II", topics: "Public Key Cryptography: RSA, Diffie-Hellman key exchange, elliptic curve cryptography." },
-            { num: "Unit III", topics: "Hash Functions: MD5, SHA-512, digital signatures, message authentication codes." },
-            { num: "Unit IV", topics: "Network Security: IPsec, SSL/TLS, firewalls, intrusion detection systems, malware ciphers." }
-          ]
-        },
-        {
-          code: "ES-312",
-          icon: "🎛",
-          title: "Microprocessors & Microcontrollers",
-          shortDesc: "8085/8086 Architectures, Assembler Directives, Interfacing, and 8051 Micros",
-          units: [
-            { num: "Unit I", topics: "8085 Architecture: Pin details, register organization, instruction set, timing diagrams." },
-            { num: "Unit II", topics: "8086 Microprocessor: Internal architecture, memory segmentation, addressing modes, assembly programming." },
-            { num: "Unit III", topics: "Peripheral Interfacing: PPI 8255, PIT 8253, PIC 8259, DMA controller 8257, ADC/DAC interface." },
-            { num: "Unit IV", topics: "8051 Microcontroller: Architecture, memory layout, SFRs, timers, interrupts, serial communication." }
+            { num: "Unit I", topics: "Operating System Fundamentals: Kernel architectures, system calls, process management." },
+            { num: "Unit II", topics: "Concurrency & GPU Scheduling: Threads, synchronization, deadlock handling, GPU resource allocation." },
+            { num: "Unit III", topics: "Memory & Storage Systems: Virtual memory management, page replacement algorithms, high-throughput I/O." },
+            { num: "Unit IV", topics: "AI Workload Execution: Distributed OS, containerized environments (Docker, K8s), parallel execution pipelines." }
           ]
         }
       ]
