@@ -166,9 +166,21 @@ const syllabusData = {
       desc: "Explore core algorithms, discrete structures, and digital representations.",
       subjects: [
         {
+          code: "BS-203",
+          icon: "∫",
+          title: "Computational Methods (CSE)",
+          shortDesc: "Error Analysis, Numerical Differentiation, Integration, and Differential Equations",
+          units: [
+            { num: "Unit I", topics: "Error Analysis, Solution of Algebraic and Transcendental Equations (Bisection, Secant, Regula-Falsi, Newton-Raphson)." },
+            { num: "Unit II", topics: "Solution of Linear System of Equations (Gauss Elimination, Gauss-Jordan, Jacobi, Gauss-Seidel), Eigenvalues and Eigenvectors." },
+            { num: "Unit III", topics: "Interpolation (Newton's Forward/Backward, Lagrange's), Numerical Differentiation and Integration (Trapezoidal, Simpson's 1/3 and 3/8 rules)." },
+            { num: "Unit IV", topics: "Numerical Solution of Ordinary Differential Equations (Taylor's Series, Euler's Method, Modified Euler's, Runge-Kutta 4th Order)." }
+          ]
+        },
+        {
           code: "CS-201",
           icon: "∑",
-          title: "Discrete Structure",
+          title: "Discrete Mathematics",
           shortDesc: "Sets, Relations, Logic, Algebraic Structures, and Graph Theory",
           units: [
             { num: "Unit I", topics: "Set Theory, relations, equivalence relations, partial orderings, functions." },
@@ -192,7 +204,7 @@ const syllabusData = {
         {
           code: "CS-205",
           icon: "🖥",
-          title: "Computer Organization & Architecture",
+          title: "Digital Logic and Computer Design",
           shortDesc: "Register Transfer, CPU Design, Microprogramming, and Memory Hierarchies",
           units: [
             { num: "Unit I", topics: "Register Transfer and Microoperations: Bus transfer, arithmetic, logic, and shift microoperations." },
@@ -214,15 +226,15 @@ const syllabusData = {
           ]
         },
         {
-          code: "EC-209",
-          icon: "🚥",
-          title: "Digital Electronics",
-          shortDesc: "Logic Gates, K-Maps, Combinational & Sequential Logic Design",
+          code: "CS-203-CSE",
+          icon: "🏗",
+          title: "DATA STRUCTURE CSE",
+          shortDesc: "Linear & Non-linear data representation for Computer Science",
           units: [
-            { num: "Unit I", topics: "Number Systems and Codes: Binary, octal, hexadecimal, BCD, Gray code, logic gates." },
-            { num: "Unit II", topics: "Boolean Algebra: K-maps, Quine-McCluskey method, combinational circuits: adders, multiplexers." },
-            { num: "Unit III", topics: "Sequential Circuits: Latches, flip-flops (SR, JK, D, T), registers, counters." },
-            { num: "Unit IV", topics: "Semiconductor Memories: ROM, PLA, PAL, TTL & CMOS logic families." }
+            { num: "Unit I", topics: "Complexity analysis, arrays, linked lists (single, double, circular)." },
+            { num: "Unit II", topics: "Stacks, Queues, recursion, implementation using arrays & linked lists." },
+            { num: "Unit III", topics: "Trees: Binary trees, traversals, AVL trees, B-trees, heaps." },
+            { num: "Unit IV", topics: "Graphs: Representation, BFS, DFS. Searching & Sorting algorithms, hashing." }
           ]
         }
       ]

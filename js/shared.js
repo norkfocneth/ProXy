@@ -620,7 +620,7 @@ const ProxyAI = {
         tips: "Write structured emails and resumes. Focus on report layout styles and professional letter formats."
       },
       "cs-201": {
-        name: "Discrete Structure",
+        name: "Discrete Mathematics",
         code: "CS-201",
         sem: 3,
         important: [
@@ -644,7 +644,7 @@ const ProxyAI = {
         tips: "Write step-by-step trace tables for sorting and AVL insertions. Understand recursive algorithms and time complexity."
       },
       "cs-205": {
-        name: "Computer Organization & Architecture",
+        name: "Digital Logic and Computer Design",
         code: "CS-205",
         sem: 3,
         important: [
@@ -667,17 +667,29 @@ const ProxyAI = {
         ],
         tips: "Be clear on dynamic method dispatch, thread synchronization concepts, and write clean Java fragments for exams."
       },
-      "ec-209": {
-        name: "Digital Electronics",
-        code: "EC-209",
+      "bs-203": {
+        name: "Computational Methods (CSE)",
+        code: "BS-203",
         sem: 3,
         important: [
-          "Boolean algebra, K-maps, combinational circuits (adders, MUX)",
-          "Sequential circuits: SR, JK, D, T flip-flops, conversion, counters",
-          "Registers, asynchronous/synchronous counters",
-          "Semiconductor memories: ROM, PLA, PAL, logic families"
+          "Error Analysis, Bisection, Regula-Falsi, Newton-Raphson",
+          "Gauss Elimination, Gauss-Jordan, Jacobi, Gauss-Seidel",
+          "Newton's Interpolation, Trapezoidal, Simpson's 1/3 and 3/8 rules",
+          "Taylor's Series, Euler's Method, Runge-Kutta 4th Order"
         ],
-        tips: "Simplifying Boolean expressions using K-maps and design of synchronous counters are major topics. Learn flip-flop conversion steps."
+        tips: "Practice numeric algorithms carefully. Duality and formula steps carry high marks."
+      },
+      "cs-203-cse": {
+        name: "DATA STRUCTURE CSE",
+        code: "CS-203-CSE",
+        sem: 3,
+        important: [
+          "Complexity analysis, arrays, linked lists (single, double, circular)",
+          "Stacks, Queues, recursion implementation",
+          "Trees: Binary trees, traversals, AVL trees (rotations), B-trees, heaps",
+          "Graphs: Representation, BFS, DFS, searching & sorting, hashing"
+        ],
+        tips: "Write step-by-step trace tables for sorting and AVL insertions. Understand recursive algorithms and time complexity."
       },
       "bs-204": {
         name: "Applied Mathematics - IV",
