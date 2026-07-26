@@ -1295,6 +1295,14 @@ const syllabusData = {
 
 // Dynamic Subject Mapping for All Other Branches (ECE, EEE, EE, MAE, ME, CE, AIDS, AIML)
 const dynamicBranchSubjects = {
+  IT: {
+    3: ["Discrete Structure", "Data Structures", "Computer Organization & Architecture", "Python Programming", "Digital Electronics"],
+    4: ["Applied Mathematics - IV", "Database Management Systems", "Operating Systems", "Software Engineering", "Probability & Statistics"],
+    5: ["Design & Analysis of Algorithms", "Computer Networks", "Introduction to Machine Learning", "Data Visualization", "Compiler Design"],
+    6: ["Artificial Intelligence", "Deep Learning Models", "Data Warehousing & Mining", "Natural Language Processing", "Big Data Analytics"],
+    7: ["Reinforcement Learning", "Computer Vision", "Cloud Computing", "AI Ethics & Governance"],
+    8: ["Mobile Computing", "Internet of Things", "Robotics & Automation"]
+  },
   ECE: {
     3: ["Analog Communication", "Data Structures", "Analog Electronics-1", "Computational Methods (CSE)", "Digital Logic and Computer Design", "Signals and Systems"],
     4: ["Probability, Statistics and Linear Programming", "Network Analysis and Synthesis", "Technical Writing", "Microprocessors and Microcontrollers", "Digital Communications", "Analog Electronics-II", "Electromagnetic Field Theory"],

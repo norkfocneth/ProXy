@@ -177,7 +177,8 @@
           .select('*')
           .eq('branch', branch)
           .eq('resource_type', 'notes')
-          .in('status', ['approved', 'pending']);
+          .in('status', ['approved', 'pending'])
+          .order('upload_date', { ascending: false });
         if (!error && resData) {
           dbNotes = resData;
         }
@@ -336,10 +337,10 @@
                 const noteTitle = (note.title || '').toLowerCase();
                 const noteDesc = (note.description || '').toLowerCase();
 
-                const hasUnit1 = noteTitle.includes('unit 1') || noteTitle.includes('unit i') || noteTitle.includes('u1');
-                const hasUnit2 = noteTitle.includes('unit 2') || noteTitle.includes('unit ii') || noteTitle.includes('u2');
-                const hasUnit3 = noteTitle.includes('unit 3') || noteTitle.includes('unit iii') || noteTitle.includes('u3');
-                const hasUnit4 = noteTitle.includes('unit 4') || noteTitle.includes('unit iv') || noteTitle.includes('u4');
+                const hasUnit1 = noteTitle.includes('unit 1') || noteTitle.includes('unit i') || noteTitle.includes('u1') || noteTitle.includes('unit1');
+                const hasUnit2 = noteTitle.includes('unit 2') || noteTitle.includes('unit ii') || noteTitle.includes('u2') || noteTitle.includes('unit2');
+                const hasUnit3 = noteTitle.includes('unit 3') || noteTitle.includes('unit iii') || noteTitle.includes('u3') || noteTitle.includes('unit3');
+                const hasUnit4 = noteTitle.includes('unit 4') || noteTitle.includes('unit iv') || noteTitle.includes('u4') || noteTitle.includes('unit4');
 
                 const specifiesAnyUnit = hasUnit1 || hasUnit2 || hasUnit3 || hasUnit4;
 

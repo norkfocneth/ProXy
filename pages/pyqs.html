@@ -183,7 +183,8 @@
           .select('*')
           .eq('branch', branch)
           .eq('resource_type', 'pyqs')
-          .in('status', ['approved', 'pending']);
+          .in('status', ['approved', 'pending'])
+          .order('upload_date', { ascending: false });
         if (!error && resData) {
           dbPyqs = resData;
         }

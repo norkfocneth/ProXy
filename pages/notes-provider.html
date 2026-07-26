@@ -1294,15 +1294,15 @@
       let finalTitle = formState.title;
       if (formState.resourceType === 'pyqs') {
         const typeLabel = formState.examType === 'mid' ? '[Mid Term]' : '[End Term]';
-        if (!finalTitle.includes('[Mid Term]') && !finalTitle.includes('[End Term]')) {
-          finalTitle = `${finalTitle} ${typeLabel}`;
-        }
+        // Clean any existing term brackets
+        finalTitle = finalTitle.replace(/\s*\[Mid Term\]/gi, '').replace(/\s*\[End Term\]/gi, '');
+        finalTitle = `${finalTitle} ${typeLabel}`;
       }
       if (formState.unit) {
         const unitTag = formState.unit === 'all' ? '[All Units]' : `[Unit ${formState.unit}]`;
-        if (!finalTitle.toLowerCase().includes('unit')) {
-          finalTitle = `${finalTitle} ${unitTag}`;
-        }
+        // Clean any existing unit brackets
+        finalTitle = finalTitle.replace(/\s*\[Unit\s+\w+\]/gi, '').replace(/\s*\[All Units\]/gi, '');
+        finalTitle = `${finalTitle} ${unitTag}`;
       }
 
       const result = await NotesProviderEngine.uploadResource({
