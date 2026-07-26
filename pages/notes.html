@@ -358,14 +358,17 @@
               if (matchingNote) {
                 notebook.dataset.fileUrl = matchingNote.file_url;
                 notebook.classList.add('has-resource');
+                notebook.style.boxShadow = '0 0 18px rgba(16, 185, 129, 0.45)';
+                notebook.style.border = '1px solid rgba(16, 185, 129, 0.5)';
               }
 
               notebook.innerHTML = `
-                <div class="notebook-spine">
+                <div class="notebook-spine" style="padding: 1rem 0.4rem;">
                   <span class="spine-badge">${unit.num}</span>
+                  ${matchingNote ? '<span class="spine-real-badge" style="background: #10b981; color: white; padding: 2px 4px; border-radius: 4px; font-size: 0.55rem; font-weight: 800; text-align: center; text-transform: uppercase; letter-spacing: 0.05em; margin: 4px 0; box-shadow: 0 0 6px rgba(16, 185, 129, 0.5);">Real</span>' : ''}
                   <span class="spine-title">${sub.title}</span>
                   <span class="spine-code">${sub.code}</span>
-                  ${matchingNote ? '<div class="spine-verified-dot" title="Verified Uploaded Resource" style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; margin: 12px auto 0; box-shadow: 0 0 8px #10b981;"></div>' : ''}
+                  ${matchingNote ? '<div class="spine-verified-dot" title="Verified Uploaded Resource" style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; margin: 8px auto 0; box-shadow: 0 0 8px #10b981;"></div>' : ''}
                 </div>
               `;
 
