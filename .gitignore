@@ -1,0 +1,9 @@
+.env
+.FullName
+.agents/
+skills-lock.json
+extracted_step_*.txt
+extract_replacements.js
+trace_brackets.js
+node_modules/
+.DS_Store
