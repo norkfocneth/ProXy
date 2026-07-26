@@ -176,7 +176,6 @@
           .from('resources')
           .select('*')
           .eq('branch', branch)
-          .eq('semester', sem)
           .eq('resource_type', 'notes')
           .in('status', ['approved', 'pending']);
         if (!error && resData) {
@@ -239,22 +238,52 @@
                  .replace(/\b2\b/g, 'ii')
                  .replace(/\b3\b/g, 'iii')
                  .replace(/\b4\b/g, 'iv')
-                 .replace(/\bi\b/g, 'i')
-                 .replace(/\bii\b/g, 'ii')
-                 .replace(/\biii\b/g, 'iii')
-                 .replace(/\biv\b/g, 'iv');
+                 .replace(/\b-i\b/g, 'i')
+                 .replace(/\b-ii\b/g, 'ii')
+                 .replace(/\b-iii\b/g, 'iii')
+                 .replace(/\b-iv\b/g, 'iv');
 
-        str = str.replace(/[^a-z0-9]/g, '');
+        if (str.includes('electrical') || str.includes('electronics') || str.includes('es-1') || str.includes('es 1') || str.includes('es-2') || str.includes('es 2') || str.includes('bee')) {
+          if (str.includes('ii') || str.includes('2')) return 'electricalscience2';
+          return 'electricalscience';
+        }
+        if (str.includes('math') || str.includes('am-1') || str.includes('am-2') || str.includes('am1') || str.includes('am2')) {
+          if (str.includes('ii') || str.includes('2')) return 'maths2';
+          return 'maths1';
+        }
+        if (str.includes('physics') || str.includes('ap-1') || str.includes('ap-2') || str.includes('ap1') || str.includes('ap2')) {
+          if (str.includes('ii') || str.includes('2')) return 'physics2';
+          return 'physics1';
+        }
+        if (str.includes('chemistry') || str.includes('ac-1') || str.includes('ac-2') || str.includes('ac1') || str.includes('ac2')) {
+          if (str.includes('ii') || str.includes('2')) return 'chemistry2';
+          return 'chemistry1';
+        }
+        if (str.includes('comm') || str.includes('cs-102') || str.includes('communication')) {
+          return 'communicationskills';
+        }
+        if (str.includes('evs') || str.includes('environ')) {
+          return 'environmentalscience';
+        }
+        if (str.includes('manu') || str.includes('manufacturing') || str.includes('workshop')) {
+          return 'manufacturingprocesses';
+        }
+        if (str.includes('prog') || str.includes('c++') || str.includes('programming in c')) {
+          if (str.includes('c++')) return 'programmingcpp';
+          return 'programmingc';
+        }
+        if (str.includes('computational') || str.includes('cm_')) {
+          return 'computationalmethods';
+        }
+        if (str.includes('algorithm') || str.includes('ada')) {
+          return 'algorithmdesign';
+        }
 
-        str = str.replace(/applied/g, '')
-                 .replace(/basic/g, '')
-                 .replace(/science/g, '')
-                 .replace(/engineering/g, '')
-                 .replace(/programming/g, '')
-                 .replace(/graphics/g, '')
-                 .replace(/process/g, '');
-                 
-        return str.trim();
+        return str.replace(/[^a-z0-9]/g, '')
+                  .replace(/applied/g, '')
+                  .replace(/basic/g, '')
+                  .replace(/science/g, '')
+                  .replace(/engineering/g, '');
       }
 
       function renderShelf(subjects) {
