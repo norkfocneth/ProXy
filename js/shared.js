@@ -8,7 +8,7 @@ function injectNavbar(activePage = 'Home') {
   const navbarHTML = `
     <nav class="navbar" id="mainNavbar">
       <a href="/index.html" class="nav-left">
-        <span class="logo-text"><span>P</span>ro<span>X</span>y</span>
+        <span class="logo-text"><span>P</span>ro<span>X</span><span>X</span>y</span>
       </a>
       
       <ul class="nav-center">
@@ -116,8 +116,8 @@ function setupThemeToggle() {
   const toggleBtn = document.getElementById('themeToggle');
   if (!toggleBtn) return;
 
-  // Initialize theme from localStorage or default to dark
-  const currentTheme = localStorage.getItem('theme') || 'dark';
+  // Initialize theme from localStorage or default to light
+  const currentTheme = localStorage.getItem('theme') || 'light';
   if (currentTheme === 'light') {
     document.documentElement.classList.add('light-theme');
     document.documentElement.classList.remove('dark-theme');
@@ -380,7 +380,8 @@ function injectCinematicIntro() {
       <span class="intro-letter white" data-delay="1100">r</span>
       <span class="intro-letter white" data-delay="1700">o</span>
       <span class="intro-letter red" data-delay="2300">X</span>
-      <span class="intro-letter white" data-delay="2900">y</span>
+      <span class="intro-letter red" data-delay="2900">X</span>
+      <span class="intro-letter white" data-delay="3500">y</span>
     </div>
   `;
   document.body.prepend(intro);
