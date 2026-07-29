@@ -172,10 +172,11 @@
       
       let dbNotes = [];
       try {
+        const branchesToQuery = (sem === 1 || sem === 2) ? (branch === 'CSE' ? ['CSE'] : [branch, 'CSE']) : [branch];
         const { data: resData, error } = await db
           .from('resources')
           .select('*')
-          .eq('branch', branch)
+          .in('branch', branchesToQuery)
           .eq('resource_type', 'notes')
           .in('status', ['approved', 'pending'])
           .order('upload_date', { ascending: false });
